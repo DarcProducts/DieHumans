@@ -33,8 +33,6 @@ public class BuildingManager : MonoBehaviour
             {
                 var brokenEffect = Instantiate(brokenBuildingEffect, building.transform.position, Quaternion.identity, building.transform);
                 var rubble = brokenEffect.transform.GetChild(0).transform.GetChild(0).gameObject;
-                var particles = building.GetComponent<ParticleSystem>().main;
-                particles.duration = building.transform.localScale.y;
                 if (rubble != null)
                 {
                     rubble.transform.localScale = new Vector3(building.transform.localScale.x, rubble.transform.localScale.y, building.transform.localScale.z);
@@ -67,7 +65,7 @@ public class BuildingManager : MonoBehaviour
             {
                 ShakeThisBuilding(building.gameObject, damageShakeDuration);
                 building.ApplyDamage(amount);
-                if (building.GetCurrentBuildingHealth() <= 0)
+                if (building.GetCurrentHealth() <= 0)
                     building.SetIsCollapsing();
             }
         }

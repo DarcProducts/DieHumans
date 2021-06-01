@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : MonoBehaviour, IDamagable<float>
 {
     private float maxBuildingHealth;
     private int maxNumberOfPeopleInside;
@@ -33,7 +33,10 @@ public class Building : MonoBehaviour
             CollapseBuilding();
         }
         if (_currentBuildingHealth <= 0)
+        {
             StartBrokenBuildingEffect();
+            isCollapsing = true;
+        }
     }
 
     public void CollapseBuilding()
@@ -70,9 +73,9 @@ public class Building : MonoBehaviour
 
     public void SetIsCollapsing() => isCollapsing = true;
 
-    public float GetMaxBuildingHealth() => maxBuildingHealth;
+    public float GetMaxHealth() => maxBuildingHealth;
 
-    public float GetCurrentBuildingHealth() => _currentBuildingHealth;
+    public float GetCurrentHealth() => _currentBuildingHealth;
 
     public int GetNumberOfPeopleInside() => _currentNumberOfPeopleInside;
 

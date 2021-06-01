@@ -1,37 +1,59 @@
 using System.Collections;
 using UnityEngine;
 
-public class Chopper : MonoBehaviour, IEnemy
+public class Chopper : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject rocket;
-    [SerializeField] private int rocketsToFire;
-    [SerializeField] private float rocketThrust;
+    private EnemyManager enemyManager;
+    [SerializeField] private GameObject chopperExplodedEffect;
+    private bool isExploded = false;
+    private GameObject player;
+    [SerializeField] private float checkDistancePlayer;
+    [SerializeField] private float checkDistanceObject;
     [SerializeField] private float rocketFireTime;
-    [SerializeField] private float currentFireTime;
-    [SerializeField] private int currentRockets;
-    private bool hasFired = false;
+    private float currentFireTime;
     [SerializeField] private float maxHealth;
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float rotationSpeed;
     [Range(0f, 1f)] [SerializeField] private float healthPercentToFlee;
-    [SerializeField] private float distanceFromPlayer;
+    private float distanceFromPlayer;
+    [Range(0f, 10f)] [SerializeField] private float downForceOnDeath;
+    private bool dieForceApplied = false;
 
-    private void Awake()
+    private void Start()
     {
-        player = GameObject.FindWithTag("PlayerShip");
+        if (enemyManager == null)
+            enemyManager = FindObjectOfType<EnemyManager>();
+        if (enemyManager != null)
+        {
+            player = enemyManager.GetPlayerShip();
+            distanceFromPlayer = enemyManager.GetChopperAttackDistance();
+        }
         currentHealth = maxHealth;
         currentFireTime = rocketFireTime;
     }
 
     private void LateUpdate()
     {
+        if (player != null && enemyManager != null)
+        {
+            if (Vector3.Distance(player.transform.position, transform.position) < distanceFromPlayer && currentHealth > currentHealth * healthPercentToFlee && enemyManager.CheckIfPathClear(gameObject, distanceFromPlayer))
+                Attack();
+            else if (Vector3.Distance(player.transform.position, transform.position) > distanceFromPlayer && currentHealth > currentHealth * healthPercentToFlee)
+                SearchForPlayer();
+            else
+                Flee();
+        }
+        if (currentHealth <= 0)
+            Die();
+    }
+
+
+    public void SearchForPlayer()
+    {
         if (player != null)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) < distanceFromPlayer && currentHealth > currentHealth * healthPercentToFlee)
-            {
-                Attack();
-            }
+            
         }
     }
 
@@ -39,38 +61,11 @@ public class Chopper : MonoBehaviour, IEnemy
     {
         currentFireTime = currentFireTime <= 0 ? 0 : currentFireTime -= Time.deltaTime;
 
-        if (currentFireTime <= 0)
+        if (currentFireTime <= 0 && enemyManager != null)
         {
-            LaunchRockets();
-            ResetRockets();
+            enemyManager.LaunchRocket(gameObject);
             currentFireTime = rocketFireTime;
         }
-    }
-
-    private void LaunchRockets()
-    {
-        if (!hasFired && player != null && rocket != null)
-        {
-            if (currentRockets < rocketsToFire)
-            {
-                GameObject r = Instantiate(rocket, transform.position + Vector3.down, Quaternion.identity);
-                Vector3 direction = player.transform.position + player.transform.forward - transform.position;
-                Rigidbody rR = r.GetComponent<Rigidbody>();
-                if (rR != null)
-                {
-                    rR.useGravity = false;
-                    rR.AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
-                }
-                currentRockets++;
-                LaunchRockets();
-            }
-        }
-    }
-
-    private void ResetRockets()
-    {
-        currentRockets = 0;
-        hasFired = false;
     }
 
     public void Flee()
@@ -78,13 +73,42 @@ public class Chopper : MonoBehaviour, IEnemy
 
     }
 
-    public void Die()
+    private void OnCollisionEnter(Collision collision)
     {
-
+        if (collision.gameObject.CompareTag("Ground") | collision.gameObject.CompareTag("Building"))
+            gameObject.SetActive(false);
     }
 
-    
-    
+    public void Die()
+    {
+        if (currentHealth <= 0)
+        {
+            transform.Rotate(transform.eulerAngles * Time.deltaTime);
+            Rigidbody r = GetComponent<Rigidbody>();
+            if (r != null)
+            {
+                r.useGravity = true;
+                if (!dieForceApplied)
+                {
+                    r.AddForce(r.velocity + new Vector3(Random.Range(r.velocity.x - downForceOnDeath, r.velocity.x + downForceOnDeath), Random.Range(r.velocity.y - downForceOnDeath, r.velocity.y - downForceOnDeath * 2), Random.Range(r.velocity.z - downForceOnDeath, r.velocity.z + downForceOnDeath)), ForceMode.Impulse);
+                    dieForceApplied = true;
+                }
+            }
+        }
+    }
+
+    public void Explode()
+    {
+        if (!isExploded && chopperExplodedEffect != null)
+        {
+            Instantiate(chopperExplodedEffect, transform.position, Quaternion.identity);
+            isExploded = true;
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnDisable() => Explode();
+
     public float GetCurrentHealth() => currentHealth;
 
     public void ApplyDamage(float damage) => currentHealth -= damage;

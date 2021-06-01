@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - TVWall
   - Rocket
+  - WeaponLocation
+  - Chopper
+  - Building
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,1 @@
+public interface IDamagable<T> { void ApplyDamage(T amount); T GetCurrentHealth(); T GetMaxHealth(); }
