@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 735689975490688434}
   - component: {fileID: 4626354034591241244}
   - component: {fileID: 290894729036804631}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TopRotor
   m_TagString: Chopper
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6135993222432244782}
   - component: {fileID: 3714618862862967451}
   - component: {fileID: 7886453850524205081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Chopper
   m_TagString: Chopper
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 3659335069029497329}
   - component: {fileID: 153476403980587276}
   - component: {fileID: 8966720540480295955}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RearRotor
   m_TagString: Chopper
   m_Icon: {fileID: 0}
@@ -294,10 +294,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7101480873783562597}
+  - component: {fileID: 2715405162208723339}
   - component: {fileID: 7621875721793293276}
   - component: {fileID: 2437029567911415413}
   - component: {fileID: 615708224934252938}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Chopper
   m_TagString: Chopper
   m_Icon: {fileID: 0}
@@ -321,6 +322,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2715405162208723339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621875721793293279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1816d179480fb4f8498c317b242d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
+  movementSpeed: 5
+  avoidanceSpeed: 10
+  currentMovementState: 0
+  objectHitLayers:
+    serializedVersion: 2
+    m_Bits: 187
+  objectsHit: 000000000000
+  directionsToCheck:
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: -1}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  distancesToCheck:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  debugRayColors:
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &7621875721793293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,10 +381,10 @@ MonoBehaviour:
   rocketFireTime: 1
   maxHealth: 100
   currentHealth: 0
-  maxSpeed: 10
-  rotationSpeed: 10
   healthPercentToFlee: 0.2
+  distanceFromPlayer: 0
   downForceOnDeath: 5
+  effectSize: {x: 0.8, y: 0.8, z: 0.8}
 --- !u!135 &2437029567911415413
 SphereCollider:
   m_ObjectHideFlags: 0

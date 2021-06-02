@@ -11,14 +11,14 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private int currentWave;
 
-    [Header("Chopper Stats")]
-    [SerializeField] private float maxChopperHealth;
+    [Header("Rocket Stats")]
 
-    [SerializeField] private float maxWanderHeight;
     [SerializeField] private GameObject rocket;
     [SerializeField] private float rocketThrust;
     [SerializeField] private float rocketDamage;
-    [SerializeField] private float choppperAttDist;
+
+    [Header("Arial Enemies")]
+    [SerializeField] private float maxWanderHeight;
 
     private void Awake()
     {
@@ -55,33 +55,6 @@ public class EnemyManager : MonoBehaviour
         return false;
     }
 
-    public bool SearchForPlayer(GameObject target, float range)
-    {
-        if (!CheckPlayerWithinRange(target, range))
-        {
-            
-        }
-        return true;
-    }
-
-    private bool ObjectLeft()
-    {
-
-        return false;
-    }
-
-    private bool ObjectRight()
-    {
-
-        return false;
-    }
-
-    private bool ObjectForward()
-    {
-
-        return false;
-    }
-
     public bool CheckIfPathClear(GameObject target, float distance)
     {
         if (Physics.Raycast(target.transform.position + Vector3.down, playerShip.transform.position + Vector3.up - target.transform.position, out RaycastHit hit, distance))
@@ -109,10 +82,6 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
-
-    public float GetChopperAttackDistance() => choppperAttDist;
-
-    public float GetMaxChopperHealth() => maxChopperHealth;
 
     public GameObject GetPlayerShip() => playerShip;
 

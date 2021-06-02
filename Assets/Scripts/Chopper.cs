@@ -6,55 +6,30 @@ public class Chopper : MonoBehaviour
     private EnemyManager enemyManager;
     [SerializeField] private GameObject chopperExplodedEffect;
     private bool isExploded = false;
-    private GameObject player;
     [SerializeField] private float checkDistancePlayer;
     [SerializeField] private float checkDistanceObject;
     [SerializeField] private float rocketFireTime;
     private float currentFireTime;
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float rotationSpeed;
     [Range(0f, 1f)] [SerializeField] private float healthPercentToFlee;
-    private float distanceFromPlayer;
+    [SerializeField] private float distanceFromPlayer;
     [Range(0f, 10f)] [SerializeField] private float downForceOnDeath;
+    [SerializeField] private Vector3 effectSize;
     private bool dieForceApplied = false;
 
     private void Start()
     {
         if (enemyManager == null)
             enemyManager = FindObjectOfType<EnemyManager>();
-        if (enemyManager != null)
-        {
-            player = enemyManager.GetPlayerShip();
-            distanceFromPlayer = enemyManager.GetChopperAttackDistance();
-        }
         currentHealth = maxHealth;
         currentFireTime = rocketFireTime;
     }
 
     private void LateUpdate()
     {
-        if (player != null && enemyManager != null)
-        {
-            if (Vector3.Distance(player.transform.position, transform.position) < distanceFromPlayer && currentHealth > currentHealth * healthPercentToFlee && enemyManager.CheckIfPathClear(gameObject, distanceFromPlayer))
-                Attack();
-            else if (Vector3.Distance(player.transform.position, transform.position) > distanceFromPlayer && currentHealth > currentHealth * healthPercentToFlee)
-                SearchForPlayer();
-            else
-                Flee();
-        }
         if (currentHealth <= 0)
             Die();
-    }
-
-
-    public void SearchForPlayer()
-    {
-        if (player != null)
-        {
-            
-        }
     }
 
     public void Attack()
@@ -68,14 +43,9 @@ public class Chopper : MonoBehaviour
         }
     }
 
-    public void Flee()
-    {
-
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") | collision.gameObject.CompareTag("Building"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Building"))
             gameObject.SetActive(false);
     }
 
@@ -101,7 +71,8 @@ public class Chopper : MonoBehaviour
     {
         if (!isExploded && chopperExplodedEffect != null)
         {
-            Instantiate(chopperExplodedEffect, transform.position, Quaternion.identity);
+            GameObject e = Instantiate(chopperExplodedEffect, transform.position, Quaternion.identity);
+            e.transform.localScale = new Vector3(effectSize.x, effectSize.y, effectSize.z);
             isExploded = true;
             Destroy(gameObject);
         }
