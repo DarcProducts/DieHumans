@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (cityGenerator != null)
-            cityGenerator.CreateDarcGrid(cityLocation);
+            cityGenerator.InitializeCity(cityLocation);
     }
 
     private void Update()

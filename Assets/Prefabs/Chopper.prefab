@@ -334,35 +334,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1816d179480fb4f8498c317b242d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  movementSpeed: 5
-  avoidanceSpeed: 10
-  currentMovementState: 0
-  objectHitLayers:
-    serializedVersion: 2
-    m_Bits: 187
-  objectsHit: 000000000000
-  directionsToCheck:
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: -1}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: -1, z: 0}
-  distancesToCheck:
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
-  debugRayColors:
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  maxLiDARSensorDistance: 10
+  moveSpeed: 1
+  rotateSpeed: 40
+  slowDownRate: 20
+  priorityTarget: {fileID: 0}
+  sensorDistances: []
+  isTooClose: 0
 --- !u!114 &7621875721793293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +362,7 @@ MonoBehaviour:
   healthPercentToFlee: 0.2
   distanceFromPlayer: 0
   downForceOnDeath: 5
-  effectSize: {x: 0.8, y: 0.8, z: 0.8}
+  effectSize: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!135 &2437029567911415413
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -412,5 +390,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 3

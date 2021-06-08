@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private CityGenerator cityGenerator;
+    private CityGenerator cityGenerator;
     [SerializeField] private GameObject playerShip;
     [SerializeField] private bool debug;
 
@@ -14,18 +15,32 @@ public class EnemyManager : MonoBehaviour
     [Header("Rocket Stats")]
 
     [SerializeField] private GameObject rocket;
+    [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float rocketThrust;
     [SerializeField] private float rocketDamage;
+    private List<GameObject> explosionEffectPool = new List<GameObject>();
+    [SerializeField] private int initialExplosionPool = 10;
 
     [Header("Arial Enemies")]
     [SerializeField] private float maxWanderHeight;
 
-    private void Awake()
+    private void Awake() => cityGenerator = FindObjectOfType<CityGenerator>();
+
+    private void Start()
     {
-        if (cityGenerator == null)
-            cityGenerator = FindObjectOfType<CityGenerator>();
         if (playerShip == null)
             playerShip = GameObject.FindWithTag("PlayerShip");
+        if (cityGenerator == null)
+            Debug.LogError("No City Generator found in scene! Cannot get city bounds for Enemy Manager.");
+        if (explosionEffect != null)
+        {
+            for (int i = 0; i < initialExplosionPool; i++)
+            {
+                GameObject e = Instantiate(explosionEffect, Vector3.down, Quaternion.identity);
+                e.SetActive(false);
+                explosionEffectPool.Add(e);
+            }
+        }
     }
 
     public Vector3 PickTargetLocation()

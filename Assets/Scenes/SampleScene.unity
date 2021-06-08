@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShip_TEMP
       objectReference: {fileID: 0}
+    - target: {fileID: 9201602857869635516, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
 --- !u!1 &149407887 stripped
@@ -532,14 +536,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccb0453b667d6344a37e9aa9b4679d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cityGenerator: {fileID: 1457295595}
   playerShip: {fileID: 0}
   debug: 0
   threatLevel: 0
   currentWave: 0
   rocket: {fileID: 8151729486268767048, guid: 004d472efb2691c45b10c247388a6551, type: 3}
+  explosionEffect: {fileID: 0}
   rocketThrust: 60
   rocketDamage: 100
+  initialExplosionPool: 10
   maxWanderHeight: 20
 --- !u!1 &1086705925
 GameObject:
@@ -632,19 +637,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e67759b4d95cd4f9a901a4a113e02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  citySpawnRate: 0
   willBeDestroyed: 0.6
-  house: {fileID: 3564915555870967878, guid: 3b7f678d4b18e754e86144aed527307d, type: 3}
+  building: {fileID: 3564915555870967878, guid: 3b7f678d4b18e754e86144aed527307d, type: 3}
   niceMaterials:
   - {fileID: 2100000, guid: 97e944d4bb9dfef4182b7a731c752f2f, type: 2}
   - {fileID: 2100000, guid: 5f74743f6be42884587df5696cccd3a6, type: 2}
   - {fileID: 2100000, guid: 2bad5b91027ec7f4aa74d59af7567922, type: 2}
   gridWidth: 60
-  gridHeight: 60
+  gridHeight: 5
+  gridDepth: 60
   gridCellSize: 5
-  minHouseHeight: 4
-  maxHouseHeight: 12
-  minHouseWidth: 2
-  maxHouseWidth: 2
+  minBuildingHeight: 1
+  maxBuildingHeight: 10
+  minBuildingWidth: 2
+  maxBuildingWidth: 2
   showNumbers: 0
   showLines: 0
   gridNumberColor: {r: 1, g: 1, b: 1, a: 1}
@@ -959,7 +966,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: f0076cc6c00e48f458b5e45877d96d4b, type: 3}
 --- !u!1 &919132147770534093
@@ -1536,7 +1543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4594165446559552864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,25 +1725,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 290894729036804631, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615708224934252938, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437029567911415413, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2715405162208723339, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
-      propertyPath: enemyManager
+      propertyPath: moveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715405162208723339, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: rotateSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715405162208723339, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: priorityTarget
       value: 
-      objectReference: {fileID: 1081030662}
+      objectReference: {fileID: 149407887}
+    - target: {fileID: 2715405162208723339, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: maxLiDARSensorDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7101480873783562597, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7101480873783562597, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.2
+      value: 67.72
       objectReference: {fileID: 0}
     - target: {fileID: 7101480873783562597, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.5
+      value: 27.9
       objectReference: {fileID: 0}
     - target: {fileID: 7101480873783562597, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.8
+      value: 3.53
       objectReference: {fileID: 0}
     - target: {fileID: 7101480873783562597, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1769,6 +1800,18 @@ PrefabInstance:
     - target: {fileID: 7621875721793293279, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
       propertyPath: m_Name
       value: Chopper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621875721793293279, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886453850524205081, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966720540480295955, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 695251bee9e3a26439da21cb9839c10a, type: 3}
