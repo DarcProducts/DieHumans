@@ -91,7 +91,7 @@ BoxCollider:
   m_GameObject: {fileID: 3551948950624548492}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 6.8813095, y: 0.11063552, z: 6.8813095}
   m_Center: {x: 0, y: 1.9925216, z: 0}
@@ -334,13 +334,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1816d179480fb4f8498c317b242d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLiDARSensorDistance: 10
-  moveSpeed: 1
-  rotateSpeed: 40
-  slowDownRate: 20
-  priorityTarget: {fileID: 0}
+  maxLiDARSensorDistance: 30
+  distanceToAttackPlayer: 32
+  decisionTime: 0.8
+  moveSpeed: 3
+  rotateSpeed: 10
+  nextTravelDirection: {x: 0, y: 0, z: 0}
+  directionsAbleToTravel: 
+  distanceToChangeDirection: 4
   sensorDistances: []
-  isTooClose: 0
 --- !u!114 &7621875721793293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,5 +392,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 3

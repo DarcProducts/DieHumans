@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class LiDARSensor
+public struct LiDARSensor
 {
     public Vector3 direction;
     public float distance;
     public Color color;
-
-    private float currentDistance = 0;
+    public float currentDistance;
 
     public LiDARSensor(Vector3 direction, float distance, Color color)
     {
         this.direction = direction;
         this.distance = distance;
         this.color = color;
+        currentDistance = 0;
     }
 
     public float ShootRay(Transform transform)
@@ -26,6 +26,4 @@ public class LiDARSensor
         currentDistance = distance;
         return currentDistance;
     }
-
-    public float GetCurrentDistance() => currentDistance;
 }
