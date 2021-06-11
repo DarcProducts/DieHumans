@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Vector3 cityLocation;
-
     [Header("Managers")]
     [SerializeField] private PlayerManager playerManager;
-
-    [SerializeField] private BuildingManager BuildingManager;
     [SerializeField] private CityGenerator cityGenerator;
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private EnemyManager enemyManager;

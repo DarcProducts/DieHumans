@@ -84,6 +84,13 @@ public class WeaponManager : MonoBehaviour
         return false;
     }
 
+    public void TryDamagingTarget(GameObject target)
+    {
+        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
+        if (d != null)
+            d.ApplyDamage(weaponDamage);
+    }
+
      public void InitializeAimTarget()
     {
         if (aimTarget != null)

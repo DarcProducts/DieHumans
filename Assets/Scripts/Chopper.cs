@@ -3,7 +3,6 @@ using UnityEngine;
 public class Chopper : MonoBehaviour, IDamagable<float>
 {
     private EnemyManager enemyManager;
-    [SerializeField] private GameObject chopperExplodedEffect;
     private bool isExploded = false;
     [SerializeField] private float maxWanderHeight;
     [SerializeField] private float checkDistancePlayer;
@@ -16,6 +15,7 @@ public class Chopper : MonoBehaviour, IDamagable<float>
     [Range(0f, 1f)] [SerializeField] private float healthPercentToFlee;
     [SerializeField] private float distanceFromPlayer;
     [Range(0f, 10f)] [SerializeField] private float downForceOnDeath;
+    [SerializeField] private GameObject chopperExplodedEffect;
     [SerializeField] private Vector3 effectSize;
     private bool dieForceApplied = false;
     private GameObject playerShip;
@@ -59,13 +59,9 @@ public class Chopper : MonoBehaviour, IDamagable<float>
         transform.forward = Vector3.Lerp(transform.forward, nextTargetLocation - transform.position, moveSpeed * .001f * Time.smoothDeltaTime);
     }
 
-    public void OnEnable() => BuildingManager.BuildingDamaged += MoveToDamagedTarget;
+    public void OnEnable() => Building.BuildingDamaged += MoveToDamagedTarget;
 
-    private void OnDisable()
-    {
-        BuildingManager.BuildingDamaged -= MoveToDamagedTarget;
-        Explode();
-    }
+    private void OnDisable() => Building.BuildingDamaged -= MoveToDamagedTarget;
 
     public Vector3 ChangeNextTargetLocation()
     {
@@ -93,13 +89,13 @@ public class Chopper : MonoBehaviour, IDamagable<float>
 
     private void OnCollisionEnter(Collision collision)
     {
+        // inside of TV always colliding!! even though normals are facing outwards
         if (!collision.gameObject.CompareTag("TVWall") && !collision.gameObject.CompareTag("Chopper"))
         {
             IDamagable<float> damagable = collision.gameObject.GetComponent<IDamagable<float>>();
             if (damagable != null)
-                damagable.ApplyDamage(maxHealth);
-            Debug.Log($"HIT: {collision.collider.gameObject.name}");
-            gameObject.SetActive(false);
+                damagable.ApplyDamage(Random.Range(maxHealth / 2, maxHealth));
+            Explode();
         }
     }
 
@@ -128,7 +124,7 @@ public class Chopper : MonoBehaviour, IDamagable<float>
             GameObject e = Instantiate(chopperExplodedEffect, transform.position, Quaternion.identity);
             e.transform.localScale = new Vector3(effectSize.x, effectSize.y, effectSize.z);
             isExploded = true;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

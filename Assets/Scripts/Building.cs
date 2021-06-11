@@ -1,26 +1,26 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Building : MonoBehaviour, IDamagable<float>
 {
-    private float maxBuildingHealth;
-    private int maxNumberOfPeopleInside;
+    [SerializeField] private float buildingHealthMultiplier;
+    [SerializeField] private int buildingPeopleMultiplier;
     [SerializeField] private float _currentBuildingHealth;
     [SerializeField] private int _currentNumberOfPeopleInside;
-    [SerializeField] private bool isCollapsing = false;
-    private BuildingManager buildingManager;
-    [SerializeField] private bool brokenEffectSet = false;
-    [SerializeField] private bool collapsingEffectSet = false;
-    private GameObject currentBrokenEffect;
+    private float maxBuildingHealth;
+    private int maxNumberOfPeopleInside;
+    private bool isCollapsing = false;
+    private bool brokenEffectSet = false;
+    private bool collapsingEffectSet = false;
+    [SerializeField] private float shakeIntensity = .01f;
+    [SerializeField] private float duration = .1f;
+    public static UnityAction<Vector3> BuildingDamaged;
 
     public void Start()
     {
-        if (buildingManager == null)
-            buildingManager = FindObjectOfType<BuildingManager>();
-        if (buildingManager != null)
-        {
-            maxBuildingHealth = transform.localScale.y * buildingManager.GetBuildingHealthMultiplier();
-            maxNumberOfPeopleInside = (int)transform.localScale.y * buildingManager.GetBuildingPeopleMultiplier();
-        }
+        maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
+        maxNumberOfPeopleInside = (int)transform.localScale.y * buildingPeopleMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
         _currentNumberOfPeopleInside = maxNumberOfPeopleInside;
     }
@@ -28,10 +28,7 @@ public class Building : MonoBehaviour, IDamagable<float>
     public void LateUpdate()
     {
         if (isCollapsing)
-        {
             StartCollapsingEffect();
-            CollapseBuilding();
-        }
         if (_currentBuildingHealth <= 0)
         {
             StartBrokenBuildingEffect();
@@ -39,39 +36,26 @@ public class Building : MonoBehaviour, IDamagable<float>
         }
     }
 
-    public void CollapseBuilding()
-    {
-        if (isCollapsing)
-        {
-            if (buildingManager != null)
-                buildingManager.InitializeBrokenBuilding(this.gameObject, currentBrokenEffect);
-        }
-    }
-
     public void StartCollapsingEffect()
     {
-        if (buildingManager != null && !collapsingEffectSet)
-        {
-            buildingManager.PlayBuildingCollapseEffect(this.gameObject);
-            collapsingEffectSet = true;
-        }
+        
     }
 
     public void StartBrokenBuildingEffect()
     {
-        if (buildingManager != null && !brokenEffectSet)
-        {
-            currentBrokenEffect = buildingManager.PlayBuildingBrokenEffect(this.gameObject);
-            brokenEffectSet = true;
-        }
+        
     }
 
-
-    public bool GetHasBrokenEffect() => brokenEffectSet;
-    public bool GetHasCollapseEffect() => collapsingEffectSet;
-    public bool GetIsCollapsing() => isCollapsing;
-
-    public void SetIsCollapsing() => isCollapsing = true;
+    private IEnumerator ShakeBuilding()
+    {
+        if (duration > 0)
+        {
+            var randPos = Random.insideUnitSphere * shakeIntensity;
+            transform.Translate(new Vector3(randPos.x, transform.position.y, randPos.z));
+            yield return new WaitForSeconds(duration);
+        }
+        StopCoroutine(ShakeBuilding());
+    }
 
     public float GetMaxHealth() => maxBuildingHealth;
 
@@ -83,14 +67,12 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public void ApplyDamage(float damage)
     {
-        if (buildingManager != null)
-            buildingManager.ApplyBuildingDamage(this, damage);
+        _currentBuildingHealth -= damage;
+        StartCoroutine(ShakeBuilding());
     }
 
+    
     [ContextMenu("Damage building")]
-    public void TestDamage()
-    {
-        if (buildingManager != null)
-            buildingManager.ApplyBuildingDamage(this, 100);
-    }
+    public void TestDamage() => ApplyDamage(10000);
+  
 }

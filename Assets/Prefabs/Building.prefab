@@ -95,11 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dceaf7326f245149bf794d937d989c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingHealthMultiplier: 1500
+  buildingPeopleMultiplier: 500
   _currentBuildingHealth: 0
   _currentNumberOfPeopleInside: 0
-  isCollapsing: 0
-  brokenEffectSet: 0
-  collapsingEffectSet: 0
+  shakeIntensity: 0.01
+  duration: 0.1
 --- !u!65 &7537392153021471599
 BoxCollider:
   m_ObjectHideFlags: 0

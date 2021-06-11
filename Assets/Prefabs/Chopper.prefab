@@ -333,17 +333,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7950ee99142a7ba4d8f7ecc9015c9ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopperExplodedEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
-  maxWanderHeight: 60
+  maxWanderHeight: 30
   checkDistancePlayer: 200
   checkDistanceObject: 10
   rocketFireTime: 1
-  moveSpeed: 5
+  moveSpeed: 10
   maxHealth: 100
-  currentHealth: 0
   healthPercentToFlee: 0.198
   distanceFromPlayer: 20
   downForceOnDeath: 5
+  chopperExplodedEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
   effectSize: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!135 &2437029567911415413
 SphereCollider:

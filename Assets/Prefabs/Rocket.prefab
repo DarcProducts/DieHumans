@@ -178,9 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
-  maxRocketLife: 5
-  explosionScale: {x: 1, y: 1, z: 1}
-  checkRadius: 1
+  maxRocketDistance: 60
+  explosionEffectScale: {x: 2, y: 2, z: 2}
+  currentRocketDamage: 100
+  explosionRadius: 3
 --- !u!33 &8151729486268767051
 MeshFilter:
   m_ObjectHideFlags: 0

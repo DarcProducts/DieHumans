@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     private CityGenerator cityGenerator;
-    [SerializeField] private GameObject playerShip;
+    private GameObject playerShip;
     [SerializeField] private bool debug;
 
     [Header("Game Stats")]
@@ -13,13 +13,14 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int currentWave;
 
     [Header("Rocket Stats")]
-
+    [Tooltip("Rocket firing method called from this script")]
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float rocketThrust;
     [SerializeField] private float rocketDamage;
     private List<GameObject> explosionEffectPool = new List<GameObject>();
-    [SerializeField] private int initialExplosionPool = 10;
+    private List<GameObject> rocketGameObjectPool = new List<GameObject>();
+    [SerializeField] private int explosionPoolInitialSize;
     [SerializeField] private int rocketPoolInitialSize;
 
     private void Awake() => cityGenerator = FindObjectOfType<CityGenerator>();
@@ -32,11 +33,20 @@ public class EnemyManager : MonoBehaviour
             Debug.LogError("No City Generator found in scene! Cannot get city bounds for Enemy Manager.");
         if (explosionEffect != null)
         {
-            for (int i = 0; i < initialExplosionPool; i++)
+            for (int i = 0; i < explosionPoolInitialSize; i++)
             {
                 GameObject e = Instantiate(explosionEffect, Vector3.down, Quaternion.identity);
                 e.SetActive(false);
                 explosionEffectPool.Add(e);
+            }
+        }
+        if (rocket != null)
+        {
+            for (int i = 0; i < rocketPoolInitialSize; i++)
+            {
+                GameObject e = Instantiate(rocket, Vector3.down, Quaternion.identity);
+                e.SetActive(false);
+                rocketGameObjectPool.Add(e);
             }
         }
     }
@@ -83,11 +93,16 @@ public class EnemyManager : MonoBehaviour
         return false;
     }
 
+    private void Explode()
+    {
+        
+    }
+
     public void LaunchRocket(GameObject targetLocation)
     {
         if (playerShip != null && rocket != null)
         {
-            Vector3 direction = playerShip.transform.position + playerShip.transform.forward * .8f - targetLocation.transform.position;
+            Vector3 direction = playerShip.transform.position - targetLocation.transform.position + Vector3.down * .5f;
             GameObject r = Instantiate(rocket, targetLocation.transform.position + Vector3.down * .5f, Quaternion.LookRotation(direction, Vector3.up));
             r.transform.LookAt(transform.InverseTransformDirection(direction));
             r.GetComponent<Rocket>().SetRocketDamage(rocketDamage);
