@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Chopper : MonoBehaviour, IDamagable<float>
 {
-    public delegate void DamagedLocatorHandler();
-
-    public DamagedLocatorHandler PlaceDamaged;
     private EnemyManager enemyManager;
     [SerializeField] private GameObject chopperExplodedEffect;
     private bool isExploded = false;
@@ -59,7 +56,7 @@ public class Chopper : MonoBehaviour, IDamagable<float>
             transform.position = Vector3.MoveTowards(transform.position, nextTargetLocation, moveSpeed * Time.smoothDeltaTime);
         if (transform.position.Equals(nextTargetLocation))
             nextTargetLocation = ChangeNextTargetLocation();
-        transform.forward = nextTargetLocation - transform.position;
+        transform.forward = Vector3.Lerp(transform.forward, nextTargetLocation - transform.position, moveSpeed * .001f * Time.smoothDeltaTime);
     }
 
     public void OnEnable() => BuildingManager.BuildingDamaged += MoveToDamagedTarget;

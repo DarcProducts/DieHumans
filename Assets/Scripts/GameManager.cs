@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Vector3 cityLocation;
+    [SerializeField] private Vector3 cityLocation;
+
     [Header("Managers")]
-    [SerializeField] PlayerManager playerManager;
-    [SerializeField] BuildingManager BuildingManager;
-    [SerializeField] CityGenerator cityGenerator;
-    [SerializeField] WeaponManager weaponManager;
-    [SerializeField] EnemyManager enemyManager;
-    [SerializeField] SoundManager soundManager;
+    [SerializeField] private PlayerManager playerManager;
+
+    [SerializeField] private BuildingManager BuildingManager;
+    [SerializeField] private CityGenerator cityGenerator;
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private SoundManager soundManager;
 
     private void Start()
     {
@@ -22,13 +22,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (weaponManager != null)
-        {
             CheckWeapons();
-        }
         if (playerManager != null)
-        {
             CheckController();
-        }
     }
 
     private void CheckWeapons()

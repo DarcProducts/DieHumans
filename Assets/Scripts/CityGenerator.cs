@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class CityGenerator : MonoBehaviour
@@ -57,7 +56,6 @@ public class CityGenerator : MonoBehaviour
                                     GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
                             }
                         }
-
 
                         if (showLines)
                         {
