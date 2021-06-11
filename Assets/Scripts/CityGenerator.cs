@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CityGenerator : MonoBehaviour
 {
-    [Range(0f, .1f)] [SerializeField] private float citySpawnRate;
     [Range(0f, 1f)] [SerializeField] private float willBeDestroyed;
     [SerializeField] private GameObject building = null;
     [SerializeField] private Material[] niceMaterials;
@@ -25,9 +24,7 @@ public class CityGenerator : MonoBehaviour
 
     private Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
 
-    public void InitializeCity(Vector3 origin) => StartCoroutine(CreateDarcGrid(origin));
-
-    public IEnumerator CreateDarcGrid(Vector3 origin)
+    public void CreateDarcGrid(Vector3 origin)
     {
         yPlaneLevel = Mathf.FloorToInt(origin.y / gridCellSize);
         int[,,] gridArray = new int[gridWidth, gridHeight, gridDepth];
@@ -43,12 +40,11 @@ public class CityGenerator : MonoBehaviour
                 {
                     if (building != null)
                     {
-                        yield return new WaitForSeconds(citySpawnRate);
                         if (Random.value > willBeDestroyed && y.Equals(yPlaneLevel))
                         {
-                            SetLocalScale(building, new Vector3(Random.Range(minBuildingWidth, maxBuildingWidth), Random.Range(minBuildingHeight, maxBuildingHeight), Random.Range(minBuildingWidth, maxBuildingWidth)));
-                            GameObject newBuilding = GameObject.Instantiate(building, GetWorldPosition(x, y, z, gridCellSize) + new Vector3(gridCellSize, y, gridCellSize) * .5f, Quaternion.identity, buildings.transform);
-                            newBuilding.name = $"Building {x} {y} {z}";
+                            SetLocalScale(building, new Vector3(Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth)), Random.Range(Mathf.RoundToInt(minBuildingHeight), Mathf.RoundToInt(maxBuildingHeight)), Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth))));
+                            GameObject newBuilding = GameObject.Instantiate(building, GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, yPlaneLevel, gridCellSize) * .5f, Quaternion.identity, buildings.transform);
+                            newBuilding.name = $"Building: {newBuilding.transform.position.x} {newBuilding.transform.position.z}";
                             if (newBuilding.transform.localScale.y > maxBuildingHeight / 1.5f && niceMaterials.Length > 2)
                                 newBuilding.GetComponent<Renderer>().material = niceMaterials[2];
                             else if (newBuilding.transform.localScale.y <= maxBuildingHeight / 2 && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && niceMaterials.Length > 1)
@@ -57,36 +53,23 @@ public class CityGenerator : MonoBehaviour
                                 newBuilding.GetComponent<Renderer>().material = niceMaterials[0];
                             if (showNumbers)
                             {
-                                CreateWorldText("0", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
-                                    GetWorldPosition(x, y, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
+                                CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
+                                    GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
                             }
                         }
-                        else
-                        {
-                            if (showNumbers)
-                            {
-                                if (Physics.Raycast(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x, y, z, gridCellSize) + Vector3.down, gridCellSize * 2))
-                                {
-                                    CreateWorldText("0", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
-                                        GetWorldPosition(x, y, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
-                                }
-                                else
-                                    CreateWorldText("1", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
-                                            GetWorldPosition(x, y, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
-                            }
-                        }
-                    }
 
-                    if (showLines)
-                    {
-                        Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x, y, z + 1, gridCellSize), gridZColor, Mathf.Infinity);
-                        Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x + 1, y, z, gridCellSize), gridXColor, Mathf.Infinity);
+
+                        if (showLines)
+                        {
+                            Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x, y, z + 1, gridCellSize), gridZColor, Mathf.Infinity);
+                            Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x + 1, y, z, gridCellSize), gridXColor, Mathf.Infinity);
+                        }
                     }
                 }
             }
         }
-        building.transform.localScale = new Vector3(1, 1, 1);
-        StopCoroutine(CreateDarcGrid(origin));
+        if (building != null)
+            building.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetLocalScale(GameObject scaleObject, Vector3 newSize = default)
@@ -102,7 +85,7 @@ public class CityGenerator : MonoBehaviour
         {
             Vector3[] cB = new Vector3[2];
             cB[0] = new Vector3(-cityOrigin.transform.position.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.transform.position.x);
-            cB[1] = new Vector3(-cityOrigin.transform.position.z, yPlaneLevel * gridCellSize, gridHeight * gridCellSize - cityOrigin.transform.position.z);
+            cB[1] = new Vector3(-cityOrigin.transform.position.z, yPlaneLevel * gridCellSize, gridDepth * gridCellSize - cityOrigin.transform.position.z);
             Debug.Log($"City Bounds: " + cB[0] + " " + cB[1]);
             return cB;
         }

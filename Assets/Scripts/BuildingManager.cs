@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private float buildingCollapseRate;
     [SerializeField] private float collapseEffectDuration;
     [SerializeField] private float damageShakeDuration;
+    public static UnityAction<Vector3> BuildingDamaged;
 
     private IEnumerator ShakeBuilding(GameObject building, float duration)
     {
@@ -34,10 +36,7 @@ public class BuildingManager : MonoBehaviour
                 var brokenEffect = Instantiate(brokenBuildingEffect, building.transform.position, Quaternion.identity, building.transform);
                 var rubble = brokenEffect.transform.GetChild(0).transform.GetChild(0).gameObject;
                 if (rubble != null)
-                {
                     rubble.transform.localScale = new Vector3(building.transform.localScale.x, rubble.transform.localScale.y, building.transform.localScale.z);
-                    //rubble.transform.rotation = Quaternion.Euler(0, Random.Range(-360f, 360f), 0);
-                }
                 return brokenEffect;
             }
         }
@@ -59,6 +58,7 @@ public class BuildingManager : MonoBehaviour
 
     public void ApplyBuildingDamage(Building building, float amount)
     {
+        BuildingDamaged?.Invoke(building.transform.position);
         if (building != null && amount > 0)
         {
             if (!building.GetIsCollapsing())
@@ -84,16 +84,6 @@ public class BuildingManager : MonoBehaviour
                 Destroy(building);
             }
         }
-    }
-
-    public void TryDamageBuilding(GameObject target)
-    {
-        float damage = 0;
-        if (weaponManager != null)
-            damage = weaponManager.GetWeaponDamage();
-        var building = target.GetComponent<Building>();
-        if (building != null)
-            ApplyBuildingDamage(building, damage);
     }
 
     public void ShakeThisBuilding(GameObject building, float duration) => StartCoroutine(ShakeBuilding(building, duration));

@@ -20,9 +20,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float rocketDamage;
     private List<GameObject> explosionEffectPool = new List<GameObject>();
     [SerializeField] private int initialExplosionPool = 10;
-
-    [Header("Arial Enemies")]
-    [SerializeField] private float maxWanderHeight;
+    [SerializeField] private int rocketPoolInitialSize;
 
     private void Awake() => cityGenerator = FindObjectOfType<CityGenerator>();
 
@@ -43,7 +41,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public Vector3 PickTargetLocation()
+    public Vector3 PickTargetLocationWithinCity(float maxWanderHeight)
     {
         if (cityGenerator != null)
         {
@@ -72,12 +70,15 @@ public class EnemyManager : MonoBehaviour
 
     public bool CheckIfPathClear(GameObject target, float distance)
     {
-        if (Physics.Raycast(target.transform.position + Vector3.down, playerShip.transform.position + Vector3.up - target.transform.position, out RaycastHit hit, distance))
+        if (playerShip != null)
         {
-            if (debug)
-                Debug.DrawRay(target.transform.position + Vector3.down, playerShip.transform.position - target.transform.position, Color.red, distance);
-            if (hit.collider.CompareTag("PlayerShip"))
-                return true;
+            if (Physics.Raycast(target.transform.position + Vector3.down, playerShip.transform.position + Vector3.up - target.transform.position, out RaycastHit hit, distance))
+            {
+                if (debug)
+                    Debug.DrawRay(target.transform.position + Vector3.down, playerShip.transform.position - target.transform.position, Color.red, distance);
+                if (hit.collider.CompareTag("PlayerShip"))
+                    return true;
+            }
         }
         return false;
     }
@@ -88,6 +89,7 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 direction = playerShip.transform.position + playerShip.transform.forward * .8f - targetLocation.transform.position;
             GameObject r = Instantiate(rocket, targetLocation.transform.position + Vector3.down * .5f, Quaternion.LookRotation(direction, Vector3.up));
+            r.transform.LookAt(transform.InverseTransformDirection(direction));
             r.GetComponent<Rocket>().SetRocketDamage(rocketDamage);
             Rigidbody rR = r.GetComponent<Rigidbody>();
             if (rR != null)

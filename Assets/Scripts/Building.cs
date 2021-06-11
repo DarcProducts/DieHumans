@@ -81,5 +81,16 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public void AbductPeople(int amount) => _currentNumberOfPeopleInside -= amount;
 
-    public void ApplyDamage(float damage) => _currentBuildingHealth -= damage;
+    public void ApplyDamage(float damage)
+    {
+        if (buildingManager != null)
+            buildingManager.ApplyBuildingDamage(this, damage);
+    }
+
+    [ContextMenu("Damage building")]
+    public void TestDamage()
+    {
+        if (buildingManager != null)
+            buildingManager.ApplyBuildingDamage(this, 100);
+    }
 }

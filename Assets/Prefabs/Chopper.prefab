@@ -294,7 +294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7101480873783562597}
-  - component: {fileID: 2715405162208723339}
   - component: {fileID: 7621875721793293276}
   - component: {fileID: 2437029567911415413}
   - component: {fileID: 615708224934252938}
@@ -322,27 +321,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2715405162208723339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621875721793293279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1816d179480fb4f8498c317b242d77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLiDARSensorDistance: 30
-  distanceToAttackPlayer: 32
-  decisionTime: 0.8
-  moveSpeed: 3
-  rotateSpeed: 10
-  nextTravelDirection: {x: 0, y: 0, z: 0}
-  directionsAbleToTravel: 
-  distanceToChangeDirection: 4
-  sensorDistances: []
 --- !u!114 &7621875721793293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,13 +334,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chopperExplodedEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
+  maxWanderHeight: 60
   checkDistancePlayer: 200
   checkDistanceObject: 10
   rocketFireTime: 1
+  moveSpeed: 5
   maxHealth: 100
   currentHealth: 0
-  healthPercentToFlee: 0.2
-  distanceFromPlayer: 0
+  healthPercentToFlee: 0.198
+  distanceFromPlayer: 20
   downForceOnDeath: 5
   effectSize: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!135 &2437029567911415413
