@@ -4,8 +4,6 @@ public enum MaterialType { concrete, glass, metal, dirt, all }
 
 public class SoundManager : MonoBehaviour
 {
-    private GameObject player;
-    private MaterialType materialType;
     [SerializeField] private float maxDistanceToPlay;
     [SerializeField] private AudioSource mainSource;
     [SerializeField] private AudioSource laserHitSource;
@@ -13,7 +11,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip laserHitConcrete;
     [SerializeField] private AudioClip laserHitDirt;
     [SerializeField] private AudioClip laserHitMetal;
+    [SerializeField] private AudioClip laserHitGlass;
+    [SerializeField] private AudioClip laserHitAll;
     [SerializeField] private AudioClip explosionSound;
+    private GameObject player;
 
     private void OnEnable()
     {
@@ -54,18 +55,28 @@ public class SoundManager : MonoBehaviour
         switch (type)
         {
             case MaterialType.dirt:
+                    if (laserHitDirt != null && mainSource != null)
+                        PlayAtSourceWithVPRange(mainSource, laserHitDirt, .2f, .6f, .5f, 1.5f);
                 break;
 
             case MaterialType.concrete:
+                if (laserHitConcrete != null && mainSource != null)
+                    PlayAtSourceWithVPRange(mainSource, laserHitConcrete, .2f, .6f, .5f, 1.5f);
                 break;
 
             case MaterialType.metal:
+                if (laserHitMetal != null && mainSource != null)
+                    PlayAtSourceWithVPRange(mainSource, laserHitMetal, .2f, .6f, .5f, 1.5f);
                 break;
 
             case MaterialType.glass:
+                if (laserHitGlass != null && mainSource != null)
+                    PlayAtSourceWithVPRange(mainSource, laserHitGlass, .2f, .6f, .5f, 1.5f);
                 break;
 
             case MaterialType.all:
+                if (laserHitAll != null && mainSource != null)
+                    PlayAtSourceWithVPRange(mainSource, laserHitAll, .2f, .6f, .5f, 1.5f);
                 break;
 
             default:
@@ -79,7 +90,7 @@ public class SoundManager : MonoBehaviour
         {
             float distance = Vector3.Distance(loc, player.transform.position);
             if (distance < maxDistanceToPlay)
-                return Mathf.InverseLerp(0, 1, distance);
+                return Mathf.InverseLerp(distance, 0, 1);
         }
         return 0;
     }

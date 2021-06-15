@@ -3,23 +3,23 @@ using UnityEngine.Events;
 
 public class Chopper : MonoBehaviour, IDamagable<float>
 {
-    private EnemyManager enemyManager;
-    private bool isExploded = false;
+    public static UnityAction<Vector3, bool> FiredRocket;
     [SerializeField] private float maxWanderHeight;
     [SerializeField] private float checkDistancePlayer;
     [SerializeField] private float attackDistance;
     [SerializeField] private float rocketFireTime;
     [SerializeField] private bool shootHomingRockets;
     [SerializeField] private float moveSpeed;
-    private float currentFireTime;
     [SerializeField] private float maxHealth;
-    private float currentHealth = 1;
     [Range(0f, 10f)] [SerializeField] private float downForceOnDeath;
+    private EnemyManager enemyManager;
+    private bool isExploded = false;
+    private float currentFireTime;
+    private float currentHealth = 1;
     private bool dieForceApplied = false;
     private GameObject playerShip;
     private Vector3 nextTargetLocation;
     private bool hasFoundPlayer = false;
-    public static UnityAction<Vector3, bool> FiredRocket;
     private bool hasDied = false;
 
     private void Start()

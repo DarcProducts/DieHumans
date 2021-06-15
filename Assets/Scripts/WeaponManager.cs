@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
+    public static UnityAction<GameObject> LaserHitObject;
     [SerializeField] private float weaponDamage;
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject weaponLocation;
@@ -14,7 +15,6 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Material laserMat;
     [SerializeField] private GameObject laserHitEffect;
     private GameObject currentLaserEffect;
-    public static UnityAction<GameObject> LaserHitObject;
 
     private void Start()
     {

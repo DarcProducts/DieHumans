@@ -290,26 +290,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 323408222448277977, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 4685102029749021855, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5611445912021933327, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6733182027134631411, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9155218978767888116, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_TagString
-      value: WeaponLocation
-      objectReference: {fileID: 0}
     - target: {fileID: 9201602857869635504, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -357,10 +337,6 @@ PrefabInstance:
     - target: {fileID: 9201602857869635516, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
       propertyPath: m_Name
       value: SpaceShip_TEMP
-      objectReference: {fileID: 0}
-    - target: {fileID: 9201602857869635516, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704c9fca21a7e9542b1ac98a682bf7ea, type: 3}
@@ -1400,13 +1376,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec256e8b3a2b61a41bc921e98b7c251b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromPlayerToPlay: 0
+  maxDistanceToPlay: 0
   mainSource: {fileID: 1757963585}
   laserHitSource: {fileID: 2085991855}
   laserShoot: {fileID: 8300000, guid: 768d74499523f0e4e88e855dc8541812, type: 3}
   laserHitConcrete: {fileID: 0}
   laserHitDirt: {fileID: 0}
   laserHitMetal: {fileID: 0}
+  laserHitGlass: {fileID: 0}
+  laserHitAll: {fileID: 0}
   explosionSound: {fileID: 0}
 --- !u!1001 &1138151172
 PrefabInstance:
@@ -2212,9 +2190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0907cc69181ba8e438d7e0b75ce2b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cityGenerator: {fileID: 1457295595}
   spaceShipTarget: {fileID: 149407887}
-  ship: {fileID: 0}
   maxYDestroy: -10
   thrustPower: 8
   rotateSpeed: 32

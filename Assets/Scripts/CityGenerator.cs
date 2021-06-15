@@ -5,7 +5,6 @@ public class CityGenerator : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float willBeDestroyed;
     [SerializeField] private GameObject building = null;
     [SerializeField] private Material[] niceMaterials;
-    private int yPlaneLevel = 0;
     [SerializeField] private int gridWidth = 0;
     [SerializeField] private int gridHeight = 0;
     [SerializeField] private int gridDepth = 0;
@@ -19,6 +18,7 @@ public class CityGenerator : MonoBehaviour
     [SerializeField] private Color gridNumberColor = Color.white;
     [SerializeField] private Color gridXColor = Color.white;
     [SerializeField] private Color gridZColor = Color.white;
+    private int yPlaneLevel = 0;
     private GameObject cityOrigin;
 
     private Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
@@ -83,7 +83,7 @@ public class CityGenerator : MonoBehaviour
         {
             Vector3[] cB = new Vector3[2];
             cB[0] = new Vector3(-cityOrigin.transform.position.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.transform.position.x);
-            cB[1] = new Vector3(-cityOrigin.transform.position.z, yPlaneLevel * gridCellSize, gridDepth * gridCellSize - cityOrigin.transform.position.z);
+            cB[1] = new Vector3(-cityOrigin.transform.position.z, gridHeight * gridCellSize, gridDepth * gridCellSize - cityOrigin.transform.position.z);
             return cB;
         }
         return new Vector3[2];

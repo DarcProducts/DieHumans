@@ -4,19 +4,19 @@ using UnityEngine.Events;
 
 public class Building : MonoBehaviour, IDamagable<float>
 {
-    private BuildingManager buildingManager;
+    public static UnityAction<Vector3> BuildingDamaged;
+    public static UnityAction<GameObject> BreakBuilding;
     [SerializeField] private float buildingHealthMultiplier;
     [SerializeField] private int buildingPeopleMultiplier;
     [SerializeField] private float _currentBuildingHealth;
     [SerializeField] private int _currentNumberOfPeopleInside;
+    [SerializeField] private float shakeIntensity = .01f;
+    [SerializeField] private float duration = .1f;
+    private BuildingManager buildingManager;
     private float maxBuildingHealth;
     private int maxNumberOfPeopleInside;
     private bool brokenEffectSet = false;
     private bool collapsingEffectSet = false;
-    [SerializeField] private float shakeIntensity = .01f;
-    [SerializeField] private float duration = .1f;
-    public static UnityAction<Vector3> BuildingDamaged;
-    public static UnityAction<GameObject> BreakBuilding;
 
     public void Start()
     {

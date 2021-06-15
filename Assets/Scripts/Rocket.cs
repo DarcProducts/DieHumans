@@ -3,15 +3,14 @@ using UnityEngine.Events;
 
 public class Rocket : MonoBehaviour, IDamagable<float>
 {
-    [SerializeField] private float maxRocketDistance;
-    public bool isHoming;
-    float currentDamage = 1;
-    [SerializeField] private float homingSpeed;
-    [SerializeField] private float maxHealth = 2;
-    private float currentHealth = 1;
     public static UnityAction<Vector3> ExplodeRocket;
     public static UnityAction<GameObject> RocketHit;
     public static UnityAction<Vector3> WasDamaged;
+    public bool isHoming;
+    [SerializeField] private float maxRocketDistance;
+    [SerializeField] private float homingSpeed;
+    [SerializeField] private float maxHealth = 2;
+    private float currentHealth = 1;
     private Vector3 startLoc;
     private TrailRenderer rocketTrail;
     private GameObject player;
@@ -71,8 +70,6 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         gameObject.SetActive(false);
     }
 
-
-    public void SetCurrentDamage(float amount) => currentDamage = amount;
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;

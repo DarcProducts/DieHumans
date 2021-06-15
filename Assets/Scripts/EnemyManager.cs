@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private CityGenerator cityGenerator;
-    private GameObject playerShip;
     [SerializeField] private bool debug;
 
     [Header("Game Stats")]
@@ -19,6 +17,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float rocketDamage;
     [SerializeField] private float rocketThrust;
     [SerializeField] private GameObject explosionEffect;
+    private CityGenerator cityGenerator;
+    private GameObject playerShip;
     private readonly List<GameObject> explosionEffectPool = new List<GameObject>();
     private readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
     private int explosionPoolInitialSize;
@@ -201,7 +201,6 @@ public class EnemyManager : MonoBehaviour
             GameObject r = GetAvailableRocket();
             r.transform.position = firedFrom + Vector3.down * .5f;
             Rocket rocket = r.GetComponent<Rocket>();
-            rocket.SetCurrentDamage(rocketDamage);
             r.SetActive(true);
             if (r != null)
             {

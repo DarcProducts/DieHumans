@@ -7,9 +7,9 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private GameObject brokenBuilding;
     [SerializeField] private GameObject brokenBuildingEffect;
     [SerializeField] private int brokenEffectInitialPoolSize;
-    private readonly List<GameObject> brokenEffectPool = new List<GameObject>();
     [SerializeField] private GameObject collapseEffect;
     [SerializeField] private int collapseEffectInitialPoolSize;
+    private readonly List<GameObject> brokenEffectPool = new List<GameObject>();
     private readonly List<GameObject> collapseEffectPool = new List<GameObject>();
 
     private void Start()
