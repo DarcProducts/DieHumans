@@ -84,7 +84,6 @@ public class CityGenerator : MonoBehaviour
             Vector3[] cB = new Vector3[2];
             cB[0] = new Vector3(-cityOrigin.transform.position.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.transform.position.x);
             cB[1] = new Vector3(-cityOrigin.transform.position.z, yPlaneLevel * gridCellSize, gridDepth * gridCellSize - cityOrigin.transform.position.z);
-            Debug.Log($"City Bounds: " + cB[0] + " " + cB[1]);
             return cB;
         }
         return new Vector3[2];

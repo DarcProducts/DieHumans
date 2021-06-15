@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3060727832450410899}
   - component: {fileID: 8905892692907462740}
   - component: {fileID: 7537392153021471599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Building
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dceaf7326f245149bf794d937d989c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingHealthMultiplier: 1500
+  buildingHealthMultiplier: 250
   buildingPeopleMultiplier: 500
   _currentBuildingHealth: 0
   _currentNumberOfPeopleInside: 0

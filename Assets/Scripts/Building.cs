@@ -4,21 +4,23 @@ using UnityEngine.Events;
 
 public class Building : MonoBehaviour, IDamagable<float>
 {
+    private BuildingManager buildingManager;
     [SerializeField] private float buildingHealthMultiplier;
     [SerializeField] private int buildingPeopleMultiplier;
     [SerializeField] private float _currentBuildingHealth;
     [SerializeField] private int _currentNumberOfPeopleInside;
     private float maxBuildingHealth;
     private int maxNumberOfPeopleInside;
-    private bool isCollapsing = false;
     private bool brokenEffectSet = false;
     private bool collapsingEffectSet = false;
     [SerializeField] private float shakeIntensity = .01f;
     [SerializeField] private float duration = .1f;
     public static UnityAction<Vector3> BuildingDamaged;
+    public static UnityAction<GameObject> BreakBuilding;
 
     public void Start()
     {
+        buildingManager = FindObjectOfType<BuildingManager>();
         maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
         maxNumberOfPeopleInside = (int)transform.localScale.y * buildingPeopleMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
@@ -27,23 +29,41 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public void LateUpdate()
     {
-        if (isCollapsing)
-            StartCollapsingEffect();
         if (_currentBuildingHealth <= 0)
         {
-            StartBrokenBuildingEffect();
-            isCollapsing = true;
+            InitializeBrokenBuildingEffect();
+            InitializeCollapsingEffect();
         }
     }
 
-    public void StartCollapsingEffect()
+    private void InitializeCollapsingEffect()
     {
-        
+        if (!collapsingEffectSet && buildingManager != null)
+        {
+            GameObject effect = buildingManager.GetCollapseEffect();
+            if (effect != null)
+            {
+                effect.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                effect.SetActive(true);
+            }
+            BreakBuilding?.Invoke(gameObject);
+            collapsingEffectSet = true;
+            gameObject.SetActive(false);
+        }
     }
 
-    public void StartBrokenBuildingEffect()
+    public void InitializeBrokenBuildingEffect()
     {
-        
+        if (!brokenEffectSet && buildingManager != null)
+        {
+            GameObject e = buildingManager.GetBrokenEffect();
+            if (e != null)
+            {
+                e.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                e.SetActive(true);
+                brokenEffectSet = true;
+            }
+        }
     }
 
     private IEnumerator ShakeBuilding()

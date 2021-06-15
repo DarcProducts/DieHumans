@@ -1,58 +1,85 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Rocket : MonoBehaviour
+public class Rocket : MonoBehaviour, IDamagable<float>
 {
-    [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float maxRocketDistance;
-    [SerializeField] private Vector3 explosionEffectScale;
-    [SerializeField] public float currentRocketDamage;
-    [SerializeField] private float explosionRadius;
-    private bool damageApplied = false;
-    public static UnityAction<Vector3> HitATarget;
+    public bool isHoming;
+    float currentDamage = 1;
+    [SerializeField] private float homingSpeed;
+    [SerializeField] private float maxHealth = 2;
+    private float currentHealth = 1;
+    public static UnityAction<Vector3> ExplodeRocket;
+    public static UnityAction<GameObject> RocketHit;
+    public static UnityAction<Vector3> WasDamaged;
     private Vector3 startLoc;
+    private TrailRenderer rocketTrail;
+    private GameObject player;
 
-    private void Start() => startLoc = transform.position;
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+        player = GameObject.FindGameObjectWithTag("PlayerShip");
+        rocketTrail = GetComponentInChildren<TrailRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+        startLoc = transform.position;
+    }
+
+    private void OnDisable()
+    {
+        if (rocketTrail != null)
+            rocketTrail.Clear();
+    }
 
     private void Update() => ActivateRocket();
 
     private void ActivateRocket()
     {
         if (Vector3.Distance(startLoc, transform.position) > maxRocketDistance)
-            CheckIfNearTarget();
-    }
-
-    private void CheckIfNearTarget()
-    {
-        RaycastHit[] targetsHit = Physics.SphereCastAll(transform.position, explosionRadius, Vector3.forward);
-        if (!damageApplied && targetsHit.Length > 0)
         {
-            for (int i = 0; i < targetsHit.Length; i++)
-            {
-                if (!targetsHit[i].collider.gameObject.CompareTag("Rocket"))
-                {
-                    IDamagable<float> d = targetsHit[i].collider.gameObject.GetComponent<IDamagable<float>>();
-                    if (d != null)
-                        d.ApplyDamage(currentRocketDamage);
-                }
-            }
-            HitATarget?.Invoke(transform.position);
-            damageApplied = true;
+            ExplodeRocket?.Invoke(transform.position);
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
+        else
+        {
+            if (player != null && isHoming)
+                transform.LookAt(player.transform.position);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, homingSpeed * Time.fixedDeltaTime);
+        }
+        if (currentHealth <= 0)
+        {
+            ExplodeRocket?.Invoke(transform.position);
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision collider)
     {
-        if (!collider.gameObject.CompareTag("TVWall") && !collider.gameObject.CompareTag("Chopper")) // gotta fix, cant have this check on eveything!!
-            CheckIfNearTarget();
+        RocketHit?.Invoke(collider.gameObject);
+        ExplodeRocket?.Invoke(transform.position);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("TVWall") && !other.CompareTag("Chopper")) // gotta fix, cant have this check on eveything!!
-            CheckIfNearTarget();
+        RocketHit?.Invoke(other.gameObject);
+        ExplodeRocket?.Invoke(transform.position);
+        gameObject.SetActive(false);
     }
 
-    public void SetRocketDamage(float damage) => currentRocketDamage = damage;
+
+    public void SetCurrentDamage(float amount) => currentDamage = amount;
+    public void ApplyDamage(float amount)
+    {
+        currentHealth -= amount;
+        WasDamaged?.Invoke(transform.position);
+    }
+
+    public float GetCurrentHealth() => currentHealth;
+
+    public float GetMaxHealth() => maxHealth;
 }

@@ -335,15 +335,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWanderHeight: 30
   checkDistancePlayer: 200
-  checkDistanceObject: 10
-  rocketFireTime: 1
+  rocketFireTime: 0.5
+  shootHomingRockets: 1
   moveSpeed: 10
   maxHealth: 100
-  healthPercentToFlee: 0.198
   distanceFromPlayer: 20
   downForceOnDeath: 5
-  chopperExplodedEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
-  effectSize: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!135 &2437029567911415413
 SphereCollider:
   m_ObjectHideFlags: 0

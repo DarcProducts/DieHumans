@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Chopper : MonoBehaviour, IDamagable<float>
 {
@@ -6,21 +7,20 @@ public class Chopper : MonoBehaviour, IDamagable<float>
     private bool isExploded = false;
     [SerializeField] private float maxWanderHeight;
     [SerializeField] private float checkDistancePlayer;
-    [SerializeField] private float checkDistanceObject;
+    [SerializeField] private float attackDistance;
     [SerializeField] private float rocketFireTime;
+    [SerializeField] private bool shootHomingRockets;
     [SerializeField] private float moveSpeed;
     private float currentFireTime;
     [SerializeField] private float maxHealth;
     private float currentHealth = 1;
-    [Range(0f, 1f)] [SerializeField] private float healthPercentToFlee;
-    [SerializeField] private float distanceFromPlayer;
     [Range(0f, 10f)] [SerializeField] private float downForceOnDeath;
-    [SerializeField] private GameObject chopperExplodedEffect;
-    [SerializeField] private Vector3 effectSize;
     private bool dieForceApplied = false;
     private GameObject playerShip;
     private Vector3 nextTargetLocation;
     private bool hasFoundPlayer = false;
+    public static UnityAction<Vector3, bool> FiredRocket;
+    private bool hasDied = false;
 
     private void Start()
     {
@@ -39,24 +39,33 @@ public class Chopper : MonoBehaviour, IDamagable<float>
     private void LateUpdate()
     {
         if (currentHealth <= 0)
-            Die();
-        if (enemyManager != null)
-            if (enemyManager.CheckIfPathClear(gameObject, checkDistancePlayer))
-            {
-                hasFoundPlayer = true;
-                Attack();
-            }
-        if (hasFoundPlayer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerShip.transform.position.x, Random.Range(maxWanderHeight - 10, maxWanderHeight), playerShip.transform.position.z), moveSpeed * .01f * Time.smoothDeltaTime);
-            return;
+            hasDied = true;
+            Die();
         }
+        if (!hasDied)
+        {
+            if (enemyManager != null && playerShip != null)
+            {
+                if (enemyManager.CheckIfPathClear(gameObject, checkDistancePlayer))
+                {
+                    hasFoundPlayer = true;
+                    if (Vector3.Distance(transform.position, playerShip.transform.position) < attackDistance)
+                        Attack();
+                }
+                if (hasFoundPlayer)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerShip.transform.position.x, Random.Range(maxWanderHeight - 10, maxWanderHeight), playerShip.transform.position.z), moveSpeed * .01f * Time.smoothDeltaTime);
+                    return;
+                }
+            }
 
-        if (!transform.position.Equals(nextTargetLocation))
-            transform.position = Vector3.MoveTowards(transform.position, nextTargetLocation, moveSpeed * Time.smoothDeltaTime);
-        if (transform.position.Equals(nextTargetLocation))
-            nextTargetLocation = ChangeNextTargetLocation();
-        transform.forward = Vector3.Lerp(transform.forward, nextTargetLocation - transform.position, moveSpeed * .001f * Time.smoothDeltaTime);
+            if (!transform.position.Equals(nextTargetLocation))
+                transform.position = Vector3.MoveTowards(transform.position, nextTargetLocation, moveSpeed * Time.smoothDeltaTime);
+            if (transform.position.Equals(nextTargetLocation))
+                nextTargetLocation = ChangeNextTargetLocation();
+            transform.forward = Vector3.Lerp(transform.forward, nextTargetLocation - transform.position, moveSpeed * .001f * Time.smoothDeltaTime);
+        }
     }
 
     public void OnEnable() => Building.BuildingDamaged += MoveToDamagedTarget;
@@ -82,15 +91,16 @@ public class Chopper : MonoBehaviour, IDamagable<float>
 
         if (currentFireTime <= 0 && enemyManager != null)
         {
-            enemyManager.LaunchRocket(gameObject);
+            FiredRocket?.Invoke(transform.position + Vector3.down, shootHomingRockets);
             currentFireTime = rocketFireTime;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // inside of TV always colliding!! even though normals are facing outwards
-        if (!collision.gameObject.CompareTag("TVWall") && !collision.gameObject.CompareTag("Chopper"))
+        if (collision.gameObject.CompareTag("TVWall") || collision.gameObject.CompareTag("Chopper"))
+            return;
+        else
         {
             IDamagable<float> damagable = collision.gameObject.GetComponent<IDamagable<float>>();
             if (damagable != null)
@@ -119,10 +129,9 @@ public class Chopper : MonoBehaviour, IDamagable<float>
 
     public void Explode()
     {
-        if (!isExploded && chopperExplodedEffect != null)
+        if (!isExploded && enemyManager != null)
         {
-            GameObject e = Instantiate(chopperExplodedEffect, transform.position, Quaternion.identity);
-            e.transform.localScale = new Vector3(effectSize.x, effectSize.y, effectSize.z);
+            enemyManager.Explode(transform.position);
             isExploded = true;
             gameObject.SetActive(false);
         }

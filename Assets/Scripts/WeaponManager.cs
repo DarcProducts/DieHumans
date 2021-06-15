@@ -14,7 +14,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Material laserMat;
     [SerializeField] private GameObject laserHitEffect;
     private GameObject currentLaserEffect;
-    [SerializeField] private UnityEvent<GameObject> HitATarget;
+    public static UnityAction<GameObject> LaserHitObject;
 
     private void Start()
     {
@@ -78,13 +78,14 @@ public class WeaponManager : MonoBehaviour
             shipLaser.SetPosition(0, weaponLocation.transform.position);
             shipLaser.SetPosition(1, hitInfo.point);
             EnableLaserEffect(hitInfo.point);
-            HitATarget?.Invoke(hitInfo.collider.gameObject);
+            TryDamagingTarget(hitInfo.collider.gameObject);
+            LaserHitObject?.Invoke(hitInfo.collider.gameObject);
             return true;
         }
         return false;
     }
 
-    public void TryDamagingTarget(GameObject target)
+    private void TryDamagingTarget(GameObject target)
     {
         IDamagable<float> d = target.GetComponent<IDamagable<float>>();
         if (d != null)
@@ -94,7 +95,7 @@ public class WeaponManager : MonoBehaviour
      public void InitializeAimTarget()
     {
         if (aimTarget != null)
-            aimTarget.transform.position = new Vector3(0, 0, aimTargetDistance);
+            aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
     public void InitializeLaser()
