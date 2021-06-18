@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
-    public static UnityAction<GameObject> LaserHitObject;
+    public static UnityAction<GameObject, MaterialType> LaserHitObject;
     [SerializeField] private float weaponDamage;
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject weaponLocation;
@@ -15,6 +15,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Material laserMat;
     [SerializeField] private GameObject laserHitEffect;
     private GameObject currentLaserEffect;
+
 
     private void Start()
     {
@@ -79,10 +80,20 @@ public class WeaponManager : MonoBehaviour
             shipLaser.SetPosition(1, hitInfo.point);
             EnableLaserEffect(hitInfo.point);
             TryDamagingTarget(hitInfo.collider.gameObject);
-            LaserHitObject?.Invoke(hitInfo.collider.gameObject);
+            SetLaserHitMaterial(hitInfo);
             return true;
         }
         return false;
+    }
+
+    private void SetLaserHitMaterial(RaycastHit hitInfo)
+    {
+        if (hitInfo.collider.CompareTag("Ground"))
+        LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.dirt);
+        else if (hitInfo.collider.CompareTag("Building"))
+            LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.concrete);
+        else if (hitInfo.collider.CompareTag("Drone") || hitInfo.collider.CompareTag("Rocket"))
+            LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.metal);
     }
 
     private void TryDamagingTarget(GameObject target)

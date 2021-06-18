@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4668423004219762333
 MeshFilter:
@@ -76,7 +77,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4985142926242793435
 MeshFilter:
@@ -204,7 +206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5985150224256422939
 MeshFilter:
@@ -332,7 +335,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -432,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8988948558639605844
 MeshFilter:
@@ -460,7 +464,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -560,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1650316324929695717
 MeshFilter:
@@ -588,7 +593,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -688,6 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3930809314246027182
 MeshFilter:
@@ -716,7 +722,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -816,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7407625493782806894
 MeshFilter:
@@ -844,7 +851,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -944,6 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8672092177805284796
 MeshFilter:
@@ -972,7 +980,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1072,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7686918432361314637
 MeshFilter:
@@ -1100,7 +1109,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1200,6 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5382412056786345871
 MeshFilter:
@@ -1228,7 +1238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1328,6 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &321971197450091103
 MeshFilter:
@@ -1356,7 +1367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1456,6 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &50982047616221478
 MeshFilter:
@@ -1484,7 +1496,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1584,6 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3114973583214458766
 MeshFilter:
@@ -1612,7 +1625,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1712,6 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8725833339045406553
 MeshFilter:
@@ -1740,7 +1754,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1840,6 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4250544574610958171
 MeshFilter:
@@ -1868,7 +1883,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1968,6 +1983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7530613043804577834
 MeshFilter:
@@ -1996,7 +2012,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2096,6 +2112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9128392883290355345
 MeshFilter:
@@ -2124,7 +2141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2224,6 +2241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7441859296818524372
 MeshFilter:
@@ -2252,7 +2270,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2352,6 +2370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3824616859359843591
 MeshFilter:
@@ -2380,7 +2399,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2480,6 +2499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7359142558333828172
 MeshFilter:
@@ -2508,7 +2528,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2608,6 +2628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3705384309979384786
 MeshFilter:
@@ -2636,7 +2657,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2736,6 +2757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9132824439519950683
 MeshFilter:
@@ -2764,7 +2786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2864,6 +2886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8301835739331426933
 MeshFilter:
@@ -2892,7 +2915,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2992,6 +3015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3825298021471183049
 MeshFilter:
@@ -3020,7 +3044,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3120,6 +3144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1333825737106821078
 MeshFilter:
@@ -3148,7 +3173,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3248,6 +3273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7275902754974158341
 MeshFilter:
@@ -3276,7 +3302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3376,6 +3402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4137915229667135030
 MeshFilter:
@@ -3404,7 +3431,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3504,6 +3531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &396891943509997910
 MeshFilter:
@@ -3532,7 +3560,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3632,6 +3660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3657490920942860798
 MeshFilter:
@@ -3660,7 +3689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3760,6 +3789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3905966717550286113
 MeshFilter:
@@ -3788,7 +3818,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3888,6 +3918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6850499931195208401
 MeshFilter:
@@ -3916,7 +3947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4016,6 +4047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1951611057558066528
 MeshFilter:
@@ -4044,7 +4076,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4144,6 +4176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7023795637050245883
 MeshFilter:
@@ -4172,7 +4205,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4272,6 +4305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2644607667077808285
 MeshFilter:
@@ -4300,7 +4334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4400,6 +4434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6626257178015104947
 MeshFilter:
@@ -4428,7 +4463,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4528,6 +4563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1876060428587241032
 MeshFilter:
@@ -4556,7 +4592,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4656,6 +4692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8677540932747696801
 MeshFilter:
@@ -4684,7 +4721,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4784,6 +4821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &553450269905796199
 MeshFilter:
@@ -4812,7 +4850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4912,6 +4950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4417122638099510299
 MeshFilter:
@@ -4940,7 +4979,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5040,6 +5079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &551970058288883436
 MeshFilter:
@@ -5068,7 +5108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5168,6 +5208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8311166437975433475
 MeshFilter:
@@ -5196,7 +5237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5296,6 +5337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3009493111807690687
 MeshFilter:
@@ -5324,7 +5366,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5424,6 +5466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5378997581016999631
 MeshFilter:
@@ -5452,7 +5495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5552,6 +5595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6551833060350997164
 MeshFilter:
@@ -5580,7 +5624,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5680,6 +5724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2894929117137617164
 MeshFilter:
@@ -5708,7 +5753,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5808,6 +5853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9097652999729156599
 MeshFilter:
@@ -5836,7 +5882,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5936,6 +5982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2997050565630086522
 MeshFilter:
@@ -5964,7 +6011,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6064,6 +6111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &670122430957188099
 MeshFilter:
@@ -6092,7 +6140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6192,6 +6240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6256028068183166607
 MeshFilter:
@@ -6220,7 +6269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6320,6 +6369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7679020525498563188
 MeshFilter:
@@ -6348,7 +6398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6448,6 +6498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7571624398638307813
 MeshFilter:
@@ -6476,7 +6527,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6576,6 +6627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3213901585230903719
 MeshFilter:
@@ -6604,7 +6656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6704,6 +6756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4395325523046957450
 MeshFilter:
@@ -6732,7 +6785,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6832,6 +6885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7334850213486880423
 MeshFilter:
@@ -6860,7 +6914,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6960,6 +7014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3725520544534623286
 MeshFilter:
@@ -6988,7 +7043,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7088,6 +7143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4516771627213893931
 MeshFilter:
@@ -7116,7 +7172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7216,6 +7272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2973800694789215143
 MeshFilter:
@@ -7244,7 +7301,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7344,6 +7401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1462465348871580175
 MeshFilter:
@@ -7372,7 +7430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7472,6 +7530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8256789040783147349
 MeshFilter:
@@ -7500,7 +7559,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7600,6 +7659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &451025333765864219
 MeshFilter:
@@ -7628,7 +7688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7728,6 +7788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5613243713039881838
 MeshFilter:
@@ -7756,7 +7817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7856,6 +7917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &588520972800502330
 MeshFilter:
@@ -7884,7 +7946,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7984,6 +8046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8604309833799435873
 MeshFilter:
@@ -8012,7 +8075,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8112,6 +8175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1141130471111767404
 MeshFilter:
@@ -8140,7 +8204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8240,6 +8304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6781373067932205134
 MeshFilter:
@@ -8268,7 +8333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8368,6 +8433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3809398575077931179
 MeshFilter:
@@ -8396,7 +8462,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8496,6 +8562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9097859309031271340
 MeshFilter:
@@ -8524,7 +8591,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8624,6 +8691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5611808823523179682
 MeshFilter:
@@ -8652,7 +8720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8752,6 +8820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &157820892947245368
 MeshFilter:
@@ -8780,7 +8849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8880,6 +8949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7283063891296478770
 MeshFilter:
@@ -8908,7 +8978,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9008,6 +9078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6982737275398921609
 MeshFilter:
@@ -9036,7 +9107,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9136,6 +9207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6086939485633845170
 MeshFilter:
@@ -9164,7 +9236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9264,6 +9336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9113586867558574876
 MeshFilter:
@@ -9292,7 +9365,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9392,6 +9465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4776513288374117821
 MeshFilter:
@@ -9420,7 +9494,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9520,6 +9594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1048241131037718657
 MeshFilter:
@@ -9548,7 +9623,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9648,6 +9723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5903270415262086500
 MeshFilter:
@@ -9676,7 +9752,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9776,6 +9852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6362383830758887283
 MeshFilter:
@@ -9804,7 +9881,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9904,6 +9981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7584399580962931911
 MeshFilter:
@@ -9932,7 +10010,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10032,6 +10110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7050059085065479053
 MeshFilter:
@@ -10060,7 +10139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10160,6 +10239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6073754044030714225
 MeshFilter:
@@ -10188,7 +10268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10288,6 +10368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8206855635310107868
 MeshFilter:
@@ -10316,7 +10397,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10416,6 +10497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4470302996070397327
 MeshFilter:
@@ -10444,7 +10526,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10544,6 +10626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5070264845201790257
 MeshFilter:
@@ -10572,7 +10655,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10672,6 +10755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &848661182554604013
 MeshFilter:
@@ -10700,7 +10784,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10800,6 +10884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9071115727314557601
 MeshFilter:
@@ -10828,7 +10913,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10928,6 +11013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3657615680380551791
 MeshFilter:
@@ -10956,7 +11042,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11056,6 +11142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7685267917962506277
 MeshFilter:
@@ -11084,7 +11171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11184,6 +11271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5103463698224985916
 MeshFilter:
@@ -11212,7 +11300,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11312,6 +11400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2501890839333288002
 MeshFilter:
@@ -11340,7 +11429,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11440,6 +11529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2951430260624475867
 MeshFilter:
@@ -11468,7 +11558,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11568,6 +11658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4218687203921688912
 MeshFilter:
@@ -11596,7 +11687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11696,6 +11787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1798527683784517563
 MeshFilter:
@@ -11724,7 +11816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11824,6 +11916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6207595894550226818
 MeshFilter:
@@ -11852,7 +11945,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11952,6 +12045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6140238228882246971
 MeshFilter:
@@ -11980,7 +12074,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12080,6 +12174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4247401334053072295
 MeshFilter:
@@ -12108,7 +12203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12208,6 +12303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &41264785421100045
 MeshFilter:
@@ -12236,7 +12332,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12336,6 +12432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &398350268800423235
 MeshFilter:
@@ -12364,7 +12461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12464,6 +12561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2567643840299599726
 MeshFilter:
@@ -12492,7 +12590,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12592,6 +12690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2748916977770105701
 MeshFilter:
@@ -12620,7 +12719,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12720,6 +12819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &989536072866039178
 MeshFilter:
@@ -12748,7 +12848,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12848,6 +12948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3885089105800384412
 MeshFilter:
@@ -12876,7 +12977,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12976,6 +13077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3712458673027215565
 MeshFilter:
@@ -13004,7 +13106,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13104,6 +13206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8965827825210320782
 MeshFilter:
@@ -13132,7 +13235,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13232,6 +13335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1940570683733585852
 MeshFilter:
@@ -13260,7 +13364,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13360,6 +13464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2789935076438455283
 MeshFilter:
@@ -13388,7 +13493,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13488,6 +13593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9051760463983920220
 MeshFilter:
@@ -13516,7 +13622,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13616,6 +13722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5158338446043121138
 MeshFilter:
@@ -13644,7 +13751,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13744,6 +13851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9163398623370406046
 MeshFilter:
@@ -13772,7 +13880,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13872,6 +13980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4652805578816811576
 MeshFilter:
@@ -13900,7 +14009,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14000,6 +14109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2295396318998254764
 MeshFilter:
@@ -14028,7 +14138,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14128,6 +14238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2294618158494244154
 MeshFilter:
@@ -14156,7 +14267,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14256,6 +14367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &379080241804204158
 MeshFilter:
@@ -14284,7 +14396,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14384,6 +14496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1337591502437081111
 MeshFilter:
@@ -14412,7 +14525,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14512,6 +14625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5720774531920222271
 MeshFilter:
@@ -14540,7 +14654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14640,6 +14754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5001403516476457554
 MeshFilter:
@@ -14668,7 +14783,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14768,6 +14883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &749201378824776166
 MeshFilter:
@@ -14796,7 +14912,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14896,6 +15012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5904474654237423502
 MeshFilter:
@@ -14924,7 +15041,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15024,6 +15141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4577088653549414374
 MeshFilter:
@@ -15052,7 +15170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15152,6 +15270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8184671292639319460
 MeshFilter:
@@ -15180,7 +15299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15280,6 +15399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8656492742570144818
 MeshFilter:
@@ -15308,7 +15428,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15408,6 +15528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8851218738267868068
 MeshFilter:
@@ -15436,7 +15557,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15536,6 +15657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2363384965929839374
 MeshFilter:
@@ -15564,7 +15686,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15664,6 +15786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &675158566739138009
 MeshFilter:
@@ -15692,7 +15815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15792,6 +15915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1722428271353908935
 MeshFilter:
@@ -15820,7 +15944,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15920,6 +16044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &696662521437446394
 MeshFilter:
@@ -15948,7 +16073,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16048,6 +16173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &612641780114530992
 MeshFilter:
@@ -16076,7 +16202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16176,6 +16302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8507398182137249330
 MeshFilter:
@@ -16204,7 +16331,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16304,6 +16431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6298439070615688493
 MeshFilter:
@@ -16332,7 +16460,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16432,6 +16560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1831219330379683753
 MeshFilter:
@@ -16460,7 +16589,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16560,6 +16689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2615526187831879035
 MeshFilter:
@@ -16588,7 +16718,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16688,6 +16818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6102305660640093201
 MeshFilter:
@@ -16716,7 +16847,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16816,6 +16947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4869187528569430596
 MeshFilter:
@@ -16844,7 +16976,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16944,6 +17076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5355831842225719537
 MeshFilter:
@@ -16972,7 +17105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17072,6 +17205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &23061441493722170
 MeshFilter:
@@ -17100,7 +17234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17200,6 +17334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &9190959711942401525
 MeshFilter:
@@ -17228,7 +17363,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17328,6 +17463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2534918917695306352
 MeshFilter:
@@ -17356,7 +17492,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17456,6 +17592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6655870991228614528
 MeshFilter:
@@ -17484,7 +17621,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17584,6 +17721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &684159401290236149
 MeshFilter:
@@ -17612,7 +17750,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17712,6 +17850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3254218531237379874
 MeshFilter:
@@ -17740,7 +17879,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17840,6 +17979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3383178101881131047
 MeshFilter:
@@ -17868,7 +18008,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17968,6 +18108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4853094294160462161
 MeshFilter:
@@ -17996,7 +18137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18096,6 +18237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8569954052990430847
 MeshFilter:
@@ -18124,7 +18266,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18224,6 +18366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &233216664056576911
 MeshFilter:
@@ -18252,7 +18395,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18352,6 +18495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2019055753602141986
 MeshFilter:
@@ -18380,7 +18524,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18480,6 +18624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8701048135042943103
 MeshFilter:
@@ -18508,7 +18653,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18608,6 +18753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8666623091502512731
 MeshFilter:
@@ -18636,7 +18782,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18736,6 +18882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2837328333683427642
 MeshFilter:
@@ -18764,7 +18911,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18864,6 +19011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8833019033735047911
 MeshFilter:
@@ -18892,7 +19040,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18992,6 +19140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6581202692258032516
 MeshFilter:
@@ -19020,7 +19169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19120,6 +19269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3590978827542044578
 MeshFilter:
@@ -19148,7 +19298,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19248,6 +19398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &759609556177235246
 MeshFilter:
@@ -19276,7 +19427,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19376,6 +19527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6070309838004211994
 MeshFilter:
@@ -19404,7 +19556,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19504,6 +19656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1341475366336221187
 MeshFilter:
@@ -19532,7 +19685,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19632,6 +19785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1400172563912215945
 MeshFilter:
@@ -19660,7 +19814,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19760,6 +19914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2093706899209118108
 MeshFilter:
@@ -19788,7 +19943,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19888,6 +20043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1459417500460121379
 MeshFilter:
@@ -19916,7 +20072,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20016,6 +20172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1794255788783679490
 MeshFilter:
@@ -20044,7 +20201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20144,6 +20301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6367338244255623355
 MeshFilter:
@@ -20172,7 +20330,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20272,6 +20430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2691019170002490103
 MeshFilter:
@@ -20300,7 +20459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20400,6 +20559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4372972551721978501
 MeshFilter:
@@ -20428,7 +20588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20528,6 +20688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6235361352669300160
 MeshFilter:
@@ -20556,7 +20717,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20656,6 +20817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8200351438331693596
 MeshFilter:
@@ -20684,7 +20846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20784,6 +20946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4758432301371535991
 MeshFilter:
@@ -20812,7 +20975,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20912,6 +21075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &602318052141236323
 MeshFilter:
@@ -20940,7 +21104,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21040,6 +21204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6992987899146962720
 MeshFilter:
@@ -21068,7 +21233,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21168,6 +21333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6429627426847071918
 MeshFilter:
@@ -21196,7 +21362,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21296,6 +21462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5937041491020599281
 MeshFilter:
@@ -21324,7 +21491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21424,6 +21591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8097733347809990627
 MeshFilter:
@@ -21452,7 +21620,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21552,6 +21720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7503411156792503736
 MeshFilter:
@@ -21580,7 +21749,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21680,6 +21849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7161106028966851642
 MeshFilter:
@@ -21708,7 +21878,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21808,6 +21978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6609399924862421729
 MeshFilter:
@@ -21836,7 +22007,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21936,6 +22107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5353455645852101927
 MeshFilter:
@@ -21964,7 +22136,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22064,6 +22236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2428053722345107442
 MeshFilter:
@@ -22092,7 +22265,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22192,6 +22365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5108671307476237872
 MeshFilter:
@@ -22220,7 +22394,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22320,6 +22494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2871932582326250571
 MeshFilter:
@@ -22348,7 +22523,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22448,6 +22623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &718775430576986196
 MeshFilter:
@@ -22476,7 +22652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22576,6 +22752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7622835133093202698
 MeshFilter:
@@ -22604,7 +22781,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22704,6 +22881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6240792433719435342
 MeshFilter:
@@ -22732,7 +22910,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22832,6 +23010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1228366137661961417
 MeshFilter:
@@ -22860,7 +23039,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22960,6 +23139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1854737696200514010
 MeshFilter:
@@ -22988,7 +23168,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23088,6 +23268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3243467270303740030
 MeshFilter:
@@ -23116,7 +23297,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23216,6 +23397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4160825231880893895
 MeshFilter:
@@ -23244,7 +23426,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23344,6 +23526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &233199213680538532
 MeshFilter:
@@ -23372,7 +23555,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23472,6 +23655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8969730276616160731
 MeshFilter:
@@ -23500,7 +23684,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23600,6 +23784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &505101441923543861
 MeshFilter:
@@ -23628,7 +23813,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23728,6 +23913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5280489827219388112
 MeshFilter:
@@ -23756,7 +23942,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23856,6 +24042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2345158530047439795
 MeshFilter:
@@ -23884,7 +24071,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23984,6 +24171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &994399011618223313
 MeshFilter:
@@ -24012,7 +24200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24112,6 +24300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1775875378930071663
 MeshFilter:
@@ -24140,7 +24329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24240,6 +24429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6094214535213637228
 MeshFilter:
@@ -24268,7 +24458,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24368,6 +24558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2165076722999446475
 MeshFilter:
@@ -24396,7 +24587,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24496,6 +24687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2336815847585392399
 MeshFilter:
@@ -24524,7 +24716,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24624,6 +24816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7056322412682723725
 MeshFilter:
@@ -24652,7 +24845,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24752,6 +24945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &214291317406664577
 MeshFilter:
@@ -24780,7 +24974,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24880,6 +25074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6657528469069682531
 MeshFilter:
@@ -24908,7 +25103,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25008,6 +25203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7443452658106241132
 MeshFilter:
@@ -25036,7 +25232,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25136,6 +25332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6658843326086260614
 MeshFilter:
@@ -25164,7 +25361,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25264,6 +25461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8432812167783017004
 MeshFilter:
@@ -25292,7 +25490,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25392,6 +25590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4558653911147748687
 MeshFilter:
@@ -25420,7 +25619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25520,6 +25719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4693625361283677451
 MeshFilter:
@@ -25548,7 +25748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25648,6 +25848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6677205442411150351
 MeshFilter:
@@ -25676,7 +25877,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25776,6 +25977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &22725076791578225
 MeshFilter:
@@ -25804,7 +26006,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26234,6 +26436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3379569427136347964
 MeshFilter:
@@ -26262,7 +26465,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26362,6 +26565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2618970052968218561
 MeshFilter:
@@ -26390,7 +26594,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26490,6 +26694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4608890004116483582
 MeshFilter:
@@ -26518,7 +26723,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26618,6 +26823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4019572920814911183
 MeshFilter:
@@ -26646,7 +26852,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26746,6 +26952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3937866481298204378
 MeshFilter:
@@ -26774,7 +26981,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26874,6 +27081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5732079680004149496
 MeshFilter:
@@ -26902,7 +27110,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27002,6 +27210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3596530851298100309
 MeshFilter:
@@ -27030,7 +27239,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27130,6 +27339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &85454011050864203
 MeshFilter:
@@ -27158,7 +27368,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27258,6 +27468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6933533383049046833
 MeshFilter:
@@ -27286,7 +27497,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27386,6 +27597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6478515957807701371
 MeshFilter:
@@ -27414,7 +27626,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27514,6 +27726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8358434431399781977
 MeshFilter:
@@ -27542,7 +27755,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27642,6 +27855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1510059787250746152
 MeshFilter:
@@ -27670,7 +27884,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27770,6 +27984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7038631681077425420
 MeshFilter:
@@ -27798,7 +28013,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27898,6 +28113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6932329286376555178
 MeshFilter:
@@ -27926,7 +28142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28026,6 +28242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6954365353969899903
 MeshFilter:
@@ -28054,7 +28271,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28154,6 +28371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7869688880592634705
 MeshFilter:
@@ -28182,7 +28400,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28282,6 +28500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1843745827218477478
 MeshFilter:
@@ -28310,7 +28529,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28410,6 +28629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1240433799932068713
 MeshFilter:
@@ -28438,7 +28658,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28538,6 +28758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2364373574542753202
 MeshFilter:
@@ -28566,7 +28787,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28666,6 +28887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1890834341472894852
 MeshFilter:
@@ -28694,7 +28916,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28794,6 +29016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4726588557340351735
 MeshFilter:
@@ -28822,7 +29045,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28922,6 +29145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8888010287114317601
 MeshFilter:
@@ -28950,7 +29174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29050,6 +29274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7812592941092591305
 MeshFilter:
@@ -29078,7 +29303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29178,6 +29403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6500529799963598243
 MeshFilter:
@@ -29206,7 +29432,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29306,6 +29532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3664385500948190590
 MeshFilter:
@@ -29334,7 +29561,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29434,6 +29661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1732376554570918712
 MeshFilter:
@@ -29462,7 +29690,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29562,6 +29790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2882901117998571496
 MeshFilter:
@@ -29590,7 +29819,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29690,6 +29919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5469077871548459618
 MeshFilter:
@@ -29718,7 +29948,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29818,6 +30048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1245446568281021463
 MeshFilter:
@@ -29846,7 +30077,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29946,6 +30177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8501902412316716302
 MeshFilter:
@@ -29974,7 +30206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30074,6 +30306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5425068905389144000
 MeshFilter:
@@ -30102,7 +30335,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30202,6 +30435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8147631404654235045
 MeshFilter:
@@ -30230,7 +30464,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30330,6 +30564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1497452264703683331
 MeshFilter:
@@ -30358,7 +30593,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30458,6 +30693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1646273091247141455
 MeshFilter:
@@ -30486,7 +30722,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30586,6 +30822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7162608244794165602
 MeshFilter:
@@ -30614,7 +30851,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30714,6 +30951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7474771075616675450
 MeshFilter:
@@ -30742,7 +30980,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30842,6 +31080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3645436592253526999
 MeshFilter:
@@ -30870,7 +31109,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30970,6 +31209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3516194765297190051
 MeshFilter:
@@ -30998,7 +31238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31098,6 +31338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &334863927803177045
 MeshFilter:
@@ -31126,7 +31367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31226,6 +31467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5777119269923481551
 MeshFilter:
@@ -31254,7 +31496,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31354,6 +31596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6973709932251035932
 MeshFilter:
@@ -31382,7 +31625,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31482,6 +31725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7331687858532123629
 MeshFilter:
@@ -31510,7 +31754,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31610,6 +31854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2043453220443545985
 MeshFilter:
@@ -31638,7 +31883,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31738,6 +31983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7083716298432716566
 MeshFilter:
@@ -31766,7 +32012,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31866,6 +32112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &636155118804527345
 MeshFilter:
@@ -31894,7 +32141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31994,6 +32241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4125979638095226895
 MeshFilter:
@@ -32022,7 +32270,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32122,6 +32370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4061457248030919087
 MeshFilter:
@@ -32150,7 +32399,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32250,6 +32499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6957170366108253062
 MeshFilter:
@@ -32278,7 +32528,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32378,6 +32628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2883870517134066491
 MeshFilter:
@@ -32406,7 +32657,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32506,6 +32757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1542124519335304246
 MeshFilter:
@@ -32534,7 +32786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32634,6 +32886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1625240826266557915
 MeshFilter:
@@ -32662,7 +32915,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32762,6 +33015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2667851603064153346
 MeshFilter:
@@ -32790,7 +33044,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32890,6 +33144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2369657772971390413
 MeshFilter:
@@ -32918,7 +33173,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33018,6 +33273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5949468080000572832
 MeshFilter:
@@ -33046,7 +33302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33146,6 +33402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4704267033727137370
 MeshFilter:
@@ -33174,7 +33431,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33274,6 +33531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6600144251972320255
 MeshFilter:
@@ -33302,7 +33560,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33402,6 +33660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2742918849176460318
 MeshFilter:
@@ -33430,7 +33689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33530,6 +33789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3966746111139286392
 MeshFilter:
@@ -33558,7 +33818,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33658,6 +33918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3276722661202176321
 MeshFilter:
@@ -33686,7 +33947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33786,6 +34047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6995180592428227370
 MeshFilter:
@@ -33814,7 +34076,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33914,6 +34176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2247811397379134380
 MeshFilter:
@@ -33942,7 +34205,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34042,6 +34305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4610141398044737163
 MeshFilter:
@@ -34070,7 +34334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34170,6 +34434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5266641603756933783
 MeshFilter:
@@ -34198,7 +34463,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34298,6 +34563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2441024697959855114
 MeshFilter:
@@ -34326,7 +34592,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34426,6 +34692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5825331586840010127
 MeshFilter:
@@ -34454,7 +34721,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34554,6 +34821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1331815790168026901
 MeshFilter:
@@ -34582,7 +34850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34682,6 +34950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &7639442402381178868
 MeshFilter:
@@ -34710,7 +34979,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34810,6 +35079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3405571588784828236
 MeshFilter:
@@ -34838,7 +35108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34938,6 +35208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6755904250563274138
 MeshFilter:
@@ -34966,7 +35237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35066,6 +35337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6468433522452453729
 MeshFilter:
@@ -35094,7 +35366,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35194,6 +35466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1737268799147931066
 MeshFilter:
@@ -35222,7 +35495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35322,6 +35595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &636599994237679095
 MeshFilter:
@@ -35350,7 +35624,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35450,6 +35724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1947541262452363818
 MeshFilter:
@@ -35478,7 +35753,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35578,6 +35853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5307106727919457717
 MeshFilter:
@@ -35606,7 +35882,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35706,6 +35982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8020045208170187623
 MeshFilter:
@@ -35734,7 +36011,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35834,6 +36111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3397066567537711274
 MeshFilter:
@@ -35862,7 +36140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35962,6 +36240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2266170435879821191
 MeshFilter:
@@ -35990,7 +36269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36090,6 +36369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8198214648165583959
 MeshFilter:
@@ -36118,7 +36398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36218,6 +36498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4646429037040782952
 MeshFilter:
@@ -36246,7 +36527,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36346,6 +36627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1547071129109354315
 MeshFilter:
@@ -36374,7 +36656,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36474,6 +36756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5701740208099267032
 MeshFilter:
@@ -36502,7 +36785,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36602,6 +36885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6073975484979895478
 MeshFilter:
@@ -36630,7 +36914,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36730,6 +37014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4561981611317373687
 MeshFilter:
@@ -36758,7 +37043,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36858,6 +37143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6203632365408699617
 MeshFilter:
@@ -36886,7 +37172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36986,6 +37272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &310611311206768929
 MeshFilter:
@@ -37014,7 +37301,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37114,6 +37401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2840937724007541955
 MeshFilter:
@@ -37142,7 +37430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37242,6 +37530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &2055713918274921251
 MeshFilter:
@@ -37270,7 +37559,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37370,6 +37659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &1556982009023430375
 MeshFilter:
@@ -37398,7 +37688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37498,6 +37788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4769773413074918526
 MeshFilter:
@@ -37526,7 +37817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37626,6 +37917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5623068032220443269
 MeshFilter:
@@ -37654,7 +37946,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37754,6 +38046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &5990271506280309977
 MeshFilter:
@@ -37782,7 +38075,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37882,6 +38175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &6939337857924499874
 MeshFilter:
@@ -37910,7 +38204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38010,6 +38304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &8110064039917972766
 MeshFilter:
@@ -38038,7 +38333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38138,6 +38433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &369010518816207710
 MeshFilter:
@@ -38166,7 +38462,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38266,6 +38562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3787544430232623162
 MeshFilter:
@@ -38294,7 +38591,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38394,6 +38691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &4586394030887451037
 MeshFilter:
@@ -38422,7 +38720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38522,6 +38820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &747432606777983859
 MeshFilter:
@@ -38550,7 +38849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38650,6 +38949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Ground
+  otherTagName: Building
   turnOffTime: 3
 --- !u!33 &3853285891997446673
 MeshFilter:
@@ -38678,7 +38978,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1f93f215aec645b3aac8be8123846, type: 2}
+  - {fileID: 2100000, guid: a6fbbfd992d1d064e9e9c41ddac26df4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

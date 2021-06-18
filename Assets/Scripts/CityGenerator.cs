@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CityGenerator : MonoBehaviour
 {
     [Range(0f, 1f)] [SerializeField] private float willBeDestroyed;
     [SerializeField] private GameObject building = null;
-    [SerializeField] private Material[] niceMaterials;
     [SerializeField] private int gridWidth = 0;
     [SerializeField] private int gridHeight = 0;
     [SerializeField] private int gridDepth = 0;
@@ -18,8 +18,12 @@ public class CityGenerator : MonoBehaviour
     [SerializeField] private Color gridNumberColor = Color.white;
     [SerializeField] private Color gridXColor = Color.white;
     [SerializeField] private Color gridZColor = Color.white;
+    [SerializeField] private Material buildingMat;
+    [SerializeField] private Material building1Mat;
+    [SerializeField] private Material building2Mat;
     private int yPlaneLevel = 0;
     private GameObject cityOrigin;
+    private readonly List<Vector3> tankSafeLocations = new List<Vector3>();
 
     private Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
 
@@ -39,22 +43,27 @@ public class CityGenerator : MonoBehaviour
                 {
                     if (building != null)
                     {
-                        if (Random.value > willBeDestroyed && y.Equals(yPlaneLevel))
+                        if (y.Equals(yPlaneLevel))
                         {
-                            SetLocalScale(building, new Vector3(Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth)), Random.Range(Mathf.RoundToInt(minBuildingHeight), Mathf.RoundToInt(maxBuildingHeight)), Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth))));
-                            GameObject newBuilding = GameObject.Instantiate(building, GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, yPlaneLevel, gridCellSize) * .5f, Quaternion.identity, buildings.transform);
-                            newBuilding.name = $"Building: {newBuilding.transform.position.x} {newBuilding.transform.position.z}";
-                            if (newBuilding.transform.localScale.y > maxBuildingHeight / 1.5f && niceMaterials.Length > 2)
-                                newBuilding.GetComponent<Renderer>().material = niceMaterials[2];
-                            else if (newBuilding.transform.localScale.y <= maxBuildingHeight / 2 && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && niceMaterials.Length > 1)
-                                newBuilding.GetComponent<Renderer>().material = niceMaterials[1];
-                            else if (niceMaterials.Length > 0)
-                                newBuilding.GetComponent<Renderer>().material = niceMaterials[0];
-                            if (showNumbers)
+                            if (Random.value > willBeDestroyed)
                             {
-                                CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
-                                    GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
+                                SetLocalScale(building, new Vector3(Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth)), Random.Range(Mathf.RoundToInt(minBuildingHeight), Mathf.RoundToInt(maxBuildingHeight)), Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth))));
+                                GameObject newBuilding = GameObject.Instantiate(building, GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, yPlaneLevel, gridCellSize) * .5f, Quaternion.identity, buildings.transform);
+                                newBuilding.name = $"Building: {newBuilding.transform.position.x} {newBuilding.transform.position.z}";
+                                if (newBuilding.transform.localScale.y > maxBuildingHeight * .8f && building2Mat != null)
+                                    newBuilding.GetComponent<Renderer>().material = building2Mat;
+                                else if (newBuilding.transform.localScale.y <= maxBuildingHeight *.8f && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && building1Mat != null)
+                                    newBuilding.GetComponent<Renderer>().material = building1Mat;
+                                else if (buildingMat != null)
+                                    newBuilding.GetComponent<Renderer>().material = buildingMat;
+                                if (showNumbers)
+                                {
+                                    CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
+                                        GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
+                                }
                             }
+                            else
+                                tankSafeLocations.Add(new Vector3(x, y, z));
                         }
 
                         if (showLines)
@@ -111,6 +120,8 @@ public class CityGenerator : MonoBehaviour
         textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
         return textMesh;
     }
+
+    public Vector3[] GetTankSafePoints() => tankSafeLocations.ToArray();
 
     public float GetGridSize() => gridCellSize;
 

@@ -19,21 +19,23 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         Rocket.ExplodeRocket += PlayExplosionSound;
+        WeaponManager.LaserHitObject += PlayLaserHit;
     }
 
     private void OnDisable()
     {
         Rocket.ExplodeRocket -= PlayExplosionSound;
+        WeaponManager.LaserHitObject -= PlayLaserHit;
     }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("PlayerShip");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void PlayLaserShoot()
     {
-        if (mainSource != null)
+        if (mainSource != null && laserShoot != null)
         {
             if (!mainSource.isPlaying)
             {
@@ -52,35 +54,38 @@ public class SoundManager : MonoBehaviour
 
     public void PlayLaserHit(GameObject targetHit, MaterialType type)
     {
-        switch (type)
+        if (laserHitSource != null)
         {
-            case MaterialType.dirt:
-                    if (laserHitDirt != null && mainSource != null)
-                        PlayAtSourceWithVPRange(mainSource, laserHitDirt, .2f, .6f, .5f, 1.5f);
-                break;
+            switch (type)
+            {
+                case MaterialType.dirt:
+                    if (laserHitDirt != null && laserHitSource.clip != laserHitDirt)
+                        PlayAtSourceWithVPRange(laserHitSource, laserHitDirt, .2f, .6f, .5f, 1.5f);
+                    break;
 
-            case MaterialType.concrete:
-                if (laserHitConcrete != null && mainSource != null)
-                    PlayAtSourceWithVPRange(mainSource, laserHitConcrete, .2f, .6f, .5f, 1.5f);
-                break;
+                case MaterialType.concrete:
+                    if (laserHitConcrete != null && laserHitSource.clip != laserHitConcrete)
+                        PlayAtSourceWithVPRange(laserHitSource, laserHitConcrete, .2f, .6f, .5f, 1.5f);
+                    break;
 
-            case MaterialType.metal:
-                if (laserHitMetal != null && mainSource != null)
-                    PlayAtSourceWithVPRange(mainSource, laserHitMetal, .2f, .6f, .5f, 1.5f);
-                break;
+                case MaterialType.metal:
+                    if (laserHitMetal != null && laserHitSource.clip != laserHitMetal)
+                        PlayAtSourceWithVPRange(laserHitSource, laserHitMetal, .2f, .6f, .5f, 1.5f);
+                    break;
 
-            case MaterialType.glass:
-                if (laserHitGlass != null && mainSource != null)
-                    PlayAtSourceWithVPRange(mainSource, laserHitGlass, .2f, .6f, .5f, 1.5f);
-                break;
+                case MaterialType.glass:
+                    if (laserHitGlass != null && laserHitSource.clip != laserHitGlass)
+                        PlayAtSourceWithVPRange(laserHitSource, laserHitGlass, .2f, .6f, .5f, 1.5f);
+                    break;
 
-            case MaterialType.all:
-                if (laserHitAll != null && mainSource != null)
-                    PlayAtSourceWithVPRange(mainSource, laserHitAll, .2f, .6f, .5f, 1.5f);
-                break;
+                case MaterialType.all:
+                    if (laserHitAll != null && laserHitSource.clip != laserHitAll)
+                        PlayAtSourceWithVPRange(laserHitSource, laserHitAll, .2f, .6f, .5f, 1.5f);
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -97,7 +102,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayExplosionSound(Vector3 loc)
     {
-        if (mainSource != null)
+        if (mainSource != null && explosionSound != null)
         {
             float vol = GetVolumeBasedOnDistance(loc);
             if (vol != 0)

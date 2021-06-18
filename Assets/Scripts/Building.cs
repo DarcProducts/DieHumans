@@ -88,6 +88,7 @@ public class Building : MonoBehaviour, IDamagable<float>
     public void ApplyDamage(float damage)
     {
         _currentBuildingHealth -= damage;
+        BuildingDamaged?.Invoke(transform.position);
         StartCoroutine(ShakeBuilding());
     }
 

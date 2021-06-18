@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +18,7 @@ public class BuildingManager : MonoBehaviour
     }
 
     private void OnEnable() => Building.BreakBuilding += BreakBuilding;
+
     private void OnDisable() => Building.BreakBuilding -= BreakBuilding;
 
     public void InitializeBrokenEffectPool()

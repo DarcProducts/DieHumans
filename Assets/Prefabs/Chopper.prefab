@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4800596231674146765}
   - component: {fileID: 735689975490688434}
   - component: {fileID: 4626354034591241244}
-  - component: {fileID: 290894729036804631}
   m_Layer: 2
   m_Name: TopRotor
   m_TagString: Chopper
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &290894729036804631
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551948950624548492}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 6.8813095, y: 0.11063552, z: 6.8813095}
-  m_Center: {x: 0, y: 1.9925216, z: 0}
 --- !u!1 &6984478719195761884
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 3579305158065208199}
   - component: {fileID: 6135993222432244782}
   - component: {fileID: 3714618862862967451}
-  - component: {fileID: 7886453850524205081}
   m_Layer: 2
   m_Name: Chopper
   m_TagString: Chopper
@@ -177,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7886453850524205081
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984478719195761884}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.812219, y: 2.1552234, z: 5.7945204}
-  m_Center: {x: 0, y: 0.22896029, z: -0.83025783}
 --- !u!1 &7302969433401832058
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +173,6 @@ GameObject:
   - component: {fileID: 9212882222577261745}
   - component: {fileID: 3659335069029497329}
   - component: {fileID: 153476403980587276}
-  - component: {fileID: 8966720540480295955}
   m_Layer: 2
   m_Name: RearRotor
   m_TagString: Chopper
@@ -272,19 +243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8966720540480295955
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7302969433401832058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1380837, y: 1.888807, z: 2}
-  m_Center: {x: -0.29395452, y: 0.7512171, z: -5.356505}
 --- !u!1 &7621875721793293279
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,9 +255,11 @@ GameObject:
   - component: {fileID: 7621875721793293276}
   - component: {fileID: 2437029567911415413}
   - component: {fileID: 615708224934252938}
+  - component: {fileID: 6246810530557445769}
+  - component: {fileID: 2099179975934682844}
   m_Layer: 2
   m_Name: Chopper
-  m_TagString: Chopper
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,14 +293,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7950ee99142a7ba4d8f7ecc9015c9ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWanderHeight: 30
-  checkDistancePlayer: 200
-  rocketFireTime: 0.5
+  maxWanderHeight: 32
+  checkDistancePlayer: 140
+  attackDistance: 32
+  rocketFireTime: 1
   shootHomingRockets: 1
-  moveSpeed: 10
-  maxHealth: 100
-  distanceFromPlayer: 20
-  downForceOnDeath: 5
+  moveSpeed: 4
+  maxHealth: 250
+  downForceOnDeath: 2
 --- !u!135 &2437029567911415413
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -368,5 +328,31 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 3
+--- !u!65 &6246810530557445769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621875721793293279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1546707, y: 1.5346509, z: 8.408699}
+  m_Center: {x: -0.026416779, y: 0.26732534, z: -2.1513176}
+--- !u!65 &2099179975934682844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621875721793293279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9574738, y: 0.23621559, z: 6.8556786}
+  m_Center: {x: -0.025463104, y: 2.0112944, z: 0}

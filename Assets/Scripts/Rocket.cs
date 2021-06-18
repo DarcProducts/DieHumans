@@ -18,7 +18,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     private void Awake()
     {
         currentHealth = maxHealth;
-        player = GameObject.FindGameObjectWithTag("PlayerShip");
+        player = GameObject.FindGameObjectWithTag("Player");
         rocketTrail = GetComponentInChildren<TrailRenderer>();
     }
 

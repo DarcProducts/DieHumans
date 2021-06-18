@@ -5,13 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - RightControllerAnchor
-  - PlayerShip
   - Ground
   - TVWall
   - Rocket
   - WeaponLocation
   - Chopper
   - Building
+  - Drone
   layers:
   - Default
   - TransparentFX
@@ -23,7 +23,7 @@ TagManager:
   - LaserIgnore
   - Building
   - Chopper
-  - 
+  - Drone
   - 
   - 
   - 
