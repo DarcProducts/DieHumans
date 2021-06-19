@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private bool debug;
+    public static UnityAction WaveComplete;
 
     [Header("Game Stats")]
-
     [SerializeField] private int currentWave = 1;
+
     [SerializeField] private int waveCountMultiplier;
 
     [Header("Rocket Stuff")]
@@ -18,8 +18,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float rocketDamage;
     [SerializeField] private float rocketThrust;
     [SerializeField] private GameObject explosionEffect;
-    private CityGenerator cityGenerator;
-    private GameObject player;
     private readonly List<GameObject> explosionEffectPool = new List<GameObject>();
     private readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
     private int explosionPoolInitialSize;
@@ -30,20 +28,16 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private int droneInitialPoolSize;
     private readonly List<GameObject> dronePool = new List<GameObject>();
+    private readonly List<GameObject> waveObjects = new List<GameObject>();
 
     private void Awake()
     {
-        cityGenerator = FindObjectOfType<CityGenerator>();
         explosionPoolInitialSize = currentWave * 10;
         rocketPoolInitialSize = currentWave * 10;
     }
 
     private void Start()
     {
-        if (player == null)
-            player = GameObject.FindWithTag("Player");
-        if (cityGenerator == null)
-            Debug.LogError("No City Generator found in scene! Cannot get city bounds for Enemy Manager.");
         InitializeExplosionPool();
         InitializeRocketPool();
         InitializeChopperPool();
@@ -51,16 +45,14 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
+        WaveComplete += WaveCompleted;
         Rocket.ExplodeRocket += Explode;
-        Drone.FiredRocket += LaunchRocket;
-        Rocket.RocketHit += TryDamagingTargetRocket;
     }
 
     private void OnDisable()
     {
+        WaveComplete -= WaveCompleted;
         Rocket.ExplodeRocket -= Explode;
-        Drone.FiredRocket -= LaunchRocket;
-        Rocket.RocketHit -= TryDamagingTargetRocket;
     }
 
     public void InitializeChopperPool()
@@ -105,17 +97,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public Vector3 PickTargetLocationWithinCity(float maxWanderHeight)
-    {
-        if (cityGenerator != null)
-        {
-            Vector3[] cityBounds = GetCityBounds();
-            return new Vector3(Random.Range(cityBounds[0].x, cityBounds[0].z), Random.Range(cityGenerator.GetMaxBuildingHeight() + cityGenerator.GetGridSize() + 2, cityGenerator.GetMaxBuildingHeight() + cityGenerator.GetGridSize() + maxWanderHeight), Random.Range(cityBounds[1].x, cityBounds[1].z));
-        }
-        return Vector3.zero;
-    }
-
-    private GameObject GetAvailableRocket()
+    public GameObject GetAvailableRocket()
     {
         for (int i = 0; i < rocketGameObjectPool.Count; i++)
             if (!rocketGameObjectPool[i].activeSelf)
@@ -130,7 +112,7 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    private GameObject GetAvailableExplosion()
+    public GameObject GetAvailableExplosion()
     {
         for (int i = 0; i < explosionEffectPool.Count; i++)
             if (!explosionEffectPool[i].activeSelf)
@@ -145,7 +127,7 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    private GameObject GetAvailableDrone()
+    public GameObject GetAvailableDrone()
     {
         for (int i = 0; i < dronePool.Count; i++)
         {
@@ -162,22 +144,32 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    [ContextMenu("Start current wave")]
-    public void StartWave() => StartCoroutine(StartCurrentWave());
-    public IEnumerator StartCurrentWave()
+    [ContextMenu("Start Wave")]
+    public void StartCurrentWave()
     {
-        yield return null;
-        int count = 0;
-        while (count < currentWave * waveCountMultiplier)
+        waveObjects.Clear();
+        do
         {
             GameObject d = GetAvailableDrone();
-            d.transform.position = PickTargetLocationWithinCity(d.GetComponent<Drone>().GetMaxWanderHeight());
+            d.transform.position = d.GetComponent<EnemyAI>().PickTargetLocationWithinCity(d.GetComponent<Drone>().GetMaxWanderHeight());
+            waveObjects.Add(d);
             d.SetActive(true);
             Debug.Log($"Activated: {d.name}");
-            count++;
         }
+        while (waveObjects.Count < currentWave * waveCountMultiplier);
         currentWave++;
-        StopCoroutine(StartCurrentWave());
+    }
+
+    private void RemoveNonActive()
+    {
+        if (waveObjects.Count > 0)
+            for (int i = 0; i < waveObjects.Count; i++)
+                if (!waveObjects[i].activeSelf)
+                {
+                    waveObjects.Remove(waveObjects[i]);
+                    Debug.Log($"Removed: {waveObjects[i].name}");
+                    RemoveNonActive();
+                }
     }
 
     public void Explode(Vector3 position)
@@ -190,68 +182,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public Vector3[] GetCityBounds()
+    public void WaveCompleted()
     {
-        if (cityGenerator != null)
-            return cityGenerator.GetCityBounds();
-        return new Vector3[2];
+        Debug.Log($"Wave Completed!");
     }
 
-    public bool CheckPlayerWithinRange(GameObject target, float range)
-    {
-        if (player != null)
-        {
-            if (Vector3.Distance(target.transform.position, player.transform.position) < range)
-                return true;
-        }
-        return false;
-    }
-
-    public bool CheckIfPathClear(GameObject target, float distance)
-    {
-        if (player != null)
-        {
-            if (Physics.Raycast(target.transform.position + Vector3.down, player.transform.position + Vector3.up - target.transform.position, out RaycastHit hit, distance))
-            {
-                if (debug)
-                    Debug.DrawRay(target.transform.position + Vector3.down, player.transform.position + Vector3.up - target.transform.position, Color.red, distance);
-                if (hit.collider.CompareTag("Player"))
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    private void TryDamagingTargetRocket(GameObject target)
-    {
-        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
-        if (d != null)
-            d.ApplyDamage(rocketDamage);
-    }
-
-    public void LaunchRocket(Vector3 firedFrom, bool isHoming)
-    {
-        if (player != null && rocket != null)
-        {
-            Vector3 direction = player.transform.position + Vector3.up - firedFrom + Vector3.down;
-            GameObject r = GetAvailableRocket();
-            r.transform.position = firedFrom + Vector3.down * .5f;
-            Rocket rocket = r.GetComponent<Rocket>();
-            r.SetActive(true);
-            if (r != null)
-            {
-                if (!isHoming)
-                {
-                    rocket.isHoming = false;
-                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
-                }
-                else
-                    rocket.isHoming = true;
-            }
-        }
-    }
-
-    public GameObject GetPlayerShip() => player;
+    public float GetRocketThrust() => rocketThrust;
 
     public int GetCurrentWave() => currentWave;
 }

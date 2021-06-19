@@ -4,12 +4,13 @@ using UnityEngine.Events;
 public class Rocket : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3> ExplodeRocket;
-    public static UnityAction<GameObject> RocketHit;
     public static UnityAction<Vector3> WasDamaged;
     public bool isHoming;
+    [SerializeField] private float rocketDamage;
     [SerializeField] private float maxRocketDistance;
     [SerializeField] private float homingSpeed;
     [SerializeField] private float maxHealth = 2;
+    private Vector3 currentTarget;
     private float currentHealth = 1;
     private Vector3 startLoc;
     private TrailRenderer rocketTrail;
@@ -45,9 +46,9 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         }
         else
         {
-            if (player != null && isHoming)
-                transform.LookAt(player.transform.position);
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, homingSpeed * Time.fixedDeltaTime);
+            if (isHoming)
+                transform.LookAt(currentTarget);
+                transform.position = Vector3.MoveTowards(transform.position, currentTarget, homingSpeed * Time.fixedDeltaTime);
         }
         if (currentHealth <= 0)
         {
@@ -58,16 +59,23 @@ public class Rocket : MonoBehaviour, IDamagable<float>
 
     private void OnCollisionEnter(Collision collider)
     {
-        RocketHit?.Invoke(collider.gameObject);
         ExplodeRocket?.Invoke(transform.position);
+        TryDamagingTargetRocket(collider.gameObject);
         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        RocketHit?.Invoke(other.gameObject);
         ExplodeRocket?.Invoke(transform.position);
+        TryDamagingTargetRocket(other.gameObject);
         gameObject.SetActive(false);
+    }
+
+    private void TryDamagingTargetRocket(GameObject target)
+    {
+        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
+        if (d != null)
+            d.ApplyDamage(rocketDamage);
     }
 
     public void ApplyDamage(float amount)

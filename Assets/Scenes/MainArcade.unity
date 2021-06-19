@@ -233,18 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e51b9539c18774e907e8a0fe30e0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
   weaponDamage: 2
-  ship: {fileID: 7710995571279601017}
-  weaponLocation: {fileID: 9155218978639451770}
+  player: {fileID: 0}
   aimTarget: {fileID: 21717640}
   aimTargetDistance: 100
-  laserWidth: 0.12
-  shipLaser: {fileID: 7710995571279601019}
-  laserHitLayers:
-    serializedVersion: 2
-    m_Bits: 895
-  laserMat: {fileID: 2100000, guid: e349d1aef4d8e4b4ebf417fad5722e70, type: 2}
-  laserHitEffect: {fileID: 6333619854094247341, guid: 3f80e3fe2b558454794f866651c092f3, type: 3}
+  rocketThrust: 0
 --- !u!1 &642317384
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccb0453b667d6344a37e9aa9b4679d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   currentWave: 1
   waveCountMultiplier: 10
   rocket: {fileID: 5900423109330059683, guid: d062f2a346102284c8faa0d5e6855172, type: 3}
@@ -675,9 +668,9 @@ MonoBehaviour:
   gridNumberColor: {r: 1, g: 1, b: 1, a: 1}
   gridXColor: {r: 1, g: 0, b: 0, a: 1}
   gridZColor: {r: 0, g: 0, b: 1, a: 1}
-  buildingMat: {fileID: 2100000, guid: 2bad5b91027ec7f4aa74d59af7567922, type: 2}
-  building1Mat: {fileID: 2100000, guid: 5f74743f6be42884587df5696cccd3a6, type: 2}
-  building2Mat: {fileID: 2100000, guid: 97e944d4bb9dfef4182b7a731c752f2f, type: 2}
+  buildingMat: {fileID: 2100000, guid: 97e944d4bb9dfef4182b7a731c752f2f, type: 2}
+  building1Mat: {fileID: 2100000, guid: 2bad5b91027ec7f4aa74d59af7567922, type: 2}
+  building2Mat: {fileID: 2100000, guid: 5f74743f6be42884587df5696cccd3a6, type: 2}
 --- !u!1 &1521287866
 GameObject:
   m_ObjectHideFlags: 0

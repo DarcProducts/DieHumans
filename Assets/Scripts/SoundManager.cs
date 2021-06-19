@@ -19,13 +19,11 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         Rocket.ExplodeRocket += PlayExplosionSound;
-        WeaponManager.LaserHitObject += PlayLaserHit;
     }
 
     private void OnDisable()
     {
         Rocket.ExplodeRocket -= PlayExplosionSound;
-        WeaponManager.LaserHitObject -= PlayLaserHit;
     }
 
     private void Start()

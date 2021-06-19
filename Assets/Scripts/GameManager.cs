@@ -25,18 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckWeapons()
     {
-        if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
-        {
-            weaponManager.ActivateLaser();
-            if (soundManager != null)
-                soundManager.PlayLaserShoot();
-        }
-        else
-        {
-            weaponManager.DeactivateLaser();
-            if (soundManager != null)
-                soundManager.StopLaserShoot();
-        }
+        
     }
 
     private void CheckController()

@@ -1,102 +1,45 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
-    public static UnityAction<GameObject, MaterialType> LaserHitObject;
+    [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private float weaponDamage;
-    [SerializeField] private GameObject ship;
-    [SerializeField] private GameObject weaponLocation;
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject aimTarget;
     [SerializeField] private float aimTargetDistance;
-    [SerializeField] private float laserWidth;
-    [SerializeField] private LineRenderer shipLaser;
-    [SerializeField] private LayerMask laserHitLayers;
-    [SerializeField] private Material laserMat;
-    [SerializeField] private GameObject laserHitEffect;
-    private GameObject currentLaserEffect;
-
+    [SerializeField] private float rocketThrust;
+    
 
     private void Start()
     {
+        if (enemyManager == null)
+            enemyManager = FindObjectOfType<EnemyManager>();
         InitializeAimTarget();
-        InitializeLaser();
-        DeactivateLaser();
     }
 
-    public void ActivateLaser()
+    public void LaunchRocket(Vector3 firedFrom, bool isHoming)
     {
-        if (shipLaser != null && weaponLocation != null && aimTarget != null)
+        if (player != null && enemyManager != null)
         {
-            shipLaser.enabled = true;
-
-            if (!GetTargetHitLocation())
+            Vector3 direction = player.transform.position + Vector3.up - firedFrom + Vector3.down;
+            GameObject r = enemyManager.GetAvailableRocket();
+            r.transform.position = firedFrom + Vector3.down * .5f;
+            Rocket rocket = r.GetComponent<Rocket>();
+            r.SetActive(true);
+            if (r != null)
             {
-                shipLaser.positionCount = 2;
-                shipLaser.SetPosition(0, weaponLocation.transform.position);
-                shipLaser.SetPosition(1, aimTarget.transform.position);
-                if (currentLaserEffect != null)
-                    currentLaserEffect.SetActive(false);
+                if (!isHoming)
+                {
+                    rocket.isHoming = false;
+                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
+                }
+                else
+                    rocket.isHoming = true;
             }
         }
     }
 
-    private void EnableLaserEffect(Vector3 loc)
-    {
-        if (currentLaserEffect == null)
-            currentLaserEffect = Instantiate(laserHitEffect, Vector3.down, Quaternion.identity);
-        if (currentLaserEffect != null)
-        {
-            currentLaserEffect.SetActive(true);
-            currentLaserEffect.transform.position = loc;
-        }
-    }
-
-    public void DeactivateLaser()
-    {
-        if (shipLaser != null)
-        {
-            shipLaser.enabled = false;
-
-            if (currentLaserEffect != null)
-            {
-                currentLaserEffect.SetActive(false);
-                currentLaserEffect.transform.position = weaponLocation.transform.position;
-            }
-
-            if (laserHitEffect != null)
-                laserHitEffect.SetActive(false);
-        }
-    }
-
-    private bool GetTargetHitLocation()
-    {
-        Debug.DrawRay(weaponLocation.transform.position, aimTarget.transform.position - weaponLocation.transform.position, Color.red);
-        if (Physics.Raycast(weaponLocation.transform.position, aimTarget.transform.position - weaponLocation.transform.position,
-            out RaycastHit hitInfo, Mathf.Infinity, laserHitLayers))
-        {
-            shipLaser.positionCount = 2;
-            shipLaser.SetPosition(0, weaponLocation.transform.position);
-            shipLaser.SetPosition(1, hitInfo.point);
-            EnableLaserEffect(hitInfo.point);
-            TryDamagingTarget(hitInfo.collider.gameObject);
-            SetLaserHitMaterial(hitInfo);
-            return true;
-        }
-        return false;
-    }
-
-    private void SetLaserHitMaterial(RaycastHit hitInfo)
-    {
-        if (hitInfo.collider.CompareTag("Ground"))
-        LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.dirt);
-        else if (hitInfo.collider.CompareTag("Building"))
-            LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.concrete);
-        else if (hitInfo.collider.CompareTag("Drone") || hitInfo.collider.CompareTag("Rocket"))
-            LaserHitObject?.Invoke(hitInfo.collider.gameObject, MaterialType.metal);
-    }
-
-    private void TryDamagingTarget(GameObject target)
+    public void TryDamagingTarget(GameObject target)
     {
         IDamagable<float> d = target.GetComponent<IDamagable<float>>();
         if (d != null)
@@ -107,16 +50,6 @@ public class WeaponManager : MonoBehaviour
     {
         if (aimTarget != null)
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
-    }
-
-    public void InitializeLaser()
-    {
-        if (shipLaser != null)
-        {
-            shipLaser.material = laserMat;
-            shipLaser.startWidth = laserWidth;
-            shipLaser.endWidth = laserWidth;
-        }
     }
 
     public float GetWeaponDamage() => weaponDamage;
