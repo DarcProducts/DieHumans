@@ -1,23 +1,31 @@
 using UnityEngine;
 
+public enum WeaponState { machinegun, rocket, special }
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private EnemyManager enemyManager;
-    [SerializeField] private float weaponDamage;
-    [SerializeField] private GameObject player;
+    public WeaponState currentWeapon = WeaponState.machinegun;
+    [SerializeField] private float machinegunDamage;
+    [SerializeField] private float rocketDamage;
+    [SerializeField] private float specialDamage;
     [SerializeField] private GameObject aimTarget;
     [SerializeField] private float aimTargetDistance;
     [SerializeField] private float rocketThrust;
-    
+    [SerializeField] private float rocketHomingSpeed;
+    private EnemyManager enemyManager;
+    private GameObject player;
 
     private void Start()
-    {
+    { 
+        enemyManager = FindObjectOfType<EnemyManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
         if (enemyManager == null)
-            enemyManager = FindObjectOfType<EnemyManager>();
+            Debug.LogError("An object with a EnemyManager component could not be found in scene");
+        if (player == null)
+            Debug.LogWarning("No GameObject with Player tag could be found in scene");
         InitializeAimTarget();
     }
 
-    public void LaunchRocket(Vector3 firedFrom, bool isHoming)
+    public void LaunchRocketPlayer(Vector3 firedFrom, bool isHoming)
     {
         if (player != null && enemyManager != null)
         {
@@ -34,23 +42,33 @@ public class WeaponManager : MonoBehaviour
                     r.GetComponent<Rigidbody>().AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
                 }
                 else
+                {
                     rocket.isHoming = true;
+                    rocket.homingSpeed = rocketHomingSpeed;
+                    rocket.currentTarget = aimTarget.transform.position;
+                }
             }
         }
     }
 
-    public void TryDamagingTarget(GameObject target)
-    {
-        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
-        if (d != null)
-            d.ApplyDamage(weaponDamage);
-    }
-
-     public void InitializeAimTarget()
+    public void InitializeAimTarget()
     {
         if (aimTarget != null)
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
-    public float GetWeaponDamage() => weaponDamage;
+    public float GetCurrentWeaponDamage()
+    {
+        float damage = 0;
+        switch (currentWeapon)
+        {
+            case WeaponState.machinegun: damage = machinegunDamage;
+                break;
+            case WeaponState.rocket: damage = rocketDamage;
+                break;
+            case WeaponState.special: damage = specialDamage;
+                break;
+        }
+        return damage;
+    }
 }

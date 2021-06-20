@@ -144,6 +144,4 @@ public class Drone : EnemyAI, IDamagable<float>
 
     [ContextMenu("Kill Drone")]
     public void KillDrone() => ApplyDamage(1000000);
-
-    public float GetMaxHealth() => maxHealth;
 }

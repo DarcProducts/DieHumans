@@ -5,18 +5,17 @@ using UnityEngine.Events;
 public class EnemyManager : MonoBehaviour
 {
     public static UnityAction WaveComplete;
+    public static UnityAction<Vector3> ExplosionSound;
 
     [Header("Game Stats")]
-    [SerializeField] private int currentWave = 1;
+    public int viewableCurrentWave = 1;
+    public static int currentWave = 1;
 
     [SerializeField] private int waveCountMultiplier;
 
     [Header("Rocket Stuff")]
     [Tooltip("Rocket firing method called from this script")]
     [SerializeField] private GameObject rocket;
-
-    [SerializeField] private float rocketDamage;
-    [SerializeField] private float rocketThrust;
     [SerializeField] private GameObject explosionEffect;
     private readonly List<GameObject> explosionEffectPool = new List<GameObject>();
     private readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
@@ -47,12 +46,14 @@ public class EnemyManager : MonoBehaviour
     {
         WaveComplete += WaveCompleted;
         Rocket.ExplodeRocket += Explode;
+        Meteor.MeteorExploded += Explode;
     }
 
     private void OnDisable()
     {
         WaveComplete -= WaveCompleted;
         Rocket.ExplodeRocket -= Explode;
+        Meteor.MeteorExploded -= Explode;
     }
 
     public void InitializeChopperPool()
@@ -158,6 +159,7 @@ public class EnemyManager : MonoBehaviour
         }
         while (waveObjects.Count < currentWave * waveCountMultiplier);
         currentWave++;
+        viewableCurrentWave++;
     }
 
     private void RemoveNonActive()
@@ -172,11 +174,13 @@ public class EnemyManager : MonoBehaviour
                 }
     }
 
-    public void Explode(Vector3 position)
+    public void Explode(Vector3 position, float size)
     {
+        ExplosionSound?.Invoke(position);
         GameObject explosion = GetAvailableExplosion();
         if (explosion != null)
         {
+            explosion.transform.localScale = new Vector3(size * .5f, size * .5f, size * .5f);
             explosion.transform.position = position;
             explosion.SetActive(true);
         }
@@ -186,8 +190,6 @@ public class EnemyManager : MonoBehaviour
     {
         Debug.Log($"Wave Completed!");
     }
-
-    public float GetRocketThrust() => rocketThrust;
 
     public int GetCurrentWave() => currentWave;
 }

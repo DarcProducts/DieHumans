@@ -98,8 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHoming: 1
+  currentTarget: {x: 0, y: 0, z: 0}
+  rocketDamage: 500
   maxRocketDistance: 60
   homingSpeed: 8
+  explosionRadius: 3
   maxHealth: 30
 --- !u!64 &927678340187852953
 MeshCollider:

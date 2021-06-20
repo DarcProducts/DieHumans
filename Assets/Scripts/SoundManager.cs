@@ -18,12 +18,12 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Rocket.ExplodeRocket += PlayExplosionSound;
+        EnemyManager.ExplosionSound += PlayExplosionSound;
     }
 
     private void OnDisable()
     {
-        Rocket.ExplodeRocket -= PlayExplosionSound;
+        EnemyManager.ExplosionSound -= PlayExplosionSound;
     }
 
     private void Start()

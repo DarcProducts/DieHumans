@@ -7,16 +7,18 @@ public abstract class EnemyAI : MonoBehaviour
     public CityGenerator cityGenerator;
     public EnemyManager enemyManager;
     public GameObject player;
-    public float rocketThrust = 32;
-    public float rocketDamage = 100;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cityGenerator = FindObjectOfType<CityGenerator>();
         enemyManager = FindObjectOfType<EnemyManager>();
-        if (enemyManager != null)
-            rocketThrust = enemyManager.GetRocketThrust();
+        if (player == null)
+            Debug.LogWarning("No GameObject with Player tag could be found in scene");
+        if (cityGenerator == null)
+            Debug.LogError("An object with a CityGenerator component could not be found in scene");
+        if (enemyManager == null)
+            Debug.LogError("An object with a EnemyManager component could not be found in scene");
     }
     public Vector3 PickTargetLocationWithinCity(float maxWanderHeight)
     {
@@ -56,7 +58,7 @@ public abstract class EnemyAI : MonoBehaviour
         return false;
     }
 
-    public void LaunchRocket(Vector3 firedFrom, bool isHoming)
+    public void LaunchRocket(Vector3 firedFrom, bool isHoming, float damage, float thrust = 32, float homingSpeed = 8)
     {
         if (player != null)
         {
@@ -64,16 +66,20 @@ public abstract class EnemyAI : MonoBehaviour
             GameObject r = enemyManager.GetAvailableRocket();
             r.transform.position = firedFrom + Vector3.down * .5f;
             Rocket rocket = r.GetComponent<Rocket>();
-            r.SetActive(true);
-            if (r != null)
+            if (r != null && rocket != null)
             {
+                rocket.rocketDamage = damage;
+                r.SetActive(true);
                 if (!isHoming)
                 {
                     rocket.isHoming = false;
-                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
+                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * thrust, ForceMode.Impulse);
                 }
                 else
+                {
                     rocket.isHoming = true;
+                    rocket.homingSpeed = homingSpeed;
+                }
             }
         }
     }
