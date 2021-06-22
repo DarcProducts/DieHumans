@@ -12,6 +12,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     public float homingSpeed;
     public float explosionRadius;
     [SerializeField] private float maxHealth = 2;
+    private float currentDirection;
     private float currentHealth = 1;
     private Vector3 startLoc;
     private TrailRenderer rocketTrail;
@@ -50,6 +51,11 @@ public class Rocket : MonoBehaviour, IDamagable<float>
             {
                 transform.LookAt(currentTarget);
                 transform.position = Vector3.MoveTowards(transform.position, currentTarget, homingSpeed * Time.fixedDeltaTime);
+            }
+            else if (!isHoming)
+            {
+                transform.LookAt(transform.position + transform.forward * 2);
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, homingSpeed * Time.fixedDeltaTime);
             }
         }
         if (currentHealth <= 0)

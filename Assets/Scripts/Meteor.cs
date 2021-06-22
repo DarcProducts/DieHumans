@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Meteor : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3, float> MeteorExploded;
+    public static UnityAction<GameObject> MeteorEvaded;
     public float currentHealth;
     public float explosionRadius;
     private float currentSpeed;
@@ -15,17 +14,16 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     {
         float newScale = Random.Range(meteorMinMaxSize.x, meteorMinMaxSize.y);
         transform.localScale = new Vector3(newScale, newScale, newScale);
-        currentSpeed = newScale * 3;
     }
 
-    private void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.Self);
+    private void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.World);
 
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            MeteorExploded?.Invoke(transform.position, explosionRadius);
+            MeteorEvaded?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }
@@ -34,7 +32,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
 
     private void OnCollisionEnter(Collision collision)
     {
-        MeteorExploded?.Invoke(transform.position, explosionRadius);
+        MeteorExploded?.Invoke(transform.position, explosionRadius * .8f);
         TryDamagingNearTargets();
         gameObject.SetActive(false);
     }
@@ -50,4 +48,6 @@ public class Meteor : MonoBehaviour, IDamagable<float>
                 d.ApplyDamage(damage);
         }
     }
+
+    public void SetMeteorSpeed(float value) => currentSpeed = value;
 }

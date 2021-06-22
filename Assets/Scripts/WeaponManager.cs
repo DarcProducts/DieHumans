@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public enum WeaponState { machinegun, rocket, special }
+
 public class WeaponManager : MonoBehaviour
 {
     public WeaponState currentWeapon = WeaponState.machinegun;
@@ -11,43 +13,84 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private float aimTargetDistance;
     [SerializeField] private float rocketThrust;
     [SerializeField] private float rocketHomingSpeed;
-    private EnemyManager enemyManager;
+    [SerializeField] private LineRenderer machineGunShot;
+    [SerializeField] private int currentRocketAmount;
+    private GameObject currentRocket;
+    private bool isHoldingRocketButton = false;
+    private bool readyForRocket = false;
+    private ObjectPools objectPools;
     private GameObject player;
+    private float gunFireRate = .3f;
+    private float currentRate;
+
+    private void OnEnable()
+    {
+        GameManager.FireWeaponButtonHold += FireCurrentWeapon;
+        GameManager.FireWeaponButtonDown += RocketButtonTrue;
+        GameManager.FireWeaponButtonUp += RocketButtonFalse;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.FireWeaponButtonHold -= FireCurrentWeapon;
+        GameManager.FireWeaponButtonDown -= RocketButtonTrue;
+        GameManager.FireWeaponButtonUp -= RocketButtonFalse;
+    }
+
+    public void RocketButtonFalse() => isHoldingRocketButton = false;
+    public void RocketButtonTrue() => isHoldingRocketButton = true;
 
     private void Start()
-    { 
-        enemyManager = FindObjectOfType<EnemyManager>();
+    {
+        currentRate = gunFireRate;
+        objectPools = FindObjectOfType<ObjectPools>();
         player = GameObject.FindGameObjectWithTag("Player");
-        if (enemyManager == null)
+        if (objectPools == null)
             Debug.LogError("An object with a EnemyManager component could not be found in scene");
         if (player == null)
             Debug.LogWarning("No GameObject with Player tag could be found in scene");
         InitializeAimTarget();
     }
 
-    public void LaunchRocketPlayer(Vector3 firedFrom, bool isHoming)
+    public IEnumerator LaunchRocket()
     {
-        if (player != null && enemyManager != null)
+        if (player != null && objectPools != null)
         {
-            Vector3 direction = player.transform.position + Vector3.up - firedFrom + Vector3.down;
-            GameObject r = enemyManager.GetAvailableRocket();
-            r.transform.position = firedFrom + Vector3.down * .5f;
-            Rocket rocket = r.GetComponent<Rocket>();
-            r.SetActive(true);
-            if (r != null)
+            if (currentRocketAmount > 0)
             {
-                if (!isHoming)
-                {
-                    rocket.isHoming = false;
-                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * rocketThrust, ForceMode.Impulse);
-                }
-                else
-                {
-                    rocket.isHoming = true;
-                    rocket.homingSpeed = rocketHomingSpeed;
-                    rocket.currentTarget = aimTarget.transform.position;
-                }
+                currentRocket = objectPools.GetAvailableRocket();
+                currentRocket.transform.position = transform.position + Vector3.down;
+                currentRocket.GetComponent<Rocket>().rocketDamage = rocketDamage;
+                currentRocket.SetActive(true);
+                currentRocket.transform.position = Vector3.MoveTowards(currentRocket.transform.position, aimTarget.transform.position, rocketHomingSpeed * Time.fixedDeltaTime);
+                yield return isHoldingRocketButton;
+                SetHoming(false);
+                currentRocketAmount--;
+                readyForRocket = true;
             }
+        }
+        StopCoroutine(LaunchRocket());
+    }
+
+    public void FireCurrentWeapon()
+    {
+        switch (currentWeapon)
+        {
+            case WeaponState.machinegun:
+                FireMachineguns();
+                break;
+
+            case WeaponState.rocket:
+                if (readyForRocket)
+                {
+                    StartCoroutine(LaunchRocket());
+                    readyForRocket = false;
+                }
+                break;
+
+            case WeaponState.special:
+
+                break;
         }
     }
 
@@ -57,18 +100,49 @@ public class WeaponManager : MonoBehaviour
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
+    private void FireMachineguns()
+    {
+        if (machineGunShot != null)
+        {
+            machineGunShot.enabled = true;
+            if (Physics.Raycast(transform.position + Vector3.down, aimTarget.transform.position - transform.position + Vector3.down, out RaycastHit hitInfo))
+            {
+                currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
+                machineGunShot.positionCount = 2;
+                machineGunShot.SetPosition(0, player.transform.position + Vector3.down);
+                machineGunShot.SetPosition(1, hitInfo.point);
+                if (currentRate <= 0)
+                {
+                    machineGunShot.enabled = false;
+                    currentRate = gunFireRate;
+                }
+            }
+        }
+    }
+
     public float GetCurrentWeaponDamage()
     {
         float damage = 0;
         switch (currentWeapon)
         {
-            case WeaponState.machinegun: damage = machinegunDamage;
+            case WeaponState.machinegun:
+                damage = machinegunDamage;
                 break;
-            case WeaponState.rocket: damage = rocketDamage;
+
+            case WeaponState.rocket:
+                damage = rocketDamage;
                 break;
-            case WeaponState.special: damage = specialDamage;
+
+            case WeaponState.special:
+                damage = specialDamage;
                 break;
         }
         return damage;
+    }
+
+    public void SetHoming(bool value)
+    {
+        if (currentRocket != null)
+            currentRocket.GetComponent<Rocket>().isHoming = value;
     }
 }

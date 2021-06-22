@@ -12,7 +12,7 @@ public class Building : MonoBehaviour, IDamagable<float>
     [SerializeField] private int _currentNumberOfPeopleInside;
     [SerializeField] private float shakeIntensity = .01f;
     [SerializeField] private float duration = .1f;
-    private BuildingManager buildingManager;
+    private ObjectPools objectPools;
     private float maxBuildingHealth;
     private int maxNumberOfPeopleInside;
     private bool brokenEffectSet = false;
@@ -20,11 +20,13 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public void Start()
     {
-        buildingManager = FindObjectOfType<BuildingManager>();
+        objectPools = FindObjectOfType<ObjectPools>();
         maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
         maxNumberOfPeopleInside = (int)transform.localScale.y * buildingPeopleMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
         _currentNumberOfPeopleInside = maxNumberOfPeopleInside;
+        if (objectPools == null)
+            Debug.LogWarning($"{gameObject.name} could not find an object with a BuildingManager component attached");
     }
 
     public void LateUpdate()
@@ -38,9 +40,9 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     private void InitializeCollapsingEffect()
     {
-        if (!collapsingEffectSet && buildingManager != null)
+        if (!collapsingEffectSet && objectPools != null)
         {
-            GameObject effect = buildingManager.GetCollapseEffect();
+            GameObject effect = objectPools.GetCollapseEffect();
             if (effect != null)
             {
                 effect.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -54,9 +56,9 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public void InitializeBrokenBuildingEffect()
     {
-        if (!brokenEffectSet && buildingManager != null)
+        if (!brokenEffectSet && objectPools != null)
         {
-            GameObject e = buildingManager.GetBrokenEffect();
+            GameObject e = objectPools.GetBrokenEffect();
             if (e != null)
             {
                 e.transform.SetPositionAndRotation(transform.position, transform.rotation);

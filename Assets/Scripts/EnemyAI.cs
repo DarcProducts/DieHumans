@@ -5,20 +5,20 @@ using UnityEngine;
 public abstract class EnemyAI : MonoBehaviour
 {
     public CityGenerator cityGenerator;
-    public EnemyManager enemyManager;
+    public ObjectPools objectPools;
     public GameObject player;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cityGenerator = FindObjectOfType<CityGenerator>();
-        enemyManager = FindObjectOfType<EnemyManager>();
+        objectPools = FindObjectOfType<ObjectPools>();
         if (player == null)
             Debug.LogWarning("No GameObject with Player tag could be found in scene");
         if (cityGenerator == null)
-            Debug.LogError("An object with a CityGenerator component could not be found in scene");
-        if (enemyManager == null)
-            Debug.LogError("An object with a EnemyManager component could not be found in scene");
+            Debug.LogWarning("An object with a CityGenerator component could not be found in scene");
+        if (objectPools == null)
+            Debug.LogWarning("An object with a EnemyManager component could not be found in scene");
     }
     public Vector3 PickTargetLocationWithinCity(float maxWanderHeight)
     {
@@ -63,7 +63,7 @@ public abstract class EnemyAI : MonoBehaviour
         if (player != null)
         {
             Vector3 direction = player.transform.position + Vector3.up - firedFrom + Vector3.down;
-            GameObject r = enemyManager.GetAvailableRocket();
+            GameObject r = objectPools.GetAvailableRocket();
             r.transform.position = firedFrom + Vector3.down * .5f;
             Rocket rocket = r.GetComponent<Rocket>();
             if (r != null && rocket != null)

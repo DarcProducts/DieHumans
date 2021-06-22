@@ -16,7 +16,7 @@ public class Drone : EnemyAI, IDamagable<float>
     private void Start()
     {
         laser = GetComponent<LineRenderer>();
-        if (enemyManager != null)
+        if (objectPools != null)
             nextTargetLocation = PickTargetLocationWithinCity(maxWanderHeight);
         currentHealth = maxHealth;
         currentFireTime = fireTime;
@@ -31,7 +31,7 @@ public class Drone : EnemyAI, IDamagable<float>
         }
         if (!hasDied)
         {
-            if (enemyManager != null && player != null)
+            if (objectPools != null && player != null)
             {
                 transform.LookAt(player.transform.position, Vector3.up);
                 if (CheckIfPathClear(gameObject, checkDistancePlayer))
@@ -77,7 +77,7 @@ public class Drone : EnemyAI, IDamagable<float>
 
     public Vector3 ChangeNextTargetLocation()
     {
-        if (enemyManager != null)
+        if (objectPools != null)
             return PickTargetLocationWithinCity(maxWanderHeight);
         return transform.position;
     }
@@ -86,7 +86,7 @@ public class Drone : EnemyAI, IDamagable<float>
     {
         currentFireTime = currentFireTime <= 0 ? 0 : currentFireTime -= Time.deltaTime;
 
-        if (currentFireTime <= 0 && enemyManager != null && canFire)
+        if (currentFireTime <= 0 && objectPools != null && canFire)
             StartCoroutine(FireLasers());
     }
 

@@ -18,12 +18,12 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemyManager.ExplosionSound += PlayExplosionSound;
+        ObjectPools.ExplosionSound += PlayExplosionSound;
     }
 
     private void OnDisable()
     {
-        EnemyManager.ExplosionSound -= PlayExplosionSound;
+        ObjectPools.ExplosionSound -= PlayExplosionSound;
     }
 
     private void Start()

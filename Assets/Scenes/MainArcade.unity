@@ -241,6 +241,8 @@ MonoBehaviour:
   aimTargetDistance: 100
   rocketThrust: 32
   rocketHomingSpeed: 0
+  machineGunShot: {fileID: 0}
+  currentRocketAmount: 0
 --- !u!1 &510319895
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +272,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2011278782}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &510319897
 MonoBehaviour:
@@ -284,12 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5bb0830a87fdc4897ed8dbfd85bf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMeteorStorm: 0
   meteorSpawnMin: {x: -60, y: 380, z: -10}
   meteorSpawnMax: {x: 320, y: 420, z: 320}
-  meteor: {fileID: 1670684054284341364, guid: 06fdbc4033c60b84e95606bda960a7b4, type: 3}
-  brokenMeteor: {fileID: 0}
-  meteorInitialPoolSize: 12
+  startMeteorStorm: 0
+  objectPools: {fileID: 1448405212}
   meteorStormLength: 10
   meteorDropRate: 1
 --- !u!1 &642317384
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 1081030661}
   - component: {fileID: 1081030662}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,15 +551,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081030660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cccb0453b667d6344a37e9aa9b4679d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 43a374ae951bd4f4596448cf4a6c61fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPools: {fileID: 1448405212}
   viewableCurrentWave: 1
   waveCountMultiplier: 10
-  rocket: {fileID: 5900423109330059683, guid: d062f2a346102284c8faa0d5e6855172, type: 3}
-  explosionEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
-  drone: {fileID: 6293932637251355499, guid: 6eafdee25451f2341926366c4c2a82db, type: 3}
-  droneInitialPoolSize: 10
 --- !u!1 &1086705925
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +610,7 @@ MonoBehaviour:
   laserHitGlass: {fileID: 0}
   laserHitAll: {fileID: 0}
   explosionSound: {fileID: 0}
---- !u!1 &1446398904
+--- !u!1 &1448405210
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -621,46 +618,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1446398905}
-  - component: {fileID: 1446398906}
+  - component: {fileID: 1448405211}
+  - component: {fileID: 1448405212}
   m_Layer: 0
-  m_Name: BuildingManager
+  m_Name: ObjectPools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1446398905
+--- !u!4 &1448405211
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446398904}
+  m_GameObject: {fileID: 1448405210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2011278782}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1446398906
+--- !u!114 &1448405212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446398904}
+  m_GameObject: {fileID: 1448405210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ca2893a49b2a74699f5ac68a20f036, type: 3}
+  m_Script: {fileID: 11500000, guid: a636ea2500581da41b794d97bf4f7ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   brokenBuilding: {fileID: 6036638627562124725, guid: bfddc64b388edaf45bf496cbd99b474b, type: 3}
+  brokenBuildingInitialPoolSize: 10
   brokenBuildingEffect: {fileID: 5310907661178767846, guid: 10e7497882a71844db90926c2f879da4, type: 3}
   brokenEffectInitialPoolSize: 100
   collapseEffect: {fileID: 5394043933753819974, guid: 616f8e663aee41e4db7edc9ff2921c69, type: 3}
   collapseEffectInitialPoolSize: 10
+  drone: {fileID: 6293932637251355499, guid: 6eafdee25451f2341926366c4c2a82db, type: 3}
+  droneInitialPoolSize: 10
+  rocket: {fileID: 5900423109330059683, guid: d062f2a346102284c8faa0d5e6855172, type: 3}
+  explosionEffect: {fileID: 100000, guid: ac8564998262ae240850396a05244d72, type: 3}
+  meteor: {fileID: 1670684054284341364, guid: 06fdbc4033c60b84e95606bda960a7b4, type: 3}
+  brokenMeteor: {fileID: 6213664951390943210, guid: 5171fb8bb6ced2943a966351f97e96c5, type: 3}
+  meteorInitialPoolSize: 10
 --- !u!1 &1457295593
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +806,6 @@ MonoBehaviour:
   playerManager: {fileID: 1521287868}
   cityGenerator: {fileID: 1457295595}
   weaponManager: {fileID: 412507816}
-  enemyManager: {fileID: 1081030662}
   soundManager: {fileID: 1086705927}
 --- !u!4 &1598118317
 Transform:
@@ -977,8 +981,8 @@ Transform:
   - {fileID: 1457295594}
   - {fileID: 1081030661}
   - {fileID: 1086705926}
-  - {fileID: 1446398905}
   - {fileID: 510319896}
+  - {fileID: 1448405211}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

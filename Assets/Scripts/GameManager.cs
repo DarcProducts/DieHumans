@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    public static UnityAction FireWeaponButtonHold;
+    public static UnityAction FireWeaponButtonUp;
+    public static UnityAction FireWeaponButtonDown;
     [Header("Managers")]
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private CityGenerator cityGenerator;
     [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private SoundManager soundManager;
 
     private void Start()
@@ -46,5 +49,12 @@ public class GameManager : MonoBehaviour
             if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
                 playerManager.TransformShip(Vector3.down, 1);
         }
+
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            FireWeaponButtonDown?.Invoke();
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+            FireWeaponButtonUp?.Invoke();
+        if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
+            FireWeaponButtonHold?.Invoke();
     }
 }
