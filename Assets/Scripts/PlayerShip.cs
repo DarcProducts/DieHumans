@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour, IDamagable<float>
 {
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
+    [SerializeField] float maxHealth;
+    [SerializeField] float currentHealth;
 
     public void ApplyDamage(float amount) => currentHealth -= amount;
 
@@ -11,5 +11,5 @@ public class PlayerShip : MonoBehaviour, IDamagable<float>
 
     public float GetMaxHealth() => maxHealth;
 
-    private void Start() => currentHealth = maxHealth;
+    void Start() => currentHealth = maxHealth;
 }

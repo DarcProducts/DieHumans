@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,63 +9,63 @@ public class ObjectPools : MonoBehaviour
     public static UnityAction<Vector3> ExplosionSound;
 
     [Header("Building Stuff")]
-    [SerializeField] private GameObject brokenBuilding;
+    [SerializeField] readonly GameObject brokenBuilding;
 
-    [SerializeField] private int brokenBuildingInitialPoolSize;
-    [SerializeField] private GameObject brokenBuildingEffect;
-    [SerializeField] private int brokenEffectInitialPoolSize;
-    [SerializeField] private GameObject collapseEffect;
-    [SerializeField] private int collapseEffectInitialPoolSize;
-    private readonly List<GameObject> brokenBuildingPool = new List<GameObject>();
-    private readonly List<GameObject> brokenEffectPool = new List<GameObject>();
-    private readonly List<GameObject> collapseEffectPool = new List<GameObject>();
+    [SerializeField] GameObject brokenBuildingEffect;
+    [SerializeField] GameObject collapseEffect;
+    readonly List<GameObject> brokenBuildingPool = new List<GameObject>();
+    readonly List<GameObject> brokenEffectPool = new List<GameObject>();
+    readonly List<GameObject> collapseEffectPool = new List<GameObject>();
 
     [Header("Drone Stuff")]
-    [SerializeField] private GameObject drone;
+    [SerializeField] GameObject drone;
 
-    [SerializeField] private int droneInitialPoolSize;
-    private readonly List<GameObject> dronePool = new List<GameObject>();
+    readonly List<GameObject> dronePool = new List<GameObject>();
 
     [Header("Rocket Stuff")]
     [Tooltip("Rocket firing method called from this script")]
-    [SerializeField] private GameObject rocket;
+    [SerializeField] GameObject rocket;
 
-    [SerializeField] private GameObject explosionEffect;
-    private readonly List<GameObject> explosionEffectPool = new List<GameObject>();
-    private readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
-    private int explosionPoolInitialSize;
-    private int rocketPoolInitialSize;
+    [SerializeField] GameObject explosionEffect;
+    readonly List<GameObject> explosionEffectPool = new List<GameObject>();
+    readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
 
     [Header("Meteor Stuff")]
-    [SerializeField] private GameObject meteor;
+    [SerializeField] GameObject meteor;
 
-    [SerializeField] private GameObject brokenMeteor;
-    [SerializeField] private int meteorInitialPoolSize;
-    private readonly List<GameObject> meteorPool = new List<GameObject>();
+    [SerializeField] GameObject brokenMeteor;
+    readonly List<GameObject> meteorPool = new List<GameObject>();
+    readonly List<GameObject> brokenMeteorPool = new List<GameObject>();
 
-    private void Start()
-    {
-        InitializeBrokenBuildingPool();
-        InitializeBrokenEffectPool();
-        InitializeCollapseEffectPool();
-        InitializeExplosionPool();
-        InitializeRocketPool();
-        InitializeChopperPool();
-        InitializeMeteorPool();
-    }
+    [Header("Effects Stuff")]
+    [SerializeField] GameObject infoLetters;
+    readonly List<GameObject> infoLettersPool = new List<GameObject>();
 
-    private void OnEnable()
+    void OnEnable()
     {
         Building.BreakBuilding += BreakBuilding;
         Rocket.ExplodeRocket += Explode;
         Meteor.MeteorExploded += Explode;
+        Meteor.MeteorEvaded += DestroyMeteor;
+        SimpleDrone.DroneExploded += Explode;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         Building.BreakBuilding -= BreakBuilding;
         Rocket.ExplodeRocket -= Explode;
         Meteor.MeteorExploded -= Explode;
+        Meteor.MeteorEvaded -= DestroyMeteor;
+        SimpleDrone.DroneExploded -= Explode;
+    }
+
+    private void DestroyMeteor(GameObject previousMeteor)
+    {
+        GameObject m = GetAvailableBrokenMeteor();
+        m.transform.localScale = previousMeteor.transform.localScale;
+        m.transform.localPosition = previousMeteor.transform.position;
+        m.SetActive(true);
+        previousMeteor.SetActive(false);
     }
 
     public void Explode(Vector3 position, float size)
@@ -80,60 +82,18 @@ public class ObjectPools : MonoBehaviour
 
     public void BreakBuilding(GameObject previousBuilding)
     {
-        GameObject broken = GetBrokenBuilding();
+        GameObject broken = GetAvailableBrokenBuilding();
         broken.transform.SetPositionAndRotation(previousBuilding.transform.position, previousBuilding.transform.rotation);
         broken.transform.localScale = previousBuilding.transform.localScale;
         broken.SetActive(true);
     }
 
-    public void InitializeBrokenEffectPool()
-    {
-        brokenEffectPool.Clear();
-        if (brokenBuildingEffect != null)
-        {
-            for (int i = 0; i < brokenEffectInitialPoolSize; i++)
-            {
-                GameObject e = Instantiate(brokenBuildingEffect, Vector3.down, Quaternion.identity, transform);
-                e.SetActive(false);
-                brokenEffectPool.Add(e);
-            }
-        }
-    }
-
-    public void InitializeCollapseEffectPool()
-    {
-        collapseEffectPool.Clear();
-        if (collapseEffect != null)
-        {
-            for (int i = 0; i < collapseEffectInitialPoolSize; i++)
-            {
-                GameObject c = Instantiate(collapseEffect, Vector3.down, Quaternion.identity, transform);
-                c.SetActive(false);
-                collapseEffectPool.Add(c);
-            }
-        }
-    }
-
-    public void InitializeBrokenBuildingPool()
-    {
-        brokenBuildingPool.Clear();
-        if (brokenBuilding != null)
-        {
-            for (int i = 0; i < brokenBuildingInitialPoolSize; i++)
-            {
-                GameObject b = Instantiate(brokenBuilding, Vector3.down, Quaternion.identity, transform);
-                b.SetActive(false);
-                brokenBuildingPool.Add(b);
-            }
-        }
-    }
-
-    public GameObject GetBrokenBuilding()
+    public GameObject GetAvailableBrokenBuilding()
     {
         for (int i = 0; i < brokenBuildingPool.Count; i++)
             if (!brokenBuildingPool[i].activeSelf)
                 return brokenBuildingPool[i];
-        if (brokenBuildingPool != null)
+        if (brokenBuilding != null)
         {
             GameObject newBrokenBuilding = Instantiate(brokenBuilding, Vector3.down, Quaternion.identity, transform);
             newBrokenBuilding.SetActive(false);
@@ -171,62 +131,6 @@ public class ObjectPools : MonoBehaviour
             return newCollapseEffect;
         }
         return null;
-    }
-
-    public void InitializeChopperPool()
-    {
-        dronePool.Clear();
-        if (drone != null)
-        {
-            for (int i = 0; i < droneInitialPoolSize; i++)
-            {
-                GameObject d = Instantiate(drone, Vector3.down, Quaternion.identity, transform);
-                d.SetActive(false);
-                dronePool.Add(d);
-            }
-        }
-    }
-
-    public void InitializeExplosionPool()
-    {
-        explosionEffectPool.Clear();
-        if (explosionEffect != null)
-        {
-            for (int i = 0; i < explosionPoolInitialSize; i++)
-            {
-                GameObject e = Instantiate(explosionEffect, Vector3.down, Quaternion.identity, transform);
-                e.SetActive(false);
-                explosionEffectPool.Add(e);
-            }
-        }
-    }
-
-    public void InitializeRocketPool()
-    {
-        rocketGameObjectPool.Clear();
-        if (rocket != null)
-        {
-            for (int i = 0; i < rocketPoolInitialSize; i++)
-            {
-                GameObject e = Instantiate(rocket, Vector3.down, Quaternion.identity, transform);
-                e.SetActive(false);
-                rocketGameObjectPool.Add(e);
-            }
-        }
-    }
-
-    private void InitializeMeteorPool()
-    {
-        if (meteor != null)
-        {
-            for (int i = 0; i < meteorInitialPoolSize; i++)
-            {
-                GameObject m = Instantiate(meteor, Vector3.down, Quaternion.identity, transform);
-                m.transform.position = Vector3.down;
-                m.SetActive(false);
-                meteorPool.Add(m);
-            }
-        }
     }
 
     public GameObject GetAvailableRocket()
@@ -286,10 +190,43 @@ public class ObjectPools : MonoBehaviour
         if (meteor != null)
         {
             GameObject newMeteor = Instantiate(meteor, Vector3.down, Quaternion.identity, transform);
-            newMeteor.transform.position = Vector3.down;
             newMeteor.SetActive(false);
             meteorPool.Add(newMeteor);
             return newMeteor;
+        }
+        return null;
+    }
+
+    public GameObject GetAvailableBrokenMeteor()
+    {
+        for (int i = 0; i < brokenMeteorPool.Count; i++)
+        {
+            if (!brokenMeteorPool[i].activeSelf)
+                return brokenMeteorPool[i];
+        }
+        if (meteor != null)
+        {
+            GameObject newBrokenMeteor = Instantiate(brokenMeteor, Vector3.down, Quaternion.identity, transform);
+            newBrokenMeteor.SetActive(false);
+            brokenMeteorPool.Add(newBrokenMeteor);
+            return newBrokenMeteor;
+        }
+        return null;
+    }
+
+    public GameObject GetAvailableInfoLetters()
+    {
+        for (int i = 0; i < infoLettersPool.Count; i++)
+        {
+            if (!infoLettersPool[i].activeSelf)
+                return infoLettersPool[i];
+        }
+        if (infoLetters != null)
+        {
+            GameObject newInfo = Instantiate(infoLetters, Vector3.down, Quaternion.identity, transform);
+            newInfo.gameObject.SetActive(false);
+            infoLettersPool.Add(newInfo);
+            return newInfo;
         }
         return null;
     }

@@ -6,39 +6,40 @@ public class Building : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3> BuildingDamaged;
     public static UnityAction<GameObject> BreakBuilding;
-    [SerializeField] private float buildingHealthMultiplier;
-    [SerializeField] private int buildingPeopleMultiplier;
-    [SerializeField] private float _currentBuildingHealth;
-    [SerializeField] private int _currentNumberOfPeopleInside;
-    [SerializeField] private float shakeIntensity = .01f;
-    [SerializeField] private float duration = .1f;
-    private ObjectPools objectPools;
-    private float maxBuildingHealth;
-    private int maxNumberOfPeopleInside;
-    private bool brokenEffectSet = false;
-    private bool collapsingEffectSet = false;
+    public static UnityAction<GameObject, byte> TextInfo;
+    [SerializeField] float buildingHealthMultiplier;
+    [SerializeField] int buildingPeopleMultiplier;
+    [SerializeField] Material brokenMaterial;
+    float _currentBuildingHealth;
+    int _currentNumberOfPeopleInside;
+    [SerializeField] float shakeIntensity = .01f;
+    [SerializeField] float duration = .1f;
+    [SerializeField] float collapseRate = .4f;
+    ObjectPools objectPools;
+    float maxBuildingHealth;
+    int maxNumberOfPeopleInside;
+    bool brokenEffectSet = false;
+    bool collapsingEffectSet = false;
+    bool isCollapsing = false;
 
-    public void Start()
+    void Start()
     {
         objectPools = FindObjectOfType<ObjectPools>();
+        if (objectPools == null)
+            Debug.LogWarning($"{gameObject.name} could not find an object with a ObjectPools component attached");
         maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
         maxNumberOfPeopleInside = (int)transform.localScale.y * buildingPeopleMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
         _currentNumberOfPeopleInside = maxNumberOfPeopleInside;
-        if (objectPools == null)
-            Debug.LogWarning($"{gameObject.name} could not find an object with a BuildingManager component attached");
     }
 
-    public void LateUpdate()
+    void LateUpdate()
     {
-        if (_currentBuildingHealth <= 0)
-        {
-            InitializeBrokenBuildingEffect();
-            InitializeCollapsingEffect();
-        }
+        if (isCollapsing)
+            SlowlyCollapseBuilding();
     }
 
-    private void InitializeCollapsingEffect()
+    void InitializeCollapsingEffect()
     {
         if (!collapsingEffectSet && objectPools != null)
         {
@@ -48,13 +49,11 @@ public class Building : MonoBehaviour, IDamagable<float>
                 effect.transform.SetPositionAndRotation(transform.position, transform.rotation);
                 effect.SetActive(true);
             }
-            BreakBuilding?.Invoke(gameObject);
             collapsingEffectSet = true;
-            gameObject.SetActive(false);
         }
     }
 
-    public void InitializeBrokenBuildingEffect()
+    void InitializeBrokenBuildingEffect()
     {
         if (!brokenEffectSet && objectPools != null)
         {
@@ -62,13 +61,26 @@ public class Building : MonoBehaviour, IDamagable<float>
             if (e != null)
             {
                 e.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                e.transform.localScale = new Vector3(transform.localScale.x, Random.Range(.4f, 1.4f), transform.localScale.z);
                 e.SetActive(true);
                 brokenEffectSet = true;
             }
         }
     }
 
-    private IEnumerator ShakeBuilding()
+    void SlowlyCollapseBuilding()
+    {
+        GetComponent<Renderer>().material = brokenMaterial;
+        transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(transform.localScale.x, 0, transform.localScale.z), collapseRate * Time.fixedDeltaTime);
+        if (transform.localScale.y <= 0)
+        {
+            InitializeBrokenBuildingEffect();
+            TextInfo?.Invoke(gameObject, 3);
+            gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator ShakeBuilding()
     {
         if (duration > 0)
         {
@@ -78,8 +90,6 @@ public class Building : MonoBehaviour, IDamagable<float>
         }
         StopCoroutine(ShakeBuilding());
     }
-
-    public float GetMaxHealth() => maxBuildingHealth;
 
     public float GetCurrentHealth() => _currentBuildingHealth;
 
@@ -92,10 +102,13 @@ public class Building : MonoBehaviour, IDamagable<float>
         _currentBuildingHealth -= damage;
         BuildingDamaged?.Invoke(transform.position);
         StartCoroutine(ShakeBuilding());
+        if (_currentBuildingHealth <= 0)
+        {
+            InitializeCollapsingEffect();
+            isCollapsing = true;
+        }
     }
 
-    
     [ContextMenu("Damage building")]
     public void TestDamage() => ApplyDamage(10000);
-  
 }

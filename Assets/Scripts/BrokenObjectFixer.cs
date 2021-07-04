@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class BrokenObjectFixer : MonoBehaviour
@@ -26,9 +27,12 @@ public class BrokenObjectFixer : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).transform.localPosition = childrenPostions[i];
-            transform.GetChild(i).transform.localRotation = childrenRotations[i];
-            transform.GetChild(i).transform.localScale = childrenScales[i];
+            if (childrenPostions != null)
+                transform.GetChild(i).transform.localPosition = childrenPostions[i];
+            if (childrenRotations != null)
+                transform.GetChild(i).transform.localRotation = childrenRotations[i];
+            if (childrenScales != null)
+                transform.GetChild(i).transform.localScale = childrenScales[i];
             transform.GetChild(i).gameObject.SetActive(true);
         }
     }
@@ -48,4 +52,6 @@ public class BrokenObjectFixer : MonoBehaviour
         }
         return true;
     }
+
+    public GameObject[] GetChildren() => children.ToArray();
 }

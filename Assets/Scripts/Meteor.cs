@@ -5,46 +5,50 @@ public class Meteor : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3, float> MeteorExploded;
     public static UnityAction<GameObject> MeteorEvaded;
-    public float currentHealth;
+    public static UnityAction<GameObject, byte> TextInfo;
+    [SerializeField] Vector2 meteorMinMaxSize;
+    public float maxHealth;
     public float explosionRadius;
-    private float currentSpeed;
-    [SerializeField] private Vector2 meteorMinMaxSize;
+    float currentHealth;
+    float currentSpeed;
 
-    private void OnEnable()
+    void OnEnable()
     {
+        currentHealth = maxHealth;
         float newScale = Random.Range(meteorMinMaxSize.x, meteorMinMaxSize.y);
         transform.localScale = new Vector3(newScale, newScale, newScale);
     }
 
-    private void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.World);
+    void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.World);
 
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+            TextInfo?.Invoke(gameObject, 2);
             MeteorEvaded?.Invoke(gameObject);
-            gameObject.SetActive(false);
         }
     }
 
     public float GetCurrentHealth() => currentHealth;
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        MeteorExploded?.Invoke(transform.position, explosionRadius * .8f);
+        TextInfo?.Invoke(gameObject, 3);
+        MeteorExploded?.Invoke(transform.position, explosionRadius * .5f);
         TryDamagingNearTargets();
         gameObject.SetActive(false);
     }
 
-    private void TryDamagingNearTargets()
+    void TryDamagingNearTargets()
     {
         float damage = transform.localScale.x + transform.localScale.y + transform.localScale.z * currentHealth;
         Collider[] closeObjects = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider hit in closeObjects)
         {
             IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
-            if (d != null)
+            if (d != null && !hit.gameObject.Equals(gameObject))
                 d.ApplyDamage(damage);
         }
     }

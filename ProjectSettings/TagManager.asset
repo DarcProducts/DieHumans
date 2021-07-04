@@ -6,12 +6,12 @@ TagManager:
   tags:
   - RightControllerAnchor
   - Ground
-  - TVWall
   - Rocket
   - WeaponLocation
   - Chopper
   - Building
-  - Drone
+  - Enemy
+  - ArcadeWall
   layers:
   - Default
   - TransparentFX
@@ -22,9 +22,9 @@ TagManager:
   - RocketIgnore
   - LaserIgnore
   - Building
-  - Chopper
-  - Drone
+  - Player
   - 
+  - Enemy
   - 
   - 
   - 

@@ -1,78 +1,90 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum WeaponState { machinegun, rocket, special }
 
 public class WeaponManager : MonoBehaviour
 {
     public WeaponState currentWeapon = WeaponState.machinegun;
-    [SerializeField] private float machinegunDamage;
-    [SerializeField] private float rocketDamage;
-    [SerializeField] private float specialDamage;
-    [SerializeField] private GameObject aimTarget;
-    [SerializeField] private float aimTargetDistance;
-    [SerializeField] private float rocketThrust;
-    [SerializeField] private float rocketHomingSpeed;
-    [SerializeField] private LineRenderer machineGunShot;
-    [SerializeField] private int currentRocketAmount;
-    private GameObject currentRocket;
-    private bool isHoldingRocketButton = false;
-    private bool readyForRocket = false;
-    private ObjectPools objectPools;
-    private GameObject player;
-    private float gunFireRate = .3f;
-    private float currentRate;
+    public static UnityAction MachinegunFired;
+    [SerializeField] float machinegunDamage;
+    [SerializeField] float rocketDamage;
+    [SerializeField] float specialDamage;
+    [SerializeField] GameObject aimTarget;
+    [SerializeField] float aimTargetDistance;
+    [SerializeField] float rocketHomingSpeed;
+    [SerializeField] LineRenderer machineGunShot;
+    [SerializeField] int currentRocketAmount;
+    [SerializeField] LayerMask ignoreDamageLayer;
+    Rocket currentRocket = null;
+    bool isHoldingRocketButton = false;
+    bool canLaunchRocket = true;
+    ObjectPools objectPools;
+    GameObject player;
+    float gunFireRate = .3f;
+    float currentRate;
 
-    private void OnEnable()
+    void OnEnable()
     {
         GameManager.FireWeaponButtonHold += FireCurrentWeapon;
         GameManager.FireWeaponButtonDown += RocketButtonTrue;
         GameManager.FireWeaponButtonUp += RocketButtonFalse;
+        GameManager.FireWeaponButtonUp += DisableMachinegunBullet;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         GameManager.FireWeaponButtonHold -= FireCurrentWeapon;
         GameManager.FireWeaponButtonDown -= RocketButtonTrue;
         GameManager.FireWeaponButtonUp -= RocketButtonFalse;
+        GameManager.FireWeaponButtonUp -= DisableMachinegunBullet;
     }
 
-    public void RocketButtonFalse() => isHoldingRocketButton = false;
-    public void RocketButtonTrue() => isHoldingRocketButton = true;
+    void RocketButtonFalse() => isHoldingRocketButton = false;
 
-    private void Start()
+    void RocketButtonTrue() => isHoldingRocketButton = true;
+
+    void Start()
     {
         currentRate = gunFireRate;
         objectPools = FindObjectOfType<ObjectPools>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (objectPools == null)
-            Debug.LogError("An object with a EnemyManager component could not be found in scene");
+            Debug.LogWarning("An object with a EnemyManager component could not be found in scene");
         if (player == null)
             Debug.LogWarning("No GameObject with Player tag could be found in scene");
         InitializeAimTarget();
     }
 
-    public IEnumerator LaunchRocket()
+    void LaunchRocket()
     {
+        canLaunchRocket = false;
         if (player != null && objectPools != null)
         {
             if (currentRocketAmount > 0)
             {
-                currentRocket = objectPools.GetAvailableRocket();
-                currentRocket.transform.position = transform.position + Vector3.down;
-                currentRocket.GetComponent<Rocket>().rocketDamage = rocketDamage;
-                currentRocket.SetActive(true);
-                currentRocket.transform.position = Vector3.MoveTowards(currentRocket.transform.position, aimTarget.transform.position, rocketHomingSpeed * Time.fixedDeltaTime);
-                yield return isHoldingRocketButton;
-                SetHoming(false);
-                currentRocketAmount--;
-                readyForRocket = true;
+                currentRocket = objectPools.GetAvailableRocket().GetComponent<Rocket>();
+                if (currentRocket != null)
+                {
+                    currentRocket.transform.position = player.transform.position + Vector3.down;
+                    currentRocket.gameObject.SetActive(true);
+                    if (isHoldingRocketButton)
+                    {
+                        currentRocket.rocketDamage = rocketDamage;
+                        currentRocket.transform.position = Vector3.MoveTowards(currentRocket.transform.position, aimTarget.transform.position, rocketHomingSpeed * Time.fixedDeltaTime);
+                    }
+                    if (!isHoldingRocketButton)
+                    {
+                        SetCurrentRocketHoming(false);
+                        currentRocketAmount--;
+                        canLaunchRocket = true;
+                    }
+                }
             }
         }
-        StopCoroutine(LaunchRocket());
     }
 
-    public void FireCurrentWeapon()
+    void FireCurrentWeapon()
     {
         switch (currentWeapon)
         {
@@ -81,11 +93,8 @@ public class WeaponManager : MonoBehaviour
                 break;
 
             case WeaponState.rocket:
-                if (readyForRocket)
-                {
-                    StartCoroutine(LaunchRocket());
-                    readyForRocket = false;
-                }
+                if (canLaunchRocket)
+                    LaunchRocket();
                 break;
 
             case WeaponState.special:
@@ -94,53 +103,72 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public void InitializeAimTarget()
+    void InitializeAimTarget()
     {
         if (aimTarget != null)
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
-    private void FireMachineguns()
+    void FireMachineguns()
     {
-        if (machineGunShot != null)
+        if (machineGunShot != null && player != null)
         {
-            machineGunShot.enabled = true;
-            if (Physics.Raycast(transform.position + Vector3.down, aimTarget.transform.position - transform.position + Vector3.down, out RaycastHit hitInfo))
+            machineGunShot.enabled = false;
+            machineGunShot.positionCount = 2;
+            machineGunShot.SetPosition(0, player.transform.position + player.transform.forward);
+            if (Physics.Raycast(player.transform.position + player.transform.forward, aimTarget.transform.position - player.transform.position + player.transform.forward, out RaycastHit hitInfo))
             {
-                currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
-                machineGunShot.positionCount = 2;
-                machineGunShot.SetPosition(0, player.transform.position + Vector3.down);
                 machineGunShot.SetPosition(1, hitInfo.point);
-                if (currentRate <= 0)
-                {
-                    machineGunShot.enabled = false;
-                    currentRate = gunFireRate;
-                }
+                TryDamagingTarget(hitInfo.collider.gameObject);
+            }
+            else
+                machineGunShot.SetPosition(1, aimTarget.transform.position);
+            currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
+            if (currentRate <= 0)
+            {
+                MachinegunFired?.Invoke();
+                machineGunShot.enabled = true;
+                currentRate = gunFireRate;
             }
         }
     }
 
+    void DisableMachinegunBullet()
+    {
+        if (machineGunShot != null)
+            machineGunShot.enabled = false;
+    }
+
     public float GetCurrentWeaponDamage()
     {
-        float damage = 0;
         switch (currentWeapon)
         {
             case WeaponState.machinegun:
-                damage = machinegunDamage;
-                break;
+                return machinegunDamage;
 
             case WeaponState.rocket:
-                damage = rocketDamage;
-                break;
+                return rocketDamage;
 
             case WeaponState.special:
-                damage = specialDamage;
+                return specialDamage;
+            default:
                 break;
         }
-        return damage;
+        return 0;
     }
 
-    public void SetHoming(bool value)
+    public void TryDamagingTarget(GameObject target)
+    {
+        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
+        if (d != null)
+        {
+            if (target.layer.Equals(ignoreDamageLayer))
+                return;
+            d.ApplyDamage(GetCurrentWeaponDamage());
+        }
+    }
+
+    void SetCurrentRocketHoming(bool value)
     {
         if (currentRocket != null)
             currentRocket.GetComponent<Rocket>().isHoming = value;

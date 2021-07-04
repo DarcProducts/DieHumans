@@ -85,6 +85,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         Collider[] closeObjects = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider hit in closeObjects)
         {
+
             IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
             if (d != null)
                 d.ApplyDamage(rocketDamage);

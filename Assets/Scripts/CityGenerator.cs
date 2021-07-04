@@ -3,37 +3,49 @@ using UnityEngine;
 
 public class CityGenerator : MonoBehaviour
 {
-    [Range(0f, 1f)] [SerializeField] private float willBeDestroyed;
-    [SerializeField] private GameObject building = null;
-    [SerializeField] private int gridWidth = 0;
-    [SerializeField] private int gridHeight = 0;
-    [SerializeField] private int gridDepth = 0;
-    [SerializeField] private int gridCellSize = 0;
-    [SerializeField] private int minBuildingHeight;
-    [SerializeField] private int maxBuildingHeight;
-    [SerializeField] private float minBuildingWidth;
-    [SerializeField] private float maxBuildingWidth;
-    [SerializeField] private bool showNumbers = true;
-    [SerializeField] private bool showLines = true;
-    [SerializeField] private Color gridNumberColor = Color.white;
-    [SerializeField] private Color gridXColor = Color.white;
-    [SerializeField] private Color gridZColor = Color.white;
-    [SerializeField] private Material buildingMat;
-    [SerializeField] private Material building1Mat;
-    [SerializeField] private Material building2Mat;
-    private int yPlaneLevel = 0;
-    private GameObject cityOrigin;
-    private readonly List<Vector3> tankSafeLocations = new List<Vector3>();
+    public int numberOfBuildings = 0;
+    [Range(0f, 1f)] [SerializeField] float willBeDestroyed;
+    [SerializeField] GameObject building = null;
+    [SerializeField] int gridWidth = 0;
+    [SerializeField] int gridHeight = 0;
+    [SerializeField] int gridDepth = 0;
+    [SerializeField] int gridCellSize = 0;
+    [SerializeField] int minBuildingHeight;
+    [SerializeField] int maxBuildingHeight;
+    [SerializeField] float minBuildingWidth;
+    [SerializeField] float maxBuildingWidth;
+    [SerializeField] bool showNumbers = true;
+    [SerializeField] bool showLines = true;
+    [SerializeField] Color gridNumberColor = Color.white;
+    [SerializeField] Color gridXColor = Color.white;
+    [SerializeField] Color gridZColor = Color.white;
+    [SerializeField] Material buildingMat;
+    [SerializeField] Material building1Mat;
+    [SerializeField] Material building2Mat; 
+    int yPlaneLevel = 0;
+    readonly List<Vector3> groundUnitSafeLocations = new List<Vector3>();
+    Vector3 cityOrigin;
 
-    private Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
+    void OnEnable()
+    {
+        Building.BreakBuilding += RemoveABuilding;
+    }
+
+    void OnDisable()
+    {
+        Building.BreakBuilding -= RemoveABuilding;
+    }
+
+    Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
 
     public void CreateDarcGrid(Vector3 origin)
     {
+        cityOrigin = origin; 
         yPlaneLevel = Mathf.FloorToInt(origin.y / gridCellSize);
         int[,,] gridArray = new int[gridWidth, gridHeight, gridDepth];
         GameObject buildings = new GameObject("Buildings");
-        cityOrigin = buildings;
-        cityOrigin.transform.position = new Vector3(origin.x, yPlaneLevel, origin.z);
+        if (buildings != null)
+            buildings.transform.position = origin;
 
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
@@ -61,9 +73,10 @@ public class CityGenerator : MonoBehaviour
                                     CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
                                         GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
                                 }
+                                numberOfBuildings++;
                             }
                             else
-                                tankSafeLocations.Add(new Vector3(x, y, z));
+                                groundUnitSafeLocations.Add(new Vector3(x, y, z));
                         }
 
                         if (showLines)
@@ -91,8 +104,8 @@ public class CityGenerator : MonoBehaviour
         if (cityOrigin != null)
         {
             Vector3[] cB = new Vector3[2];
-            cB[0] = new Vector3(-cityOrigin.transform.position.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.transform.position.x);
-            cB[1] = new Vector3(-cityOrigin.transform.position.z, gridHeight * gridCellSize, gridDepth * gridCellSize - cityOrigin.transform.position.z);
+            cB[0] = new Vector3(-cityOrigin.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.x);
+            cB[1] = new Vector3(-cityOrigin.z, gridHeight * gridCellSize, gridDepth * gridCellSize - cityOrigin.z);
             return cB;
         }
         return new Vector3[2];
@@ -101,8 +114,10 @@ public class CityGenerator : MonoBehaviour
     public void SetCityOrigin(Vector3 newOrigin)
     {
         if (cityOrigin != null)
-            cityOrigin.transform.position = newOrigin;
+            cityOrigin = newOrigin;
     }
+
+    public void RemoveABuilding(GameObject notUsed) => numberOfBuildings--;
 
     public TextMesh CreateWorldText(string text, TextAnchor textAnchor, TextAlignment textAlignment, Color fontColor = default,
         Vector3 localPosition = default, int fontSize = 20, int sortingOrder = 0, Transform parent = null)
@@ -121,7 +136,7 @@ public class CityGenerator : MonoBehaviour
         return textMesh;
     }
 
-    public Vector3[] GetTankSafePoints() => tankSafeLocations.ToArray();
+    public Vector3[] GetTankSafePoints() => groundUnitSafeLocations.ToArray();
 
     public float GetGridSize() => gridCellSize;
 

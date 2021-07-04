@@ -1,114 +1,76 @@
 using UnityEngine;
 
-public enum MaterialType { concrete, glass, metal, dirt, all }
-
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private float maxDistanceToPlay;
     [SerializeField] private AudioSource mainSource;
-    [SerializeField] private AudioSource laserHitSource;
+    [SerializeField] private AudioSource weaponSource;
+    [SerializeField] private AudioClip meteorDestroyed;
     [SerializeField] private AudioClip laserShoot;
-    [SerializeField] private AudioClip laserHitConcrete;
-    [SerializeField] private AudioClip laserHitDirt;
-    [SerializeField] private AudioClip laserHitMetal;
-    [SerializeField] private AudioClip laserHitGlass;
-    [SerializeField] private AudioClip laserHitAll;
-    [SerializeField] private AudioClip explosionSound;
-    private GameObject player;
+    [SerializeField] private AudioClip laserHit;
+    [SerializeField] private AudioClip[] explosions;
+    [SerializeField] private AudioClip machinegun;
+    [SerializeField] private AudioClip[] backgroundMusic;
 
     private void OnEnable()
     {
         ObjectPools.ExplosionSound += PlayExplosionSound;
+        WeaponManager.MachinegunFired += PlayMachinegunClip;
+        GameManager.FireWeaponButtonUp += StopWeaponSounds;
+        Meteor.MeteorEvaded += PlayMeteorDestroyed;
     }
 
     private void OnDisable()
     {
         ObjectPools.ExplosionSound -= PlayExplosionSound;
+        WeaponManager.MachinegunFired -= PlayMachinegunClip;
+        GameManager.FireWeaponButtonUp -= StopWeaponSounds;
+        Meteor.MeteorEvaded -= PlayMeteorDestroyed;
     }
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    public void PlayLaserShoot()
+    public void PlayLaserShot()
     {
         if (mainSource != null && laserShoot != null)
         {
-            if (!mainSource.isPlaying)
-            {
-                mainSource.clip = laserShoot;
-                mainSource.Play();
-            }
+            
         }
     }
 
-    public void StopLaserShoot()
+    public void StopWeaponSounds()
     {
-        if (mainSource != null)
-            if (mainSource.isPlaying)
-                mainSource.Stop();
-    }
-
-    public void PlayLaserHit(GameObject targetHit, MaterialType type)
-    {
-        if (laserHitSource != null)
+        if (weaponSource != null)
         {
-            switch (type)
-            {
-                case MaterialType.dirt:
-                    if (laserHitDirt != null && laserHitSource.clip != laserHitDirt)
-                        PlayAtSourceWithVPRange(laserHitSource, laserHitDirt, .2f, .6f, .5f, 1.5f);
-                    break;
-
-                case MaterialType.concrete:
-                    if (laserHitConcrete != null && laserHitSource.clip != laserHitConcrete)
-                        PlayAtSourceWithVPRange(laserHitSource, laserHitConcrete, .2f, .6f, .5f, 1.5f);
-                    break;
-
-                case MaterialType.metal:
-                    if (laserHitMetal != null && laserHitSource.clip != laserHitMetal)
-                        PlayAtSourceWithVPRange(laserHitSource, laserHitMetal, .2f, .6f, .5f, 1.5f);
-                    break;
-
-                case MaterialType.glass:
-                    if (laserHitGlass != null && laserHitSource.clip != laserHitGlass)
-                        PlayAtSourceWithVPRange(laserHitSource, laserHitGlass, .2f, .6f, .5f, 1.5f);
-                    break;
-
-                case MaterialType.all:
-                    if (laserHitAll != null && laserHitSource.clip != laserHitAll)
-                        PlayAtSourceWithVPRange(laserHitSource, laserHitAll, .2f, .6f, .5f, 1.5f);
-                    break;
-
-                default:
-                    break;
-            }
+            weaponSource.Stop();
+            weaponSource.volume = 1;
         }
     }
 
-    private float GetVolumeBasedOnDistance(Vector3 loc)
+    public void PlayMachinegunClip()
     {
-        if (player != null)
-        {
-            float distance = Vector3.Distance(loc, player.transform.position);
-            if (distance < maxDistanceToPlay)
-                return Mathf.InverseLerp(distance, 0, 1);
-        }
-        return 0;
+        if (weaponSource != null && machinegun != null)
+                PlayAtSourceWithVPRange(weaponSource, machinegun, .8f, 1f, .8f, 1.2f);
+    }
+
+    public void PlayMachinegunHit()
+    {
+        
+    }
+
+    public void PlayLaserHit(GameObject targetHit)
+    {
+        
+    }
+
+    public void PlayMeteorDestroyed(GameObject obj)
+    {
+        if (mainSource != null && meteorDestroyed != null)
+            PlayAtSourceWithVPRange(mainSource, meteorDestroyed, .6f, 1f, .8f, 1.2f);
     }
 
     public void PlayExplosionSound(Vector3 loc)
     {
-        if (mainSource != null && explosionSound != null)
-        {
-            float vol = GetVolumeBasedOnDistance(loc);
-            if (vol != 0)
-            {
-                mainSource.volume = vol;
-                mainSource.PlayOneShot(explosionSound);
-            }
-        }
+        int ranNum = Random.Range(0, explosions.Length);
+        if (mainSource != null && explosions[ranNum] != null)
+            PlayAtSourceWithVPRange(mainSource, explosions[ranNum], .8f, 1f, .2f, 1.2f);
     }
 
     public static void PlayAtSourceWithVPRange(AudioSource source, AudioClip clip, float minVol = 0, float maxVol = 1, float minPitch = -3, float maxPitch = 3)
@@ -121,6 +83,4 @@ public class SoundManager : MonoBehaviour
         source.pitch = Random.Range(minPitch, maxPitch);
         source.PlayOneShot(clip);
     }
-
-    public AudioSource GetLaserHitSource() => laserHitSource;
 }

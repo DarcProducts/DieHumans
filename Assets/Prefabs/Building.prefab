@@ -97,10 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingHealthMultiplier: 250
   buildingPeopleMultiplier: 500
-  _currentBuildingHealth: 0
-  _currentNumberOfPeopleInside: 0
+  brokenMaterial: {fileID: 2100000, guid: 37109bedd77a87e40bed6a2cde54a9ae, type: 2}
   shakeIntensity: 0.01
   duration: 0.1
+  collapseRate: 0.5
 --- !u!65 &7537392153021471599
 BoxCollider:
   m_ObjectHideFlags: 0

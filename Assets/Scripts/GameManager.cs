@@ -7,18 +7,22 @@ public class GameManager : MonoBehaviour
     public static UnityAction FireWeaponButtonUp;
     public static UnityAction FireWeaponButtonDown;
     [Header("Managers")]
-    [SerializeField] private PlayerManager playerManager;
-    [SerializeField] private CityGenerator cityGenerator;
-    [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private SoundManager soundManager;
+    [SerializeField] PlayerManager playerManager;
+    [SerializeField] CityGenerator cityGenerator;
+    [SerializeField] WeaponManager weaponManager;
+    [SerializeField] SoundManager soundManager;
+    [SerializeField] Vector3 cityStartLoc = Vector3.zero;
 
-    private void Start()
+    void Awake()
     {
         if (cityGenerator != null)
-            cityGenerator.CreateDarcGrid(Vector3.zero);
+        {
+            cityGenerator.transform.position = cityStartLoc;
+            cityGenerator.CreateDarcGrid(cityGenerator.transform.position);
+        }
     }
 
-    private void Update()
+    void Update()
     {
         if (weaponManager != null)
             CheckWeapons();
@@ -26,12 +30,12 @@ public class GameManager : MonoBehaviour
             CheckController();
     }
 
-    private void CheckWeapons()
+    void CheckWeapons()
     {
         
     }
 
-    private void CheckController()
+    void CheckController()
     {
         if (playerManager != null)
         {
