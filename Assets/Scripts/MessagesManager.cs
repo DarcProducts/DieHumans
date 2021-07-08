@@ -8,7 +8,7 @@ public class MessagesManager : MonoBehaviour
     public static UnityAction<int, bool> UpdateScore;
     [SerializeField] string[] goodMessages;
     [SerializeField] string[] badMessages;
-    [SerializeField] string[] funnyMessages;
+    [SerializeField] string[] neutralMessages;
     [SerializeField] float infoTextDuration;
     ObjectPools objectPools;
     GameObject player;
@@ -28,6 +28,8 @@ public class MessagesManager : MonoBehaviour
         Meteor.TextInfo += DisplayWorldInfo;
         SimpleDrone.TextInfo += DisplayWorldInfo;
         Building.TextInfo += DisplayWorldInfo;
+        Rocket.TextInfo += DisplayWorldInfo;
+        Projectile.TextInfo += DisplayWorldInfo;
     }
 
     void OnDisable()
@@ -35,6 +37,8 @@ public class MessagesManager : MonoBehaviour
         Meteor.TextInfo -= DisplayWorldInfo;
         SimpleDrone.TextInfo -= DisplayWorldInfo;
         Building.TextInfo -= DisplayWorldInfo;
+        Rocket.TextInfo -= DisplayWorldInfo;
+        Projectile.TextInfo -= DisplayWorldInfo;
     }
 
     string GetGoodMessage()
@@ -61,31 +65,43 @@ public class MessagesManager : MonoBehaviour
         return "Invalid";
     }
 
-    string GetFunnyMessage()
+    string GetNeutralMessage()
     {
-        int length = funnyMessages.Length;
+        int length = neutralMessages.Length;
         int ranNum = Random.Range(0, length);
         for (int i = 0; i < length; i++)
         {
-            if (funnyMessages[ranNum] != null)
-                return funnyMessages[ranNum];
+            if (neutralMessages[ranNum] != null)
+                return neutralMessages[ranNum];
         }
         return "Invalid";
     }
 
-    int GetPoints(Vector3 pos)
+    int GetPointsByDistance(Vector3 pos)
     {
         if (player != null)
             return Mathf.RoundToInt(Vector3.Distance(pos, player.transform.position));
         return 0;
     }
 
-    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Funny Message) </param>
-    void DisplayWorldInfo(GameObject obj, byte messageType)
+    int GetPointsByDamage(float damage)
     {
+        if (player != null)
+            return Mathf.RoundToInt(damage);
+        return 0;
+    }
+
+    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Funny Message) </param>
+    /// <param name="pointType"> (0 = Points by distance) : (1 = Points by damage) </param>
+    void DisplayWorldInfo(GameObject obj, byte messageType, byte pointType = 0, float damage = 0)
+    {
+        int points = 0;
         if (objectPools != null)
         {
-            int points = GetPoints(obj.transform.position);
+            if (pointType.Equals(0))
+                points = GetPointsByDistance(obj.transform.position);
+            if (pointType.Equals(1))
+                points = GetPointsByDamage(damage);
             GameObject newText = objectPools.GetAvailableInfoLetters();
             newText.SetActive(true);
             newText.transform.position = obj.transform.position + Vector3.up * 20;
@@ -95,18 +111,17 @@ public class MessagesManager : MonoBehaviour
                 switch (messageType)
                 {
                     case 0:
-                        text.color = Color.green;
+                        text.color = Color.yellow;
                         text.text = GetGoodMessage();
                         break;
 
                     case 1:
-                        text.color = new Color(.6f, .4f, .2f);
+                        text.color = Color.Lerp(Color.red, Color.black, text.textInfo.characterCount);
                         text.text = GetBadMessage();
                         break;
 
                     case 2:
-
-                        text.color = Color.yellow;
+                        text.color = Color.green;
                         text.text = points.ToString();
                         UpdateScore?.Invoke(points, true);
                         break;
@@ -120,13 +135,13 @@ public class MessagesManager : MonoBehaviour
 
                     case 4:
 
-                        text.color = Color.white;
-                        text.text = GetFunnyMessage();
+                        text.color = new Color(.6f, .4f, .2f);
+                        text.text = GetNeutralMessage();
                         break;
 
                     default:
                         text.text = "Craig Hussey Was Here";
-                        text.color = Color.Lerp(Color.red, Color.black, text.textInfo.characterCount);
+                        text.color = new Color(.8f, .7f, .4f);
                         break;
                 }
             }

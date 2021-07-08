@@ -6,45 +6,78 @@ public class WaveManager : MonoBehaviour
 {
     public static UnityAction WaveComplete;
     public static UnityAction<int> UpdateWave;
-    [SerializeField] private ObjectPools objectPools;
+    ObjectPools objectPools;
 
     [Header("Game Stats")]
-    [SerializeField] private int currentWave = 0;
+    [SerializeField] int currentWave = 0;
 
-    [SerializeField] private int waveCountMultiplier;
+    [SerializeField] int waveCountMultiplier;
+    [SerializeField] float waveDelay = 1f;
+    EnemyManager enemyManager;
+    [Header("Spawn Areas")]
+    [SerializeField] Vector3[] minSpawnAreas;
+    [SerializeField] Vector3[] maxSpawnAreas;
+    
+    readonly List<GameObject> waveObjects = new List<GameObject>();
 
-    [SerializeField] private List<GameObject> waveObjects = new List<GameObject>();
-
-    private void Start() => StartCurrentWave();
-
-    private void OnEnable()
+    void Awake()
     {
-        SimpleDrone.UpdateDroneCount += RemoveWaveObject;
+        objectPools = FindObjectOfType<ObjectPools>();
+        enemyManager = FindObjectOfType<EnemyManager>();
+        if (enemyManager.Equals(null))
+            Debug.LogWarning($"Cound not locate a GameObject with an EnemyManager component attached");
+        if (objectPools.Equals(null))
+            Debug.LogWarning($"Cound not locate a GameObject with an ObjectPools component attached");
     }
 
-    private void OnDisable()
+    void Start() => StartCurrentWave();
+
+    void OnEnable()
+    {
+        SimpleDrone.UpdateDroneCount += RemoveWaveObject;
+        Bomber.UpdateBomber += RemoveWaveObject;
+    }
+
+    void OnDisable()
     {
         SimpleDrone.UpdateDroneCount -= RemoveWaveObject;
+        Bomber.UpdateBomber -= RemoveWaveObject;
     }
 
     [ContextMenu("Start Wave")]
-    public void StartCurrentWave()
+    void StartCurrentWave()
     {
         waveObjects.Clear();
         do
         {
-            GameObject d = objectPools.GetAvailableDrone();
-            d.transform.position = new Vector3(Random.Range(0, 200), 300, Random.Range(0, 200));
-            waveObjects.Add(d);
-            d.GetComponent<SimpleDrone>().isActivated = true;
-            d.SetActive(true);
+            if (objectPools != null && enemyManager != null)
+            {
+                int ranSpawn = Random.Range(0, maxSpawnAreas.Length);
+                Vector3 newLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), Random.Range(minSpawnAreas[ranSpawn].y, maxSpawnAreas[ranSpawn].y), Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
+                
+                if (Random.value > .9f)
+                {
+                    GameObject b = objectPools.GetBomber();
+                    b.transform.position = newLoc;
+                    waveObjects.Add(b);
+                    b.SetActive(true);
+                }
+                else
+                {
+                    GameObject d = objectPools.GetAvailableDrone();
+                    d.transform.position = newLoc;
+                    waveObjects.Add(d);
+                    d.SetActive(true);
+                }
+            }
         }
         while (waveObjects.Count < currentWave * waveCountMultiplier);
         currentWave++;
+        waveDelay++;
         UpdateWave?.Invoke(currentWave);
     }
 
-    private void RemoveWaveObject(GameObject target)
+    void RemoveWaveObject(GameObject target)
     {
         if (waveObjects.Count > 0)
         {
@@ -55,10 +88,10 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void WaveCompleted()
+    void WaveCompleted()
     {
         Debug.Log($"Wave Completed!");
         WaveComplete?.Invoke();
-        StartCurrentWave();
+        Invoke(nameof(StartCurrentWave), waveDelay);
     }
 }

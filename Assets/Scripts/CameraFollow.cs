@@ -11,10 +11,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float cameraHeightAdjustmentSpeed;
 
-    private void Start()
+    private void Awake()
     {
+        targetToFollow = GameObject.FindGameObjectWithTag("Player");
         if (targetToFollow == null)
-            targetToFollow = GameObject.FindGameObjectWithTag("PlayerShip");
+            Debug.LogWarning($"Could not find a GameObject with Player tag");
     }
 
     private void LateUpdate()

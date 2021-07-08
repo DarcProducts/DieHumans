@@ -11,14 +11,14 @@ public class CanvasManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Building.BreakBuilding += UpdateBuildingsLeft;
+        Building.BuildingDestroyed += UpdateBuildingsLeft;
         WaveManager.UpdateWave += UpdateCurrentWave;
         MessagesManager.UpdateScore += UpdateScore;
     }
 
     private void OnDisable()
     {
-        Building.BreakBuilding -= UpdateBuildingsLeft;
+        Building.BuildingDestroyed -= UpdateBuildingsLeft;
         WaveManager.UpdateWave -= UpdateCurrentWave;
         MessagesManager.UpdateScore -= UpdateScore;
     }
@@ -31,7 +31,7 @@ public class CanvasManager : MonoBehaviour
             scoreText.text = "Score: \n0";
     }
 
-    private void UpdateBuildingsLeft(GameObject notUsed)
+    private void UpdateBuildingsLeft()
     {
         if (cityGenerator != null && buildingsLeftText != null)
             buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.numberOfBuildings}";

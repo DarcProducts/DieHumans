@@ -2,38 +2,42 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource mainSource;
-    [SerializeField] private AudioSource weaponSource;
-    [SerializeField] private AudioClip meteorDestroyed;
-    [SerializeField] private AudioClip laserShoot;
-    [SerializeField] private AudioClip laserHit;
-    [SerializeField] private AudioClip[] explosions;
-    [SerializeField] private AudioClip machinegun;
-    [SerializeField] private AudioClip[] backgroundMusic;
+    [SerializeField] AudioSource mainSource;
+    [SerializeField] AudioSource weaponSource;
+    [SerializeField] AudioClip[] meteorDestroyed;
+    [SerializeField] AudioClip laserShoot;
+    [SerializeField] AudioClip[] explosions;
+    [SerializeField] AudioClip machinegun;
+    [SerializeField] AudioClip[] backgroundMusic;
+    [SerializeField] AudioClip buildingCollapse;
+    [SerializeField] AudioClip bombDrop;
+    [SerializeField] AudioClip pickupDropBox;
 
     private void OnEnable()
     {
         ObjectPools.ExplosionSound += PlayExplosionSound;
-        WeaponManager.MachinegunFired += PlayMachinegunClip;
+        WeaponManager.WeaponFired += PlayMachinegunClip;
         GameManager.FireWeaponButtonUp += StopWeaponSounds;
         Meteor.MeteorEvaded += PlayMeteorDestroyed;
+        AIUtilities.LaserActivated += PlayLaserShot;
+        Bomber.BombDropped += PlayBombDrop;
     }
 
     private void OnDisable()
     {
         ObjectPools.ExplosionSound -= PlayExplosionSound;
-        WeaponManager.MachinegunFired -= PlayMachinegunClip;
+        WeaponManager.WeaponFired -= PlayMachinegunClip;
         GameManager.FireWeaponButtonUp -= StopWeaponSounds;
         Meteor.MeteorEvaded -= PlayMeteorDestroyed;
+        AIUtilities.LaserActivated -= PlayLaserShot;
+        Bomber.BombDropped -= PlayBombDrop;
     }
 
-    public void PlayLaserShot()
+    public void PlayLaserShot(AudioSource source)
     {
-        if (mainSource != null && laserShoot != null)
-        {
-            
-        }
-    }
+        if (laserShoot != null && !source.isPlaying)
+            PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
+    } 
 
     public void StopWeaponSounds()
     {
@@ -44,26 +48,38 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayBombDrop()
+    {
+        if (mainSource != null && bombDrop != null)
+            PlayAtSourceWithVPRange(mainSource, bombDrop, .6f, .88f, .8f, 1.2f);
+    }
+
+    public void PlayPickUpDropBox()
+    {
+        if (mainSource != null && pickupDropBox != null)
+            PlayAtSourceWithVPRange(mainSource, pickupDropBox, .6f, .88f, .8f, 1.2f);
+    }
+
     public void PlayMachinegunClip()
     {
         if (weaponSource != null && machinegun != null)
-                PlayAtSourceWithVPRange(weaponSource, machinegun, .8f, 1f, .8f, 1.2f);
+                PlayAtSourceWithVPRange(weaponSource, machinegun, .6f, .88f, .8f, 1.2f);
     }
 
-    public void PlayMachinegunHit()
+    public void PlayBuildingCollapse()
     {
-        
-    }
-
-    public void PlayLaserHit(GameObject targetHit)
-    {
-        
+        if (mainSource != null && buildingCollapse != null)
+            PlayAtSourceWithVPRange(mainSource, buildingCollapse, .6f, 1f, .2f, .8f);
     }
 
     public void PlayMeteorDestroyed(GameObject obj)
     {
-        if (mainSource != null && meteorDestroyed != null)
-            PlayAtSourceWithVPRange(mainSource, meteorDestroyed, .6f, 1f, .8f, 1.2f);
+        if (mainSource != null && meteorDestroyed.Length > 0)
+        {
+            int ranNum = Random.Range(0, meteorDestroyed.Length);
+            if (meteorDestroyed[ranNum] != null)
+                PlayAtSourceWithVPRange(mainSource, meteorDestroyed[ranNum], .6f, 1f, .8f, 1.2f);
+        }
     }
 
     public void PlayExplosionSound(Vector3 loc)

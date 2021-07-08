@@ -6,9 +6,9 @@ public class MeteorManager : MonoBehaviour
     [SerializeField] Vector3 meteorSpawnMax;
     [SerializeField] bool startMeteorStorm;
     [SerializeField] ObjectPools objectPools;
-    [SerializeField] float meteorStormLength;
     [SerializeField] float meteorDropRate;
     [SerializeField] float meteorSpeed;
+    [Range(0f, 1f)] [SerializeField] float boxSpawnRate;
     float currentDrop;
 
     void Start()
@@ -30,11 +30,18 @@ public class MeteorManager : MonoBehaviour
             GameObject meteor = objectPools.GetAvailableMeteor();
             if (meteor != null)
             {
-                Meteor m = meteor.GetComponent<Meteor>();
-                if (m != null)
-                    m.SetMeteorSpeed(meteorSpeed);
-                meteor.transform.position = new Vector3(Random.Range(meteorSpawnMin.x, meteorSpawnMax.x), Random.Range(meteorSpawnMin.y, meteorSpawnMax.y), Random.Range(meteorSpawnMin.z, meteorSpawnMax.z));
-                meteor.SetActive(true);
+                meteor.GetComponent<Meteor>().SetMeteorSpeed(meteorSpeed);
+                Vector3 ranPos = new Vector3(Random.Range(meteorSpawnMin.x, meteorSpawnMax.x), Random.Range(meteorSpawnMin.y, meteorSpawnMax.y), Random.Range(meteorSpawnMin.z, meteorSpawnMax.z));
+                meteor.transform.position = ranPos;
+                
+                if (Random.value < boxSpawnRate)
+                {
+                    GameObject box = objectPools.GetDropBox();
+                    box.transform.position = ranPos;
+                    box.SetActive(true);
+                } 
+                else
+                    meteor.SetActive(true);
             }
             currentDrop = meteorDropRate;
         }

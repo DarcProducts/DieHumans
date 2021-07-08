@@ -28,12 +28,12 @@ public class CityGenerator : MonoBehaviour
 
     void OnEnable()
     {
-        Building.BreakBuilding += RemoveABuilding;
+        Building.BuildingDestroyed += RemoveABuilding;
     }
 
     void OnDisable()
     {
-        Building.BreakBuilding -= RemoveABuilding;
+        Building.BuildingDestroyed -= RemoveABuilding;
     }
 
     Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
@@ -98,26 +98,13 @@ public class CityGenerator : MonoBehaviour
             scaleObject.transform.localScale = new Vector3(newSize.x, newSize.y, newSize.z);
     }
 
-    [ContextMenu("Get City Bounds")]
-    public Vector3[] GetCityBounds()
-    {
-        if (cityOrigin != null)
-        {
-            Vector3[] cB = new Vector3[2];
-            cB[0] = new Vector3(-cityOrigin.x, yPlaneLevel * gridCellSize, gridWidth * gridCellSize - cityOrigin.x);
-            cB[1] = new Vector3(-cityOrigin.z, gridHeight * gridCellSize, gridDepth * gridCellSize - cityOrigin.z);
-            return cB;
-        }
-        return new Vector3[2];
-    }
-
     public void SetCityOrigin(Vector3 newOrigin)
     {
         if (cityOrigin != null)
             cityOrigin = newOrigin;
     }
 
-    public void RemoveABuilding(GameObject notUsed) => numberOfBuildings--;
+    public void RemoveABuilding() => numberOfBuildings--;
 
     public TextMesh CreateWorldText(string text, TextAnchor textAnchor, TextAlignment textAlignment, Color fontColor = default,
         Vector3 localPosition = default, int fontSize = 20, int sortingOrder = 0, Transform parent = null)

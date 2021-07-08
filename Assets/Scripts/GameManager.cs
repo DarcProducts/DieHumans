@@ -24,15 +24,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (weaponManager != null)
-            CheckWeapons();
         if (playerManager != null)
             CheckController();
-    }
-
-    void CheckWeapons()
-    {
-        
     }
 
     void CheckController()
@@ -40,18 +33,18 @@ public class GameManager : MonoBehaviour
         if (playerManager != null)
         {
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y > .1f)
-                playerManager.TransformShip(Vector3.forward, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y);
+                playerManager.TransformShip(Vector3.forward, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y, true);
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y < -.1f)
-                playerManager.TransformShip(Vector3.forward, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y);
+                playerManager.TransformShip(Vector3.forward, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).y, true);
 
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x > .1f)
-                playerManager.RotateShip(Vector3.up, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x);
+                playerManager.TransformShip(Vector3.right, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, true);
             if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x < -.1f)
-                playerManager.RotateShip(Vector3.down, -OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x);
+                playerManager.TransformShip(Vector3.right, OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick).x, true);
             if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-                playerManager.TransformShip(Vector3.up, 1);
+                playerManager.TransformShip(Vector3.up, 1, false);
             if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
-                playerManager.TransformShip(Vector3.down, 1);
+                playerManager.TransformShip(Vector3.down, 1, false);
         }
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))

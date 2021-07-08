@@ -12,6 +12,11 @@ TagManager:
   - Building
   - Enemy
   - ArcadeWall
+  - Drone
+  - Wall
+  - Bomber
+  - Projectile
+  - Parachute
   layers:
   - Default
   - TransparentFX
@@ -23,12 +28,12 @@ TagManager:
   - LaserIgnore
   - Building
   - Player
-  - 
+  - Wall
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Rocket
+  - PostProcessing
+  - Projectile
+  - Meteor
   - 
   - 
   - 

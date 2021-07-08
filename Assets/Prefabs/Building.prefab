@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2bad5b91027ec7f4aa74d59af7567922, type: 2}
+  - {fileID: 2100000, guid: a63e26497092f1d4c9dadd7c93754404, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,8 +98,6 @@ MonoBehaviour:
   buildingHealthMultiplier: 250
   buildingPeopleMultiplier: 500
   brokenMaterial: {fileID: 2100000, guid: 37109bedd77a87e40bed6a2cde54a9ae, type: 2}
-  shakeIntensity: 0.01
-  duration: 0.1
   collapseRate: 0.5
 --- !u!65 &7537392153021471599
 BoxCollider:

@@ -6,22 +6,24 @@ public enum WeaponState { machinegun, rocket, special }
 public class WeaponManager : MonoBehaviour
 {
     public WeaponState currentWeapon = WeaponState.machinegun;
-    public static UnityAction MachinegunFired;
-    [SerializeField] float machinegunDamage;
+    public static UnityAction WeaponFired;
+    [SerializeField] float gunDamage;
     [SerializeField] float rocketDamage;
     [SerializeField] float specialDamage;
     [SerializeField] GameObject aimTarget;
     [SerializeField] float aimTargetDistance;
     [SerializeField] float rocketHomingSpeed;
-    [SerializeField] LineRenderer machineGunShot;
     [SerializeField] int currentRocketAmount;
+    [SerializeField] float gunFireRate;
+    [SerializeField] float rotateSpeed;
+    [SerializeField] float projectileForce;
     [SerializeField] LayerMask ignoreDamageLayer;
-    Rocket currentRocket = null;
+    readonly bool isRotatingShip;
+    GameObject currentRocket = null;
     bool isHoldingRocketButton = false;
     bool canLaunchRocket = true;
     ObjectPools objectPools;
     GameObject player;
-    float gunFireRate = .3f;
     float currentRate;
 
     void OnEnable()
@@ -29,7 +31,7 @@ public class WeaponManager : MonoBehaviour
         GameManager.FireWeaponButtonHold += FireCurrentWeapon;
         GameManager.FireWeaponButtonDown += RocketButtonTrue;
         GameManager.FireWeaponButtonUp += RocketButtonFalse;
-        GameManager.FireWeaponButtonUp += DisableMachinegunBullet;
+        DropBox.BoxAction += AquiredBox;
     }
 
     void OnDisable()
@@ -37,7 +39,7 @@ public class WeaponManager : MonoBehaviour
         GameManager.FireWeaponButtonHold -= FireCurrentWeapon;
         GameManager.FireWeaponButtonDown -= RocketButtonTrue;
         GameManager.FireWeaponButtonUp -= RocketButtonFalse;
-        GameManager.FireWeaponButtonUp -= DisableMachinegunBullet;
+        DropBox.BoxAction -= AquiredBox;
     }
 
     void RocketButtonFalse() => isHoldingRocketButton = false;
@@ -56,6 +58,12 @@ public class WeaponManager : MonoBehaviour
         InitializeAimTarget();
     }
 
+    void LateUpdate()
+    {
+        if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) && player != null && aimTarget != null)
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, aimTarget.transform.rotation, rotateSpeed * Time.smoothDeltaTime);
+    }
+
     void LaunchRocket()
     {
         canLaunchRocket = false;
@@ -63,21 +71,22 @@ public class WeaponManager : MonoBehaviour
         {
             if (currentRocketAmount > 0)
             {
-                currentRocket = objectPools.GetAvailableRocket().GetComponent<Rocket>();
-                if (currentRocket != null)
+                currentRocket = objectPools.GetAvailableRocket();
+                Rocket r = currentRocket.GetComponent<Rocket>();
+                if (currentRocket != null && r != null)
                 {
                     currentRocket.transform.position = player.transform.position + Vector3.down;
-                    currentRocket.gameObject.SetActive(true);
+                    r.rocketDamage = rocketDamage;
+                    r.type = RocketType.homing;
+                    currentRocket.SetActive(true);
                     if (isHoldingRocketButton)
-                    {
-                        currentRocket.rocketDamage = rocketDamage;
                         currentRocket.transform.position = Vector3.MoveTowards(currentRocket.transform.position, aimTarget.transform.position, rocketHomingSpeed * Time.fixedDeltaTime);
-                    }
                     if (!isHoldingRocketButton)
                     {
-                        SetCurrentRocketHoming(false);
+                        r.type = RocketType.standard;
                         currentRocketAmount--;
                         canLaunchRocket = true;
+                        currentRocket = null;
                     }
                 }
             }
@@ -89,7 +98,7 @@ public class WeaponManager : MonoBehaviour
         switch (currentWeapon)
         {
             case WeaponState.machinegun:
-                FireMachineguns();
+                FireProjectiles();
                 break;
 
             case WeaponState.rocket:
@@ -109,42 +118,31 @@ public class WeaponManager : MonoBehaviour
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
-    void FireMachineguns()
+    void FireProjectiles()
     {
-        if (machineGunShot != null && player != null)
+        if (objectPools != null && player != null)
         {
-            machineGunShot.enabled = false;
-            machineGunShot.positionCount = 2;
-            machineGunShot.SetPosition(0, player.transform.position + player.transform.forward);
-            if (Physics.Raycast(player.transform.position + player.transform.forward, aimTarget.transform.position - player.transform.position + player.transform.forward, out RaycastHit hitInfo))
-            {
-                machineGunShot.SetPosition(1, hitInfo.point);
-                TryDamagingTarget(hitInfo.collider.gameObject);
-            }
-            else
-                machineGunShot.SetPosition(1, aimTarget.transform.position);
+            GameObject p = objectPools.GetProjectile();
+
             currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
-            if (currentRate <= 0)
+            if (currentRate <= 0 && p != null && aimTarget != null)
             {
-                MachinegunFired?.Invoke();
-                machineGunShot.enabled = true;
+                p.transform.position = player.transform.position + player.transform.forward * 6;
+                p.GetComponent<Projectile>().currentDamage = gunDamage;
+                p.SetActive(true);
+                p.GetComponent<Rigidbody>().AddForce(projectileForce * (aimTarget.transform.position - player.transform.position + player.transform.forward).normalized, ForceMode.Impulse);
+                WeaponFired?.Invoke();
                 currentRate = gunFireRate;
             }
         }
     }
-
-    void DisableMachinegunBullet()
-    {
-        if (machineGunShot != null)
-            machineGunShot.enabled = false;
-    }
-
+ 
     public float GetCurrentWeaponDamage()
     {
         switch (currentWeapon)
         {
             case WeaponState.machinegun:
-                return machinegunDamage;
+                return gunDamage;
 
             case WeaponState.rocket:
                 return rocketDamage;
@@ -162,15 +160,29 @@ public class WeaponManager : MonoBehaviour
         IDamagable<float> d = target.GetComponent<IDamagable<float>>();
         if (d != null)
         {
-            if (target.layer.Equals(ignoreDamageLayer))
+            if (IsInLayerMask(target, ignoreDamageLayer))
                 return;
             d.ApplyDamage(GetCurrentWeaponDamage());
         }
     }
 
-    void SetCurrentRocketHoming(bool value)
+    public void AquiredBox(byte type, float value)
     {
-        if (currentRocket != null)
-            currentRocket.GetComponent<Rocket>().isHoming = value;
+        if (type == 0)
+            IncreaseDamage(value);
+        else if (type == 1)
+            InceaseProjectileSpeed(value);
+        else
+            DecreaseFireRate(value);
     }
+
+    public void DecreaseFireRate(float value) => gunFireRate = gunFireRate <= .01f ? .01f : gunFireRate -= value;
+
+    public void IncreaseDamage(float value) => gunDamage += value;
+
+    public void InceaseProjectileSpeed(float value) => projectileForce = projectileForce > 500 ? 500 : projectileForce += value;
+
+    public bool IsInLayerMask(GameObject obj, LayerMask layerMask) => ((layerMask.value & (1 << obj.layer)) > 0);
+
+    public bool GetIsRotatingShip() => isRotatingShip;
 }

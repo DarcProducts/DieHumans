@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class AIUtilities : MonoBehaviour
 {
+    public static UnityAction<AudioSource> LaserActivated;
     CityGenerator CityGenerator { get; set; }
     ObjectPools ObjectPools { get; set; }
     GameObject Player { get; set; }
@@ -20,24 +22,6 @@ public abstract class AIUtilities : MonoBehaviour
             Debug.LogWarning("An object with a CityGenerator component could not be found in scene");
         if (ObjectPools == null)
             Debug.LogWarning("An object with a EnemyManager component could not be found in scene");
-    }
-    public Vector3 PickTargetLocationWithinCity(float maxWanderHeight)
-    {
-        if (CityGenerator != null)
-        {
-
-            Vector3[] cityBounds = GetCityBounds();
-            return new Vector3(Random.Range(cityBounds[0].x, cityBounds[0].z), Random.Range(CityGenerator.GetMaxBuildingHeight() + CityGenerator.GetGridSize() + 2, CityGenerator.GetMaxBuildingHeight() + CityGenerator.GetGridSize() + maxWanderHeight), Random.Range(cityBounds[1].x, cityBounds[1].z));
-        }
-        return Vector3.zero;
-    }
-
-    public Vector3[] GetCityBounds()
-
-    {
-        if (CityGenerator != null)
-            return CityGenerator.GetCityBounds();
-        return new Vector3[2];
     }
 
     public bool CheckPlayerWithinRange(GameObject target, float range)
@@ -78,31 +62,31 @@ public abstract class AIUtilities : MonoBehaviour
                 r.SetActive(true);
                 if (!isHoming)
                 {
-                    rocket.isHoming = false;
+                    rocket.type = RocketType.standard;
                     r.GetComponent<Rigidbody>().AddForce(direction.normalized * thrust, ForceMode.Impulse);
                 }
                 else
                 {
-                    rocket.isHoming = true;
-                    rocket.homingSpeed = homingSpeed;
+                    rocket.type = RocketType.homing;
+                    rocket.rocketSpeed = homingSpeed;
                 }
             }
         }
     }
 
-    public void ShootALaser(LineRenderer line, Vector3 from, Vector3 dir, float damage, float duration) => StartCoroutine(InitializeLaserbeam(line, from, dir, damage, duration));
-
-    private IEnumerator InitializeLaserbeam(LineRenderer line, Vector3 from, Vector3 dir, float damage, float duration)
+    public void ShootALaser(LineRenderer line, Vector3 from, Vector3 dir, float damage, AudioSource source = null)
     {
-        line.enabled = true;
         if (line != null)
         {
-            if(Physics.Raycast(from, dir, out RaycastHit hitInfo))
+            line.enabled = true;
+            if (Physics.Raycast(from, dir, out RaycastHit hitInfo))
             {
                 line.positionCount = 2;
                 line.SetPosition(0, from);
                 line.SetPosition(1, hitInfo.point);
                 TryDamagingTarget(hitInfo.collider.gameObject, damage);
+                if (source != null)
+                    LaserActivated?.Invoke(source);
             }
             else
             {
@@ -111,10 +95,9 @@ public abstract class AIUtilities : MonoBehaviour
                 line.SetPosition(1, dir);
             }
         }
-        yield return new WaitForSeconds(duration);
-        line.enabled = false;
-        StopCoroutine(InitializeLaserbeam(line, from, dir, damage, duration));
     }
+
+    public void DeactivateLaser(LineRenderer laser) => laser.enabled = false;
 
     public virtual void TryDamagingTarget(GameObject target, float damage)
     {

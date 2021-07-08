@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 669349246805688858}
   - component: {fileID: 2503640958477192212}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
       key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -111,18 +111,18 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
+      atime1: 26407
+      atime2: 36044
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+      m_NumAlphaKeys: 4
+    numCornerVertices: 3
+    numCapVertices: 3
     alignment: 0
     textureMode: 1
     shadowBias: 0.5
@@ -143,9 +143,9 @@ GameObject:
   - component: {fileID: 2112900300994175142}
   - component: {fileID: 3128511423197193080}
   - component: {fileID: -9090695516346829824}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SimpleDrone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 3128511423197193081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5344925265168762007}
   m_Father: {fileID: 0}
@@ -177,22 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7c5dbf9c8787849b24c4214adb4fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActivated: 0
-  maxHealth: 1000
-  weaponDamage: 0.5
-  moveSpeed: 2
-  minMaxHeight: {x: 10, y: 40}
-  maxSpreadDistance: 100
+  state: 0
+  maxHealth: 500
+  weaponDamage: 0.2
+  moveSpeed: 8
   targetCheckDistance: 100
   laser: {fileID: 2503640958477192212}
-  laserWidth: 0.8
+  laserWidth: 2
   explosionSize: 2
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   targetLayers:
     serializedVersion: 2
-    m_Bits: 772
+    m_Bits: 768
+  audioSource: {fileID: 3128511423197193080}
 --- !u!33 &8565265450610005038
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -263,9 +262,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -298,7 +297,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -362,7 +361,7 @@ GameObject:
   - component: {fileID: 5344925265168762007}
   - component: {fileID: 5956708266896821343}
   - component: {fileID: 3633014397927032060}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Guns
   m_TagString: Untagged
   m_Icon: {fileID: 0}

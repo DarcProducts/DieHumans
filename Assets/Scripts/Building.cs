@@ -5,15 +5,13 @@ using UnityEngine.Events;
 public class Building : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3> BuildingDamaged;
-    public static UnityAction<GameObject> BreakBuilding;
-    public static UnityAction<GameObject, byte> TextInfo;
+    public static UnityAction BuildingDestroyed;
+    public static UnityAction<GameObject, byte, byte, float> TextInfo;
     [SerializeField] float buildingHealthMultiplier;
     [SerializeField] int buildingPeopleMultiplier;
     [SerializeField] Material brokenMaterial;
     float _currentBuildingHealth;
     int _currentNumberOfPeopleInside;
-    [SerializeField] float shakeIntensity = .01f;
-    [SerializeField] float duration = .1f;
     [SerializeField] float collapseRate = .4f;
     ObjectPools objectPools;
     float maxBuildingHealth;
@@ -61,7 +59,7 @@ public class Building : MonoBehaviour, IDamagable<float>
             if (e != null)
             {
                 e.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                e.transform.localScale = new Vector3(transform.localScale.x, Random.Range(.4f, 1.4f), transform.localScale.z);
+                e.transform.localScale = new Vector3(transform.localScale.x, Random.Range(.4f, 3f), transform.localScale.z);
                 e.SetActive(true);
                 brokenEffectSet = true;
             }
@@ -75,20 +73,10 @@ public class Building : MonoBehaviour, IDamagable<float>
         if (transform.localScale.y <= 0)
         {
             InitializeBrokenBuildingEffect();
-            TextInfo?.Invoke(gameObject, 3);
+            TextInfo?.Invoke(gameObject, 3, 1, maxBuildingHealth);
+            BuildingDestroyed?.Invoke();
             gameObject.SetActive(false);
         }
-    }
-
-    IEnumerator ShakeBuilding()
-    {
-        if (duration > 0)
-        {
-            var randPos = Random.insideUnitSphere * shakeIntensity;
-            transform.Translate(new Vector3(randPos.x, transform.position.y, randPos.z));
-            yield return new WaitForSeconds(duration);
-        }
-        StopCoroutine(ShakeBuilding());
     }
 
     public float GetCurrentHealth() => _currentBuildingHealth;
@@ -101,7 +89,6 @@ public class Building : MonoBehaviour, IDamagable<float>
     {
         _currentBuildingHealth -= damage;
         BuildingDamaged?.Invoke(transform.position);
-        StartCoroutine(ShakeBuilding());
         if (_currentBuildingHealth <= 0)
         {
             InitializeCollapsingEffect();

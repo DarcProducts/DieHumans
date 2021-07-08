@@ -1,18 +1,21 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
+public enum RocketType { standard, homing, bomb }
 public class Rocket : MonoBehaviour, IDamagable<float>
 {
+    public static UnityAction<GameObject, byte, byte, float> TextInfo;
     public static UnityAction<Vector3, float> ExplodeRocket;
     public static UnityAction<Vector3> WasDamaged;
-    public bool isHoming;
+    public RocketType type = RocketType.standard;
     public Vector3 currentTarget;
     public float rocketDamage;
     public float maxRocketDistance;
-    public float homingSpeed;
+    public float rocketSpeed;
     public float explosionRadius;
+    public LayerMask damagableLayers;
     [SerializeField] private float maxHealth = 2;
-    private float currentDirection;
     private float currentHealth = 1;
     private Vector3 startLoc;
     private TrailRenderer rocketTrail;
@@ -35,7 +38,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
             rocketTrail.Clear();
     }
 
-    private void Update() => ActivateRocket();
+    private void FixedUpdate() => ActivateRocket();
 
     private void ActivateRocket()
     {
@@ -45,36 +48,35 @@ public class Rocket : MonoBehaviour, IDamagable<float>
             TryDamagingNearTargets();
             gameObject.SetActive(false);
         }
-        else
+        switch (type)
         {
-            if (isHoming)
-            {
-                transform.LookAt(currentTarget);
-                transform.position = Vector3.MoveTowards(transform.position, currentTarget, homingSpeed * Time.fixedDeltaTime);
-            }
-            else if (!isHoming)
-            {
+            case RocketType.standard:
                 transform.LookAt(transform.position + transform.forward * 2);
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward * 2, homingSpeed * Time.fixedDeltaTime);
-            }
-        }
-        if (currentHealth <= 0)
-        {
-            ExplodeRocket?.Invoke(transform.position, explosionRadius);
-            TryDamagingNearTargets();
-            gameObject.SetActive(false);
+                transform.position = Vector3.MoveTowards(transform.position, (transform.position + transform.forward * 10).normalized, rocketSpeed * Time.fixedDeltaTime);
+                break;
+            case RocketType.homing:
+                transform.LookAt(currentTarget);
+                transform.position = Vector3.MoveTowards(transform.position, currentTarget.normalized, rocketSpeed * Time.fixedDeltaTime);
+                break;
+            case RocketType.bomb:
+                transform.forward = Vector3.down;
+                Rigidbody r = GetComponent<Rigidbody>();
+                if (r != null)
+                    r.useGravity = true;
+                break;
+            default:
+                break;
         }
     }
 
-    private void OnCollisionEnter(Collision collider)
-    {
-        ExplodeRocket?.Invoke(transform.position, explosionRadius);
-        TryDamagingNearTargets();
-        gameObject.SetActive(false);
-    }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Bomber"))
+            return;
+        if (other.CompareTag("Building"))
+            TextInfo?.Invoke(gameObject, 3, 1, rocketDamage);
+
         ExplodeRocket?.Invoke(transform.position, explosionRadius);
         TryDamagingNearTargets();
         gameObject.SetActive(false);
@@ -82,7 +84,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
 
     private void TryDamagingNearTargets()
     {
-        Collider[] closeObjects = Physics.OverlapSphere(transform.position, explosionRadius);
+        Collider[] closeObjects = Physics.OverlapSphere(transform.position, explosionRadius, damagableLayers);
         foreach (Collider hit in closeObjects)
         {
 
@@ -93,9 +95,15 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     }
 
     public void ApplyDamage(float amount)
-    {
+    { 
         currentHealth -= amount;
         WasDamaged?.Invoke(transform.position);
+        if (currentHealth <= 0)
+        {
+            TextInfo?.Invoke(gameObject, 2, 1, 10);
+            ExplodeRocket?.Invoke(transform.position, explosionRadius);
+            gameObject.SetActive(false);
+        }
     }
 
     public void SetCurrentTarget(Vector3 value) => currentTarget = value;
