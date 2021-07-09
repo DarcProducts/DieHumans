@@ -17,6 +17,8 @@ TagManager:
   - Bomber
   - Projectile
   - Parachute
+  - CityArea
+  - DropBox
   layers:
   - Default
   - TransparentFX
@@ -35,7 +37,7 @@ TagManager:
   - Projectile
   - Meteor
   - 
-  - 
+  - DropBox
   - 
   - 
   - 

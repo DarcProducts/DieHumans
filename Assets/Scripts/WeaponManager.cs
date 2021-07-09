@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,10 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float projectileForce;
     [SerializeField] LayerMask ignoreDamageLayer;
+    [SerializeField] GameObject pickupEffect;
+    [SerializeField] float pickupEffectDuration;
+    [SerializeField] TMP_Text pickupText;
+    PlayerManager playerManager;
     readonly bool isRotatingShip;
     GameObject currentRocket = null;
     bool isHoldingRocketButton = false;
@@ -46,25 +51,36 @@ public class WeaponManager : MonoBehaviour
 
     void RocketButtonTrue() => isHoldingRocketButton = true;
 
-    void Start()
+    private void Awake()
     {
-        currentRate = gunFireRate;
+        playerManager = FindObjectOfType<PlayerManager>();
         objectPools = FindObjectOfType<ObjectPools>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (objectPools == null)
             Debug.LogWarning("An object with a EnemyManager component could not be found in scene");
         if (player == null)
             Debug.LogWarning("No GameObject with Player tag could be found in scene");
+        if (playerManager == null)
+            Debug.LogWarning("Could not find a GameObject with PlayerManager component attached");
+    }
+
+    void Start()
+    {
+        if (pickupText != null)
+            pickupText.gameObject.SetActive(false);
+        if (pickupEffect != null)
+            pickupEffect.SetActive(false);
+        currentRate = gunFireRate;
         InitializeAimTarget();
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) && player != null && aimTarget != null)
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, aimTarget.transform.rotation, rotateSpeed * Time.smoothDeltaTime);
     }
 
-    void LaunchRocket()
+    private void LaunchRocket()
     {
         canLaunchRocket = false;
         if (player != null && objectPools != null)
@@ -93,7 +109,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void FireCurrentWeapon()
+    private void FireCurrentWeapon()
     {
         switch (currentWeapon)
         {
@@ -112,13 +128,44 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void InitializeAimTarget()
+    public void StartPickUpBoxEffect()
+    {
+        if (pickupEffect != null)
+        {
+            pickupEffect.SetActive(true);
+            Invoke(nameof(DeactivatePickupEffect), pickupEffectDuration);
+        }
+    }
+
+    void DisplayPickupText(string message)
+    {
+        if (pickupText != null)
+        {
+            pickupText.text = message;
+            pickupText.gameObject.SetActive(true);
+            Invoke(nameof(DeactivatePickupText), pickupEffectDuration);
+        }
+    }
+
+    private void DeactivatePickupEffect()
+    {
+        if (pickupEffect != null)
+            pickupEffect.SetActive(false);
+    }
+
+    void DeactivatePickupText()
+    {
+        if (pickupText != null)
+            pickupText.gameObject.SetActive(false);
+    }
+
+    private void InitializeAimTarget()
     {
         if (aimTarget != null)
             aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
 
-    void FireProjectiles()
+    private void FireProjectiles()
     {
         if (objectPools != null && player != null)
         {
@@ -128,15 +175,19 @@ public class WeaponManager : MonoBehaviour
             if (currentRate <= 0 && p != null && aimTarget != null)
             {
                 p.transform.position = player.transform.position + player.transform.forward * 6;
-                p.GetComponent<Projectile>().currentDamage = gunDamage;
+                Projectile j = p.GetComponent<Projectile>();
+                Rigidbody r = p.GetComponent<Rigidbody>();
+                if (j != null)
+                    j.currentDamage = gunDamage;
                 p.SetActive(true);
-                p.GetComponent<Rigidbody>().AddForce(projectileForce * (aimTarget.transform.position - player.transform.position + player.transform.forward).normalized, ForceMode.Impulse);
+                if (r != null)
+                    r.AddForce(projectileForce * (aimTarget.transform.position - player.transform.position + player.transform.forward).normalized, ForceMode.Impulse);
                 WeaponFired?.Invoke();
                 currentRate = gunFireRate;
             }
         }
     }
- 
+
     public float GetCurrentWeaponDamage()
     {
         switch (currentWeapon)
@@ -149,6 +200,7 @@ public class WeaponManager : MonoBehaviour
 
             case WeaponState.special:
                 return specialDamage;
+
             default:
                 break;
         }
@@ -168,19 +220,63 @@ public class WeaponManager : MonoBehaviour
 
     public void AquiredBox(byte type, float value)
     {
-        if (type == 0)
-            IncreaseDamage(value);
-        else if (type == 1)
-            InceaseProjectileSpeed(value);
-        else
-            DecreaseFireRate(value);
+        StartPickUpBoxEffect();
+        switch (type)
+        {
+            case 0:
+                IncreaseDamage(value);
+                DisplayPickupText($"+ { value } Damage");
+                break;
+
+            case 1:
+                InceaseProjectileSpeed(value);
+                DisplayPickupText($"+ { value } Projectile Speed");
+                break;
+
+            case 2:
+                DecreaseFireRate(value);
+                DisplayPickupText($"- { value } Fire Rate");
+                break;
+
+            case 3:
+                IncreaseShipThrust(value);
+                DisplayPickupText($"+ { value } Ship Speed");
+                break;
+
+            default:
+                break;
+        }
     }
 
-    public void DecreaseFireRate(float value) => gunFireRate = gunFireRate <= .01f ? .01f : gunFireRate -= value;
+    void IncreaseShipThrust(float value)
+    {
+        if (playerManager != null)
+        {
+            if (playerManager.GetShipSpeedFB() >= 32f)
+            {
+                DisplayPickupText("Max Ship Speed");
+                return;
+            }
+            else
+                playerManager.IncreaseShipSpeeds(value);
+        }
+    }
 
-    public void IncreaseDamage(float value) => gunDamage += value;
+    void DecreaseFireRate(float value)
+    {
+        gunFireRate = gunFireRate <= .01f ? .01f : gunFireRate -= value;
+        if (gunFireRate.Equals(.01f))
+            DisplayPickupText("Max Fire Rate");
+    }
 
-    public void InceaseProjectileSpeed(float value) => projectileForce = projectileForce > 500 ? 500 : projectileForce += value;
+    void IncreaseDamage(float value) => gunDamage += value;
+
+    void InceaseProjectileSpeed(float value)
+    {
+        projectileForce = projectileForce > 500 ? 500 : projectileForce += value;
+        if (projectileForce.Equals(500))
+            DisplayPickupText("Max Projectile Speed");
+    }
 
     public bool IsInLayerMask(GameObject obj, LayerMask layerMask) => ((layerMask.value & (1 << obj.layer)) > 0);
 

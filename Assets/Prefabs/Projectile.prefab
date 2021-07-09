@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDamage: 10
-  maxDistance: 1000
   hitLayers:
     serializedVersion: 2
     m_Bits: 38912
@@ -132,4 +131,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.732051, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: -0.000000059604645}
+  m_Center: {x: 0, y: 0, z: 0}

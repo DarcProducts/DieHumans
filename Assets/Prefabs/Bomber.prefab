@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87febab0375407840b43a54f14246825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8000
-  minMaxBombHeight: {x: 60, y: 100}
+  maxHealth: 1000
+  minMaxBombHeight: {x: 80, y: 100}
   bombDamage: 400
+  bombStartTime: 16
   shipSpeed: 12
   bombDropRate: 3
 --- !u!33 &7347226098151997308

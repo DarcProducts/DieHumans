@@ -3,14 +3,15 @@ using UnityEngine.Events;
 
 public class Meteor : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction<Vector3, float> MeteorExploded;
+    public static UnityAction<Vector3, float, byte> MeteorExploded;
     public static UnityAction<GameObject> MeteorEvaded;
-    public static UnityAction<GameObject, byte, byte, float> TextInfo;
+    public static UnityAction<Vector3, byte, byte, float> TextInfo;
+    public static UnityAction<Vector3, string, float, Color> DamageInfo;
     public float explosionRadius;
     public LayerMask hitLayers;
     [SerializeField] Vector2 meteorMinMaxSize;
-    [SerializeField] private float healthMultiplier;
-    [SerializeField] private byte pointMultiplier;
+    [SerializeField] float healthMultiplier;
+    [SerializeField] byte pointMultiplier;
     float newScale;
     float currentHealth;
     float currentSpeed;
@@ -29,7 +30,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(gameObject, 2, 0, 0);
+            TextInfo?.Invoke(transform.position, 2, 0, 0);
             MeteorEvaded?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
@@ -41,16 +42,20 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     {
         if (!IsInLayerMask(collision.gameObject, hitLayers))
         {
-            MeteorExploded?.Invoke(transform.position, newScale * 2);
+            MeteorExploded?.Invoke(transform.position, newScale * 2, 0);
             gameObject.SetActive(false);
             return;
         }
-        else if (!collision.gameObject.CompareTag("Projectile"))
+        else
         {
-            TextInfo?.Invoke(gameObject, 3, 1, currentHealth * pointMultiplier);
-            MeteorExploded?.Invoke(transform.position, newScale * 2);
-            TryDamagingNearTargets();
-            gameObject.SetActive(false);
+            if (!collision.gameObject.CompareTag("Projectile"))
+            {
+                if (!collision.gameObject.CompareTag("Building"))
+                    currentHealth %= 2;
+                MeteorExploded?.Invoke(transform.position, newScale * 2, 0);
+                TryDamagingNearTargets();
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -61,7 +66,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         {
             IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
             if (d != null)
-                d.ApplyDamage(currentHealth);
+                d.ApplyDamage(Mathf.RoundToInt(currentHealth));
         }
     }
 

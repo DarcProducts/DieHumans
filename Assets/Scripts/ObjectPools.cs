@@ -42,8 +42,10 @@ public class ObjectPools : MonoBehaviour
     readonly List<GameObject> explosionEffectPool = new List<GameObject>();
     [SerializeField] GameObject explosionEffect2;
     readonly List<GameObject> explosionEffect2Pool = new List<GameObject>();
-    [SerializeField] GameObject pickupEffect;
-    readonly List<GameObject> pickupEffectPool = new List<GameObject>();
+    [SerializeField] GameObject explosionEffect3;
+    readonly List<GameObject> explosionEffect3Pool = new List<GameObject>();
+    [SerializeField] GameObject explosionEffect4;
+    readonly List<GameObject> explosionEffect4Pool = new List<GameObject>();
     [Header("Projectile Stuff")]
     [SerializeField] GameObject projectile;
     readonly List<GameObject> projectilePool = new List<GameObject>();
@@ -58,8 +60,8 @@ public class ObjectPools : MonoBehaviour
         Meteor.MeteorEvaded += DestroyMeteor;
         SimpleDrone.DroneExploded += Explode;
         Bomber.BomberExploded += Explode;
-        Projectile.ProjectileExploded += Explode2;
-        DropBox.HitOtherObject += Explode;
+        Projectile.ProjectileExploded += Explode;
+        DropBox.HitObject += Explode;
     }
 
     void OnDisable()
@@ -69,8 +71,8 @@ public class ObjectPools : MonoBehaviour
         Meteor.MeteorEvaded -= DestroyMeteor;
         SimpleDrone.DroneExploded -= Explode;
         Bomber.BomberExploded -= Explode;
-        Projectile.ProjectileExploded -= Explode2;
-        DropBox.HitOtherObject -= Explode;
+        Projectile.ProjectileExploded -= Explode;
+        DropBox.HitObject -= Explode;
     }
 
     private void DestroyMeteor(GameObject previousMeteor)
@@ -82,37 +84,15 @@ public class ObjectPools : MonoBehaviour
         previousMeteor.SetActive(false);
     }
 
-    public void Explode(Vector3 position, float size)
+    public void Explode(Vector3 pos, float size, byte type)
     {
-        ExplosionSound?.Invoke(position);
-        GameObject explosion = GetAvailableExplosion();
+        ExplosionSound?.Invoke(pos);
+        GameObject explosion = GetAvailableExplosion(type);
         if (explosion != null)
         {
             explosion.transform.localScale = new Vector3(size * .5f, size * .5f, size * .5f);
-            explosion.transform.position = position;
+            explosion.transform.position = pos;
             explosion.SetActive(true);
-        }
-    }
-
-    public void Explode2(Vector3 position, float size)
-    {
-        ExplosionSound?.Invoke(position);
-        GameObject explosion = GetAvailableExplosion2();
-        if (explosion != null)
-        {
-            explosion.transform.localScale = new Vector3(size * .5f, size * .5f, size * .5f);
-            explosion.transform.position = position;
-            explosion.SetActive(true);
-        }
-    }
-
-    public void PickedUpDropBox(Vector3 loc)
-    {
-        GameObject pickupEffect = GetPickupEffect();
-        if (pickupEffect != null)
-        {
-            pickupEffect.transform.position = loc;
-            pickupEffect.SetActive(true);
         }
     }
 
@@ -127,25 +107,8 @@ public class ObjectPools : MonoBehaviour
         {
             GameObject newBox = Instantiate(dropBox, Vector3.down, Quaternion.identity);
             newBox.SetActive(false);
-            projectilePool.Add(newBox);
+            dropBoxPool.Add(newBox);
             return newBox;
-        }
-        return null;
-    }
-
-    public GameObject GetPickupEffect()
-    {
-        for (int i = 0; i < pickupEffectPool.Count; i++)
-        {
-            if (!pickupEffectPool[i].activeSelf)
-                return pickupEffectPool[i];
-        }
-        if (pickupEffect != null)
-        {
-            GameObject newPickupEffect = Instantiate(pickupEffect, Vector3.down, Quaternion.identity);
-            newPickupEffect.SetActive(false);
-            projectilePool.Add(newPickupEffect);
-            return newPickupEffect;
         }
         return null;
     }
@@ -227,32 +190,60 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableExplosion()
+    public GameObject GetAvailableExplosion(byte type)
     {
-        for (int i = 0; i < explosionEffectPool.Count; i++)
-            if (!explosionEffectPool[i].activeSelf)
-                return explosionEffectPool[i];
-        if (explosionEffect != null)
+        switch (type)
         {
-            GameObject newExplosion = Instantiate(explosionEffect, Vector3.down, Quaternion.identity);
-            newExplosion.SetActive(false);
-            explosionEffectPool.Add(newExplosion);
-            return newExplosion;
-        }
-        return null;
-    }
-
-    public GameObject GetAvailableExplosion2()
-    {
-        for (int i = 0; i < explosionEffect2Pool.Count; i++)
-            if (!explosionEffect2Pool[i].activeSelf)
-                return explosionEffect2Pool[i];
-        if (explosionEffect2 != null)
-        {
-            GameObject newExplosion2 = Instantiate(explosionEffect2, Vector3.down, Quaternion.identity);
-            newExplosion2.SetActive(false);
-            explosionEffectPool.Add(newExplosion2);
-            return newExplosion2;
+            case 0:
+                for (int i = 0; i < explosionEffectPool.Count; i++)
+                    if (!explosionEffectPool[i].activeSelf)
+                        return explosionEffectPool[i];
+                if (explosionEffect != null)
+                {
+                    GameObject newExplosion = Instantiate(explosionEffect, Vector3.down, Quaternion.identity);
+                    newExplosion.SetActive(false);
+                    explosionEffectPool.Add(newExplosion);
+                    return newExplosion;
+                }
+                break;
+            case 1:
+                for (int i = 0; i < explosionEffect2Pool.Count; i++)
+                    if (!explosionEffect2Pool[i].activeSelf)
+                        return explosionEffect2Pool[i];
+                if (explosionEffect2 != null)
+                {
+                    GameObject newExplosion2 = Instantiate(explosionEffect2, Vector3.down, Quaternion.identity);
+                    newExplosion2.SetActive(false);
+                    explosionEffect2Pool.Add(newExplosion2);
+                    return newExplosion2;
+                }
+                break;
+            case 2:
+                for (int i = 0; i < explosionEffect3Pool.Count; i++)
+                    if (!explosionEffect3Pool[i].activeSelf)
+                        return explosionEffect3Pool[i];
+                if (explosionEffect3 != null)
+                {
+                    GameObject newExplosion3 = Instantiate(explosionEffect3, Vector3.down, Quaternion.identity);
+                    newExplosion3.SetActive(false);
+                    explosionEffect3Pool.Add(newExplosion3);
+                    return newExplosion3;
+                }
+                break;
+            case 3:
+                for (int i = 0; i < explosionEffect4Pool.Count; i++)
+                    if (!explosionEffect4Pool[i].activeSelf)
+                        return explosionEffect4Pool[i];
+                if (explosionEffect4 != null)
+                {
+                    GameObject newExplosion4 = Instantiate(explosionEffect4, Vector3.down, Quaternion.identity);
+                    newExplosion4.SetActive(false);
+                    explosionEffect4Pool.Add(newExplosion4);
+                    return newExplosion4;
+                }
+                break;
+            default:
+                break;
         }
         return null;
     }

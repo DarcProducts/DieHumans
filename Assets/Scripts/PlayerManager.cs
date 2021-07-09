@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private float maxYDestroy = 0f;
+    [SerializeField] GameObject player;
+    [SerializeField] float maxYDestroy = 0f;
     [SerializeField] float shipSpeedForwardBack;
     [SerializeField] float shipSpeedUpDown;
 
@@ -28,5 +28,13 @@ public class PlayerManager : MonoBehaviour
         if (player == null) return;
         if (player.transform.position.y < maxYDestroy)
             player.SetActive(false);
+    }
+
+    public float GetShipSpeedFB() => shipSpeedForwardBack;
+    public float GetShipSpeedUD() => shipSpeedUpDown;
+    public void IncreaseShipSpeeds(float value)
+    {
+        shipSpeedForwardBack += value;
+        shipSpeedUpDown += value * .5f;
     }
 }

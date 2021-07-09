@@ -1,4 +1,4 @@
-using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,13 +6,16 @@ public class Building : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3> BuildingDamaged;
     public static UnityAction BuildingDestroyed;
-    public static UnityAction<GameObject, byte, byte, float> TextInfo;
+    public static UnityAction<Vector3, byte, byte, float> TextInfo;
+    public static UnityAction<Vector3, string, float, Color> DamagedInfo;
     [SerializeField] float buildingHealthMultiplier;
     [SerializeField] int buildingPeopleMultiplier;
     [SerializeField] Material brokenMaterial;
     float _currentBuildingHealth;
     int _currentNumberOfPeopleInside;
     [SerializeField] float collapseRate = .4f;
+    [SerializeField] float damageDiplayDuration;
+    GameObject player;
     ObjectPools objectPools;
     float maxBuildingHealth;
     int maxNumberOfPeopleInside;
@@ -22,6 +25,7 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         objectPools = FindObjectOfType<ObjectPools>();
         if (objectPools == null)
             Debug.LogWarning($"{gameObject.name} could not find an object with a ObjectPools component attached");
@@ -73,7 +77,7 @@ public class Building : MonoBehaviour, IDamagable<float>
         if (transform.localScale.y <= 0)
         {
             InitializeBrokenBuildingEffect();
-            TextInfo?.Invoke(gameObject, 3, 1, maxBuildingHealth);
+            TextInfo?.Invoke(transform.position, 3, 1, maxBuildingHealth);
             BuildingDestroyed?.Invoke();
             gameObject.SetActive(false);
         }
@@ -89,12 +93,14 @@ public class Building : MonoBehaviour, IDamagable<float>
     {
         _currentBuildingHealth -= damage;
         BuildingDamaged?.Invoke(transform.position);
+        DamagedInfo?.Invoke(transform.position + Vector3.up * 30, damage.ToString(), 64, Color.red);
         if (_currentBuildingHealth <= 0)
         {
             InitializeCollapsingEffect();
             isCollapsing = true;
         }
     }
+
 
     [ContextMenu("Damage building")]
     public void TestDamage() => ApplyDamage(10000);

@@ -30,6 +30,8 @@ public class MessagesManager : MonoBehaviour
         Building.TextInfo += DisplayWorldInfo;
         Rocket.TextInfo += DisplayWorldInfo;
         Projectile.TextInfo += DisplayWorldInfo;
+        Bomber.TextInfo += DisplayWorldInfo;
+        Building.DamagedInfo += DisplayWorldInfo;
     }
 
     void OnDisable()
@@ -39,6 +41,8 @@ public class MessagesManager : MonoBehaviour
         Building.TextInfo -= DisplayWorldInfo;
         Rocket.TextInfo -= DisplayWorldInfo;
         Projectile.TextInfo -= DisplayWorldInfo;
+        Bomber.TextInfo -= DisplayWorldInfo;
+        Building.DamagedInfo -= DisplayWorldInfo;
     }
 
     string GetGoodMessage()
@@ -91,20 +95,37 @@ public class MessagesManager : MonoBehaviour
         return 0;
     }
 
-    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Funny Message) </param>
+    void DisplayWorldInfo(Vector3 loc, string message, float fontSize, Color color)
+    {
+        if (objectPools != null)
+        {
+            GameObject newText = objectPools.GetAvailableInfoLetters();
+            TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
+            newText.transform.position = loc + Vector3.up * 4;
+            text.text = message;
+            text.color = color;
+            text.fontSize = fontSize;
+
+            newText.SetActive(true);
+            if (player != null)
+                newText.transform.LookAt(player.transform.localPosition);
+            StartCoroutine(TurnOffGameObject(newText));
+        }
+    }
+
+    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Funny Message) : (5 = Damage Message )</param>
     /// <param name="pointType"> (0 = Points by distance) : (1 = Points by damage) </param>
-    void DisplayWorldInfo(GameObject obj, byte messageType, byte pointType = 0, float damage = 0)
+    void DisplayWorldInfo(Vector3 loc, byte messageType, byte pointType = 0, float damage = 0)
     {
         int points = 0;
         if (objectPools != null)
         {
             if (pointType.Equals(0))
-                points = GetPointsByDistance(obj.transform.position);
+                points = GetPointsByDistance(loc);
             if (pointType.Equals(1))
                 points = GetPointsByDamage(damage);
             GameObject newText = objectPools.GetAvailableInfoLetters();
-            newText.SetActive(true);
-            newText.transform.position = obj.transform.position + Vector3.up * 20;
+            newText.transform.position = loc + Vector3.up * 20;
             TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
             if (text != null)
             {
@@ -112,39 +133,51 @@ public class MessagesManager : MonoBehaviour
                 {
                     case 0:
                         text.color = Color.yellow;
+                        text.fontSize = 128;
                         text.text = GetGoodMessage();
                         break;
 
                     case 1:
                         text.color = Color.Lerp(Color.red, Color.black, text.textInfo.characterCount);
+                        text.fontSize = 128;
                         text.text = GetBadMessage();
                         break;
 
                     case 2:
-                        text.color = Color.green;
-                        text.text = points.ToString();
+                        text.color = new Color(.34f, .39f, .34f);
+                        text.fontSize = 128;
+                        text.text = "+" + points.ToString();
                         UpdateScore?.Invoke(points, true);
                         break;
 
                     case 3:
 
-                        text.color = Color.red;
-                        text.text = points.ToString();
+                        text.color = new Color(.39f, 0, 0);
+                        text.fontSize = 128;
+                        text.text = "-" + points.ToString();
                         UpdateScore?.Invoke(points, false);
                         break;
 
                     case 4:
-
+                        text.fontSize = 128;
                         text.color = new Color(.6f, .4f, .2f);
                         text.text = GetNeutralMessage();
                         break;
+                    case 5:
+                        text.fontSize = 32;
+                        newText.transform.position = loc + Vector3.up * 4;
+                        text.color = Color.cyan;
+                        text.text = "-" + damage.ToString();
+                        break;
 
                     default:
+                        text.fontSize = 264;
                         text.text = "Craig Hussey Was Here";
                         text.color = new Color(.8f, .7f, .4f);
                         break;
                 }
             }
+            newText.SetActive(true);
             if (player != null)
                 newText.transform.LookAt(player.transform.localPosition);
             StartCoroutine(TurnOffGameObject(newText));

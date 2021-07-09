@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1925558412596276301}
   - component: {fileID: 5580159973202328950}
   - component: {fileID: 8030414546627976967}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Parachute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,9 +109,9 @@ GameObject:
   - component: {fileID: 6170556888558190260}
   - component: {fileID: 8842216513834818105}
   - component: {fileID: 9207891429950337187}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: DropBox
-  m_TagString: Untagged
+  m_TagString: DropBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,12 +147,14 @@ MonoBehaviour:
   damageMaterial: {fileID: 2100000, guid: 3906ba3513d2ee74cb94d63e498c8d1f, type: 2}
   speedMaterial: {fileID: 2100000, guid: b2039558e33bae04986cbb313d7bc490, type: 2}
   timeMaterial: {fileID: 2100000, guid: c4522b8a5003fb14daa95b96d4e53ad6, type: 2}
+  thrustMaterial: {fileID: 2100000, guid: 66970cc3b7d4a6543820518fc4a508c2, type: 2}
   dropSpeed: 6
   speedMultiplier: 4
   parachute: {fileID: 6742792992073427764}
-  damageIncrease: 50
+  damageIncrease: 10
   speedIncrease: 10
   rateDecrease: 0.01
+  thrustIncrease: 2
 --- !u!33 &2269138748938184929
 MeshFilter:
   m_ObjectHideFlags: 0

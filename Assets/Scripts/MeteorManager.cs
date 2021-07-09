@@ -30,18 +30,22 @@ public class MeteorManager : MonoBehaviour
             GameObject meteor = objectPools.GetAvailableMeteor();
             if (meteor != null)
             {
-                meteor.GetComponent<Meteor>().SetMeteorSpeed(meteorSpeed);
                 Vector3 ranPos = new Vector3(Random.Range(meteorSpawnMin.x, meteorSpawnMax.x), Random.Range(meteorSpawnMin.y, meteorSpawnMax.y), Random.Range(meteorSpawnMin.z, meteorSpawnMax.z));
-                meteor.transform.position = ranPos;
-                
+
                 if (Random.value < boxSpawnRate)
                 {
                     GameObject box = objectPools.GetDropBox();
-                    box.transform.position = ranPos;
+                    box.transform.SetPositionAndRotation(ranPos, Quaternion.identity);
                     box.SetActive(true);
-                } 
+                }
                 else
+                {
+                    Meteor m = meteor.GetComponent<Meteor>();
+                    if (m != null)
+                        m.SetMeteorSpeed(meteorSpeed);
+                    meteor.transform.position = ranPos;
                     meteor.SetActive(true);
+                }
             }
             currentDrop = meteorDropRate;
         }

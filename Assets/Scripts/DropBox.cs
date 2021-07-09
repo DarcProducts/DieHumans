@@ -1,23 +1,26 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum BoxType { Time, Damage, Speed }
+public enum BoxType { Time, Damage, Speed, Thrust }
 
 public class DropBox : MonoBehaviour
 {
     public static UnityAction PlayerAquired;
-    public static UnityAction<Vector3, float> HitOtherObject;
+    public static UnityAction ShotBox;
+    public static UnityAction<Vector3, float, byte> HitObject;
     public static UnityAction<byte, float> BoxAction;
     [SerializeField] BoxType boxType;
     [SerializeField] Material damageMaterial;
     [SerializeField] Material speedMaterial;
     [SerializeField] Material timeMaterial;
+    [SerializeField] Material thrustMaterial;
     [SerializeField] float dropSpeed;
     [SerializeField] int speedMultiplier;
     [SerializeField] GameObject parachute;
     [SerializeField] float damageIncrease;
     [SerializeField] float speedIncrease;
     [SerializeField] float rateDecrease;
+    [SerializeField] float thrustIncrease;
     WeaponManager weaponManager;
     bool hasParachute = true;
     Renderer boxRenderer;
@@ -48,50 +51,43 @@ public class DropBox : MonoBehaviour
 
     void OnEnable()
     {
+        PickBox();
+    }
+
+    void OnDisable()
+    {
+        transform.SetPositionAndRotation(Vector3.down, Quaternion.identity);
+        hasParachute = true;
+        if (parachute != null)
+            parachute.SetActive(true);
+    }
+
+    void PickBox()
+    {
         if (boxRenderer != null)
         {
-            int ranNum = Random.Range(0, 3);
+            int ranNum = Random.Range(0, 4);
             if (ranNum == 0)
             {
-                boxType = BoxType.Speed;
-                boxRenderer.material = speedMaterial;
+                boxType = BoxType.Time;
+                boxRenderer.material = timeMaterial;
             }
-            if (ranNum == 1)
+            else if (ranNum == 1)
             {
                 boxType = BoxType.Damage;
                 boxRenderer.material = damageMaterial;
             }
             else if (ranNum == 2)
             {
-                boxType = BoxType.Time;
-                boxRenderer.material = timeMaterial;
+                boxType = BoxType.Speed;
+                boxRenderer.material = speedMaterial;
+            }
+            else
+            {
+                boxType = BoxType.Thrust;
+                boxRenderer.material = thrustMaterial;
             }
         }
-    }
-
-    void PickBox()
-    {
-        int ranNum = Random.Range(0, 3);
-        if (ranNum == 0)
-        {
-            boxType = BoxType.Time;
-            boxRenderer.material = timeMaterial;
-        }
-        else if (ranNum == 1)
-        {
-            boxType = BoxType.Damage;
-            boxRenderer.material = damageMaterial;
-        }
-        else
-        {
-            boxType = BoxType.Speed;
-            boxRenderer.material = speedMaterial;
-        }
-    }
-
-    void OnDisable()
-    {
-        transform.position = Vector3.down;
     }
 
     public void ActivateBox()
@@ -111,7 +107,9 @@ public class DropBox : MonoBehaviour
                 case BoxType.Time:
                     BoxAction?.Invoke(2, rateDecrease);
                     break;
-
+                case BoxType.Thrust:
+                    BoxAction?.Invoke(3, thrustIncrease);
+                    break;
                 default:
                     break;
             }
@@ -126,8 +124,10 @@ public class DropBox : MonoBehaviour
             ActivateBox();
         }
         else
-            HitOtherObject?.Invoke(transform.position, 3);
+            HitObject?.Invoke(transform.position, 3, 1);
 
+        if (collision.gameObject.CompareTag("Projectile"))
+            ShotBox?.Invoke();
         gameObject.SetActive(false);
     }
 

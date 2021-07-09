@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip buildingCollapse;
     [SerializeField] AudioClip bombDrop;
     [SerializeField] AudioClip pickupDropBox;
+    [SerializeField] AudioClip wrongDestroy;
 
     private void OnEnable()
     {
@@ -21,6 +22,8 @@ public class SoundManager : MonoBehaviour
         Meteor.MeteorEvaded += PlayMeteorDestroyed;
         AIUtilities.LaserActivated += PlayLaserShot;
         Bomber.BombDropped += PlayBombDrop;
+        DropBox.PlayerAquired += PlayPickUpDropBox;
+        DropBox.ShotBox += PlayWrongDestroy;
     }
 
     private void OnDisable()
@@ -31,13 +34,9 @@ public class SoundManager : MonoBehaviour
         Meteor.MeteorEvaded -= PlayMeteorDestroyed;
         AIUtilities.LaserActivated -= PlayLaserShot;
         Bomber.BombDropped -= PlayBombDrop;
+        DropBox.PlayerAquired -= PlayPickUpDropBox;
+        DropBox.ShotBox -= PlayWrongDestroy;
     }
-
-    public void PlayLaserShot(AudioSource source)
-    {
-        if (laserShoot != null && !source.isPlaying)
-            PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
-    } 
 
     public void StopWeaponSounds()
     {
@@ -46,6 +45,12 @@ public class SoundManager : MonoBehaviour
             weaponSource.Stop();
             weaponSource.volume = 1;
         }
+    }
+
+    public void PlayLaserShot(AudioSource source)
+    {
+        if (laserShoot != null && !source.isPlaying)
+            PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
     }
 
     public void PlayBombDrop()
@@ -58,6 +63,12 @@ public class SoundManager : MonoBehaviour
     {
         if (mainSource != null && pickupDropBox != null)
             PlayAtSourceWithVPRange(mainSource, pickupDropBox, .6f, .88f, .8f, 1.2f);
+    }
+
+    public void PlayWrongDestroy()
+    {
+        if (mainSource != null && wrongDestroy != null)
+            PlayAtSourceWithVPRange(mainSource, wrongDestroy, .8f, 1f, .8f, 1f);
     }
 
     public void PlayMachinegunClip()

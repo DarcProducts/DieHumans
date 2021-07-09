@@ -178,8 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  maxHealth: 500
-  weaponDamage: 0.2
+  maxHealth: 100
+  weaponDamage: 15
+  fireRate: 3
   moveSpeed: 8
   targetCheckDistance: 100
   laser: {fileID: 2503640958477192212}

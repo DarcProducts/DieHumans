@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    public static UnityAction<GameObject, byte, byte, float> TextInfo;
-    public static UnityAction<Vector3, float> ProjectileExploded;
+    public static UnityAction<Vector3, byte, byte, float> TextInfo;
+    public static UnityAction<Vector3, float, byte> ProjectileExploded;
     public float currentDamage;
     [SerializeField] LayerMask hitLayers;
     [SerializeField] LayerMask ignoreLayers;
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         if (IsInLayerMask(collision.gameObject, hitLayers))
         {
             TryDamagingTarget(collision.gameObject);
-            ProjectileExploded?.Invoke(transform.position, .3f);
+            ProjectileExploded?.Invoke(transform.position, .3f, 1);
         }
         gameObject.SetActive(false);
     }
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
         IDamagable<float> d = target.GetComponent<IDamagable<float>>();
         if (d != null)
         {
-            TextInfo?.Invoke(gameObject, 2, 1, currentDamage);
+            TextInfo?.Invoke(transform.position, 5, 0, currentDamage);
             d.ApplyDamage(currentDamage);
         }
     }

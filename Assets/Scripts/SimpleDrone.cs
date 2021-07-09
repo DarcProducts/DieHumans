@@ -6,23 +6,25 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
 {
     public DroneState state = DroneState.moving;
     public static UnityAction<GameObject> UpdateDroneCount;
-    public static UnityAction<Vector3, float> DroneExploded;
-    public static UnityAction<GameObject, byte, byte, float> TextInfo;
-    [SerializeField] private float maxHealth;
-    private float currentHealth;
-    [SerializeField] private float weaponDamage = 0f;
-    [SerializeField] private float moveSpeed = 0f;
-    [SerializeField] private float targetCheckDistance = 10f;
-    [SerializeField] private LineRenderer laser;
-    [SerializeField] private float laserWidth;
-    [SerializeField] private float explosionSize = 0f;
-    [SerializeField] private LayerMask ignoreLayer;
-    [SerializeField] private LayerMask targetLayers;
-    [SerializeField] private AudioSource audioSource;
-    private EnemyManager enemyManager;
-    private GameObject attackTarget = null;
-    private Vector3 targetLocation = Vector3.zero;
-    private bool isHittingTarget = false;
+    public static UnityAction<Vector3, float, byte> DroneExploded;
+    public static UnityAction<Vector3, byte, byte, float> TextInfo;
+    [SerializeField] float maxHealth;
+    float currentHealth;
+    [SerializeField] float weaponDamage = 0f;
+    [SerializeField] float fireRate;
+    [SerializeField] float moveSpeed = 0f;
+    [SerializeField] float targetCheckDistance = 10f;
+    [SerializeField] LineRenderer laser;
+    [SerializeField] float laserWidth;
+    [SerializeField] float explosionSize = 0f;
+    [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] LayerMask targetLayers;
+    [SerializeField] AudioSource audioSource;
+    float fireTime;
+    EnemyManager enemyManager;
+    GameObject attackTarget = null;
+    Vector3 targetLocation = Vector3.zero;
+    readonly bool isHittingTarget = false;
 
     void Awake()
     {
@@ -33,6 +35,7 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
 
     void OnEnable()
     {
+        fireTime = fireRate;
         state = DroneState.moving;
         attackTarget = null;
         currentHealth = maxHealth;
@@ -46,7 +49,11 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
         }
     }
 
-    void OnDisable() => DeactivateLaser(laser);
+    void OnDisable()
+    {
+        DeactivateLaser(laser);
+        CancelInvoke(nameof(LaserShot));
+    }
 
     void LateUpdate()
     {
@@ -84,7 +91,12 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
         if (attackTarget != null)
         {
             transform.LookAt(attackTarget.transform.position);
-            ShootALaser(laser, transform.position + transform.forward * 6, attackTarget.transform.position - transform.position, weaponDamage, audioSource);
+            fireTime = fireTime < 0 ? 0 : fireTime -= Time.fixedDeltaTime;
+            if (fireTime <= 0)
+            {
+                LaserShot();
+                fireTime = fireRate;
+            }
             if (!attackTarget.activeSelf)
                 attackTarget = null;
             return;
@@ -101,19 +113,21 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
         }
     }
 
+    void LaserShot() => ShootALaser(laser, transform.position + transform.forward * 6, attackTarget.transform.position - transform.position, weaponDamage, audioSource);
+
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(gameObject, 2, 0, 0);
+            TextInfo?.Invoke(transform.position, 2, 0, 0);
             Die();
         }
     }
 
     void Die()
     {
-        DroneExploded?.Invoke(transform.position, explosionSize);
+        DroneExploded?.Invoke(transform.position, explosionSize, 0);
         UpdateDroneCount?.Invoke(gameObject);
         gameObject.SetActive(false);
     }
