@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class Building : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction<Vector3> BuildingDamaged;
-    public static UnityAction BuildingDestroyed;
+    public static UnityAction<GameObject> BuildingDestroyed;
     public static UnityAction<Vector3, byte, byte, float> TextInfo;
     public static UnityAction<Vector3, string, float, Color> DamagedInfo;
     [SerializeField] float buildingHealthMultiplier;
@@ -78,7 +78,7 @@ public class Building : MonoBehaviour, IDamagable<float>
         {
             InitializeBrokenBuildingEffect();
             TextInfo?.Invoke(transform.position, 3, 1, maxBuildingHealth);
-            BuildingDestroyed?.Invoke();
+            BuildingDestroyed?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }

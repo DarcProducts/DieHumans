@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fd3153d711ff64a818686ce99c6c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 5000
   currentHealth: 0
 --- !u!33 &1715723178689242856
 MeshFilter:

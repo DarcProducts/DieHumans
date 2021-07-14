@@ -32,6 +32,7 @@ public class MessagesManager : MonoBehaviour
         Projectile.TextInfo += DisplayWorldInfo;
         Bomber.TextInfo += DisplayWorldInfo;
         Building.DamagedInfo += DisplayWorldInfo;
+        Tank.TextInfo += DisplayWorldInfo;
     }
 
     void OnDisable()
@@ -43,6 +44,7 @@ public class MessagesManager : MonoBehaviour
         Projectile.TextInfo -= DisplayWorldInfo;
         Bomber.TextInfo -= DisplayWorldInfo;
         Building.DamagedInfo -= DisplayWorldInfo;
+        Tank.TextInfo -= DisplayWorldInfo;
     }
 
     string GetGoodMessage()
@@ -99,7 +101,7 @@ public class MessagesManager : MonoBehaviour
     {
         if (objectPools != null)
         {
-            GameObject newText = objectPools.GetAvailableInfoLetters();
+            GameObject newText = objectPools.GetInfoLetters();
             TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
             newText.transform.position = loc + Vector3.up * 4;
             text.text = message;
@@ -124,7 +126,7 @@ public class MessagesManager : MonoBehaviour
                 points = GetPointsByDistance(loc);
             if (pointType.Equals(1))
                 points = GetPointsByDamage(damage);
-            GameObject newText = objectPools.GetAvailableInfoLetters();
+            GameObject newText = objectPools.GetInfoLetters();
             newText.transform.position = loc + Vector3.up * 20;
             TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
             if (text != null)

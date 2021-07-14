@@ -87,19 +87,19 @@ public class WeaponManager : MonoBehaviour
         {
             if (currentRocketAmount > 0)
             {
-                currentRocket = objectPools.GetAvailableRocket();
+                currentRocket = objectPools.GetRocket();
                 Rocket r = currentRocket.GetComponent<Rocket>();
                 if (currentRocket != null && r != null)
                 {
                     currentRocket.transform.position = player.transform.position + Vector3.down;
                     r.rocketDamage = rocketDamage;
-                    r.type = RocketType.homing;
+                    r.type = RocketType.Homing;
                     currentRocket.SetActive(true);
                     if (isHoldingRocketButton)
                         currentRocket.transform.position = Vector3.MoveTowards(currentRocket.transform.position, aimTarget.transform.position, rocketHomingSpeed * Time.fixedDeltaTime);
                     if (!isHoldingRocketButton)
                     {
-                        r.type = RocketType.standard;
+                        r.type = RocketType.Standard;
                         currentRocketAmount--;
                         canLaunchRocket = true;
                         currentRocket = null;
@@ -252,7 +252,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (playerManager != null)
         {
-            if (playerManager.GetShipSpeedFB() >= 32f)
+            if (playerManager.GetShipSpeedFB() >= 32)
             {
                 DisplayPickupText("Max Ship Speed");
                 return;

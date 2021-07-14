@@ -38,17 +38,6 @@ public class DropBox : MonoBehaviour
         PickBox();
     }
 
-    private void FixedUpdate()
-    {
-        if (hasParachute)
-            transform.Translate(dropSpeed * Time.fixedDeltaTime * Vector3.down.normalized);
-        else
-            transform.Translate(dropSpeed * speedMultiplier * Time.fixedDeltaTime * Vector3.down.normalized);
-
-        if (transform.position.y < -10)
-            gameObject.SetActive(false);
-    }
-
     void OnEnable()
     {
         PickBox();
@@ -56,10 +45,22 @@ public class DropBox : MonoBehaviour
 
     void OnDisable()
     {
-        transform.SetPositionAndRotation(Vector3.down, Quaternion.identity);
         hasParachute = true;
         if (parachute != null)
             parachute.SetActive(true);
+    }
+
+    private void FixedUpdate()
+    {
+        if (hasParachute)
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -10, transform.position.z), dropSpeed * Time.fixedDeltaTime);
+        else
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -10, transform.position.z), dropSpeed * speedMultiplier * Time.fixedDeltaTime);
+
+        if (transform.position.y < -10)
+            gameObject.SetActive(false);
+
+        transform.rotation = Quaternion.identity;
     }
 
     void PickBox()

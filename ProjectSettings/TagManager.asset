@@ -19,6 +19,7 @@ TagManager:
   - Parachute
   - CityArea
   - DropBox
+  - Tank
   layers:
   - Default
   - TransparentFX

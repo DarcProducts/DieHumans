@@ -26,15 +26,15 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         if (cityGenerator != null && buildingsLeftText != null)
-            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.numberOfBuildings}";
+            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.GetNumberBuildingsLeft()}";
         if (scoreText != null)
             scoreText.text = "Score: \n0";
     }
 
-    private void UpdateBuildingsLeft()
+    private void UpdateBuildingsLeft(GameObject notUsed)
     {
         if (cityGenerator != null && buildingsLeftText != null)
-            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.numberOfBuildings}";
+            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.GetNumberBuildingsLeft()}";
     }
 
     private void UpdateCurrentWave(int wave)

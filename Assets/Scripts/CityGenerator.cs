@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CityGenerator : MonoBehaviour
 {
-    public int numberOfBuildings = 0;
     [Range(0f, 1f)] [SerializeField] float willBeDestroyed;
     [SerializeField] GameObject building = null;
     [SerializeField] int gridWidth = 0;
@@ -21,26 +20,24 @@ public class CityGenerator : MonoBehaviour
     [SerializeField] Color gridZColor = Color.white;
     [SerializeField] Material buildingMat;
     [SerializeField] Material building1Mat;
-    [SerializeField] Material building2Mat; 
+    [SerializeField] Material building2Mat;
     int yPlaneLevel = 0;
-    readonly List<Vector3> groundUnitSafeLocations = new List<Vector3>();
-    Vector3 cityOrigin;
+    readonly List<GameObject> attackTargets = new List<GameObject>();
 
     void OnEnable()
     {
-        Building.BuildingDestroyed += RemoveABuilding;
+        Building.BuildingDestroyed += RemoveAttackTarget;
     }
 
     void OnDisable()
     {
-        Building.BuildingDestroyed -= RemoveABuilding;
+        Building.BuildingDestroyed -= RemoveAttackTarget;
     }
 
     Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
 
     public void CreateDarcGrid(Vector3 origin)
     {
-        cityOrigin = origin; 
         yPlaneLevel = Mathf.FloorToInt(origin.y / gridCellSize);
         int[,,] gridArray = new int[gridWidth, gridHeight, gridDepth];
         GameObject buildings = new GameObject("Buildings");
@@ -64,7 +61,7 @@ public class CityGenerator : MonoBehaviour
                                 newBuilding.name = $"Building: {newBuilding.transform.position.x} {newBuilding.transform.position.z}";
                                 if (newBuilding.transform.localScale.y > maxBuildingHeight * .8f && building2Mat != null)
                                     newBuilding.GetComponent<Renderer>().material = building2Mat;
-                                else if (newBuilding.transform.localScale.y <= maxBuildingHeight *.8f && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && building1Mat != null)
+                                else if (newBuilding.transform.localScale.y <= maxBuildingHeight * .8f && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && building1Mat != null)
                                     newBuilding.GetComponent<Renderer>().material = building1Mat;
                                 else if (buildingMat != null)
                                     newBuilding.GetComponent<Renderer>().material = buildingMat;
@@ -73,10 +70,8 @@ public class CityGenerator : MonoBehaviour
                                     CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
                                         GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
                                 }
-                                numberOfBuildings++;
+                                attackTargets.Add(newBuilding);
                             }
-                            else
-                                groundUnitSafeLocations.Add(new Vector3(x, y, z));
                         }
 
                         if (showLines)
@@ -98,14 +93,6 @@ public class CityGenerator : MonoBehaviour
             scaleObject.transform.localScale = new Vector3(newSize.x, newSize.y, newSize.z);
     }
 
-    public void SetCityOrigin(Vector3 newOrigin)
-    {
-        if (cityOrigin != null)
-            cityOrigin = newOrigin;
-    }
-
-    public void RemoveABuilding() => numberOfBuildings--;
-
     public TextMesh CreateWorldText(string text, TextAnchor textAnchor, TextAlignment textAlignment, Color fontColor = default,
         Vector3 localPosition = default, int fontSize = 20, int sortingOrder = 0, Transform parent = null)
     {
@@ -123,7 +110,17 @@ public class CityGenerator : MonoBehaviour
         return textMesh;
     }
 
-    public Vector3[] GetTankSafePoints() => groundUnitSafeLocations.ToArray();
+    public int GetNumberBuildingsLeft() => attackTargets.Count;
+
+    public void RemoveAttackTarget(GameObject target) => attackTargets.Remove(target);
+
+    public GameObject[] GetAttackTargets() => attackTargets.ToArray();
+
+    public Vector3 GetAttackVector()
+    {
+        int ranNum = Random.Range(0, attackTargets.Count);
+        return attackTargets[ranNum].transform.position;
+    }
 
     public float GetGridSize() => gridCellSize;
 

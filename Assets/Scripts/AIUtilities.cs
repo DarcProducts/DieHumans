@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +7,6 @@ public abstract class AIUtilities : MonoBehaviour
     CityGenerator CityGenerator { get; set; }
     ObjectPools ObjectPools { get; set; }
     GameObject Player { get; set; }
-
 
     void Awake()
     {
@@ -34,76 +31,26 @@ public abstract class AIUtilities : MonoBehaviour
         return false;
     }
 
-    /// <param name="target"> current object from class being called from </param>
+    /// <param name="obj"> current object from class being called from </param>
     /// <param name="distance"> distance to check for player </param>
     /// <returns></returns>
-    public bool CheckIfPathClear(GameObject target, float distance)
+    public bool CheckIfPathClearPlayer(GameObject obj, float distance)
     {
         if (Player != null)
         {
-            if (Physics.Raycast(target.transform.position, Player.transform.position - target.transform.position, out RaycastHit hit, distance))
+            if (Physics.Raycast(obj.transform.position, Player.transform.position - obj.transform.position, out RaycastHit hit, distance))
                 if (hit.collider.CompareTag("Player"))
                     return true;
         }
         return false;
     }
 
-    public void LaunchRocket(Vector3 firedFrom, bool isHoming, float damage, float thrust = 32, float homingSpeed = 8)
+    public bool CheckIfPathClear(GameObject obj, GameObject target, float distance)
     {
-        if (Player != null)
-        {
-            Vector3 direction = Player.transform.position + Vector3.up - firedFrom + Vector3.down;
-            GameObject r = ObjectPools.GetAvailableRocket();
-            r.transform.position = firedFrom + Vector3.down * .5f;
-            Rocket rocket = r.GetComponent<Rocket>();
-            if (r != null && rocket != null)
-            {
-                rocket.rocketDamage = damage;
-                r.SetActive(true);
-                if (!isHoming)
-                {
-                    rocket.type = RocketType.standard;
-                    r.GetComponent<Rigidbody>().AddForce(direction.normalized * thrust, ForceMode.Impulse);
-                }
-                else
-                {
-                    rocket.type = RocketType.homing;
-                    rocket.rocketSpeed = homingSpeed;
-                }
-            }
-        }
-    }
-
-    public void ShootALaser(LineRenderer line, Vector3 from, Vector3 dir, float damage, AudioSource source = null)
-    {
-        if (line != null)
-        {
-            line.enabled = true;
-            if (Physics.Raycast(from, dir, out RaycastHit hitInfo))
-            {
-                line.positionCount = 2;
-                line.SetPosition(0, from);
-                line.SetPosition(1, hitInfo.point);
-                TryDamagingTarget(hitInfo.collider.gameObject, damage);
-                if (source != null)
-                    LaserActivated?.Invoke(source);
-            }
-            else
-            {
-                line.positionCount = 2;
-                line.SetPosition(0, from);
-                line.SetPosition(1, dir);
-            }
-        }
-    }
-
-    public void DeactivateLaser(LineRenderer laser) => laser.enabled = false;
-
-    public virtual void TryDamagingTarget(GameObject target, float damage)
-    {
-        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
-        if (d != null)
-            d.ApplyDamage(damage);
+        if (Physics.Raycast(obj.transform.position, target.transform.position - obj.transform.position, out RaycastHit hit, distance))
+            if (hit.collider.gameObject.Equals(target))
+                return true;
+        return false;
     }
 
     public ObjectPools GetObjectPools() => ObjectPools;

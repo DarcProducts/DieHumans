@@ -13,7 +13,8 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
     [SerializeField] float weaponDamage = 0f;
     [SerializeField] float fireRate;
     [SerializeField] float moveSpeed = 0f;
-    [SerializeField] float targetCheckDistance = 10f;
+    [SerializeField] float rotateSpeed = 0f;
+    [SerializeField] float targetCheckDistance = 40f;
     [SerializeField] LineRenderer laser;
     [SerializeField] float laserWidth;
     [SerializeField] float explosionSize = 0f;
@@ -24,7 +25,7 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
     EnemyManager enemyManager;
     GameObject attackTarget = null;
     Vector3 targetLocation = Vector3.zero;
-    readonly bool isHittingTarget = false;
+    bool isHittingTarget = false;
 
     void Awake()
     {
@@ -51,8 +52,8 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
 
     void OnDisable()
     {
-        DeactivateLaser(laser);
-        CancelInvoke(nameof(LaserShot));
+        if (laser != null)
+            laser.enabled = false;
     }
 
     void LateUpdate()
@@ -63,7 +64,10 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
                 transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed * Time.fixedDeltaTime);
                 transform.LookAt(targetLocation);
                 if (transform.position.Equals(targetLocation))
-                    state = DroneState.attacking;
+                {
+                    if (FindNearestTarget())
+                        state = DroneState.attacking;
+                }
                 break;
             case DroneState.attacking:
                 AttackTarget();
@@ -72,55 +76,87 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
                 break;
         }
     }
+    public void CreateLaserLine(LineRenderer line, Vector3 from, Vector3 dir)
+    {
+        if (line != null)
+        {
+            line.enabled = true;
+            if (Physics.Raycast(from, dir, out RaycastHit hitInfo))
+            {
+                line.positionCount = 2;
+                line.SetPosition(0, from);
+                line.SetPosition(1, hitInfo.point);
+            }
+            else
+            {
+                line.positionCount = 2;
+                line.SetPosition(0, from);
+                line.SetPosition(1, dir);
+            }
+        }
+    }
 
-    GameObject FindNearestTarget()
+    bool FindNearestTarget()
     {
         Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance, targetLayers);
         if (closeObjects.Length > 0)
         {
             int randObj = Random.Range(0, closeObjects.Length);
             attackTarget = closeObjects[randObj].gameObject;
-            return attackTarget;
+            return true;
         }
         attackTarget = null;
-        return attackTarget;
+        return false;
     }
 
     void AttackTarget()
     {
         if (attackTarget != null)
         {
-            transform.LookAt(attackTarget.transform.position);
+            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance))
+            {
+                isHittingTarget = false;
+                FindNearestTarget();
+                return;
+            }
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(attackTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
             fireTime = fireTime < 0 ? 0 : fireTime -= Time.fixedDeltaTime;
+            if (isHittingTarget)
+                CreateLaserLine(laser, transform.position + transform.forward * 6, attackTarget.transform.position - transform.position);
+            else if (!isHittingTarget && laser != null)
+                laser.enabled = false;
             if (fireTime <= 0)
             {
-                LaserShot();
+                TryDamagingTarget(attackTarget, weaponDamage);
+                if (audioSource != null)
+                    LaserActivated?.Invoke(audioSource);
                 fireTime = fireRate;
             }
             if (!attackTarget.activeSelf)
-                attackTarget = null;
+            {
+                FindNearestTarget();
+                return;
+            }
+        }
+        if (!isHittingTarget)
+        {
+            FindNearestTarget();
             return;
         }
-        if (attackTarget == null || !isHittingTarget)
+        if (attackTarget == null)
         {
-            attackTarget = FindNearestTarget();
-            return;
-        }
-        else if (attackTarget == null && !isHittingTarget && enemyManager != null)
-        {
-            targetLocation = enemyManager.FindLocationWithinArea();
+            if (enemyManager != null)
+                targetLocation = enemyManager.FindLocationWithinArea();
             state = DroneState.moving;
         }
     }
-
-    void LaserShot() => ShootALaser(laser, transform.position + transform.forward * 6, attackTarget.transform.position - transform.position, weaponDamage, audioSource);
 
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 0, 0);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
             Die();
         }
     }
@@ -132,10 +168,24 @@ public class SimpleDrone : AIUtilities, IDamagable<float>
         gameObject.SetActive(false);
     }
 
-    public bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
+    void TryDamagingTarget(GameObject target, float damage)
+    {
+        if (IsInLayerMask(target, ignoreLayer))
+            return;
+        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
+        if (d != null)
+        {
+            isHittingTarget = true;
+            d.ApplyDamage(damage);
+        }
+        else isHittingTarget = false;
+    }
+
+    bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
 
     [ContextMenu("Kill Drone")]
-    public void KillDrone() => ApplyDamage(1000000);
+    public void KillDrone() => ApplyDamage(maxHealth);
 
     public float GetCurrentHealth() => currentHealth;
 }
+

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MeteorManager : MonoBehaviour
@@ -9,25 +10,33 @@ public class MeteorManager : MonoBehaviour
     [SerializeField] float meteorDropRate;
     [SerializeField] float meteorSpeed;
     [Range(0f, 1f)] [SerializeField] float boxSpawnRate;
-    float currentDrop;
-
-    void Start()
-    {
-        currentDrop = meteorDropRate;
-    }
+    bool isRunning = false;
+    bool canStartStorms = true;
 
     void FixedUpdate()
     {
         if (startMeteorStorm)
-            StartMeteorStorm();
+        {
+            if (canStartStorms)
+            {
+                StartCoroutine(nameof(StartMeteorStorm));
+                canStartStorms = false;
+            }
+        }
+        else if (!startMeteorStorm && isRunning)
+        {
+            StopCoroutine(nameof(StartMeteorStorm));
+            isRunning = false;
+        }
     }
 
-    public void StartMeteorStorm()
+    public IEnumerator StartMeteorStorm()
     {
-        currentDrop = currentDrop < 0 ? 0 : currentDrop -= Time.fixedDeltaTime;
-        if (currentDrop == 0 && objectPools != null)
+        if (objectPools != null)
         {
-            GameObject meteor = objectPools.GetAvailableMeteor();
+            isRunning = true;
+            yield return new WaitForSeconds(meteorDropRate);
+            GameObject meteor = objectPools.GetMeteor();
             if (meteor != null)
             {
                 Vector3 ranPos = new Vector3(Random.Range(meteorSpawnMin.x, meteorSpawnMax.x), Random.Range(meteorSpawnMin.y, meteorSpawnMax.y), Random.Range(meteorSpawnMin.z, meteorSpawnMax.z));
@@ -47,7 +56,6 @@ public class MeteorManager : MonoBehaviour
                     meteor.SetActive(true);
                 }
             }
-            currentDrop = meteorDropRate;
         }
     }
 }

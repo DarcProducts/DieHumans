@@ -23,8 +23,10 @@ public class ObjectPools : MonoBehaviour
     [Header("Bomber Stuff")]
     [SerializeField] GameObject bomber;
     readonly List<GameObject> bomberPool = new List<GameObject>();
+    [Header("Tank Stuff")]
+    [SerializeField] GameObject tank;
+    readonly List<GameObject> tankPool = new List<GameObject>();
     [Header("Rocket Stuff")]
-    [Tooltip("Rocket firing method called from this script")]
     [SerializeField] GameObject rocket;
     readonly List<GameObject> rocketGameObjectPool = new List<GameObject>();
 
@@ -77,7 +79,7 @@ public class ObjectPools : MonoBehaviour
 
     private void DestroyMeteor(GameObject previousMeteor)
     {
-        GameObject m = GetAvailableBrokenMeteor();
+        GameObject m = GetBrokenMeteor();
         m.transform.localScale = previousMeteor.transform.localScale;
         m.transform.localPosition = previousMeteor.transform.position;
         m.SetActive(true);
@@ -87,7 +89,7 @@ public class ObjectPools : MonoBehaviour
     public void Explode(Vector3 pos, float size, byte type)
     {
         ExplosionSound?.Invoke(pos);
-        GameObject explosion = GetAvailableExplosion(type);
+        GameObject explosion = GetExplosion(type);
         if (explosion != null)
         {
             explosion.transform.localScale = new Vector3(size * .5f, size * .5f, size * .5f);
@@ -109,6 +111,23 @@ public class ObjectPools : MonoBehaviour
             newBox.SetActive(false);
             dropBoxPool.Add(newBox);
             return newBox;
+        }
+        return null;
+    }
+
+    public GameObject GetTank()
+    {
+        for (int i = 0; i < tankPool.Count; i++)
+        {
+            if (!tankPool[i].activeSelf)
+                return tankPool[i];
+        }
+        if (dropBox != null)
+        {
+            GameObject newTank = Instantiate(tank, Vector3.down, Quaternion.identity);
+            newTank.SetActive(false);
+            dropBoxPool.Add(newTank);
+            return newTank;
         }
         return null;
     }
@@ -175,7 +194,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableRocket()
+    public GameObject GetRocket()
     {
         for (int i = 0; i < rocketGameObjectPool.Count; i++)
             if (!rocketGameObjectPool[i].activeSelf)
@@ -190,7 +209,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableExplosion(byte type)
+    public GameObject GetExplosion(byte type)
     {
         switch (type)
         {
@@ -248,7 +267,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableDrone()
+    public GameObject GetDrone()
     {
         for (int i = 0; i < dronePool.Count; i++)
         {
@@ -265,7 +284,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableMeteor()
+    public GameObject GetMeteor()
     {
         for (int i = 0; i < meteorPool.Count; i++)
         {
@@ -282,7 +301,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableBrokenMeteor()
+    public GameObject GetBrokenMeteor()
     {
         for (int i = 0; i < brokenMeteorPool.Count; i++)
         {
@@ -299,7 +318,7 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
-    public GameObject GetAvailableInfoLetters()
+    public GameObject GetInfoLetters()
     {
         for (int i = 0; i < infoLettersPool.Count; i++)
         {

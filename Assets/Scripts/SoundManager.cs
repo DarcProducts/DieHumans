@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource mainSource;
     [SerializeField] AudioSource weaponSource;
     [SerializeField] AudioClip[] meteorDestroyed;
@@ -14,7 +15,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip pickupDropBox;
     [SerializeField] AudioClip wrongDestroy;
 
-    private void OnEnable()
+    void Start()
+    {
+        PlayBackgroundMusic();
+    }
+
+    void OnEnable()
     {
         ObjectPools.ExplosionSound += PlayExplosionSound;
         WeaponManager.WeaponFired += PlayMachinegunClip;
@@ -26,7 +32,7 @@ public class SoundManager : MonoBehaviour
         DropBox.ShotBox += PlayWrongDestroy;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         ObjectPools.ExplosionSound -= PlayExplosionSound;
         WeaponManager.WeaponFired -= PlayMachinegunClip;
@@ -51,6 +57,19 @@ public class SoundManager : MonoBehaviour
     {
         if (laserShoot != null && !source.isPlaying)
             PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
+    }
+
+    public void PlayBackgroundMusic()
+    {
+        if (musicSource != null)
+        {
+            int ranIndex = Random.Range(0, backgroundMusic.Length);
+            if (backgroundMusic[ranIndex] != null)
+            { 
+                musicSource.clip = backgroundMusic[ranIndex];
+                musicSource.Play();
+            }
+        }
     }
 
     public void PlayBombDrop()

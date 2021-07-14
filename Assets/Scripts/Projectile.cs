@@ -8,15 +8,19 @@ public class Projectile : MonoBehaviour
     public float currentDamage;
     [SerializeField] LayerMask hitLayers;
     [SerializeField] LayerMask ignoreLayers;
+    TrailRenderer projectileTrail;
     Rigidbody pRigidbody;
 
     void Start()
     {
+        projectileTrail = GetComponentInChildren<TrailRenderer>();
         pRigidbody = GetComponent<Rigidbody>();
     }
 
     void OnDisable()
     {
+        if (projectileTrail != null)
+            projectileTrail.Clear();
         if (pRigidbody != null)
         {
             pRigidbody.velocity = Vector3.zero;
