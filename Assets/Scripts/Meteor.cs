@@ -12,6 +12,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     [SerializeField] Vector2 meteorMinMaxSize;
     [SerializeField] float healthMultiplier;
     [SerializeField] byte pointMultiplier;
+    float maxHealth;
     float newScale;
     float currentHealth;
     float currentSpeed;
@@ -21,6 +22,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         newScale = Random.Range(meteorMinMaxSize.x, meteorMinMaxSize.y);
         transform.localScale = new Vector3(newScale, newScale, newScale);
         currentHealth = newScale * healthMultiplier;
+        maxHealth = currentHealth;
     }
 
     void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.World);
@@ -30,7 +32,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 0, 0);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
             MeteorEvaded?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
@@ -40,22 +42,11 @@ public class Meteor : MonoBehaviour, IDamagable<float>
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!IsInLayerMask(collision.gameObject, hitLayers))
+        if (!collision.gameObject.CompareTag("Projectile"))
         {
             MeteorExploded?.Invoke(transform.position, newScale * 2, 0);
+            TryDamagingNearTargets();
             gameObject.SetActive(false);
-            return;
-        }
-        else
-        {
-            if (!collision.gameObject.CompareTag("Projectile"))
-            {
-                if (!collision.gameObject.CompareTag("Building"))
-                    currentHealth %= 2;
-                MeteorExploded?.Invoke(transform.position, newScale * 2, 0);
-                TryDamagingNearTargets();
-                gameObject.SetActive(false);
-            }
         }
     }
 
@@ -66,7 +57,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         {
             IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
             if (d != null)
-                d.ApplyDamage(Mathf.RoundToInt(currentHealth));
+                d.ApplyDamage(Mathf.RoundToInt(currentHealth / closeObjects.Length));
         }
     }
 

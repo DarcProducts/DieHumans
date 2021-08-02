@@ -6,16 +6,16 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     public static UnityAction<Vector3, float, byte> BomberExploded;
     public static UnityAction<Vector3, byte, byte, float> TextInfo;
     public static UnityAction<GameObject> UpdateBomber;
+    public static UnityAction UpdateBomberKillCount;
     public static UnityAction BombDropped;
     [SerializeField] float maxHealth;
     [SerializeField] Vector2 minMaxBombHeight;
     [SerializeField] float bombDamage;
     [SerializeField] float bombRadius;
-    [SerializeField] float bombDropSpeed;
     [SerializeField] float bombStartTime;
     [SerializeField] float rotateSpeed;
     float currentStartTime;
-    EnemyManager enemyManager;
+    CityGenerator cityGenerator;
     bool startDroppingBombs = false;
     ObjectPools objectPools;
     float currentHealth;
@@ -26,12 +26,8 @@ public class Bomber : MonoBehaviour, IDamagable<float>
 
     void Awake()
     {
-        enemyManager = FindObjectOfType<EnemyManager>();
-        if (enemyManager == null)
-            Debug.LogWarning($"Could not find GameObject with EnemyManager component on it");
+        cityGenerator = FindObjectOfType<CityGenerator>();
         objectPools = FindObjectOfType<ObjectPools>();
-        if (objectPools == null)
-            Debug.LogWarning($"Could not find GameObject with ObjectPools component on it");
     }
 
     void Start() => currentStartTime = bombStartTime;
@@ -41,11 +37,17 @@ public class Bomber : MonoBehaviour, IDamagable<float>
         currentHealth = maxHealth;
         currentStartTime = bombStartTime;
         startDroppingBombs = false;
-        if (enemyManager != null)
+        SetNewLocation();
+        transform.LookAt(targetLocation);
+    }
+
+    void SetNewLocation()
+    {
+        if (cityGenerator != null)
         {
-            Vector3 newLoc = enemyManager.FindLocationWithinArea();
-            targetLocation = new Vector3(newLoc.x, Random.Range(minMaxBombHeight.x, minMaxBombHeight.y), newLoc.z);
-            transform.LookAt(targetLocation);
+            float ranHeight = Random.Range(minMaxBombHeight.x, minMaxBombHeight.y);
+            Vector3 newLoc = cityGenerator.GetAttackVector();
+            targetLocation = newLoc + Vector3.up * ranHeight;
         }
     }
 
@@ -59,11 +61,8 @@ public class Bomber : MonoBehaviour, IDamagable<float>
         }
         if (!transform.position.Equals(targetLocation))
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, shipSpeed * Time.fixedDeltaTime);
-        if (transform.position.Equals(targetLocation) && enemyManager != null)
-        {
-            Vector3 newLoc = enemyManager.FindLocationWithinArea();
-            targetLocation = new Vector3(newLoc.x, Random.Range(minMaxBombHeight.x, minMaxBombHeight.y), newLoc.z);
-        }
+        if (transform.position.Equals(targetLocation))
+            SetNewLocation();
         if (startDroppingBombs && objectPools != null)
         {
             currentDrop = currentDrop <= 0 ? 0 : currentDrop -= Time.fixedDeltaTime;
@@ -72,11 +71,10 @@ public class Bomber : MonoBehaviour, IDamagable<float>
                 GameObject bomb = objectPools.GetRocket();
                 Rocket r = bomb.GetComponent<Rocket>();
                 Rigidbody rB = bomb.GetComponent<Rigidbody>();
-                
+
                 if (r != null)
                 {
                     r.type = RocketType.Bomb;
-                    r.rocketSpeed = bombDropSpeed;
                     r.explosionRadius = bombRadius;
                     r.rocketDamage = bombDamage;
                     currentDrop = bombDropRate;
@@ -99,8 +97,9 @@ public class Bomber : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
-            BomberExploded?.Invoke(transform.position, 10, 0);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth * 2);
+            BomberExploded?.Invoke(transform.position, 10, 2);
+            UpdateBomberKillCount?.Invoke();
             UpdateBomber?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
@@ -108,5 +107,6 @@ public class Bomber : MonoBehaviour, IDamagable<float>
 
     [ContextMenu("Kill Bomber")]
     public void KillBomber() => ApplyDamage(maxHealth);
+
     public float GetCurrentHealth() => currentHealth;
 }

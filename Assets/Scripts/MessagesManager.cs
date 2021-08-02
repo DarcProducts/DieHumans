@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class MessagesManager : MonoBehaviour
 {
     public static UnityAction<int, bool> UpdateScore;
+    public static UnityAction GainPoints;
+    public static UnityAction DecreasePoints;
     [SerializeField] string[] goodMessages;
     [SerializeField] string[] badMessages;
     [SerializeField] string[] neutralMessages;
@@ -17,16 +19,12 @@ public class MessagesManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         objectPools = FindObjectOfType<ObjectPools>();
-        if (player == null)
-            Debug.LogError("Message Manager could not find an object with 'Player' tag");
-        if (objectPools == null)
-            Debug.LogError("Message Manager could not find an object with the ObjectPools component on it");
     }
 
     void OnEnable()
     {
         Meteor.TextInfo += DisplayWorldInfo;
-        SimpleDrone.TextInfo += DisplayWorldInfo;
+        Drone.TextInfo += DisplayWorldInfo;
         Building.TextInfo += DisplayWorldInfo;
         Rocket.TextInfo += DisplayWorldInfo;
         Projectile.TextInfo += DisplayWorldInfo;
@@ -38,7 +36,7 @@ public class MessagesManager : MonoBehaviour
     void OnDisable()
     {
         Meteor.TextInfo -= DisplayWorldInfo;
-        SimpleDrone.TextInfo -= DisplayWorldInfo;
+        Drone.TextInfo -= DisplayWorldInfo;
         Building.TextInfo -= DisplayWorldInfo;
         Rocket.TextInfo -= DisplayWorldInfo;
         Projectile.TextInfo -= DisplayWorldInfo;
@@ -115,7 +113,7 @@ public class MessagesManager : MonoBehaviour
         }
     }
 
-    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Funny Message) : (5 = Damage Message )</param>
+    /// <param name="messageType"> (0 = Good Message) : (1 = Bad Message) : (2 = Scored Points) : (3 = Lost Points) : (4 = Neutral Message) : (5 = Damage Message )</param>
     /// <param name="pointType"> (0 = Points by distance) : (1 = Points by damage) </param>
     void DisplayWorldInfo(Vector3 loc, byte messageType, byte pointType = 0, float damage = 0)
     {
@@ -149,6 +147,7 @@ public class MessagesManager : MonoBehaviour
                         text.color = new Color(.34f, .39f, .34f);
                         text.fontSize = 128;
                         text.text = "+" + points.ToString();
+                        GainPoints?.Invoke();
                         UpdateScore?.Invoke(points, true);
                         break;
 
@@ -157,6 +156,7 @@ public class MessagesManager : MonoBehaviour
                         text.color = new Color(.39f, 0, 0);
                         text.fontSize = 128;
                         text.text = "-" + points.ToString();
+                        DecreasePoints?.Invoke();
                         UpdateScore?.Invoke(points, false);
                         break;
 
@@ -175,7 +175,7 @@ public class MessagesManager : MonoBehaviour
                     default:
                         text.fontSize = 264;
                         text.text = "Craig Hussey Was Here";
-                        text.color = new Color(.8f, .7f, .4f);
+                        text.color = new Color(.5f, .9f, .5f);
                         break;
                 }
             }
@@ -191,6 +191,5 @@ public class MessagesManager : MonoBehaviour
         yield return new WaitForSeconds(infoTextDuration);
         if (target.activeInHierarchy)
             target.SetActive(false);
-        StopCoroutine(TurnOffGameObject(target));
     }
 }

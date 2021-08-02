@@ -3,47 +3,101 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] private CityGenerator cityGenerator;
-    [SerializeField] private TMP_Text buildingsLeftText;
-    [SerializeField] private TMP_Text currentWaveText;
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private int currentPoints = 0;
+    CityGenerator cityGenerator;
+    KillSheet killSheet;
+    [SerializeField] TMP_Text buildingsText;
+    [SerializeField] TMP_Text buildingsDestroyedText;
+    [SerializeField] TMP_Text dronesDestroyedText;
+    [SerializeField] TMP_Text tanksDestroyedText;
+    [SerializeField] TMP_Text bombersDestroyedText;
+    [SerializeField] TMP_Text currentWaveText;
+    [SerializeField] TMP_Text scoreText;
+    [SerializeField] int currentPoints = 0;
 
-    private void OnEnable()
+    void Awake()
+    {
+        cityGenerator = FindObjectOfType<CityGenerator>();
+        killSheet = FindObjectOfType<KillSheet>();
+        if (cityGenerator == null)
+            Debug.LogWarning($"Cannot find a GameObject with the CityGenerator component attached");
+        if (killSheet == null)
+            Debug.LogWarning($"Cannot find a GameObject with the KillSheet component attached");
+    }
+
+    void OnEnable()
     {
         Building.BuildingDestroyed += UpdateBuildingsLeft;
+        Tank.UpdateTankKillCount += UpdateTankDestroyedText;
+        Bomber.UpdateBomberKillCount += UpdateBomberDestroyedText;
+        Drone.UpdateDroneKillCount += UpdateDroneDestroyedText;
         WaveManager.UpdateWave += UpdateCurrentWave;
         MessagesManager.UpdateScore += UpdateScore;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         Building.BuildingDestroyed -= UpdateBuildingsLeft;
+        Tank.UpdateTankKillCount -= UpdateTankDestroyedText;
+        Bomber.UpdateBomberKillCount -= UpdateBomberDestroyedText;
+        Drone.UpdateDroneKillCount -= UpdateDroneDestroyedText;
         WaveManager.UpdateWave -= UpdateCurrentWave;
         MessagesManager.UpdateScore -= UpdateScore;
     }
 
-    private void Start()
+    void Start()
     {
-        if (cityGenerator != null && buildingsLeftText != null)
-            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.GetNumberBuildingsLeft()}";
+        if (cityGenerator != null && buildingsText != null)
+            buildingsText.text = $"Buildings: \n{cityGenerator.GetNumberBuildingsLeft()}";
+        if (cityGenerator != null && buildingsDestroyedText != null)
+            buildingsDestroyedText.text = $"Buildings Destroyed: \n{cityGenerator.GetBuildingsDestroyed()}";
+        if (killSheet != null && dronesDestroyedText != null)
+            dronesDestroyedText.text = $"Drones Destroyed: \n{killSheet.GetDronesDestroyed()}";
+        if (killSheet != null && tanksDestroyedText != null)
+            tanksDestroyedText.text = $"Tanks Destroyed: \n{killSheet.GetTanksDestroyed()}";
+        if (killSheet != null && bombersDestroyedText != null)
+            bombersDestroyedText.text = $"Bombers Destroyed: \n{killSheet.GetBombersDestroyed()}";
         if (scoreText != null)
             scoreText.text = "Score: \n0";
     }
 
-    private void UpdateBuildingsLeft(GameObject notUsed)
+    void UpdateBuildingsLeft(GameObject notUsed)
     {
-        if (cityGenerator != null && buildingsLeftText != null)
-            buildingsLeftText.text = $"Buildings Left: \n{cityGenerator.GetNumberBuildingsLeft()}";
+        if (cityGenerator != null && buildingsText != null)
+            buildingsText.text = $"Buildings: \n{cityGenerator.GetNumberBuildingsLeft()}";
+        UpdateBuildingsDestroyedText();
     }
 
-    private void UpdateCurrentWave(int wave)
+    void UpdateBuildingsDestroyedText()
+    {
+        if (cityGenerator != null && buildingsDestroyedText != null)
+            buildingsDestroyedText.text = $"Buildings Destroyed: \n{cityGenerator.GetBuildingsDestroyed()}";
+    }
+
+    void UpdateDroneDestroyedText()
+    {
+        if (killSheet != null && dronesDestroyedText != null)
+            dronesDestroyedText.text = $"Drones Destroyed: \n{killSheet.GetDronesDestroyed()}";
+    }
+
+    void UpdateTankDestroyedText()
+    {
+        if (killSheet != null && tanksDestroyedText != null)
+            tanksDestroyedText.text = $"Tanks Destroyed: \n{killSheet.GetTanksDestroyed()}";
+    }
+
+    void UpdateBomberDestroyedText()
+    {
+        if (killSheet != null && bombersDestroyedText != null)
+            bombersDestroyedText.text = $"Bombers Destroyed: \n{killSheet.GetBombersDestroyed()}";
+    }
+
+    void UpdateCurrentWave(int wave)
     {
         if (currentWaveText != null)
             currentWaveText.text = $"Current Wave: \n{wave}";
     }
 
-    private void UpdateScore(int points, bool positive)
+    void UpdateScore(int points, bool positive)
     {
         if (positive.Equals(true))
             currentPoints += points;

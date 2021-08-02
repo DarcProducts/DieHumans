@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cdbd199555f7f4ab00e2f8988e39c1, type: 3}
+  m_Name: Setup 1
+  m_EditorClassIdentifier: 
+  leftThumbstick: {fileID: 11400000, guid: 98aafedd97d9ea240858f5dca996f371, type: 2}
+  leftHandTriggerActive: {fileID: 11400000, guid: 763bed334ad280a4bb5d1a90c16ae093, type: 2}
+  leftHandGripActive: {fileID: 11400000, guid: c8eeb8170fd87f64e9ecf4be84654eb7, type: 2}
+  xButtonActivated: {fileID: 11400000, guid: a64ab8b378075ce4f9508201453a9f54, type: 2}
+  yButtonActivated: {fileID: 11400000, guid: b96efb2dc7595f64b8f1144b45ff7514, type: 2}
+  leftHandThumbstick: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftHandTriggerAction: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftHandGripAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightThumbstick: {fileID: 11400000, guid: 13a2aac287a36bf45808790a1583655b, type: 2}
+  rightHandTriggerActive: {fileID: 11400000, guid: 2d247a7d88fd2ca498d6c63591be31fe, type: 2}
+  rightHandGripActive: {fileID: 11400000, guid: 7d8bce630c099874d81c19ac34c4dae3, type: 2}
+  aButtonActivated: {fileID: 11400000, guid: a8e2d4400ae9d06488f6aee3e6c31f5c, type: 2}
+  bButtonActivated: {fileID: 11400000, guid: 0e76ea3052f9b744caf5f0309340d822, type: 2}
+  rightHandThumbstick: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightHandTriggerAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightHandGripAction: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}

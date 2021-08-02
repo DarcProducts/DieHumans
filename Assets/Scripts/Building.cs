@@ -4,35 +4,32 @@ using UnityEngine.Events;
 
 public class Building : MonoBehaviour, IDamagable<float>
 {
+    public static UnityAction UpdateBuildingCount;
+    public static UnityAction BuildingCollapseSound;
     public static UnityAction<Vector3> BuildingDamaged;
     public static UnityAction<GameObject> BuildingDestroyed;
+    public static UnityAction<Vector3> RemoveBuildingVector;
     public static UnityAction<Vector3, byte, byte, float> TextInfo;
     public static UnityAction<Vector3, string, float, Color> DamagedInfo;
     [SerializeField] float buildingHealthMultiplier;
-    [SerializeField] int buildingPeopleMultiplier;
     [SerializeField] Material brokenMaterial;
     float _currentBuildingHealth;
-    int _currentNumberOfPeopleInside;
     [SerializeField] float collapseRate = .4f;
     [SerializeField] float damageDiplayDuration;
-    GameObject player;
+    bool hasPlayedSound = false;
     ObjectPools objectPools;
     float maxBuildingHealth;
-    int maxNumberOfPeopleInside;
     bool brokenEffectSet = false;
     bool collapsingEffectSet = false;
     bool isCollapsing = false;
 
+    void Awake() =>  objectPools = FindObjectOfType<ObjectPools>();
+    void OnEnable() => hasPlayedSound = false;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        objectPools = FindObjectOfType<ObjectPools>();
-        if (objectPools == null)
-            Debug.LogWarning($"{gameObject.name} could not find an object with a ObjectPools component attached");
         maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
-        maxNumberOfPeopleInside = (int)transform.localScale.y * buildingPeopleMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
-        _currentNumberOfPeopleInside = maxNumberOfPeopleInside;
     }
 
     void LateUpdate()
@@ -74,10 +71,17 @@ public class Building : MonoBehaviour, IDamagable<float>
     {
         GetComponent<Renderer>().material = brokenMaterial;
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(transform.localScale.x, 0, transform.localScale.z), collapseRate * Time.fixedDeltaTime);
+        if (!hasPlayedSound)
+        {
+            BuildingCollapseSound?.Invoke();
+            hasPlayedSound = true;
+        }
         if (transform.localScale.y <= 0)
         {
             InitializeBrokenBuildingEffect();
-            TextInfo?.Invoke(transform.position, 3, 1, maxBuildingHealth);
+            TextInfo?.Invoke(transform.position, 3, 1, maxBuildingHealth * .5f);
+            UpdateBuildingCount?.Invoke();
+            RemoveBuildingVector?.Invoke(transform.position);
             BuildingDestroyed?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
@@ -85,15 +89,12 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     public float GetCurrentHealth() => _currentBuildingHealth;
 
-    public int GetNumberOfPeopleInside() => _currentNumberOfPeopleInside;
-
-    public void AbductPeople(int amount) => _currentNumberOfPeopleInside -= amount;
-
     public void ApplyDamage(float damage)
     {
         _currentBuildingHealth -= damage;
         BuildingDamaged?.Invoke(transform.position);
-        DamagedInfo?.Invoke(transform.position + Vector3.up * 30, damage.ToString(), 64, Color.red);
+        if (_currentBuildingHealth > 0)
+            DamagedInfo?.Invoke(transform.position + Vector3.up * 30, damage.ToString(), 64, Color.red);
         if (_currentBuildingHealth <= 0)
         {
             InitializeCollapsingEffect();
@@ -101,7 +102,6 @@ public class Building : MonoBehaviour, IDamagable<float>
         }
     }
 
-
-    [ContextMenu("Damage building")]
-    public void TestDamage() => ApplyDamage(10000);
+    [ContextMenu("Destroy building")]
+    public void DestroyBuilding() => ApplyDamage(maxBuildingHealth);
 }

@@ -10,129 +10,183 @@ public class DropBox : MonoBehaviour
     public static UnityAction<Vector3, float, byte> HitObject;
     public static UnityAction<byte, float> BoxAction;
     [SerializeField] BoxType boxType;
-    [SerializeField] Material damageMaterial;
-    [SerializeField] Material speedMaterial;
-    [SerializeField] Material timeMaterial;
-    [SerializeField] Material thrustMaterial;
-    [SerializeField] float dropSpeed;
-    [SerializeField] int speedMultiplier;
+    [SerializeField] Material dmgMat;
+    [SerializeField] Material spdMat;
+    [SerializeField] Material timeMat;
+    [SerializeField] Material thrustMat;
     [SerializeField] GameObject parachute;
-    [SerializeField] float damageIncrease;
-    [SerializeField] float speedIncrease;
-    [SerializeField] float rateDecrease;
-    [SerializeField] float thrustIncrease;
-    WeaponManager weaponManager;
-    bool hasParachute = true;
-    Renderer boxRenderer;
+    [SerializeField] float dmgIncr;
+    [SerializeField] float spdIncr;
+    [SerializeField] float rateDecr;
+    [SerializeField] float thrustIncr;
+    [SerializeField] float explRad;
+    [SerializeField] float explDmg;
+    [SerializeField] LayerMask explHitLyr;
+    [SerializeField] GameObject locator;
+    [SerializeField] LayerMask locHitLyr;
+    Rigidbody rB;
+    WeaponManager wpnMng;
+    bool dragSet = false;
+    bool hasPara = true;
+    Renderer boxRend;
 
-    private void Awake()
+    void Awake()
     {
-        weaponManager = FindObjectOfType<WeaponManager>();
-        if (weaponManager == null)
-            Debug.LogWarning($"Cannot find a GameObject with the WeaponManager component attached");
+        boxRend = GetComponent<Renderer>();
+        rB = GetComponent<Rigidbody>();
+        wpnMng = FindObjectOfType<WeaponManager>();
     }
 
     void Start()
     {
-        boxRenderer = GetComponent<Renderer>();
         PickBox();
+        ResetParachute();
     }
 
     void OnEnable()
     {
         PickBox();
+        ResetParachute();
+    }
+
+    void SetUpDropLocator()
+    {
+        if (locator != null)
+        {
+            if (Physics.Raycast(transform.position + Vector3.down * 3, Vector3.down, out RaycastHit hit, 800, locHitLyr))
+            {
+                locator.transform.position = hit.point;
+                locator.SetActive(true);
+            }
+            else
+                locator.SetActive(false);
+        }
     }
 
     void OnDisable()
     {
-        hasParachute = true;
+        if (locator != null)
+        {
+            locator.transform.position = transform.position + Vector3.down * 6;
+            locator.SetActive(false);
+        }
+        hasPara = true;
         if (parachute != null)
             parachute.SetActive(true);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        if (hasParachute)
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -10, transform.position.z), dropSpeed * Time.fixedDeltaTime);
-        else
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -10, transform.position.z), dropSpeed * speedMultiplier * Time.fixedDeltaTime);
+        if (!hasPara && !dragSet)
+            ShotParachute();
 
         if (transform.position.y < -10)
             gameObject.SetActive(false);
 
+        SetUpDropLocator();
+
         transform.rotation = Quaternion.identity;
+    }
+
+    void ShotParachute()
+    {
+        if (rB != null)
+        {
+            rB.drag = .1f;
+            rB.angularDrag = .05f;
+            dragSet = true;
+        }
+    }
+
+    void ResetParachute()
+    {
+        if (rB != null)
+        {
+            rB.drag = 2f;
+            rB.angularDrag = .5f;
+            dragSet = false;
+        }
     }
 
     void PickBox()
     {
-        if (boxRenderer != null)
+        if (boxRend != null)
         {
             int ranNum = Random.Range(0, 4);
             if (ranNum == 0)
             {
                 boxType = BoxType.Time;
-                boxRenderer.material = timeMaterial;
+                boxRend.material = timeMat;
             }
             else if (ranNum == 1)
             {
                 boxType = BoxType.Damage;
-                boxRenderer.material = damageMaterial;
+                boxRend.material = dmgMat;
             }
             else if (ranNum == 2)
             {
                 boxType = BoxType.Speed;
-                boxRenderer.material = speedMaterial;
+                boxRend.material = spdMat;
             }
             else
             {
                 boxType = BoxType.Thrust;
-                boxRenderer.material = thrustMaterial;
+                boxRend.material = thrustMat;
             }
         }
     }
 
     public void ActivateBox()
     {
-        if (weaponManager != null)
+        if (wpnMng != null)
         {
             switch (boxType)
             {
                 case BoxType.Damage:
-                    BoxAction?.Invoke(0, damageIncrease);
+                    BoxAction?.Invoke(0, dmgIncr);
                     break;
 
                 case BoxType.Speed:
-                    BoxAction?.Invoke(1, speedIncrease);
+                    BoxAction?.Invoke(1, spdIncr);
                     break;
 
                 case BoxType.Time:
-                    BoxAction?.Invoke(2, rateDecrease);
+                    BoxAction?.Invoke(2, rateDecr);
                     break;
+
                 case BoxType.Thrust:
-                    BoxAction?.Invoke(3, thrustIncrease);
+                    BoxAction?.Invoke(3, thrustIncr);
                     break;
+
                 default:
                     break;
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerAquired?.Invoke();
             ActivateBox();
+            gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            ShotBox?.Invoke();
+            Utilities.TryDamagingNearTargets(transform.position + Vector3.down * 2, explRad, explHitLyr, explDmg);
+            HitObject?.Invoke(transform.position, 10, 1);
+            gameObject.SetActive(false);
         }
         else
-            HitObject?.Invoke(transform.position, 3, 1);
-
-        if (collision.gameObject.CompareTag("Projectile"))
-            ShotBox?.Invoke();
-        gameObject.SetActive(false);
+        {
+            HitObject?.Invoke(transform.position, 3, 0);
+            gameObject.SetActive(false);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Projectile"))
             DestroyParachute();
@@ -143,7 +197,7 @@ public class DropBox : MonoBehaviour
     {
         if (parachute != null)
         {
-            hasParachute = false;
+            hasPara = false;
             parachute.SetActive(false);
         }
     }

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public abstract class AIUtilities : MonoBehaviour
 {
-    public static UnityAction<AudioSource> LaserActivated;
     CityGenerator CityGenerator { get; set; }
     ObjectPools ObjectPools { get; set; }
     GameObject Player { get; set; }

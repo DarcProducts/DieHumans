@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CityGenerator : MonoBehaviour
 {
-    [Range(0f, 1f)] [SerializeField] float willBeDestroyed;
+    public static UnityAction AllBuildingsDestroyed;
+    [Range(0.001f, .999f)] [SerializeField] float willBeDestroyed;
     [SerializeField] GameObject building = null;
     [SerializeField] int gridWidth = 0;
     [SerializeField] int gridHeight = 0;
@@ -13,25 +15,26 @@ public class CityGenerator : MonoBehaviour
     [SerializeField] int maxBuildingHeight;
     [SerializeField] float minBuildingWidth;
     [SerializeField] float maxBuildingWidth;
-    [SerializeField] bool showNumbers = true;
-    [SerializeField] bool showLines = true;
-    [SerializeField] Color gridNumberColor = Color.white;
-    [SerializeField] Color gridXColor = Color.white;
-    [SerializeField] Color gridZColor = Color.white;
     [SerializeField] Material buildingMat;
-    [SerializeField] Material building1Mat;
-    [SerializeField] Material building2Mat;
+    int buildingsDestroyed = 0;
     int yPlaneLevel = 0;
-    readonly List<GameObject> attackTargets = new List<GameObject>();
+    readonly List<Vector3> attackTargets = new List<Vector3>();
 
     void OnEnable()
     {
-        Building.BuildingDestroyed += RemoveAttackTarget;
+        Building.RemoveBuildingVector += RemoveAttackTarget;
+        Building.UpdateBuildingCount += BuildingDestroyed;
     }
 
     void OnDisable()
     {
-        Building.BuildingDestroyed -= RemoveAttackTarget;
+        Building.RemoveBuildingVector -= RemoveAttackTarget;
+        Building.UpdateBuildingCount -= BuildingDestroyed;
+    }
+
+    private void Start()
+    {
+        CreateDarcGrid(Vector3.zero);
     }
 
     Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
@@ -59,32 +62,16 @@ public class CityGenerator : MonoBehaviour
                                 SetLocalScale(building, new Vector3(Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth)), Random.Range(Mathf.RoundToInt(minBuildingHeight), Mathf.RoundToInt(maxBuildingHeight)), Random.Range(Mathf.RoundToInt(minBuildingWidth), Mathf.RoundToInt(maxBuildingWidth))));
                                 GameObject newBuilding = GameObject.Instantiate(building, GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, yPlaneLevel, gridCellSize) * .5f, Quaternion.identity, buildings.transform);
                                 newBuilding.name = $"Building: {newBuilding.transform.position.x} {newBuilding.transform.position.z}";
-                                if (newBuilding.transform.localScale.y > maxBuildingHeight * .8f && building2Mat != null)
-                                    newBuilding.GetComponent<Renderer>().material = building2Mat;
-                                else if (newBuilding.transform.localScale.y <= maxBuildingHeight * .8f && newBuilding.transform.localScale.y >= maxBuildingHeight / 4 && building1Mat != null)
-                                    newBuilding.GetComponent<Renderer>().material = building1Mat;
-                                else if (buildingMat != null)
-                                    newBuilding.GetComponent<Renderer>().material = buildingMat;
-                                if (showNumbers)
-                                {
-                                    CreateWorldText(".", TextAnchor.MiddleCenter, TextAlignment.Center, gridNumberColor,
-                                        GetWorldPosition(x, yPlaneLevel, z, gridCellSize) + new Vector3(gridCellSize, gridCellSize, gridCellSize) * .5f);
-                                }
-                                attackTargets.Add(newBuilding);
+                                Renderer rend = newBuilding.GetComponent<Renderer>();
+                                if (rend != null)
+                                   rend.material = buildingMat;
+                                attackTargets.Add(newBuilding.transform.position);
                             }
-                        }
-
-                        if (showLines)
-                        {
-                            Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x, y, z + 1, gridCellSize), gridZColor, Mathf.Infinity);
-                            Debug.DrawLine(GetWorldPosition(x, y, z, gridCellSize), GetWorldPosition(x + 1, y, z, gridCellSize), gridXColor, Mathf.Infinity);
                         }
                     }
                 }
             }
         }
-        if (building != null)
-            building.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetLocalScale(GameObject scaleObject, Vector3 newSize = default)
@@ -93,36 +80,26 @@ public class CityGenerator : MonoBehaviour
             scaleObject.transform.localScale = new Vector3(newSize.x, newSize.y, newSize.z);
     }
 
-    public TextMesh CreateWorldText(string text, TextAnchor textAnchor, TextAlignment textAlignment, Color fontColor = default,
-        Vector3 localPosition = default, int fontSize = 20, int sortingOrder = 0, Transform parent = null)
-    {
-        GameObject gameObject = new GameObject("World_Text", typeof(TextMesh));
-        Transform transform = gameObject.transform;
-        transform.SetParent(parent, false);
-        transform.localPosition = localPosition;
-        TextMesh textMesh = gameObject.GetComponent<TextMesh>();
-        textMesh.anchor = textAnchor;
-        textMesh.alignment = textAlignment;
-        textMesh.text = text;
-        textMesh.fontSize = fontSize;
-        textMesh.color = fontColor;
-        textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
-        return textMesh;
-    }
-
     public int GetNumberBuildingsLeft() => attackTargets.Count;
 
-    public void RemoveAttackTarget(GameObject target) => attackTargets.Remove(target);
-
-    public GameObject[] GetAttackTargets() => attackTargets.ToArray();
+    public void RemoveAttackTarget(Vector3 target)
+    {
+        attackTargets.Remove(target);
+        if (attackTargets.Count.Equals(0))
+            AllBuildingsDestroyed?.Invoke();
+    }
 
     public Vector3 GetAttackVector()
     {
-        int ranNum = Random.Range(0, attackTargets.Count);
-        return attackTargets[ranNum].transform.position;
+        if (attackTargets.Count > 0)
+        {
+            int ranNum = Random.Range(0, attackTargets.Count);
+            return attackTargets[ranNum];
+        }
+        return new Vector3(Random.Range(0, 310), 0, Random.Range(0, 310));
     }
 
-    public float GetGridSize() => gridCellSize;
+    public void BuildingDestroyed() => buildingsDestroyed++;
 
-    public float GetMaxBuildingHeight() => maxBuildingHeight;
+    public int GetBuildingsDestroyed() => buildingsDestroyed;
 }

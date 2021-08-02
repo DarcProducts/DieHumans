@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 3157930791822965688}
   - component: {fileID: 880398868438634354}
   - component: {fileID: 7352620540776443424}
-  - component: {fileID: 4724840877691062414}
+  - component: {fileID: 1545220339651986043}
   m_Layer: 12
   m_Name: EnemyRocket
   m_TagString: Rocket
@@ -185,9 +185,9 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 768
-  ignoreLayers:
+  ignoreDropCollisionLayers:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 71680
   maxHealth: 30
 --- !u!33 &3157930791822965688
 MeshFilter:
@@ -254,8 +254,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4724840877691062414
-BoxCollider:
+--- !u!135 &1545220339651986043
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,5 +265,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.4187784, y: 4.3871284, z: 3.2570727}
+  m_Radius: 2.2093892
   m_Center: {x: 0, y: 0, z: -0.30712184}

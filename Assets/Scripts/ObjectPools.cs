@@ -46,21 +46,22 @@ public class ObjectPools : MonoBehaviour
     readonly List<GameObject> explosionEffect2Pool = new List<GameObject>();
     [SerializeField] GameObject explosionEffect3;
     readonly List<GameObject> explosionEffect3Pool = new List<GameObject>();
-    [SerializeField] GameObject explosionEffect4;
-    readonly List<GameObject> explosionEffect4Pool = new List<GameObject>();
     [Header("Projectile Stuff")]
     [SerializeField] GameObject projectile;
     readonly List<GameObject> projectilePool = new List<GameObject>();
     [Header("DropBox Stuff")]
     [SerializeField] GameObject dropBox;
     readonly List<GameObject> dropBoxPool = new List<GameObject>();
+    [Header("Turret Stuff")]
+    [SerializeField] GameObject turret;
+    readonly List<GameObject> turretPool = new List<GameObject>();
 
     void OnEnable()
     {
         Rocket.ExplodeRocket += Explode;
         Meteor.MeteorExploded += Explode;
         Meteor.MeteorEvaded += DestroyMeteor;
-        SimpleDrone.DroneExploded += Explode;
+        Drone.DroneExploded += Explode;
         Bomber.BomberExploded += Explode;
         Projectile.ProjectileExploded += Explode;
         DropBox.HitObject += Explode;
@@ -71,7 +72,7 @@ public class ObjectPools : MonoBehaviour
         Rocket.ExplodeRocket -= Explode;
         Meteor.MeteorExploded -= Explode;
         Meteor.MeteorEvaded -= DestroyMeteor;
-        SimpleDrone.DroneExploded -= Explode;
+        Drone.DroneExploded -= Explode;
         Bomber.BomberExploded -= Explode;
         Projectile.ProjectileExploded -= Explode;
         DropBox.HitObject -= Explode;
@@ -115,6 +116,23 @@ public class ObjectPools : MonoBehaviour
         return null;
     }
 
+    public GameObject GetTurret()
+    {
+        for (int i = 0; i < turretPool.Count; i++)
+        {
+            if (!turretPool[i].activeSelf)
+                return turretPool[i];
+        }
+        if (dropBox != null)
+        {
+            GameObject newTurret = Instantiate(turret, Vector3.down, Quaternion.identity);
+            newTurret.SetActive(false);
+            turretPool.Add(newTurret);
+            return newTurret;
+        }
+        return null;
+    }
+
     public GameObject GetTank()
     {
         for (int i = 0; i < tankPool.Count; i++)
@@ -122,11 +140,11 @@ public class ObjectPools : MonoBehaviour
             if (!tankPool[i].activeSelf)
                 return tankPool[i];
         }
-        if (dropBox != null)
+        if (tank != null)
         {
             GameObject newTank = Instantiate(tank, Vector3.down, Quaternion.identity);
             newTank.SetActive(false);
-            dropBoxPool.Add(newTank);
+            tankPool.Add(newTank);
             return newTank;
         }
         return null;
@@ -249,18 +267,6 @@ public class ObjectPools : MonoBehaviour
                     return newExplosion3;
                 }
                 break;
-            case 3:
-                for (int i = 0; i < explosionEffect4Pool.Count; i++)
-                    if (!explosionEffect4Pool[i].activeSelf)
-                        return explosionEffect4Pool[i];
-                if (explosionEffect4 != null)
-                {
-                    GameObject newExplosion4 = Instantiate(explosionEffect4, Vector3.down, Quaternion.identity);
-                    newExplosion4.SetActive(false);
-                    explosionEffect4Pool.Add(newExplosion4);
-                    return newExplosion4;
-                }
-                break;
             default:
                 break;
         }
@@ -328,7 +334,7 @@ public class ObjectPools : MonoBehaviour
         if (infoLetters != null)
         {
             GameObject newInfo = Instantiate(infoLetters, Vector3.down, Quaternion.identity);
-            newInfo.gameObject.SetActive(false);
+            newInfo.SetActive(false);
             infoLettersPool.Add(newInfo);
             return newInfo;
         }

@@ -75,13 +75,13 @@ TrailRenderer:
   m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.34450173
+    widthMultiplier: 0.13175543
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.4262468
+        value: 0.68444073
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 6445157654595474814}
   - component: {fileID: 9121262542715183540}
   - component: {fileID: 1475493243161976826}
-  - component: {fileID: 325197423997348875}
+  - component: {fileID: 5400308312775279497}
   m_Layer: 14
   m_Name: Projectile
   m_TagString: Projectile
@@ -183,7 +183,7 @@ MonoBehaviour:
     m_Bits: 38912
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 16896
+    m_Bits: 82432
 --- !u!33 &6445157654595474814
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -249,16 +249,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!65 &325197423997348875
-BoxCollider:
+--- !u!135 &5400308312775279497
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7319976143257518177}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.732051, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.99999994
+  m_Center: {x: 0, y: 7.888609e-31, z: -0.00000005960464}

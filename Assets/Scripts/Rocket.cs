@@ -14,28 +14,28 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     public float rocketSpeed;
     public float explosionRadius;
     public LayerMask damagableLayers;
-    public LayerMask ignoreLayers;
+    public LayerMask ignoreDropCollisionLayers;
     [SerializeField] float maxHealth = 2;
     float currentHealth = 1;
     bool forceApplied = false;
     TrailRenderer rocketTrail;
     Rigidbody rB;
 
-    private void Awake()
+    void Awake()
     {
         rB = GetComponent<Rigidbody>();
         currentHealth = maxHealth;
         rocketTrail = GetComponentInChildren<TrailRenderer>();
-        if (rB == null)
-            Debug.LogWarning($"No Rigidbody located on {gameObject.name}");
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         currentHealth = maxHealth;
+        if (type.Equals(RocketType.Mortar))
+            transform.forward = Vector3.up;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         forceApplied = false;
         if (rocketTrail != null)
@@ -47,9 +47,9 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         }
     }
 
-    private void FixedUpdate() => ActivateRocket();
+    void FixedUpdate() => ActivateRocket();
 
-    private void ActivateRocket()
+    void ActivateRocket()
     {
         switch (type)
         {
@@ -77,8 +77,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
                 break;
             
             case RocketType.Mortar:
-                transform.forward = Vector3.up;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position), 32 * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(currentTarget.x, 0, currentTarget.z) - transform.position), 64 * Time.fixedDeltaTime);
                 if (rB != null && !forceApplied)
                 {
                     rB.drag = .2f;
@@ -93,33 +92,24 @@ public class Rocket : MonoBehaviour, IDamagable<float>
                 break;
         }
         if (transform.position.Equals(currentTarget))
-        {
-            ExplodeRocket?.Invoke(transform.position, explosionRadius * .5f, 1);
-            gameObject.SetActive(false);
-        }
+            DisableRocket();
     }
    
     void OnTriggerEnter(Collider other)
     {
-        if (IsInLayerMask(other.gameObject, ignoreLayers))
+        if (Utilities.IsInLayerMask(other.gameObject, ignoreDropCollisionLayers))
             return;
-        TryDamagingNearTargets();
-        ExplodeRocket?.Invoke(transform.position, explosionRadius * .5f, 0);
-        gameObject.SetActive(false);
+        else if (!other.CompareTag("Projectile"))
+        {
+            Utilities.TryDamagingNearTargets(transform.position, explosionRadius, damagableLayers, rocketDamage);
+            DisableRocket();
+        }
     }
 
-    private void TryDamagingNearTargets()
+    void DisableRocket()
     {
-        Collider[] closeObjects = Physics.OverlapSphere(transform.position, explosionRadius, damagableLayers);
-        foreach (Collider hit in closeObjects)
-        {
-            if (IsInLayerMask(hit.gameObject, damagableLayers))
-            {
-                IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
-                if (d != null)
-                    d.ApplyDamage(rocketDamage);
-            }
-        }
+        ExplodeRocket?.Invoke(transform.position, explosionRadius * .5f, 0);
+        gameObject.SetActive(false);
     }
 
     public void ApplyDamage(float amount)
@@ -127,13 +117,10 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
-            ExplodeRocket?.Invoke(transform.position, explosionRadius * .5f, 1);
-            gameObject.SetActive(false);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth * 2);
+            DisableRocket();
         }
     }
-
-    public bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
 
     public void SetCurrentTarget(Vector3 value) => currentTarget = value;
 

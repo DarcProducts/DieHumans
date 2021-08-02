@@ -2,11 +2,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public enum TankState { moving, attacking }
+
 public class Tank : AIUtilities, IDamagable<float>
 {
     public static UnityAction<Vector3, byte, byte, float> TextInfo;
     public static UnityAction<Vector3, float, byte> TankExploded;
     public static UnityAction<GameObject> UpdateTank;
+    public static UnityAction UpdateTankKillCount;
+    public static UnityAction TankShot;
     [SerializeField] TankState state;
     [SerializeField] float targetCheckDistance;
     [SerializeField] Vector3 minCenterArea;
@@ -16,7 +19,7 @@ public class Tank : AIUtilities, IDamagable<float>
     [SerializeField] float tankSpeed;
     [SerializeField] float rotateSpeed;
     [SerializeField] Transform barrelTip;
-    [SerializeField] float mortarDamage = 250f;
+    [SerializeField] float mortarDamage = 500f;
     [SerializeField] float mortarRadius = 10f;
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float fireRate;
@@ -31,27 +34,23 @@ public class Tank : AIUtilities, IDamagable<float>
     {
         cityGenerator = FindObjectOfType<CityGenerator>();
         objectPools = FindObjectOfType<ObjectPools>();
-        if (objectPools == null)
-            Debug.LogWarning($"Cannot find a GameObject with the ObjectPools component attached");
-        if (cityGenerator == null)
-            Debug.LogWarning($"Cannot find a GameObject with the CityGenerator component attached");
     }
 
     void Start() => InitialSetup();
 
     void OnEnable() => InitialSetup();
 
-    void OnDisable() => UpdateTank?.Invoke(gameObject);
-
     void InitialSetup()
     {
+        currentTarget = null;
         currentFireRate = fireRate;
-        targetLocation = GetLocationWithinArea();
+        if (cityGenerator != null)
+            targetLocation = cityGenerator.GetAttackVector();
         transform.LookAt(targetLocation);
         currentHealth = maxHealth;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         switch (state)
         {
@@ -59,23 +58,26 @@ public class Tank : AIUtilities, IDamagable<float>
                 if (currentTarget != null)
                     state = TankState.attacking;
                 if (currentTarget == null)
-                    FindNearestTarget();
-                if (transform.position.Equals(targetLocation))
-                    targetLocation = GetLocationWithinArea();
+                    FindRandomCloseTarget();
+                if (transform.position == targetLocation)
+                {
+                    if (cityGenerator != null)
+                        targetLocation = cityGenerator.GetAttackVector();
+                }
                 else
                 {
                     transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed * Time.fixedDeltaTime);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed * Time.fixedDeltaTime);
                 }
                 break;
+
             case TankState.attacking:
                 AttackTarget();
                 break;
+
             default:
                 break;
         }
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitDown, 20))
-            transform.position = hitDown.point;
     }
 
     void AttackTarget()
@@ -90,11 +92,12 @@ public class Tank : AIUtilities, IDamagable<float>
                 if (currentFireRate.Equals(0))
                 {
                     LaunchMortar();
+                    TankShot?.Invoke();
                     currentFireRate = fireRate;
                 }
             }
             if (!currentTarget.activeSelf)
-                FindNearestTarget();
+                FindRandomCloseTarget();
         }
         if (currentTarget == null)
         {
@@ -103,7 +106,7 @@ public class Tank : AIUtilities, IDamagable<float>
         }
     }
 
-    void FindNearestTarget()
+    void FindRandomCloseTarget()
     {
         Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance, targetLayers);
         if (closeObjects.Length > 0)
@@ -114,9 +117,6 @@ public class Tank : AIUtilities, IDamagable<float>
         }
         currentTarget = null;
     }
-
-    Vector3 GetLocationWithinArea() => new Vector3(UnityEngine.Random.Range(minCenterArea.x, maxCenterArea.x), UnityEngine.Random.Range(minCenterArea.y, maxCenterArea.y), UnityEngine.Random.Range(minCenterArea.z, maxCenterArea.z));
-
 
     void LaunchMortar()
     {
@@ -129,7 +129,7 @@ public class Tank : AIUtilities, IDamagable<float>
                 r.transform.position = barrelTip.position;
                 rocket.type = RocketType.Mortar;
                 rocket.currentTarget = currentTarget.transform.position + Vector3.up * 45f;
-                rocket.rocketSpeed = 1100f;
+                rocket.rocketSpeed = 1200f;
                 rocket.rocketDamage = mortarDamage;
                 rocket.explosionRadius = mortarRadius;
                 r.SetActive(true);
@@ -142,22 +142,22 @@ public class Tank : AIUtilities, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TankExploded?.Invoke(transform.position, 3, 1);
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
+            TankExploded?.Invoke(transform.position, 3, 2);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth * 2);
+            UpdateTank?.Invoke(gameObject);
+            UpdateTankKillCount?.Invoke();
             gameObject.SetActive(false);
         }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (IsInLayerMask(other.gameObject, targetLayers))
+        if (Utilities.IsInLayerMask(other.gameObject, targetLayers))
         {
             if (currentTarget == null)
-                FindNearestTarget();
+                FindRandomCloseTarget();
         }
     }
-
-    bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
 
     [ContextMenu("Kill Tank")]
     public void KillTank() => ApplyDamage(maxHealth);

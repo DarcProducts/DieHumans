@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     TrailRenderer projectileTrail;
     Rigidbody pRigidbody;
 
-    void Start()
+    void Awake()
     {
         projectileTrail = GetComponentInChildren<TrailRenderer>();
         pRigidbody = GetComponent<Rigidbody>();
@@ -28,13 +28,13 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (IsInLayerMask(collision.gameObject, ignoreLayers))
+        if (Utilities.IsInLayerMask(other.gameObject, ignoreLayers))
             return;
-        if (IsInLayerMask(collision.gameObject, hitLayers))
+        if (Utilities.IsInLayerMask(other.gameObject, hitLayers))
         {
-            TryDamagingTarget(collision.gameObject);
+            TryDamagingTarget(other.gameObject);
             ProjectileExploded?.Invoke(transform.position, .3f, 1);
         }
         gameObject.SetActive(false);
@@ -51,5 +51,4 @@ public class Projectile : MonoBehaviour
     }
 
     public Rigidbody GetRigidbody() => pRigidbody;
-    public bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
 }
