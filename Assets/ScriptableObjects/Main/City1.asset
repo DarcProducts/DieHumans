@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e67759b4d95cd4f9a901a4a113e02c, type: 3}
+  m_Name: City1
+  m_EditorClassIdentifier: 
+  willBeDestroyed: 0.6
+  building: {fileID: 5767940418111602097, guid: 3b7f678d4b18e754e86144aed527307d, type: 3}
+  gridWidth: 40
+  gridHeight: 1
+  gridDepth: 40
+  gridCellSize: 8
+  minBuildingHeight: 4
+  maxBuildingHeight: 12
+  minBuildingWidth: 4
+  maxBuildingWidth: 4
+  buildingMat: {fileID: 2100000, guid: a63e26497092f1d4c9dadd7c93754404, type: 2}
+  yPlaneLevel: 0

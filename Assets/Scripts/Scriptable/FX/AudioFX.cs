@@ -4,7 +4,7 @@ public class AudioFX : FX
 {
     public AudioSource source;
     public AudioClip clip;
-    public override void PlayFX()
+    public override void PlayFX(Vector3 location)
     {
         
     }
