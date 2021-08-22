@@ -25,25 +25,19 @@ public class Drone : AIUtilities, IDamagable<float>
     [SerializeField] LayerMaskVariable targetLayers;
     float fireTime;
     [SerializeField] CityGenerator cityGenerator;
-    MultiPooler objectPooler;
-    [SerializeField] ByteVariable explosionIndex;
+    [SerializeField] ObjectPooler explosionPool;
     GameObject attackTarget = null;
     Vector3 targetLocation = Vector3.zero;
     bool isHittingTarget = false;
 
-    void Awake()
-    {
-        objectPooler = FindObjectOfType<MultiPooler>();
-    }
-
     void OnEnable()
     {
         if (fireRate != null)
-            fireTime = fireRate.value;
+            fireTime = fireRate.Value;
         state = DroneState.moving;
         attackTarget = null;
         if (maxHealth != null)
-            currentHealth = maxHealth.value;
+            currentHealth = maxHealth.Value;
         if (cityGenerator != null)
         {
             Vector3 newAttackVector = cityGenerator.GetAttackVector();
@@ -71,7 +65,7 @@ public class Drone : AIUtilities, IDamagable<float>
             switch (state)
             {
                 case DroneState.moving:
-                    transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed.value * Time.fixedDeltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed.Value * Time.fixedDeltaTime);
                     transform.LookAt(targetLocation);
                     if (transform.position.Equals(targetLocation))
                         if (FindNearestTarget())
@@ -112,7 +106,7 @@ public class Drone : AIUtilities, IDamagable<float>
     {
         if (targetCheckDistance != null && targetLayers != null)
         {
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance.value, targetLayers.value);
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance.Value, targetLayers.value);
             if (closeObjects.Length > 0)
             {
                 int randObj = Random.Range(0, closeObjects.Length);
@@ -128,7 +122,7 @@ public class Drone : AIUtilities, IDamagable<float>
     {
         if (attackTarget != null && targetCheckDistance != null)
         {
-            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance.value))
+            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance.Value))
             {
                 isHittingTarget = false;
                 FindNearestTarget();
@@ -142,9 +136,9 @@ public class Drone : AIUtilities, IDamagable<float>
                 laser.enabled = false;
             if (fireTime <= 0 && weaponDamage != null && fireRate != null)
             {
-                TryDamagingTarget(attackTarget, weaponDamage.value);
+                TryDamagingTarget(attackTarget, weaponDamage.Value);
                 FiredLaser?.Invoke();
-                fireTime = fireRate.value;
+                fireTime = fireRate.Value;
             }
             if (!attackTarget.activeSelf)
             {
@@ -174,7 +168,7 @@ public class Drone : AIUtilities, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0 && maxHealth != null)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.value * 2);
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
             UpdateDrone?.Invoke(gameObject);
             UpdateDroneKillCount?.Invoke();
             DisableObject();
@@ -183,13 +177,10 @@ public class Drone : AIUtilities, IDamagable<float>
 
     void DisableObject()
     {
-        if (objectPooler != null && explosionIndex != null)
-        {
-            GameObject e = objectPooler.GetObject(explosionIndex.value);
-            e.transform.position = transform.position;
-            e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
-            e.SetActive(true);
-        }
+        GameObject e = explosionPool.GetObject();
+        e.transform.position = transform.position;
+        e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
+        e.SetActive(true);
         gameObject.SetActive(false);
     }
 
@@ -210,7 +201,7 @@ public class Drone : AIUtilities, IDamagable<float>
     public void KillDrone()
     {
         if (maxHealth != null)
-            ApplyDamage(maxHealth.value);
+            ApplyDamage(maxHealth.Value);
     }
 
     public float GetCurrentHealth() => currentHealth;

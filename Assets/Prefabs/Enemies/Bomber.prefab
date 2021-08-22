@@ -55,10 +55,11 @@ MonoBehaviour:
   rotateSpeed: {fileID: 11400000, guid: 7b4f448344509e648897f387690ba72c, type: 2}
   cityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
   explosionSize: 10
-  explosionIndex: {fileID: 11400000, guid: 6e211eea01cc3ce438e75e73da589323, type: 2}
   shipSpeed: {fileID: 11400000, guid: 127daaa6fbafb9949b7d26342fc1bfe6, type: 2}
   bombDropRate: {fileID: 11400000, guid: e20c3f434dd662d43ab7dc3f163fde10, type: 2}
   bombDropFX: {fileID: 0}
+  explosionPool: {fileID: 11400000, guid: c0a2f82aa505e954fbefad0407fb4bdd, type: 2}
+  rocketPool: {fileID: 11400000, guid: 27a1b1061d3272149ab53c33177446e0, type: 2}
 --- !u!33 &5461782706034946051
 MeshFilter:
   m_ObjectHideFlags: 0

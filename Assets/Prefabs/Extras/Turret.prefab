@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbbf57232bfd7f46b6b2a709a44c06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 3110705440167719927, guid: 9ccca59714caa1447b9a8e446fb68435, type: 3}
+  TurretFiredGun: {fileID: 11400000, guid: a4fac9b818686064ebb557a72b410716, type: 2}
   targetLayers: {fileID: 11400000, guid: 52c8676dac9a602458f6767c92f70712, type: 2}
-  projectilePool: {fileID: 11400000, guid: 88bef00c88c437749a3100f44b6268a7, type: 2}
-  projectileForce: 180
+  projectilePool: {fileID: 11400000, guid: 2f198475ad7bfc74584f6486a67960c6, type: 2}
+  infoTextPool: {fileID: 11400000, guid: 69937731dc0426644935c336837d5577, type: 2}
+  projectileForce: 420
   projectileSize: 1
   turretDamage: {fileID: 11400000, guid: 79d60dd21835cb34c835b9b5fb37e10f, type: 2}
   turretFireRate: {fileID: 11400000, guid: 93cc36030e3f4bc4c8599b2ea8a058e5, type: 2}
@@ -56,7 +59,6 @@ MonoBehaviour:
   timerDistanceAboveObject: 15
   turretDuration: {fileID: 11400000, guid: 6b6bc0155c1f1a44e99405d109ef959d, type: 2}
   targets: []
-  infoLetterPool: {fileID: 11400000, guid: 5c4e3e3e92f1a4b4fb2599f1b32df877, type: 2}
 --- !u!33 &8948404605149645693
 MeshFilter:
   m_ObjectHideFlags: 0

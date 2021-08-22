@@ -1,0 +1,1532 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.9f1 (108be757e447) revision 1084391'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19043.1165; Version 2009; 64bit' Language: 'en' Physical Memory: 16329 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+A:\UNITY_EDITORS\2020.3.9f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/NEW_UNITY_PROJECTS_2021/VR/DieHumans
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+52475
+Successfully changed project path to: C:/NEW_UNITY_PROJECTS_2021/VR/DieHumans
+C:/NEW_UNITY_PROJECTS_2021/VR/DieHumans
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 341.06 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 14.07 ms.
+Initialize engine version: 2020.3.9f1 (108be757e447)
+[Subsystems] Discovering subsystems at path A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/NEW_UNITY_PROJECTS_2021/VR/DieHumans/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
+    Vendor:   
+    VRAM:     6052 MB
+    Driver:   30.0.14.7168
+Initialize mono
+Mono path[0] = 'A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/Managed'
+Mono path[1] = 'A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56032
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: A:/UNITY_EDITORS/2020.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001245 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 39.85 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 16.854 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005122 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 38.46 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+[XR] OculusXRPlugin: registering subsystems
+[XR] Unable to register display lifecyle provider: [1]
+[XR] Oculus Input lifecycle provider registered.
+[XR] Unable to register input lifecyle provider: [1]
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.169 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.29 seconds
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1943 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 101.6 MB.
+System memory in use after: 101.5 MB.
+
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2435.
+Total: 2.028700 ms (FindLiveObjects: 0.177200 ms CreateObjectMapping: 0.065600 ms MarkObjects: 1.761300 ms  DeleteObjects: 0.023400 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Sounds/projectileImpact.wav
+  artifactKey: Guid(1674e9f10a4780a4fa044a2a22652864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sounds/projectileImpact.wav using Guid(1674e9f10a4780a4fa044a2a22652864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e7668614eabc2da3b5cadca38d24ffd') in 0.276754 seconds
+  Import took 0.296841 seconds .
+
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 5.47 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 18 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.0 MB.
+System memory in use after: 60.1 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2443.
+Total: 2.961900 ms (FindLiveObjects: 0.220800 ms CreateObjectMapping: 0.072600 ms MarkObjects: 2.650900 ms  DeleteObjects: 0.016500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 228.918095 seconds.
+  path: Assets/Scripts/Player/PlayerFlight.cs
+  artifactKey: Guid(985f6da903c264645a96f9b160e38ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Player/PlayerFlight.cs using Guid(985f6da903c264645a96f9b160e38ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8ccfa15772656a12ed0c2221567c868') in 0.019886 seconds
+  Import took 0.036589 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005333 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.838 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.2 MB.
+System memory in use after: 95.4 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 2446.
+Total: 2.388200 ms (FindLiveObjects: 0.181600 ms CreateObjectMapping: 0.066300 ms MarkObjects: 2.114200 ms  DeleteObjects: 0.024800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 24.729886 seconds.
+  path: Assets/Prefabs/Player/Ship_.prefab
+  artifactKey: Guid(9ccca59714caa1447b9a8e446fb68435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player/Ship_.prefab using Guid(9ccca59714caa1447b9a8e446fb68435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddbf8607cbb1ee3bd55b02d98d0eda20') in 0.434216 seconds
+  Import took 0.445893 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/Prefabs/Player/XR Rig.prefab
+  artifactKey: Guid(98d15247c9f126a4e8d03e4b4ea962e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player/XR Rig.prefab using Guid(98d15247c9f126a4e8d03e4b4ea962e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7d96fc8fd7bda3275ea68a78292b721') in 1.601274 seconds
+  Import took 1.620999 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006669 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.840 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.63 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.2 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2451.
+Total: 1.913800 ms (FindLiveObjects: 0.178600 ms CreateObjectMapping: 0.063300 ms MarkObjects: 1.652400 ms  DeleteObjects: 0.018700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004756 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.61 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.847 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2455.
+Total: 2.150600 ms (FindLiveObjects: 0.187300 ms CreateObjectMapping: 0.066000 ms MarkObjects: 1.876000 ms  DeleteObjects: 0.020000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 233.337793 seconds.
+  path: Assets/ScriptableObjects/Extras/Turret Variables/TurretFireRate.asset
+  artifactKey: Guid(93cc36030e3f4bc4c8599b2ea8a058e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Turret Variables/TurretFireRate.asset using Guid(93cc36030e3f4bc4c8599b2ea8a058e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '316a01e884e7f153832da793940f0a53') in 0.024142 seconds
+  Import took 0.197530 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004773 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.837 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2459.
+Total: 1.959700 ms (FindLiveObjects: 0.161100 ms CreateObjectMapping: 0.058700 ms MarkObjects: 1.719300 ms  DeleteObjects: 0.019500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005109 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.794 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2463.
+Total: 2.064300 ms (FindLiveObjects: 0.195800 ms CreateObjectMapping: 0.058200 ms MarkObjects: 1.791800 ms  DeleteObjects: 0.017400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004918 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.73 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.846 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.61 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2467.
+Total: 2.119600 ms (FindLiveObjects: 0.218000 ms CreateObjectMapping: 0.092700 ms MarkObjects: 1.782600 ms  DeleteObjects: 0.025300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005058 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.67 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.883 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.64 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.4 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2471.
+Total: 1.972500 ms (FindLiveObjects: 0.171400 ms CreateObjectMapping: 0.063500 ms MarkObjects: 1.718900 ms  DeleteObjects: 0.017800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005043 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.827 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2475.
+Total: 1.910800 ms (FindLiveObjects: 0.157100 ms CreateObjectMapping: 0.051700 ms MarkObjects: 1.682600 ms  DeleteObjects: 0.018400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005602 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.850 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.67 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.3 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2479.
+Total: 1.918500 ms (FindLiveObjects: 0.156200 ms CreateObjectMapping: 0.051100 ms MarkObjects: 1.694500 ms  DeleteObjects: 0.015900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004852 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.870 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2483.
+Total: 2.001500 ms (FindLiveObjects: 0.171300 ms CreateObjectMapping: 0.056000 ms MarkObjects: 1.755300 ms  DeleteObjects: 0.017900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006612 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.887 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.59 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2487.
+Total: 1.848600 ms (FindLiveObjects: 0.176900 ms CreateObjectMapping: 0.059200 ms MarkObjects: 1.595300 ms  DeleteObjects: 0.016400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005084 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.61 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2491.
+Total: 2.644600 ms (FindLiveObjects: 0.206100 ms CreateObjectMapping: 0.071500 ms MarkObjects: 2.330600 ms  DeleteObjects: 0.035200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005387 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.883 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2495.
+Total: 2.231700 ms (FindLiveObjects: 0.190300 ms CreateObjectMapping: 0.062900 ms MarkObjects: 1.957200 ms  DeleteObjects: 0.020100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 850.976818 seconds.
+  path: Assets/Prefabs/Extras/Turret.prefab
+  artifactKey: Guid(97b5e5eb48b2b7c47be027e542a5ecc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/Turret.prefab using Guid(97b5e5eb48b2b7c47be027e542a5ecc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9183f0a19b1734e240c7462a87b1d2b1') in 0.422586 seconds
+  Import took 0.454757 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004902 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.871 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2500.
+Total: 2.477800 ms (FindLiveObjects: 0.197500 ms CreateObjectMapping: 0.071500 ms MarkObjects: 2.183800 ms  DeleteObjects: 0.023800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004737 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.877 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2504.
+Total: 2.421000 ms (FindLiveObjects: 0.189400 ms CreateObjectMapping: 0.071900 ms MarkObjects: 2.138000 ms  DeleteObjects: 0.020700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004872 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.858 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.5 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2508.
+Total: 2.013600 ms (FindLiveObjects: 0.156700 ms CreateObjectMapping: 0.050500 ms MarkObjects: 1.786600 ms  DeleteObjects: 0.018700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004858 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.15 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.841 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2512.
+Total: 2.286000 ms (FindLiveObjects: 0.241100 ms CreateObjectMapping: 0.084700 ms MarkObjects: 1.938100 ms  DeleteObjects: 0.020700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005093 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.69 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.841 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2516.
+Total: 1.985900 ms (FindLiveObjects: 0.160300 ms CreateObjectMapping: 0.053600 ms MarkObjects: 1.752400 ms  DeleteObjects: 0.018700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004995 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.866 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2520.
+Total: 2.227300 ms (FindLiveObjects: 0.173900 ms CreateObjectMapping: 0.062700 ms MarkObjects: 1.969300 ms  DeleteObjects: 0.020500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005272 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.835 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2524.
+Total: 2.176900 ms (FindLiveObjects: 0.278300 ms CreateObjectMapping: 0.074000 ms MarkObjects: 1.778900 ms  DeleteObjects: 0.044400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004898 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.870 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2528.
+Total: 1.988500 ms (FindLiveObjects: 0.182200 ms CreateObjectMapping: 0.064300 ms MarkObjects: 1.724300 ms  DeleteObjects: 0.017100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005482 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.66 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.67 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2532.
+Total: 2.138800 ms (FindLiveObjects: 0.219800 ms CreateObjectMapping: 0.088000 ms MarkObjects: 1.807200 ms  DeleteObjects: 0.022500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005381 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.880 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.59 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2536.
+Total: 1.990000 ms (FindLiveObjects: 0.172900 ms CreateObjectMapping: 0.062600 ms MarkObjects: 1.736700 ms  DeleteObjects: 0.017100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005274 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.863 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.62 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2540.
+Total: 1.967100 ms (FindLiveObjects: 0.174600 ms CreateObjectMapping: 0.058800 ms MarkObjects: 1.714600 ms  DeleteObjects: 0.018100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004907 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.70 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.872 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2544.
+Total: 1.903100 ms (FindLiveObjects: 0.162000 ms CreateObjectMapping: 0.053600 ms MarkObjects: 1.670400 ms  DeleteObjects: 0.016400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005589 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.942 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.61 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2548.
+Total: 2.360100 ms (FindLiveObjects: 0.176800 ms CreateObjectMapping: 0.059500 ms MarkObjects: 2.100500 ms  DeleteObjects: 0.022100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005049 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.856 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2552.
+Total: 2.398100 ms (FindLiveObjects: 0.229600 ms CreateObjectMapping: 0.073300 ms MarkObjects: 2.075900 ms  DeleteObjects: 0.018300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005384 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.886 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.6 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2556.
+Total: 1.898000 ms (FindLiveObjects: 0.184300 ms CreateObjectMapping: 0.061700 ms MarkObjects: 1.630000 ms  DeleteObjects: 0.021000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 1681.714971 seconds.
+  path: Assets/ScriptableObjects/Events/ProjectileFired.asset
+  artifactKey: Guid(a4fac9b818686064ebb557a72b410716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Events/ProjectileFired.asset using Guid(a4fac9b818686064ebb557a72b410716) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '807465439d07e6362b1e54f09ef23305') in 0.100097 seconds
+  Import took 0.119561 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005167 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.905 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.7 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2560.
+Total: 2.136700 ms (FindLiveObjects: 0.172800 ms CreateObjectMapping: 0.061300 ms MarkObjects: 1.883100 ms  DeleteObjects: 0.018300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004824 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.874 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.57 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.5 MB.
+System memory in use after: 106.7 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2564.
+Total: 2.073200 ms (FindLiveObjects: 0.173800 ms CreateObjectMapping: 0.060100 ms MarkObjects: 1.797400 ms  DeleteObjects: 0.040900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 132.793310 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f39b9b431e7f5a24d7e3c072cd4703fa') in 0.561473 seconds
+  Import took 0.576271 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/Prefabs/Extras/Turret.prefab
+  artifactKey: Guid(97b5e5eb48b2b7c47be027e542a5ecc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/Turret.prefab using Guid(97b5e5eb48b2b7c47be027e542a5ecc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8d062c52cd0c6bbd194d0dbfa13ca78') in 0.056762 seconds
+  Import took 0.079650 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.260829 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '228f11122010bcd6a484809d2d3eecbf') in 0.065726 seconds
+  Import took 0.082391 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004879 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.909 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.83 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.6 MB.
+System memory in use after: 106.7 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2569.
+Total: 2.090600 ms (FindLiveObjects: 0.174700 ms CreateObjectMapping: 0.056300 ms MarkObjects: 1.839500 ms  DeleteObjects: 0.019100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 97.679666 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplayExplode.asset
+  artifactKey: Guid(04621a2b833208a43977b9ac7d796661) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplayExplode.asset using Guid(04621a2b833208a43977b9ac7d796661) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1fefcf8d9d763dbf9516bff7a574939') in 0.050793 seconds
+  Import took 0.071558 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 36.939856 seconds.
+  path: Assets/Prefabs/Player/XR Rig.prefab
+  artifactKey: Guid(98d15247c9f126a4e8d03e4b4ea962e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Player/XR Rig.prefab using Guid(98d15247c9f126a4e8d03e4b4ea962e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46c93f00e8d22e0672e4966859d73bd8') in 0.076185 seconds
+  Import took 0.152355 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.343230 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Audio/ProjectileImpactSound.asset
+  artifactKey: Guid(96a9777da9cf44640b5fd6224c9b8469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Audio/ProjectileImpactSound.asset using Guid(96a9777da9cf44640b5fd6224c9b8469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87060c4f865f0ee47d647ab66b815059') in 0.006521 seconds
+  Import took 0.033813 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.362433 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Audio/ProjectileImpactSound.asset
+  artifactKey: Guid(96a9777da9cf44640b5fd6224c9b8469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Audio/ProjectileImpactSound.asset using Guid(96a9777da9cf44640b5fd6224c9b8469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4213e611c124bb6a7ae71934d9630dc8') in 0.003645 seconds
+  Import took 0.023937 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 49.162365 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/IncreaseThrustMod_Player.asset
+  artifactKey: Guid(65526f6bd8a298148a8d02ad0b9166f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/IncreaseThrustMod_Player.asset using Guid(65526f6bd8a298148a8d02ad0b9166f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5c4e9ab4392a7524c786678502d03af') in 0.005801 seconds
+  Import took 0.030147 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 100.667709 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset
+  artifactKey: Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset using Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea5b7ba810d79f859dcf61e992e9d3ea') in 0.006285 seconds
+  Import took 0.018619 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.463353 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset
+  artifactKey: Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset using Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2bcf11e7909d61c96fdccd756690994') in 0.002856 seconds
+  Import took 0.017399 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.486985 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f38c66e3cbdced0f50be7bb9623bb2ea') in 0.652498 seconds
+  Import took 0.655577 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.017519 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f38c66e3cbdced0f50be7bb9623bb2ea') in 0.018509 seconds
+  Import took 0.021576 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.818708 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset
+  artifactKey: Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ThrustIncrease.asset using Guid(8c364f511b0c8d445aab885e9b397cbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb0f93ee620d6089a0a0644249d1a222') in 0.005914 seconds
+  Import took 0.021685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.176714 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset
+  artifactKey: Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset using Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '398cf2f9e0c28ee8db66ce0c752540b4') in 0.005901 seconds
+  Import took 0.035788 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.466050 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset
+  artifactKey: Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset using Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f4009b88379f2a4f531b6f2d0e23f14') in 0.003022 seconds
+  Import took 0.019950 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.759428 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset
+  artifactKey: Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset using Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ce3827f474777e7cf4373c45e70d69b') in 0.004771 seconds
+  Import took 0.036062 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 75.078303 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset
+  artifactKey: Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset using Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e6b56fb9db147f70bedc1f3130356f9') in 0.006177 seconds
+  Import took 0.012332 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.986374 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset
+  artifactKey: Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset using Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f878234216718eda2a838151ebd50d9f') in 0.004351 seconds
+  Import took 0.031440 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.200659 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset
+  artifactKey: Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/Effects/DropBox_DisplaySmallExplosion.asset using Guid(696f58b96f716c04da212fcc00541177) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82d1a20af385909e2734af528c8932a8') in 0.003715 seconds
+  Import took 0.007090 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.141303 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/FullFX/FX_DropBox_PickedUp.asset
+  artifactKey: Guid(a75bca214f8171a4a928b086c60c9b66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/FullFX/FX_DropBox_PickedUp.asset using Guid(a75bca214f8171a4a928b086c60c9b66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a87108b0e279f200daac319beae3047') in 0.007498 seconds
+  Import took 0.194354 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.666682 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/FullFX/FX_DropBox_PickedUp.asset
+  artifactKey: Guid(a75bca214f8171a4a928b086c60c9b66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/FullFX/FX_DropBox_PickedUp.asset using Guid(a75bca214f8171a4a928b086c60c9b66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71b5b0624585ee4b15bda8e2f7671456') in 0.004277 seconds
+  Import took 0.032926 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 24.716102 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods
+  artifactKey: Guid(4c3f9670646089a47a003ba790916ab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods using Guid(4c3f9670646089a47a003ba790916ab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c429300edbf05be53bfc1f467a72e2fc') in 0.006230 seconds
+  Import took 0.021109 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 59.578916 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset
+  artifactKey: Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset using Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '851aa4b09622b5e14a128af78c01f4f8') in 0.006775 seconds
+  Import took 0.017025 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005136 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.10 ms.
+NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:249 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\NEW_UNITY_PROJECTS_2021\VR\DieHumans\Library\PackageCache\com.unity.xr.oculus@1.9.1\Runtime\OculusLoader.cs:234 
+
+(Filename: Library/PackageCache/com.unity.xr.oculus@1.9.1/Runtime/OculusLoader.cs Line: 249)
+
+Mono: successfully reloaded assembly
+- Completed reload, in  0.898 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.58 ms, found 8 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 1879 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.8 MB.
+System memory in use after: 107.0 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2610.
+Total: 1.997100 ms (FindLiveObjects: 0.189100 ms CreateObjectMapping: 0.063900 ms MarkObjects: 1.723700 ms  DeleteObjects: 0.019600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 82.550083 seconds.
+  path: Assets/ScriptableObjects/Player Variables/ProjectileForce_Player.asset
+  artifactKey: Guid(0f4c9c51534774a4caab2a46efbdb904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Player Variables/ProjectileForce_Player.asset using Guid(0f4c9c51534774a4caab2a46efbdb904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '354408a7d6cffa3fedf2f5e439288f01') in 0.021197 seconds
+  Import took 0.078903 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.403481 seconds.
+  path: Assets/ScriptableObjects/Player Variables/ProjectileForce_Player.asset
+  artifactKey: Guid(0f4c9c51534774a4caab2a46efbdb904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Player Variables/ProjectileForce_Player.asset using Guid(0f4c9c51534774a4caab2a46efbdb904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f34f11690695e6d246cd30351779729d') in 0.003020 seconds
+  Import took 0.010921 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 60.053584 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ProjectileSpeedIncreaseValue.asset
+  artifactKey: Guid(3c8b277334957e84796a5a72e550447d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ProjectileSpeedIncreaseValue.asset using Guid(3c8b277334957e84796a5a72e550447d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e20ba04d5d6bb78a1bd1918420a1897a') in 0.006036 seconds
+  Import took 0.060117 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.065664 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ProjectileSpeedIncreaseValue.asset
+  artifactKey: Guid(3c8b277334957e84796a5a72e550447d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ProjectileSpeedIncreaseValue.asset using Guid(3c8b277334957e84796a5a72e550447d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b52042d33db16fea33ea3df6ccc41fdc') in 0.002872 seconds
+  Import took 0.039642 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.059497 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset
+  artifactKey: Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset using Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2878b1e74fa8b2362f03396ec28888b5') in 0.003150 seconds
+  Import took 0.066495 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.006280 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset
+  artifactKey: Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerProjectileSpeedIncrease.asset using Guid(70946092ea452184696d234b40be41da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bc7690bfce4ed7c76ffc4440466c300') in 0.002820 seconds
+  Import took 0.017676 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 107.848060 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModInitializer
+  artifactKey: Guid(2f22251e8a59c724cbb179834eaeb7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModInitializer using Guid(2f22251e8a59c724cbb179834eaeb7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7ae1ea40efe1ac499cc44171a4823f3') in 0.006306 seconds
+  Import took 0.017383 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.898094 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_ProjectileSpeedIncrease.asset
+  artifactKey: Guid(e4bafce7ef6587e4481a65cc1d3ce394) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_ProjectileSpeedIncrease.asset using Guid(e4bafce7ef6587e4481a65cc1d3ce394) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a8b4df36675c00a5f47beca049e4fb6') in 0.006896 seconds
+  Import took 0.138635 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.127398 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_ProjectileSpeedIncrease.asset
+  artifactKey: Guid(e4bafce7ef6587e4481a65cc1d3ce394) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_ProjectileSpeedIncrease.asset using Guid(e4bafce7ef6587e4481a65cc1d3ce394) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c08af9fdccaac86ed142f0792f96195') in 0.004177 seconds
+  Import took 0.016572 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.972201 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset
+  artifactKey: Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/ProjectileSpeedIncrease.asset using Guid(113967c2197881e40a8063bb3c188070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2ad002b340426961ec3b5bf533e6724') in 0.009321 seconds
+  Import took 0.013135 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 91.148207 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModVariables
+  artifactKey: Guid(8089db8f837337a44a638c548d62ebef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModVariables using Guid(8089db8f837337a44a638c548d62ebef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00cd35550d59f6162add3ee02bb42c3e') in 0.007104 seconds
+  Import took 0.010407 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.558678 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset
+  artifactKey: Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset using Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c493346242eedd4e53c774fd1071d86') in 0.006462 seconds
+  Import took 0.024588 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.459520 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset
+  artifactKey: Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset using Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2738cf1fe090cf580c1dd70e22d43b0e') in 0.002856 seconds
+  Import took 0.018421 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.079231 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_FireRateDecrease.asset
+  artifactKey: Guid(a761738490d811a4da5e489be5545fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_FireRateDecrease.asset using Guid(a761738490d811a4da5e489be5545fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbd57bdbea2c3e37cc798700e8d0bff2') in 0.029833 seconds
+  Import took 0.033247 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.607399 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerFireRateDecrease.asset
+  artifactKey: Guid(b90f7e2951ba5c14ca3233ede64edc07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerFireRateDecrease.asset using Guid(b90f7e2951ba5c14ca3233ede64edc07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf6545d47dabeeace202178166b6e6c6') in 0.006839 seconds
+  Import took 0.015543 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 30.983339 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerFireRateDecrease.asset
+  artifactKey: Guid(b90f7e2951ba5c14ca3233ede64edc07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/FullMods/PlayerFireRateDecrease.asset using Guid(b90f7e2951ba5c14ca3233ede64edc07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c04f82d204e97d46326f831644decba7') in 0.003480 seconds
+  Import took 0.006662 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.102022 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_FireRateDecrease.asset
+  artifactKey: Guid(a761738490d811a4da5e489be5545fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModInitializer/DropBox_FireRateDecrease.asset using Guid(a761738490d811a4da5e489be5545fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37e65dbf8daf2c7723886cf28c5b96a3') in 0.002650 seconds
+  Import took 0.005838 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.666535 seconds.
+  path: Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset
+  artifactKey: Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/Mods/ModVariables/DecreaseFireRate.asset using Guid(1cf9d8475fbc4ca4a9baeb9c5e0c03f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d7563ade73efdc5c3e6b979c1c5415b') in 0.002570 seconds
+  Import took 0.021438 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.750203 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7aea8634e21387f1caebb7806fdddad') in 0.130948 seconds
+  Import took 0.148038 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.126785 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41db2f5ac3467a7ad572bb9a89958fd6') in 0.070121 seconds
+  Import took 0.085287 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007740 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41db2f5ac3467a7ad572bb9a89958fd6') in 0.069778 seconds
+  Import took 0.073812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.068367 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0091735ba85568f65239b1d825c78334') in 0.069376 seconds
+  Import took 0.082071 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.945300 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '532cb78358828031be053ecad0f919e3') in 0.068636 seconds
+  Import took 0.072514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.009701 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '532cb78358828031be053ecad0f919e3') in 0.068950 seconds
+  Import took 0.072860 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.085856 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset
+  artifactKey: Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset using Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6007a32dd0ae72e97c0e5eb23cc68fd9') in 0.050429 seconds
+  Import took 0.053559 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.196492 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset
+  artifactKey: Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset using Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b792415e41b27c0f5cb5426bab893789') in 0.002701 seconds
+  Import took 0.005734 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.232348 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset
+  artifactKey: Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset using Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f834876c90c1ca0030cb38c32134df2b') in 0.006146 seconds
+  Import took 0.021551 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001683 seconds.
+  path: Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset
+  artifactKey: Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Extras/DropBox/DropData/FireRateDecrease.asset using Guid(a19aac53a885b3e4eb26b6f2b774f681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f834876c90c1ca0030cb38c32134df2b') in 0.006145 seconds
+  Import took 0.009482 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.853933 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a6a06e2c43c746eeeaf1a37bd2408de') in 0.070916 seconds
+  Import took 0.080717 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.382326 seconds.
+  path: Assets/Prefabs/Extras/DropBox.prefab
+  artifactKey: Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Extras/DropBox.prefab using Guid(1b6229627872faa40b1eb38f5ce2b33b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc72eb8d06198b1fecf05fd543448eaf') in 0.071272 seconds
+  Import took 0.075382 seconds .
+

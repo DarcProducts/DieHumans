@@ -11,18 +11,12 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     [SerializeField] Vector2 meteorMinMaxSize;
     [SerializeField] float healthMultiplier;
     [SerializeField] byte pointMultiplier;
-    MultiPooler objectPooler;
-    [SerializeField] ByteVariable explosionIndex;
+    [SerializeField] ObjectPooler explosionPool;
     float maxHealth;
     float newScale;
     float currentHealth;
     float currentSpeed;
 
-
-    void Awake()
-    {
-        objectPooler = FindObjectOfType<MultiPooler>();
-    }
     void OnEnable()
     {
         newScale = Random.Range(meteorMinMaxSize.x, meteorMinMaxSize.y);
@@ -50,9 +44,9 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     {
         if (!collision.gameObject.CompareTag("Projectile"))
         {
-            if (objectPooler != null && explosionIndex != null)
+            if (explosionPool != null)
             {
-                GameObject e = objectPooler.GetObject(explosionIndex.value);
+                GameObject e = explosionPool.GetObject();
                 e.transform.position = transform.position;
                 float newSize = newScale * 2;
                 e.transform.localScale = new Vector3(newSize, newSize, newSize);

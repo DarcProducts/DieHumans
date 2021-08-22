@@ -12,7 +12,7 @@ public class MessagesManager : MonoBehaviour
     [SerializeField] string[] badMessages;
     [SerializeField] string[] neutralMessages;
     [SerializeField] float infoTextDuration;
-    [SerializeField] MultiPooler objectPooler;
+    [SerializeField] ObjectPooler textPooler;
     GameObject player;
 
     void Start()
@@ -96,9 +96,9 @@ public class MessagesManager : MonoBehaviour
 
     void DisplayWorldInfo(Vector3 loc, string message, float fontSize, Color color)
     {
-        if (objectPooler != null)
+        if (textPooler != null)
         {
-            GameObject newText = objectPooler.GetObject(0);
+            GameObject newText = textPooler.GetObject();
             TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
             newText.transform.position = loc + Vector3.up * 4;
             text.text = message;
@@ -117,13 +117,13 @@ public class MessagesManager : MonoBehaviour
     void DisplayWorldInfo(Vector3 loc, byte messageType, byte pointType = 0, float damage = 0)
     {
         int points = 0;
-        if (objectPooler != null)
+        if (textPooler != null)
         {
             if (pointType.Equals(0))
                 points = GetPointsByDistance(loc);
             if (pointType.Equals(1))
                 points = GetPointsByDamage(damage);
-            GameObject newText = objectPooler.GetObject(0);
+            GameObject newText = textPooler.GetObject();
             newText.transform.position = loc + Vector3.up * 20;
             TMP_Text text = newText.GetComponentInChildren<TMP_Text>();
             if (text != null)

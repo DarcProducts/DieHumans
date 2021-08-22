@@ -80,9 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85301199e3085a645bfabd23a3f3e35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
   Player: {fileID: 3110705440167719927, guid: 9ccca59714caa1447b9a8e446fb68435, type: 3}
-  ObjectPool: {fileID: 0}
   state: 0
   checkDistance: {fileID: 11400000, guid: 0925afec4a4c8844fb9a86ca1070bed7, type: 2}
   maxHealth: {fileID: 11400000, guid: 347c5663647c2b44499ea8b100f05713, type: 2}
@@ -94,7 +92,8 @@ MonoBehaviour:
   targetLayers: {fileID: 11400000, guid: 4b6da37703316ad48ab5d71bedc3cb88, type: 2}
   fireRate: {fileID: 11400000, guid: ac53b5480b687524b9b85faf3f225d12, type: 2}
   cityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
-  explosionIndex: {fileID: 11400000, guid: 6e211eea01cc3ce438e75e73da589323, type: 2}
+  explosionPool: {fileID: 11400000, guid: c0a2f82aa505e954fbefad0407fb4bdd, type: 2}
+  rocketPool: {fileID: 11400000, guid: 27a1b1061d3272149ab53c33177446e0, type: 2}
   explosionSize: {fileID: 11400000, guid: 5a9425dcd6e9e7241bc65347c9f90c4d, type: 2}
   shootFX: {fileID: 0}
 --- !u!33 &1421804697154567938

@@ -8,21 +8,21 @@ public class PlayerShip : MonoBehaviour, IDamagable<float>
     public void ApplyDamage(float amount)
     {
         if (currentHealth != null)
-            currentHealth.value -= amount;
+            currentHealth.Value -= amount;
     }
 
     public float GetCurrentHealth()
     {
         if (currentHealth != null)
-            return currentHealth.value;
+            return currentHealth.Value;
         return 0;
     }
 
-    public float GetMaxHealth() => maxHealth.value;
+    public float GetMaxHealth() => maxHealth.Value;
 
     void Start()
     {
         if (maxHealth != null)
-            currentHealth.value = maxHealth.value;
+            currentHealth.Value = maxHealth.Value;
     }
 }

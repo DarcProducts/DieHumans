@@ -14,28 +14,27 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     [SerializeField] CityGenerator cityGenerator;
     bool startDroppingBombs = false;
     [SerializeField] float explosionSize;
-    [SerializeField] ByteVariable explosionIndex;
     float currentHealth;
     [SerializeField] FloatVariable shipSpeed;
     [SerializeField] FloatVariable bombDropRate;
     [SerializeField] FXInitializer bombDropFX;
-    MultiPooler objectPooler;
+    [SerializeField] ObjectPooler explosionPool;
+    [SerializeField] ObjectPooler rocketPool;
     float currentDrop;
     Vector3 targetLocation;
 
     void Start()
     {
-        objectPooler = FindObjectOfType < MultiPooler>();
         if (bombStartTime != null)
-        currentStartTime = bombStartTime.value;
+            currentStartTime = bombStartTime.Value;
     }
 
     void OnEnable()
     {
         if (maxHealth != null)
-            currentHealth = maxHealth.value;
+            currentHealth = maxHealth.Value;
         if (bombStartTime != null)
-        currentStartTime = bombStartTime.value;
+            currentStartTime = bombStartTime.Value;
         startDroppingBombs = false;
         SetNewLocation();
         transform.LookAt(targetLocation);
@@ -45,7 +44,7 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     {
         if (cityGenerator != null && minMaxBombHeight != null)
         {
-            float ranHeight = Random.Range(minMaxBombHeight.value.x, minMaxBombHeight.value.y);
+            float ranHeight = Random.Range(minMaxBombHeight.Value.x, minMaxBombHeight.Value.y);
             Vector3 newLoc = cityGenerator.GetAttackVector();
             targetLocation = newLoc + Vector3.up * ranHeight;
         }
@@ -60,24 +59,24 @@ public class Bomber : MonoBehaviour, IDamagable<float>
                 startDroppingBombs = true;
         }
         if (!transform.position.Equals(targetLocation) && shipSpeed != null)
-            transform.position = Vector3.MoveTowards(transform.position, targetLocation, shipSpeed.value * Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetLocation, shipSpeed.Value * Time.fixedDeltaTime);
         if (transform.position.Equals(targetLocation))
             SetNewLocation();
-        if (startDroppingBombs && objectPooler != null)
+        if (startDroppingBombs)
         {
             currentDrop = currentDrop <= 0 ? 0 : currentDrop -= Time.fixedDeltaTime;
             if (currentDrop <= 0)
             {
-                GameObject bomb = objectPooler.GetObject(8);
+                GameObject bomb = rocketPool.GetObject();
                 Rocket r = bomb.GetComponent<Rocket>();
                 Rigidbody rB = bomb.GetComponent<Rigidbody>();
 
                 if (r != null && bombRadius != null && bombDamage != null && bombDropRate != null)
                 {
                     r.type = RocketType.Bomb;
-                    r.explosionRadius = bombRadius.value;
-                    r.rocketDamage = bombDamage.value;
-                    currentDrop = bombDropRate.value;
+                    r.explosionRadius = bombRadius.Value;
+                    r.rocketDamage = bombDamage.Value;
+                    currentDrop = bombDropRate.Value;
                 }
                 if (bomb != null)
                 {
@@ -87,11 +86,11 @@ public class Bomber : MonoBehaviour, IDamagable<float>
                         bombDropFX.PlayAllFX(transform.position);
                 }
                 if (bombDropRate != null)
-                    currentDrop = bombDropRate.value;
+                    currentDrop = bombDropRate.Value;
             }
         }
         if (rotateSpeed != null)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.value * Time.fixedDeltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
     }
 
     public void ApplyDamage(float amount)
@@ -100,14 +99,11 @@ public class Bomber : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0 && maxHealth != null)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.value * 2);
-            if (objectPooler != null && explosionIndex != null)
-            {
-                GameObject e = objectPooler.GetObject(explosionIndex.value);
-                e.transform.position = transform.position;
-                e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
-                e.SetActive(true);
-            }
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
+            GameObject e = explosionPool.GetObject();
+            e.transform.position = transform.position;
+            e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
+            e.SetActive(true);
             gameObject.SetActive(false);
         }
     }
@@ -116,7 +112,7 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     public void KillBomber()
     {
         if (maxHealth != null)
-            ApplyDamage(maxHealth.value);
+            ApplyDamage(maxHealth.Value);
     }
 
     public float GetCurrentHealth() => currentHealth;

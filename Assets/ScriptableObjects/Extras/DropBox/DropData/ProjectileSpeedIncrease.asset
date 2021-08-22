@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af55e04c1d78f3498970bd72b5addb7, type: 3}
+  m_Name: ProjectileSpeedIncrease
+  m_EditorClassIdentifier: 
+  pickupText: Projectile Speed Increased!
+  material: {fileID: 2100000, guid: b2039558e33bae04986cbb313d7bc490, type: 2}
+  pickupMods: {fileID: 11400000, guid: e4bafce7ef6587e4481a65cc1d3ce394, type: 2}
+  pickupFX: {fileID: 11400000, guid: a75bca214f8171a4a928b086c60c9b66, type: 2}

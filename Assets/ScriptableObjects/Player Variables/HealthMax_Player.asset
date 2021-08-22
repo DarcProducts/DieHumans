@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: HealthMax_Player
   m_EditorClassIdentifier: 
   value: 0
+  broadcastActionOnValueChange: 0

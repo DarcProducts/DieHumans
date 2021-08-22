@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class DropBox : Drop
+public class DropBox : MonoBehaviour
 {
+    [SerializeField] ObjectPooler infoLettersPool;
+    [SerializeField] Drop[] dropData = new Drop[0];
     [SerializeField] FXInitializer shotBoxFX;
     [SerializeField] FXInitializer hitObjectFX;
     [SerializeField] GameObject parachute;
@@ -11,9 +13,11 @@ public class DropBox : Drop
     [SerializeField] LayerMask explHitLyr;
     [SerializeField] GameObject locator;
     [SerializeField] LayerMask locHitLyr;
+    [SerializeField] float pickUpDisplayDuration;
     Rigidbody rB;
     bool dragSet = false;
     bool hasPara = true;
+    int ranIndex;
     Renderer boxRend;
 
     void Awake()
@@ -32,6 +36,7 @@ public class DropBox : Drop
     {
         ResetParachute();
         SetData();
+        ranIndex = Random.Range(0, dropData.Length);
     }
 
     void SetUpDropLocator()
@@ -92,12 +97,13 @@ public class DropBox : Drop
         }
     }
 
-    public override void Activate()
+    public void Activate()
     {
-        if (pickupMods != null)
-            pickupMods.ActivateMods();
-        if (pickupFX != null)
-            pickupFX.PlayAllFX(transform.position);
+        if (dropData[ranIndex].pickupMods != null)
+            dropData[ranIndex].pickupMods.ActivateMods();
+        if (dropData[ranIndex].pickupFX != null)
+            dropData[ranIndex].pickupFX.PlayAllFX(transform.position);
+        dropData[ranIndex].DisplayPickupText(pickUpDisplayDuration, infoLettersPool.GetObject());
     }
 
     void OnCollisionEnter(Collision collision)
@@ -139,9 +145,9 @@ public class DropBox : Drop
         }
     }
 
-    public override void SetData()
+    public void SetData()
     {
         if (boxRend != null)
-            boxRend.material = material;
+            boxRend.material = dropData[ranIndex].material;
     }
 }

@@ -7,6 +7,6 @@ public class FloatMultiplyMod : Mod
     public override void ChangeValue()
     {
         if (valueToApply != null && targetVariable != null)
-            targetVariable.value *= valueToApply.value;
+            targetVariable.Value *= valueToApply.Value;
     }
 }

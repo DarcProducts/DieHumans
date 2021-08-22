@@ -54,20 +54,20 @@ public class ControllerSetup : MonoBehaviour
 
     void LeftHandThumbPress(InputAction.CallbackContext obj)
     {
-        leftThumbstick.value.x = obj.ReadValue<Vector2>().x;
-        leftThumbstick.value.y = obj.ReadValue<Vector2>().y;
+        leftThumbstick.Value = obj.ReadValue<Vector2>();
+        leftThumbstick.Value = obj.ReadValue<Vector2>();
     }
     void RightHandThumbstick(InputAction.CallbackContext obj)
     {
-        rightThumbstick.value.x = obj.ReadValue<Vector2>().x;
-        rightThumbstick.value.y = obj.ReadValue<Vector2>().y;
+        rightThumbstick.Value = obj.ReadValue<Vector2>();
+        rightThumbstick.Value = obj.ReadValue<Vector2>();
     }
-    void LeftTriggerPress(InputAction.CallbackContext obj) => leftHandTriggerActive.value = true;
-    void StopLeftTriggerPress(InputAction.CallbackContext obj) => leftHandTriggerActive.value = false;
-    void LeftGripPress(InputAction.CallbackContext obj) => leftHandGripActive.value = true;
-    void StopLeftGripPress(InputAction.CallbackContext obj) => leftHandGripActive.value = false;
-    void RightTriggerPress(InputAction.CallbackContext obj) => rightHandTriggerActive.value = true;
-    void StopRightTriggerPress(InputAction.CallbackContext obj) => rightHandTriggerActive.value = false;
-    void RightGripPress(InputAction.CallbackContext obj) => rightHandGripActive.value = true;
-    void StopRightGripPress(InputAction.CallbackContext obj) => rightHandGripActive.value = false;
+    void LeftTriggerPress(InputAction.CallbackContext obj) => leftHandTriggerActive.Value = true;
+    void StopLeftTriggerPress(InputAction.CallbackContext obj) => leftHandTriggerActive.Value = false;
+    void LeftGripPress(InputAction.CallbackContext obj) => leftHandGripActive.Value = true;
+    void StopLeftGripPress(InputAction.CallbackContext obj) => leftHandGripActive.Value = false;
+    void RightTriggerPress(InputAction.CallbackContext obj) => rightHandTriggerActive.Value = true;
+    void StopRightTriggerPress(InputAction.CallbackContext obj) => rightHandTriggerActive.Value = false;
+    void RightGripPress(InputAction.CallbackContext obj) => rightHandGripActive.Value = true;
+    void StopRightGripPress(InputAction.CallbackContext obj) => rightHandGripActive.Value = false;
 }

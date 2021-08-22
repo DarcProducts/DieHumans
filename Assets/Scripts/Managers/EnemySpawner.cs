@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] MultiPooler objectPooler;
+    [SerializeField] ObjectPooler dronePooler;
+    [SerializeField] ObjectPooler tankPooler;
+    [SerializeField] ObjectPooler bomberPooler;
     [SerializeField] bool startSpawning;
     [SerializeField] float spawnDelay = 5f;
-    [SerializeField] float cDelay = 0f;
+    float cDelay = 0f;
 
     [Header("Spawn Areas")]
     [SerializeField] Vector3[] minSpawnAreas;
@@ -33,26 +35,23 @@ public class EnemySpawner : MonoBehaviour
 
             float ranVal = Random.value;
 
-            if (objectPooler != null)
+            if (ranVal > .9f)
             {
-                if (ranVal > .9f)
-                {
-                    GameObject b = objectPooler.GetObject(7);
-                    b.transform.position = newLoc;
-                    b.SetActive(true);
-                }
-                else if (ranVal <= .9f && ranVal > .7f)
-                {
-                    GameObject t = objectPooler.GetObject(6);
-                    t.transform.position = tankLoc;
-                    t.SetActive(true);
-                }
-                else
-                {
-                    GameObject d = objectPooler.GetObject(5);
-                    d.transform.position = newLoc;
-                    d.SetActive(true);
-                }
+                GameObject b = bomberPooler.GetObject();
+                b.transform.position = newLoc;
+                b.SetActive(true);
+            }
+            else if (ranVal <= .9f && ranVal > .7f)
+            {
+                GameObject t = tankPooler.GetObject();
+                t.transform.position = tankLoc;
+                t.SetActive(true);
+            }
+            else
+            {
+                GameObject d = dronePooler.GetObject();
+                d.transform.position = newLoc;
+                d.SetActive(true);
             }
             spawnDelay = spawnDelay < .1f ? .1f : spawnDelay -= .001f;
             cDelay = spawnDelay;

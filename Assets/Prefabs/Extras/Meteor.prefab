@@ -55,7 +55,7 @@ MonoBehaviour:
   meteorMinMaxSize: {x: 1, y: 6}
   healthMultiplier: 100
   pointMultiplier: 2
-  explosionIndex: {fileID: 11400000, guid: 568876d8ee4315f448603ad8dd0fdbed, type: 2}
+  explosionPool: {fileID: 11400000, guid: f2aecf562a56fbf4dbdf50aa73c0cd03, type: 2}
 --- !u!33 &3155753894348866923
 MeshFilter:
   m_ObjectHideFlags: 0

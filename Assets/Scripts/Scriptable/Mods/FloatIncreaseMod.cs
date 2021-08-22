@@ -7,6 +7,6 @@ public class FloatIncreaseMod : Mod
     public override void ChangeValue()
     {
         if (valueToApply != null && targetVariable != null)
-            targetVariable.value += Mathf.Abs(valueToApply.value);
+            targetVariable.Value += Mathf.Abs(valueToApply.Value);
     }
 }

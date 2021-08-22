@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-public class ObjectPooler : MonoBehaviour
+[CreateAssetMenu(menuName = "New Object Pooler")]
+public class ObjectPooler : ScriptableObject
 {
     public GameObject objectToPool = null;
     readonly List<GameObject> objects = new List<GameObject>();
@@ -15,7 +16,7 @@ public class ObjectPooler : MonoBehaviour
         }
         if (objectToPool != null)
         {
-            GameObject newObject = Instantiate(objectToPool, Vector3.down, Quaternion.identity, transform);
+            GameObject newObject = Instantiate(objectToPool, Vector3.down, Quaternion.identity);
             objects.Add(newObject);
             newObject.SetActive(false);
             return newObject;

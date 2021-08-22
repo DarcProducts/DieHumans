@@ -1,79 +1,63 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
-    public static UnityAction WeaponFired;
+    public GameEvent WeaponFired;
+    [SerializeField] Transform weaponLocation;
     [SerializeField] BoolVariable fireWeapon;
     [SerializeField] FloatVariable weaponDamage;
-    [SerializeField] IntVariable maxWeaponDamage;
     [SerializeField] GameObject aimTarget;
     [SerializeField] FloatVariable aimTargetDistance;
     [SerializeField] FloatVariable gunFireRate;
-    [SerializeField] FloatVariable aimRotateSpeed;
-    [SerializeField] float projectileForce;
+    [SerializeField] FloatVariable projectileForce;
     [SerializeField] float projectileSize;
     [SerializeField] LayerMask ignoreDamageLayer;
-    [SerializeField] Vector2Variable playerShipSpeed;
-    [SerializeField] IntVariable maxShipSpeed;
-    [SerializeField] MultiPooler objectPooler;
-    GameObject player;
+    [SerializeField] ObjectPooler projectilePool;
     float currentRate;
-
-    private void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
 
     void Start()
     {
-        currentRate = gunFireRate.value;
+        currentRate = gunFireRate.Value;
         InitializeAimTarget();
     }
 
     private void FixedUpdate()
     {
-        if (fireWeapon != null)
-            if (fireWeapon.value)
-                FireProjectiles();
+        if (fireWeapon.Value)
+            FireProjectiles();
     }
 
     void InitializeAimTarget()
     {
-        if (aimTarget != null)
-            aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance.value);
+        aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance.Value);
     }
 
     void FireProjectiles()
     {
-        if (objectPooler != null && player != null)
+        currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
+        if (currentRate <= 0 && aimTarget != null && Vector3.Dot(weaponLocation.localPosition, aimTarget.transform.localPosition) > .3f)
         {
-            currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
-            if (currentRate <= 0 && aimTarget != null)
+            GameObject p = projectilePool.GetObject();
+            if (p != null)
             {
-                GameObject p = objectPooler.GetObject(1);
-                if (p != null)
-                {
-                    p.transform.localScale = Vector3.one * projectileSize;
-                    p.layer = 14;
-                    p.transform.position = player.transform.position + player.transform.forward * 6;
-                    Projectile j = p.GetComponent<Projectile>();
-                    Rigidbody r = p.GetComponent<Rigidbody>();
-                    if (j != null)
-                        j.currentDamage = weaponDamage.value;
-                    p.SetActive(true);
-                    if (r != null)
-                        r.AddForce(projectileForce * (aimTarget.transform.position - player.transform.position + player.transform.forward).normalized, ForceMode.Impulse);
-                    WeaponFired?.Invoke();
-                }
-                currentRate = gunFireRate.value;
+                p.transform.localScale = Vector3.one * projectileSize;
+                p.layer = 14;
+                p.transform.position = weaponLocation.position;
+                Projectile j = p.GetComponent<Projectile>();
+                Rigidbody r = p.GetComponent<Rigidbody>();
+                if (j != null)
+                    j.currentDamage = weaponDamage.Value;
+                p.SetActive(true);
+                if (r != null)
+                    r.AddForce(projectileForce.Value * (aimTarget.transform.position - weaponLocation.position + weaponLocation.forward).normalized, ForceMode.Impulse);
+                WeaponFired?.Raise();
             }
+            currentRate = gunFireRate.Value;
         }
     }
 
-    public float GetCurrentWeaponDamage() => weaponDamage.value;
+    public float GetCurrentWeaponDamage() => weaponDamage.Value;
 
     public void TryDamagingTarget(GameObject target)
     {
@@ -85,6 +69,4 @@ public class WeaponManager : MonoBehaviour
             d.ApplyDamage(GetCurrentWeaponDamage());
         }
     }
-
-    public GameObject GetPlayer() => player;
 }

@@ -189,8 +189,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 71680
   maxHealth: 30
+  explosionPool: {fileID: 11400000, guid: f2aecf562a56fbf4dbdf50aa73c0cd03, type: 2}
   explosionSize: 3
-  explosionIndex: {fileID: 11400000, guid: 568876d8ee4315f448603ad8dd0fdbed, type: 2}
 --- !u!33 &3157930791822965688
 MeshFilter:
   m_ObjectHideFlags: 0

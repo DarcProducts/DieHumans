@@ -4,10 +4,11 @@ using UnityEngine.Events;
 public class Projectile : MonoBehaviour
 {
     public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public static UnityAction<Vector3, float, byte> ProjectileExploded;
+    public GameEvent ProjectileImpacted;
     public float currentDamage;
     [SerializeField] LayerMask hitLayers;
     [SerializeField] LayerMask ignoreLayers;
+    [SerializeField] ObjectPooler explosionPool;
     TrailRenderer projectileTrail;
     Rigidbody pRigidbody;
 
@@ -35,7 +36,7 @@ public class Projectile : MonoBehaviour
         if (Utilities.IsInLayerMask(other.gameObject, hitLayers))
         {
             TryDamagingTarget(other.gameObject);
-            ProjectileExploded?.Invoke(transform.position, .3f, 1);
+            ProjectileImpacted?.Raise();
         }
         gameObject.SetActive(false);
     }

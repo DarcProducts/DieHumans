@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019d3be8f3ea5ec4ba63306753c3699c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProjectileImpacted: {fileID: 11400000, guid: fab857622a1452d45a31c70410247e83, type: 2}
   currentDamage: 10
   hitLayers:
     serializedVersion: 2
@@ -184,6 +185,7 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 82432
+  explosionPool: {fileID: 11400000, guid: c48d51e3e016d234a815a289685d9783, type: 2}
 --- !u!33 &6445157654595474814
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -5,9 +5,10 @@ using TMPro;
 
 public class Turret : AIUtilities
 {
-    public static UnityAction TurretFiredGun;
+    public GameEvent TurretFiredGun;
     [SerializeField] LayerMaskVariable targetLayers;
-    MultiPooler objectPooler;
+    [SerializeField] ObjectPooler projectilePool;
+    [SerializeField] ObjectPooler infoTextPool;
     [SerializeField] float projectileForce;
     [SerializeField] float projectileSize;
     [SerializeField] FloatVariable turretDamage;
@@ -36,26 +37,27 @@ public class Turret : AIUtilities
 
     void Start()
     {
-        objectPooler = FindObjectOfType<MultiPooler>();
         detector = GetComponent<SphereCollider>();
     }
 
     void InitializeTurret()
     {
-        currentTime = turretDuration.value;
-        if (objectPooler != null)
-            timerText = objectPooler.GetObject(0);
+        currentTime = turretDuration.Value;
+        if (infoTextPool != null)
+        {
+            timerText = infoTextPool.GetObject();
+            timerText.transform.position = transform.position + Vector3.up * timerDistanceAboveObject;
+        }
         if (timerText != null)
         {
             text = timerText.GetComponentInChildren<TMP_Text>();
             timerText.SetActive(true);
         }
         if (detector != null && turretRadius != null)
-            detector.radius = turretRadius.value;
+            detector.radius = turretRadius.Value;
         if (text != null)
         {
             text.fontSize = 56;
-            text.gameObject.transform.position = transform.position + Vector3.up * timerDistanceAboveObject;
             text.text = Mathf.RoundToInt(currentTime).ToString();
         }
     }
@@ -68,6 +70,9 @@ public class Turret : AIUtilities
         if (text != null)
             text.text = Mathf.RoundToInt(currentTime).ToString();
 
+        timerText.transform.LookAt(Player.transform.position);
+       
+
         if (currentTarget != null)
         {
             if (!currentTarget.activeSelf)
@@ -76,7 +81,7 @@ public class Turret : AIUtilities
             {
                 if (turretRadius != null)
                 {
-                    if (CheckIfPathClear(gameObject, currentTarget, turretRadius.value))
+                    if (CheckIfPathClear(gameObject, currentTarget, turretRadius.Value))
                         FireProjectile();
                 }
                 else currentTarget = null;
@@ -88,13 +93,13 @@ public class Turret : AIUtilities
 
     void FireProjectile()
     {
-        if (objectPooler != null)
+        if (projectilePool != null)
         {
             currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
             if (currentRate <= 0 && currentTarget != null)
             {
                 Rigidbody targetRigid = currentTarget.GetComponent<Rigidbody>();
-                GameObject p = objectPooler.GetObject(1);
+                GameObject p = projectilePool.GetObject();
                 if (p != null)
                 {
                     p.layer = 0;
@@ -103,14 +108,14 @@ public class Turret : AIUtilities
                     Projectile j = p.GetComponent<Projectile>();
                     Rigidbody r = p.GetComponent<Rigidbody>();
                     if (j != null)
-                        j.currentDamage = turretDamage.value;
+                        j.currentDamage = turretDamage.Value;
                     p.SetActive(true);
-                    Vector3 dir = (currentTarget.transform.position + (targetRigid.velocity.normalized * targetRigid.velocity.magnitude) - transform.position).normalized;
+                    Vector3 dir = (currentTarget.transform.position + (targetRigid.velocity * targetRigid.velocity.magnitude)) - transform.position;
                     if (r != null && targetRigid != null)
-                        r.AddForce(projectileForce * dir, ForceMode.Impulse);
-                    TurretFiredGun?.Invoke();
+                        r.AddForce(projectileForce * dir.normalized, ForceMode.Impulse);
+                    TurretFiredGun?.Raise();
                 }
-                currentRate = turretFireRate.value;
+                currentRate = turretFireRate.Value;
             }
         }
     }

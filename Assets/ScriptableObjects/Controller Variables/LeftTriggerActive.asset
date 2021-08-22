@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e6adf5e06391b47992e67464bf9f39, type: 3}
   m_Name: LeftTriggerActive
   m_EditorClassIdentifier: 
-  value: 0
+  resetOnEnable: 0
+  resetOnDisable: 1
+  resetToTrueElseFalse: 0
+  broadcastActionOnValueChange: 0

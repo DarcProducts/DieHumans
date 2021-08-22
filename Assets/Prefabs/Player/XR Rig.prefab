@@ -235,9 +235,10 @@ GameObject:
   - component: {fileID: 2970406642844644802}
   - component: {fileID: 2970406642844644803}
   - component: {fileID: 2970406642844644828}
+  - component: {fileID: 4310874804635407663}
   m_Layer: 0
   m_Name: XR Rig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bb772ee9cb4704d8cf31c356b4c459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetToFollow: {fileID: 3110705440167719927, guid: 9ccca59714caa1447b9a8e446fb68435, type: 3}
+  targetToFollow: {fileID: 0}
   cameraOffset: {x: 0, y: 1, z: -5}
   followSpeed: 6
   rotationSpeed: 14
@@ -299,6 +300,26 @@ MonoBehaviour:
   m_CameraYOffset: 1.36144
   m_TrackingSpace: 3
   m_TrackingOriginMode: -2147483648
+--- !u!114 &4310874804635407663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970406642844644829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5010759c5f226418233e5cebc0e3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 0}
+  leftThumbstick: {fileID: 11400000, guid: 98aafedd97d9ea240858f5dca996f371, type: 2}
+  rightThumbstick: {fileID: 11400000, guid: 13a2aac287a36bf45808790a1583655b, type: 2}
+  moveSpeed: {fileID: 11400000, guid: d98365c12350c494e8bd4d834c3a5a90, type: 2}
+  aimTarget: {fileID: 1422775472806062159}
+  rotateSpeed: {fileID: 11400000, guid: 8537475ce3f2e2143a003f3a8bbe1ed0, type: 2}
+  deadZone: 0.4
+  rollYaw: {fileID: 11400000, guid: 7d8bce630c099874d81c19ac34c4dae3, type: 2}
 --- !u!1 &2970406642887625714
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy FX Source
       objectReference: {fileID: 0}
+    - target: {fileID: 3389586282751628390, guid: 5d2894350cfdf2949bbd5d1ff062afcb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3389586282751628391, guid: 5d2894350cfdf2949bbd5d1ff062afcb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -619,6 +644,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2970406642887625713}
     m_Modifications:
+    - target: {fileID: 556192772611992724, guid: 2aad6a97a94cf084ba0f2e2f3874b9d4, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 556192772611992726, guid: 2aad6a97a94cf084ba0f2e2f3874b9d4, type: 3}
       propertyPath: m_Name
       value: Music Source
@@ -725,6 +754,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7172426107115273383, guid: f751e6a63b1d8074a91813171c97b554, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7172426107115273401, guid: f751e6a63b1d8074a91813171c97b554, type: 3}
       propertyPath: m_Name
       value: FX Source
@@ -743,6 +776,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2970406642887625713}
     m_Modifications:
+    - target: {fileID: 4718515537759745379, guid: 625a3c7f585903f44b265b4520ec6162, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4718515537759745380, guid: 625a3c7f585903f44b265b4520ec6162, type: 3}
       propertyPath: m_RootOrder
       value: 0

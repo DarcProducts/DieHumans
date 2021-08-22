@@ -15,9 +15,8 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     public LayerMask damagableLayers;
     public LayerMask ignoreDropCollisionLayers;
     [SerializeField] float maxHealth = 2;
-    MultiPooler objectPooler;
+    [SerializeField] ObjectPooler explosionPool;
     [SerializeField] float explosionSize;
-    [SerializeField] ByteVariable explosionIndex;
     float currentHealth = 1;
     bool forceApplied = false;
     TrailRenderer rocketTrail;
@@ -25,7 +24,6 @@ public class Rocket : MonoBehaviour, IDamagable<float>
 
     void Awake()
     {
-        objectPooler = FindObjectOfType<MultiPooler>();
         rB = GetComponent<Rigidbody>();
         currentHealth = maxHealth;
         rocketTrail = GetComponentInChildren<TrailRenderer>();
@@ -111,9 +109,9 @@ public class Rocket : MonoBehaviour, IDamagable<float>
 
     void DisableRocket()
     {
-        if (objectPooler != null && explosionIndex != null)
+        if (explosionPool != null)
         {
-            GameObject e = objectPooler.GetObject(explosionIndex.value);
+            GameObject e = explosionPool.GetObject();
             e.transform.position = transform.position;
             e.transform.localScale = new Vector3(explosionSize, explosionSize,explosionSize);
             e.SetActive(true);

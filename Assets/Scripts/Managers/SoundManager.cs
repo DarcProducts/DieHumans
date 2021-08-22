@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip scorePoints;
     [SerializeField] AudioClip decreasedPoints;
     [SerializeField] AudioClip tankShotSound;
+    [SerializeField] AudioClip projectileImpact;
 
     void Start()
     {
@@ -31,7 +32,6 @@ public class SoundManager : MonoBehaviour
 
     void OnEnable()
     {
-        WeaponManager.WeaponFired += PlayMachinegunClip;
         Meteor.MeteorEvaded += PlayMeteorDestroyed;
         MessagesManager.GainPoints += PlayScoredSound;
         MessagesManager.DecreasePoints += PlayDecreasedPointSound;
@@ -41,7 +41,6 @@ public class SoundManager : MonoBehaviour
 
     void OnDisable()
     {
-        WeaponManager.WeaponFired -= PlayMachinegunClip;
         Meteor.MeteorEvaded -= PlayMeteorDestroyed;
         MessagesManager.GainPoints -= PlayScoredSound;
         MessagesManager.DecreasePoints -= PlayDecreasedPointSound;
@@ -62,6 +61,12 @@ public class SoundManager : MonoBehaviour
     {
         if (laserShoot != null && !source.isPlaying)
             Utilities.PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
+    }
+
+    public void PlayProjectileImpactSound(AudioSource source)
+    {
+        if (projectileImpact != null && !source.isPlaying)
+            Utilities.PlayAtSourceWithVPRange(source, projectileImpact, .6f, 1f, .8f, 1.2f);
     }
 
     public IEnumerator PlayBackgroundMusic()

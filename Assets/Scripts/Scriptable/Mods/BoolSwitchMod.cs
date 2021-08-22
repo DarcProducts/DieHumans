@@ -6,6 +6,6 @@ public class BoolSwitchMod : Mod
     public override void ChangeValue()
     {
         if (targetVariable != null)
-            targetVariable.value = !targetVariable.value;
+            targetVariable.Value = !targetVariable.Value;
     }
 }

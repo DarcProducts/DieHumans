@@ -8,7 +8,9 @@ public class WaveManager : MonoBehaviour
     public static UnityAction<int> UpdateWave;
     public static UnityAction WaveStarted;
     public static UnityAction WaveCompleted;
-    [SerializeField] MultiPooler objectPooler;
+    [SerializeField] ObjectPooler dronePooler;
+    [SerializeField] ObjectPooler tankPooler;
+    [SerializeField] ObjectPooler bomberPooler;
 
     [Header("Game Stats")]
     [SerializeField] CityGenerator cityGenerator;
@@ -41,7 +43,6 @@ public class WaveManager : MonoBehaviour
 
     void OnEnable()
     {
-        
     }
 
     void OnDisable()
@@ -77,50 +78,47 @@ public class WaveManager : MonoBehaviour
         isRunning = true;
         waveObjects.Clear();
         yield return new WaitForSeconds(waveDelay);
-        if (objectPooler != null)
+        do
         {
-            do
+            int ranSpawn = Random.Range(0, maxSpawnAreas.Length);
+            Vector3 newLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), Random.Range(minSpawnAreas[ranSpawn].y, maxSpawnAreas[ranSpawn].y), Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
+            Vector3 tankLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), 50, Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
+
+            float ranVal = Random.value;
+
+            yield return new WaitForSeconds(spawnDelay);
+            if (ranVal > .9f)
             {
-                int ranSpawn = Random.Range(0, maxSpawnAreas.Length);
-                Vector3 newLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), Random.Range(minSpawnAreas[ranSpawn].y, maxSpawnAreas[ranSpawn].y), Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
-                Vector3 tankLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), 50, Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
-
-                float ranVal = Random.value;
-
-                yield return new WaitForSeconds(spawnDelay);
-                if (ranVal > .9f)
+                GameObject b = bomberPooler.GetObject();
+                if (b != null)
                 {
-                    GameObject b = objectPooler.GetObject(7);
-                    if (b != null)
-                    {
-                        b.transform.position = newLoc;
-                        waveObjects.Add(b);
-                        b.SetActive(true);
-                    }
-                }
-                else if (ranVal <= .9f && ranVal > .7f)
-                {
-                    GameObject t = objectPooler.GetObject(6);
-                    if (t != null)
-                    {
-                        t.transform.position = tankLoc;
-                        waveObjects.Add(t);
-                        t.SetActive(true);
-                    }
-                }
-                else
-                {
-                    GameObject d = objectPooler.GetObject(5);
-                    if (d != null)
-                    {
-                        d.transform.position = newLoc;
-                        waveObjects.Add(d);
-                        d.SetActive(true);
-                    }
+                    b.transform.position = newLoc;
+                    waveObjects.Add(b);
+                    b.SetActive(true);
                 }
             }
-            while (waveObjects.Count < currentWave * currentWave);
+            else if (ranVal <= .9f && ranVal > .7f)
+            {
+                GameObject t = tankPooler.GetObject();
+                if (t != null)
+                {
+                    t.transform.position = tankLoc;
+                    waveObjects.Add(t);
+                    t.SetActive(true);
+                }
+            }
+            else
+            {
+                GameObject d = dronePooler.GetObject();
+                if (d != null)
+                {
+                    d.transform.position = newLoc;
+                    waveObjects.Add(d);
+                    d.SetActive(true);
+                }
+            }
         }
+        while (waveObjects.Count < currentWave * currentWave);
         waveDelay++;
         UpdateWave?.Invoke(currentWave);
         if (continuousWaveDelay > 0)

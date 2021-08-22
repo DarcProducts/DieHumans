@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efd39942edb10d4c9d798ab80e1784c, type: 3}
   m_Name: Speed_Player
   m_EditorClassIdentifier: 
-  value: {x: 12, y: 6}
+  currentValue: {x: 6, y: 12}
+  resetOnEnable: 0
+  resetOnDisable: 0
+  broadcastActionOnValueChange: 0

@@ -178,9 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7c5dbf9c8787849b24c4214adb4fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
   Player: {fileID: 3110705440167719927, guid: 9ccca59714caa1447b9a8e446fb68435, type: 3}
-  ObjectPool: {fileID: 0}
   state: 0
   minMaxHeight: {x: 28, y: 48}
   maxHealth: {fileID: 11400000, guid: 709f2765361c93247a53a3fc1a4e9d2f, type: 2}
@@ -197,7 +195,7 @@ MonoBehaviour:
     m_Bits: 2048
   targetLayers: {fileID: 11400000, guid: 4b6da37703316ad48ab5d71bedc3cb88, type: 2}
   cityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
-  explosionIndex: {fileID: 11400000, guid: 6e211eea01cc3ce438e75e73da589323, type: 2}
+  explosionPool: {fileID: 11400000, guid: c0a2f82aa505e954fbefad0407fb4bdd, type: 2}
 --- !u!33 &8565265450610005038
 MeshFilter:
   m_ObjectHideFlags: 0

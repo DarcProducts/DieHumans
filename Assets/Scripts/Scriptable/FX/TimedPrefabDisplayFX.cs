@@ -3,12 +3,11 @@ using UnityEngine;
 public class TimedPrefabDisplayFX : FX
 {
     public ObjectPooler objectPooler;
-    public ByteVariable objectIndex;
     public Vector3 scale;
 
     public override void PlayFX(Vector3 location)
     {
-        if (objectIndex != null && objectPooler != null)
+        if (objectPooler != null)
         {
             GameObject newObject = objectPooler.GetObject();
             if (newObject != null)

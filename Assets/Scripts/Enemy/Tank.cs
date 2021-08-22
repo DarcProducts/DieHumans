@@ -17,8 +17,8 @@ public class Tank : AIUtilities, IDamagable<float>
     [SerializeField] LayerMaskVariable targetLayers;
     [SerializeField] FloatVariable fireRate;
     [SerializeField] CityGenerator cityGenerator;
-    MultiPooler objectPooler;
-    [SerializeField] ByteVariable explosionIndex;
+    [SerializeField] ObjectPooler explosionPool;
+    [SerializeField] ObjectPooler rocketPool;
     [SerializeField] FloatVariable explosionSize;
     [SerializeField] FXInitializer shootFX;
     float currentFireRate = 0f;
@@ -26,8 +26,6 @@ public class Tank : AIUtilities, IDamagable<float>
     GameObject currentTarget = null;
     float currentHealth;
 
-
-    void Awake() => objectPooler = FindObjectOfType<MultiPooler>();
     void Start() => InitialSetup();
 
     void OnEnable() => InitialSetup();
@@ -36,12 +34,12 @@ public class Tank : AIUtilities, IDamagable<float>
     {
         currentTarget = null;
         if (fireRate != null)
-            currentFireRate = fireRate.value;
+            currentFireRate = fireRate.Value;
         if (cityGenerator != null)
             targetLocation = cityGenerator.GetAttackVector();
         transform.LookAt(targetLocation);
         if (maxHealth != null)
-            currentHealth = maxHealth.value;
+            currentHealth = maxHealth.Value;
     }
 
     void FixedUpdate()
@@ -62,8 +60,8 @@ public class Tank : AIUtilities, IDamagable<float>
                 {
                     if (tankSpeed != null && rotateSpeed != null)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed.value * Time.fixedDeltaTime);
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.value * Time.fixedDeltaTime);
+                        transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed.Value * Time.fixedDeltaTime);
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
                     }
                 }
                 break;
@@ -83,7 +81,7 @@ public class Tank : AIUtilities, IDamagable<float>
         {
             if (currentTarget.activeSelf && rotateSpeed != null)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed.value * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
                 targetLocation = currentTarget.transform.position;
                 currentFireRate = currentFireRate < 0 ? 0 : currentFireRate -= Time.fixedDeltaTime;
                 if (currentFireRate.Equals(0))
@@ -92,7 +90,7 @@ public class Tank : AIUtilities, IDamagable<float>
                     if (shootFX != null && barrelTip != null)
                         shootFX.PlayAllFX(barrelTip.position);
                     if (fireRate != null)
-                        currentFireRate = fireRate.value;
+                        currentFireRate = fireRate.Value;
                 }
             }
             if (!currentTarget.activeSelf)
@@ -109,7 +107,7 @@ public class Tank : AIUtilities, IDamagable<float>
     {
         if (checkDistance != null && targetLayers != null)
         {
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, checkDistance.value, targetLayers.value);
+            Collider[] closeObjects = Physics.OverlapSphere(transform.position, checkDistance.Value, targetLayers.value);
             if (closeObjects.Length > 0)
             {
                 int randObj = Random.Range(0, closeObjects.Length);
@@ -122,22 +120,19 @@ public class Tank : AIUtilities, IDamagable<float>
 
     void LaunchMortar()
     {
-        if (objectPooler != null)
+        GameObject r = rocketPool.GetObject();
+        Rocket rocket = r.GetComponent<Rocket>();
+        if (r != null && rocket != null && barrelTip != null)
         {
-            GameObject r = objectPooler.GetObject(8);
-            Rocket rocket = r.GetComponent<Rocket>();
-            if (r != null && rocket != null && barrelTip != null)
-            {
-                r.transform.position = barrelTip.position;
-                rocket.type = RocketType.Mortar;
-                rocket.currentTarget = currentTarget.transform.position + Vector3.up * 45f;
-                rocket.rocketSpeed = 1200f;
-                if (mortarDamage != null)
-                    rocket.rocketDamage = mortarDamage.value;
-                if (mortarRadius != null)
-                    rocket.explosionRadius = mortarRadius.value;
-                r.SetActive(true);
-            }
+            r.transform.position = barrelTip.position;
+            rocket.type = RocketType.Mortar;
+            rocket.currentTarget = currentTarget.transform.position + Vector3.up * 45f;
+            rocket.rocketSpeed = 1200f;
+            if (mortarDamage != null)
+                rocket.rocketDamage = mortarDamage.Value;
+            if (mortarRadius != null)
+                rocket.explosionRadius = mortarRadius.Value;
+            r.SetActive(true);
         }
     }
 
@@ -146,19 +141,16 @@ public class Tank : AIUtilities, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0 && maxHealth != null)
         {
-            if (objectPooler != null && explosionIndex != null)
-            {
-                GameObject e = objectPooler.GetObject(explosionIndex.value);
+                GameObject e = explosionPool.GetObject();
                 if (e != null && explosionSize != null)
                 {
-                    float eSize = explosionSize.value;
+                    float eSize = explosionSize.Value;
                     e.transform.position = transform.position;
                     e.transform.localScale = new Vector3(eSize, eSize, eSize);
                     e.SetActive(true);
                 }
-            }
-            
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.value * 2);
+
+            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
             gameObject.SetActive(false);
         }
     }
@@ -175,7 +167,7 @@ public class Tank : AIUtilities, IDamagable<float>
     public void KillTank()
     {
         if (maxHealth != null)
-            ApplyDamage(maxHealth.value);
+            ApplyDamage(maxHealth.Value);
     }
 
     public float GetCurrentHealth() => currentHealth;
