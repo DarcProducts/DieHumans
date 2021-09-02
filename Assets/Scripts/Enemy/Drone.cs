@@ -6,79 +6,86 @@ public enum DroneState { moving, attacking }
 public class Drone : AIUtilities, IDamagable<float>
 {
     public DroneState state = DroneState.moving;
-    public static UnityAction<GameObject> UpdateDrone;
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public static UnityAction FiredLaser;
+    public static UnityAction<GameObject> RemoveFromWaveList;
+    public static UnityAction FiredLaserSound;
+    public static UnityAction DroneExploded;
     public static UnityAction UpdateDroneKillCount;
-    [SerializeField] Vector2 minMaxHeight;
-    [SerializeField] IntVariable maxHealth;
+    public KillSheet killSheet;
+    public Vector2 minMaxHeight;
+    public int maxHealth;
     float currentHealth;
-    [SerializeField] FloatVariable weaponDamage;
-    [SerializeField] FloatVariable fireRate;
-    [SerializeField] FloatVariable moveSpeed;
-    [SerializeField] float rotateSpeed = 0f;
-    [SerializeField] FloatVariable targetCheckDistance;
-    [SerializeField] LineRenderer laser;
-    [SerializeField] float laserWidth;
-    [SerializeField] float explosionSize = 0f;
-    [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] LayerMaskVariable targetLayers;
+    public float weaponDamage;
+    public float fireRate;
+    public float moveSpeed;
+    public float rotateSpeed = 0f;
+    public float targetCheckDistance;
+    public LineRenderer laser1;
+    public LineRenderer laser2;
+    public float laserWidth;
+    public float explosionSize = 0f;
+    public LayerMask ignoreLayer;
+    public LayerMask targetLayers;
     float fireTime;
     [SerializeField] CityGenerator cityGenerator;
     [SerializeField] ObjectPooler explosionPool;
     GameObject attackTarget = null;
+
     Vector3 targetLocation = Vector3.zero;
     bool isHittingTarget = false;
 
     void OnEnable()
     {
-        if (fireRate != null)
-            fireTime = fireRate.Value;
+        fireTime = fireRate;
         state = DroneState.moving;
         attackTarget = null;
-        if (maxHealth != null)
-            currentHealth = maxHealth.Value;
+        currentHealth = maxHealth;
         if (cityGenerator != null)
         {
             Vector3 newAttackVector = cityGenerator.GetAttackVector();
             float ranHeight = Random.Range(minMaxHeight.x, minMaxHeight.y);
             targetLocation = newAttackVector + Vector3.up * ranHeight;
         }
-        if (laser != null)
+        if (laser1 != null)
         {
-            laser.startWidth = laserWidth;
-            laser.endWidth = laserWidth;
-            laser.textureMode = LineTextureMode.Tile;
+            laser2.startWidth = laserWidth;
+            laser2.endWidth = laserWidth;
+            laser2.textureMode = LineTextureMode.Tile;
+        }
+        if (laser2 != null)
+        {
+            laser2.startWidth = laserWidth;
+            laser2.endWidth = laserWidth;
+            laser2.textureMode = LineTextureMode.Tile;
         }
     }
 
     void OnDisable()
     {
-        if (laser != null)
-            laser.enabled = false;
+        if (laser1 != null)
+            laser1.enabled = false;
+        if (laser2 != null)
+            laser2.enabled = false;
+        UpdateDroneKillCount?.Invoke();
     }
 
     void FixedUpdate()
     {
-        if (moveSpeed != null)
+        switch (state)
         {
-            switch (state)
-            {
-                case DroneState.moving:
-                    transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed.Value * Time.fixedDeltaTime);
-                    transform.LookAt(targetLocation);
-                    if (transform.position.Equals(targetLocation))
-                        if (FindNearestTarget())
-                            state = DroneState.attacking;
-                    break;
+            case DroneState.moving:
+                transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed * Time.fixedDeltaTime);
+                transform.LookAt(targetLocation);
+                if (transform.position.Equals(targetLocation))
+                    if (FindNearestTarget())
+                        state = DroneState.attacking;
+                break;
 
-                case DroneState.attacking:
-                    AttackTarget();
-                    break;
+            case DroneState.attacking:
+                AttackTarget();
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
         }
     }
 
@@ -104,41 +111,45 @@ public class Drone : AIUtilities, IDamagable<float>
 
     bool FindNearestTarget()
     {
-        if (targetCheckDistance != null && targetLayers != null)
+        Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance, targetLayers.value);
+        if (closeObjects.Length > 0)
         {
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, targetCheckDistance.Value, targetLayers.value);
-            if (closeObjects.Length > 0)
-            {
-                int randObj = Random.Range(0, closeObjects.Length);
-                attackTarget = closeObjects[randObj].gameObject;
-                return true;
-            }
-            attackTarget = null;
+            int randObj = Random.Range(0, closeObjects.Length);
+            attackTarget = closeObjects[randObj].gameObject;
+            return true;
         }
+        attackTarget = null;
         return false;
     }
 
     void AttackTarget()
     {
-        if (attackTarget != null && targetCheckDistance != null)
+        if (attackTarget != null)
         {
-            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance.Value))
+            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance))
             {
                 isHittingTarget = false;
                 FindNearestTarget();
                 return;
             }
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(attackTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
+            bool isFacing = Vector3.Dot(transform.forward, attackTarget.transform.position) > .6f;
             fireTime = fireTime < 0 ? 0 : fireTime -= Time.fixedDeltaTime;
             if (isHittingTarget)
-                CreateLaserLine(laser, transform.position + transform.forward * 6, attackTarget.transform.position - transform.position);
-            else if (!isHittingTarget && laser != null)
-                laser.enabled = false;
-            if (fireTime <= 0 && weaponDamage != null && fireRate != null)
             {
-                TryDamagingTarget(attackTarget, weaponDamage.Value);
-                FiredLaser?.Invoke();
-                fireTime = fireRate.Value;
+                CreateLaserLine(laser1, laser1.transform.position, attackTarget.transform.position - laser1.transform.position);
+                CreateLaserLine(laser2, laser2.transform.position, attackTarget.transform.position - laser2.transform.position);
+            }
+            else if (!isHittingTarget && laser1 != null && laser2 != null)
+            {
+                laser1.enabled = false;
+                laser2.enabled = false;
+            }
+            if (fireTime <= 0 && isFacing)
+            {
+                TryDamagingTarget(attackTarget, weaponDamage);
+                FiredLaserSound?.Invoke();
+                fireTime = fireRate;
             }
             if (!attackTarget.activeSelf)
             {
@@ -166,11 +177,9 @@ public class Drone : AIUtilities, IDamagable<float>
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
-        if (currentHealth <= 0 && maxHealth != null)
+        if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
-            UpdateDrone?.Invoke(gameObject);
-            UpdateDroneKillCount?.Invoke();
+            killSheet.dronesDestroyed++;
             DisableObject();
         }
     }
@@ -181,6 +190,8 @@ public class Drone : AIUtilities, IDamagable<float>
         e.transform.position = transform.position;
         e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
         e.SetActive(true);
+        RemoveFromWaveList?.Invoke(this.gameObject);
+        DroneExploded?.Invoke();
         gameObject.SetActive(false);
     }
 
@@ -198,11 +209,7 @@ public class Drone : AIUtilities, IDamagable<float>
     }
 
     [ContextMenu("Kill Drone")]
-    public void KillDrone()
-    {
-        if (maxHealth != null)
-            ApplyDamage(maxHealth.Value);
-    }
+    public void KillDrone() => ApplyDamage(maxHealth);
 
     public float GetCurrentHealth() => currentHealth;
 }

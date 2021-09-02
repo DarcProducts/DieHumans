@@ -1,4 +1,4 @@
-using TMPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,29 +6,33 @@ public class Building : MonoBehaviour, IDamagable<float>
 {
     public static UnityAction UpdateBuildingCount;
     public static UnityAction BuildingCollapseSound;
-    public static UnityAction<Vector3> BuildingDamaged;
     public static UnityAction<GameObject> BuildingDestroyed;
     public static UnityAction<Vector3> RemoveBuildingVector;
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public static UnityAction<Vector3, string, float, Color> DamagedInfo;
+    public Color damageColor;
+    public float damageColorDuration;
     [SerializeField] float buildingHealthMultiplier;
-    [SerializeField] Material brokenMaterial;
     float _currentBuildingHealth;
     [SerializeField] float collapseRate = .4f;
-    [SerializeField] float damageDiplayDuration;
     bool hasPlayedSound = false;
-    MultiPooler objectPooler;
+    [SerializeField] ObjectPooler collapseEffectPool;
     [SerializeField] GameObject brokenBuildingEffect;
+    Renderer buildingRend;
     float maxBuildingHealth;
     bool brokenEffectSet = false;
     bool collapsingEffectSet = false;
     bool isCollapsing = false;
+    [SerializeField] Color originalColor;
 
     void OnEnable() => hasPlayedSound = false;
 
+    void Awake()
+    {
+        buildingRend = GetComponent<Renderer>();
+        originalColor = buildingRend.material.GetColor("_Color");
+    }
+
     void Start()
     {
-        objectPooler = FindObjectOfType<MultiPooler>();
         maxBuildingHealth = transform.localScale.y * buildingHealthMultiplier;
         _currentBuildingHealth = maxBuildingHealth;
     }
@@ -39,11 +43,18 @@ public class Building : MonoBehaviour, IDamagable<float>
             SlowlyCollapseBuilding();
     }
 
+    IEnumerator ChangeMaterialColor()
+    {
+        buildingRend.material.SetColor("_Color", damageColor);
+        yield return new WaitForSeconds(damageColorDuration);
+        buildingRend.material.SetColor("_Color", originalColor);
+    }
+
     void InitializeCollapsingEffect()
     {
-        if (!collapsingEffectSet && objectPooler != null)
+        if (collapseEffectPool != null && !collapsingEffectSet)
         {
-            GameObject effect = objectPooler.GetObject(12);
+            GameObject effect = collapseEffectPool.GetObject();
             if (effect != null)
             {
                 effect.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -70,7 +81,6 @@ public class Building : MonoBehaviour, IDamagable<float>
 
     void SlowlyCollapseBuilding()
     {
-        GetComponent<Renderer>().material = brokenMaterial;
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(transform.localScale.x, 0, transform.localScale.z), collapseRate * Time.fixedDeltaTime);
         if (!hasPlayedSound)
         {
@@ -80,9 +90,7 @@ public class Building : MonoBehaviour, IDamagable<float>
         if (transform.localScale.y <= 0)
         {
             InitializeBrokenBuildingEffect();
-            TextInfo?.Invoke(transform.position, 3, 1, maxBuildingHealth * .5f);
             UpdateBuildingCount?.Invoke();
-            RemoveBuildingVector?.Invoke(transform.position);
             BuildingDestroyed?.Invoke(gameObject);
             gameObject.SetActive(false);
         }
@@ -93,9 +101,7 @@ public class Building : MonoBehaviour, IDamagable<float>
     public void ApplyDamage(float damage)
     {
         _currentBuildingHealth -= damage;
-        BuildingDamaged?.Invoke(transform.position);
-        if (_currentBuildingHealth > 0)
-            DamagedInfo?.Invoke(transform.position + Vector3.up * 30, damage.ToString(), 64, Color.red);
+        StartCoroutine(nameof(ChangeMaterialColor));
         if (_currentBuildingHealth <= 0)
         {
             InitializeCollapsingEffect();

@@ -10,7 +10,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] TMP_Text dronesDestroyedText;
     [SerializeField] TMP_Text tanksDestroyedText;
     [SerializeField] TMP_Text bombersDestroyedText;
-    [SerializeField] TMP_Text currentWaveText;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] int currentPoints = 0;
 
@@ -26,16 +25,16 @@ public class CanvasManager : MonoBehaviour
     {
         Building.BuildingDestroyed += UpdateBuildingsLeft;
         Drone.UpdateDroneKillCount += UpdateDroneDestroyedText;
-        WaveManager.UpdateWave += UpdateCurrentWave;
-        MessagesManager.UpdateScore += UpdateScore;
+        Bomber.UpdateBomberKillCount += UpdateBomberDestroyedText;
+        Tank.UpdateTankKillCount += UpdateTankDestroyedText;
     }
 
     void OnDisable()
     {
         Building.BuildingDestroyed -= UpdateBuildingsLeft;
         Drone.UpdateDroneKillCount -= UpdateDroneDestroyedText;
-        WaveManager.UpdateWave -= UpdateCurrentWave;
-        MessagesManager.UpdateScore -= UpdateScore;
+        Bomber.UpdateBomberKillCount -= UpdateBomberDestroyedText;
+        Tank.UpdateTankKillCount -= UpdateTankDestroyedText;
     }
 
     void Start()
@@ -53,7 +52,7 @@ public class CanvasManager : MonoBehaviour
         if (scoreText != null)
             scoreText.text = "Score: \n0";
     }
-
+    
     void UpdateBuildingsLeft(GameObject notUsed)
     {
         if (cityGenerator != null && buildingsText != null)
@@ -83,12 +82,6 @@ public class CanvasManager : MonoBehaviour
     {
         if (killSheet != null && bombersDestroyedText != null)
             bombersDestroyedText.text = $"Bombers Destroyed: \n{killSheet.bombersDestroyed}";
-    }
-
-    void UpdateCurrentWave(int wave)
-    {
-        if (currentWaveText != null)
-            currentWaveText.text = $"Current Wave: \n{wave}";
     }
 
     void UpdateScore(int points, bool positive)

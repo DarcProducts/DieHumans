@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3216183635065638462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3216183635065638461}
+  - component: {fileID: 3216183635065638460}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3216183635065638461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216183635065638462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3216183635065638460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216183635065638462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec256e8b3a2b61a41bc921e98b7c251b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 556192772611992724, guid: 2aad6a97a94cf084ba0f2e2f3874b9d4, type: 3}
+  mainSource: {fileID: 4718515537759745379, guid: 625a3c7f585903f44b265b4520ec6162, type: 3}
+  weaponSource: {fileID: 4276975731108600709, guid: e9c38a5c60955e4479a472a742f37095, type: 3}
+  droneSource: {fileID: 3389586282751628390, guid: 5d2894350cfdf2949bbd5d1ff062afcb, type: 3}
+  tankSource: {fileID: 3389586282751628390, guid: 5d2894350cfdf2949bbd5d1ff062afcb, type: 3}
+  bomberSource: {fileID: 3389586282751628390, guid: 5d2894350cfdf2949bbd5d1ff062afcb, type: 3}
+  fxSource: {fileID: 7172426107115273383, guid: f751e6a63b1d8074a91813171c97b554, type: 3}
+  meteorDestroyed: {fileID: 8300000, guid: e9ddf132147d85a49a050ce428153809, type: 3}
+  laserShoot: {fileID: 8300000, guid: 120850c4cbc16d144a3ae7346613727a, type: 3}
+  explosions:
+  - {fileID: 8300000, guid: e5939adbebbe4a949bcfa8a2c336f73b, type: 3}
+  - {fileID: 8300000, guid: c18d9b1280ac41c45baf51fd6c79e9c0, type: 3}
+  - {fileID: 8300000, guid: c6a523ddaba6f4d44a9f2a66b8163a7c, type: 3}
+  - {fileID: 8300000, guid: ecb1790ec050b35428873fee3010a1d9, type: 3}
+  machinegun: {fileID: 8300000, guid: f85f0fc18f34a9c4e958c0af1d9e197a, type: 3}
+  backgroundMusic: []
+  buildingCollapse: {fileID: 8300000, guid: 640880912cf93814ea2634bafd378962, type: 3}
+  bombDrop: {fileID: 8300000, guid: 645d234bb437ef643aa51fc9bbb2d315, type: 3}
+  pickupDropBox: {fileID: 8300000, guid: f8f390ce8eb0fba4f9c288e825fffdc6, type: 3}
+  wrongDestroy: {fileID: 8300000, guid: dfee45b278d10de44a91ad1448ccbf04, type: 3}
+  scorePoints: {fileID: 8300000, guid: 69d7a102a6f77224f99d176a0e6b249a, type: 3}
+  decreasedPoints: {fileID: 8300000, guid: e3f51afa89e405d42a1e7eebba813508, type: 3}
+  tankShotSound: {fileID: 8300000, guid: 2ea6d95bdf5df19469b1280c30ea4aa0, type: 3}
+  projectileImpact: {fileID: 8300000, guid: 1674e9f10a4780a4fa044a2a22652864, type: 3}
+  forcedBGMusic: {fileID: 8300000, guid: a41dbc632bc6ec649afbb80751327bcd, type: 3}

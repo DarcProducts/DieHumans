@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Parachute
-  m_Shader: {fileID: 4800000, guid: e59386fc3aa618249949cd151bb4694d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 74a0813d0f475e44fa2210fc5c464a90, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
@@ -93,6 +93,7 @@ Material:
     - _value: 0.78
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAlt: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _emissionColor: {r: 0.3484333, g: 0.7264151, b: 0.22272162, a: 1}
   m_BuildTextureStacks: []

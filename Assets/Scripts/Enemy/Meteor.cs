@@ -3,15 +3,15 @@ using UnityEngine.Events;
 
 public class Meteor : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction<GameObject> MeteorEvaded;
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public static UnityAction<Vector3, string, float, Color> DamageInfo;
+    public static UnityAction MeteorExplodedSound;
+    public static UnityAction MeteorEvadedSound;
     public float explosionRadius;
     public LayerMask hitLayers;
-    [SerializeField] Vector2 meteorMinMaxSize;
-    [SerializeField] float healthMultiplier;
-    [SerializeField] byte pointMultiplier;
-    [SerializeField] ObjectPooler explosionPool;
+    public Vector2 meteorMinMaxSize;
+    public float healthMultiplier;
+    public byte pointMultiplier;
+    public ObjectPooler explosionPool;
+    public ObjectPooler meteorbrokenPool;
     float maxHealth;
     float newScale;
     float currentHealth;
@@ -32,8 +32,10 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth);
-            MeteorEvaded?.Invoke(gameObject);
+            MeteorEvadedSound?.Invoke();
+            GameObject e = meteorbrokenPool.GetObject();
+            e.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            e.SetActive(true);
             gameObject.SetActive(false);
         }
     }
@@ -48,11 +50,12 @@ public class Meteor : MonoBehaviour, IDamagable<float>
             {
                 GameObject e = explosionPool.GetObject();
                 e.transform.position = transform.position;
-                float newSize = newScale * 2;
+                float newSize = newScale;
                 e.transform.localScale = new Vector3(newSize, newSize, newSize);
                 e.SetActive(true);
             }
             TryDamagingNearTargets();
+            MeteorExplodedSound?.Invoke();
             gameObject.SetActive(false);
         }
     }

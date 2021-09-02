@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
-    public static UnityAction<int> UpdateWave;
     public static UnityAction WaveStarted;
     public static UnityAction WaveCompleted;
-    [SerializeField] ObjectPooler dronePooler;
-    [SerializeField] ObjectPooler tankPooler;
-    [SerializeField] ObjectPooler bomberPooler;
+    public CanvasManager canvasManager;
+    public ObjectPooler dronePooler;
+    public ObjectPooler tankPooler;
+    public ObjectPooler bomberPooler;
+    public TMP_Text waveDisplayScreen;
+    public TMP_Text currentWaveText;
 
     [Header("Game Stats")]
-    [SerializeField] CityGenerator cityGenerator;
+    public CityGenerator cityGenerator;
 
-    [SerializeField] bool startWaves;
+    public bool startWaves;
     bool canSpawnWave = true;
     bool isRunning = false;
     [SerializeField] int currentWave = 0;
-    [SerializeField] float waveDelay = 1f;
-    [SerializeField] float spawnDelay = 1f;
-    [SerializeField] float continuousWaveDelay;
+    public float waveDelay = 1f;
+    public float spawnDelay = 1f;
     bool sentWaveBegun = false;
+    bool updatedWaveNumber = false;
 
-    [Header("Spawn Areas")]
-    [SerializeField] Vector3[] minSpawnAreas;
-
-    [SerializeField] Vector3[] maxSpawnAreas;
+    [Header("Spawning")]
+    [SerializeField] List<Transform> spawnPoints;
 
     readonly List<GameObject> waveObjects = new List<GameObject>();
 
@@ -43,6 +44,9 @@ public class WaveManager : MonoBehaviour
 
     void OnEnable()
     {
+        Drone.RemoveFromWaveList += RemoveWaveObject;
+        Tank.RemoveFromWaveList += RemoveWaveObject;
+        Bomber.RemoveFromWaveList += RemoveWaveObject;
     }
 
     void OnDisable()
@@ -50,6 +54,9 @@ public class WaveManager : MonoBehaviour
         if (cityGenerator != null)
             cityGenerator.ResetDestroyedBuildingCount();
         StopAllCoroutines();
+        Drone.RemoveFromWaveList -= RemoveWaveObject;
+        Tank.RemoveFromWaveList -= RemoveWaveObject;
+        Bomber.RemoveFromWaveList -= RemoveWaveObject;
     }
 
     void LateUpdate()
@@ -74,15 +81,26 @@ public class WaveManager : MonoBehaviour
             WaveStarted?.Invoke();
             sentWaveBegun = true;
         }
-        currentWave++;
+        if (!updatedWaveNumber)
+        {
+            currentWave++;
+            currentWaveText.text = $"Wave {currentWave}";
+            waveDisplayScreen.text = $"Wave {currentWave}";
+            waveDisplayScreen.transform.parent.gameObject.SetActive(true);
+            updatedWaveNumber = true;
+        }
         isRunning = true;
         waveObjects.Clear();
         yield return new WaitForSeconds(waveDelay);
         do
         {
-            int ranSpawn = Random.Range(0, maxSpawnAreas.Length);
-            Vector3 newLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), Random.Range(minSpawnAreas[ranSpawn].y, maxSpawnAreas[ranSpawn].y), Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
-            Vector3 tankLoc = new Vector3(Random.Range(minSpawnAreas[ranSpawn].x, maxSpawnAreas[ranSpawn].x), 50, Random.Range(minSpawnAreas[ranSpawn].z, maxSpawnAreas[ranSpawn].z));
+            Vector3 newLoc = Vector3.zero;
+            
+            if (spawnPoints.Count > 0)
+            {
+                int ranSpawn = Random.Range(0, spawnPoints.Count);
+                newLoc = spawnPoints[ranSpawn].position;
+            }
 
             float ranVal = Random.value;
 
@@ -92,7 +110,7 @@ public class WaveManager : MonoBehaviour
                 GameObject b = bomberPooler.GetObject();
                 if (b != null)
                 {
-                    b.transform.position = newLoc;
+                    b.transform.position = newLoc + Vector3.up * 100;
                     waveObjects.Add(b);
                     b.SetActive(true);
                 }
@@ -102,7 +120,7 @@ public class WaveManager : MonoBehaviour
                 GameObject t = tankPooler.GetObject();
                 if (t != null)
                 {
-                    t.transform.position = tankLoc;
+                    t.transform.position = newLoc;
                     waveObjects.Add(t);
                     t.SetActive(true);
                 }
@@ -112,7 +130,7 @@ public class WaveManager : MonoBehaviour
                 GameObject d = dronePooler.GetObject();
                 if (d != null)
                 {
-                    d.transform.position = newLoc;
+                    d.transform.position = newLoc + Vector3.up * 60;
                     waveObjects.Add(d);
                     d.SetActive(true);
                 }
@@ -120,24 +138,14 @@ public class WaveManager : MonoBehaviour
         }
         while (waveObjects.Count < currentWave * currentWave);
         waveDelay++;
-        UpdateWave?.Invoke(currentWave);
-        if (continuousWaveDelay > 0)
-        {
-            yield return new WaitForSeconds(continuousWaveDelay);
-            continuousWaveDelay = waveObjects.Count;
-            StartCoroutine(StartWaves());
-        }
+        updatedWaveNumber = false;
     }
 
     public void RemoveWaveObject(GameObject target)
     {
-        if (waveObjects.Count > 0 && target != null)
-        {
-            if (waveObjects.Remove(target))
-                Debug.Log($"Removed {target.name}");
-            if (waveObjects.Count == 0)
-                WaveFinished();
-        }
+        waveObjects.Remove(target);
+        if (waveObjects.Count.Equals(0))
+            WaveFinished();
     }
 
     void WaveFinished()
@@ -147,5 +155,6 @@ public class WaveManager : MonoBehaviour
         canSpawnWave = true;
         sentWaveBegun = false;
         WaveCompleted?.Invoke();
+        StartCoroutine(nameof(StartWaves));
     }
 }

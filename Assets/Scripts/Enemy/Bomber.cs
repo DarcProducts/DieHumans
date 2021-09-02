@@ -3,38 +3,35 @@ using UnityEngine.Events;
 
 public class Bomber : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    [SerializeField] IntVariable maxHealth;
-    [SerializeField] Vector2Variable minMaxBombHeight;
-    [SerializeField] FloatVariable bombDamage;
-    [SerializeField] FloatVariable bombRadius;
-    [SerializeField] FloatVariable bombStartTime;
-    [SerializeField] FloatVariable rotateSpeed;
+    public static UnityAction BombDropSound;
+    public static UnityAction BomberExploded;
+    public static UnityAction UpdateBomberKillCount;
+    public static UnityAction<GameObject> RemoveFromWaveList;
+    public KillSheet killSheet;
+    public int maxHealth;
+    public Vector2 minMaxBombHeight;
+    public float bombDamage;
+    public float bombRadius;
+    public float bombStartTime;
+    public float rotateSpeed;
     float currentStartTime;
-    [SerializeField] CityGenerator cityGenerator;
+    public CityGenerator cityGenerator;
     bool startDroppingBombs = false;
-    [SerializeField] float explosionSize;
+    public float explosionSize;
     float currentHealth;
-    [SerializeField] FloatVariable shipSpeed;
-    [SerializeField] FloatVariable bombDropRate;
-    [SerializeField] FXInitializer bombDropFX;
-    [SerializeField] ObjectPooler explosionPool;
-    [SerializeField] ObjectPooler rocketPool;
+    public float shipSpeed;
+    public float bombDropRate;
+    public ObjectPooler explosionPool;
+    public ObjectPooler rocketPool;
     float currentDrop;
     Vector3 targetLocation;
 
-    void Start()
-    {
-        if (bombStartTime != null)
-            currentStartTime = bombStartTime.Value;
-    }
+    void Start() => currentStartTime = bombStartTime;
 
     void OnEnable()
     {
-        if (maxHealth != null)
-            currentHealth = maxHealth.Value;
-        if (bombStartTime != null)
-            currentStartTime = bombStartTime.Value;
+        currentHealth = maxHealth;
+        currentStartTime = bombStartTime;
         startDroppingBombs = false;
         SetNewLocation();
         transform.LookAt(targetLocation);
@@ -44,7 +41,7 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     {
         if (cityGenerator != null && minMaxBombHeight != null)
         {
-            float ranHeight = Random.Range(minMaxBombHeight.Value.x, minMaxBombHeight.Value.y);
+            float ranHeight = Random.Range(minMaxBombHeight.x, minMaxBombHeight.y);
             Vector3 newLoc = cityGenerator.GetAttackVector();
             targetLocation = newLoc + Vector3.up * ranHeight;
         }
@@ -58,8 +55,8 @@ public class Bomber : MonoBehaviour, IDamagable<float>
             if (currentStartTime.Equals(0))
                 startDroppingBombs = true;
         }
-        if (!transform.position.Equals(targetLocation) && shipSpeed != null)
-            transform.position = Vector3.MoveTowards(transform.position, targetLocation, shipSpeed.Value * Time.fixedDeltaTime);
+        if (!transform.position.Equals(targetLocation))
+            transform.position = Vector3.MoveTowards(transform.position, targetLocation, shipSpeed * Time.fixedDeltaTime);
         if (transform.position.Equals(targetLocation))
             SetNewLocation();
         if (startDroppingBombs)
@@ -69,51 +66,46 @@ public class Bomber : MonoBehaviour, IDamagable<float>
             {
                 GameObject bomb = rocketPool.GetObject();
                 Rocket r = bomb.GetComponent<Rocket>();
-                Rigidbody rB = bomb.GetComponent<Rigidbody>();
 
-                if (r != null && bombRadius != null && bombDamage != null && bombDropRate != null)
+                if (r != null)
                 {
                     r.type = RocketType.Bomb;
-                    r.explosionRadius = bombRadius.Value;
-                    r.rocketDamage = bombDamage.Value;
-                    currentDrop = bombDropRate.Value;
+                    r.explosionRadius = bombRadius;
+                    r.rocketDamage = bombDamage;
+                    currentDrop = bombDropRate;
                 }
                 if (bomb != null)
                 {
                     bomb.transform.position = transform.position + Vector3.down * 5;
                     bomb.SetActive(true);
-                    if (bombDropFX != null)
-                        bombDropFX.PlayAllFX(transform.position);
+                    BombDropSound?.Invoke();
                 }
-                if (bombDropRate != null)
-                    currentDrop = bombDropRate.Value;
+                currentDrop = bombDropRate;
             }
         }
-        if (rotateSpeed != null)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed * Time.fixedDeltaTime);
     }
 
     public void ApplyDamage(float amount)
 
     {
         currentHealth -= amount;
-        if (currentHealth <= 0 && maxHealth != null)
+        if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
             GameObject e = explosionPool.GetObject();
             e.transform.position = transform.position;
             e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
             e.SetActive(true);
+            killSheet.bombersDestroyed++;
+            UpdateBomberKillCount?.Invoke();
+            RemoveFromWaveList?.Invoke(this.gameObject);
+            BomberExploded?.Invoke();
             gameObject.SetActive(false);
         }
     }
 
     [ContextMenu("Kill Bomber")]
-    public void KillBomber()
-    {
-        if (maxHealth != null)
-            ApplyDamage(maxHealth.Value);
-    }
+    public void KillBomber() => ApplyDamage(maxHealth);
 
     public float GetCurrentHealth() => currentHealth;
 }

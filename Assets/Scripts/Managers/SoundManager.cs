@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource tankSource;
     [SerializeField] AudioSource bomberSource;
     [SerializeField] AudioSource fxSource;
-    [SerializeField] AudioClip[] meteorDestroyed;
+    [SerializeField] AudioClip meteorDestroyed;
     [SerializeField] AudioClip laserShoot;
     [SerializeField] AudioClip[] explosions;
     [SerializeField] AudioClip machinegun;
@@ -24,27 +24,51 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip decreasedPoints;
     [SerializeField] AudioClip tankShotSound;
     [SerializeField] AudioClip projectileImpact;
+    [SerializeField] AudioClip forcedBGMusic;
 
     void Start()
     {
-        StartCoroutine(PlayBackgroundMusic());
+        if (forcedBGMusic == null)
+            StartCoroutine(PlayBackgroundMusic());
+        else
+        {
+            musicSource.clip = forcedBGMusic;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
     }
 
     void OnEnable()
     {
-        Meteor.MeteorEvaded += PlayMeteorDestroyed;
-        MessagesManager.GainPoints += PlayScoredSound;
-        MessagesManager.DecreasePoints += PlayDecreasedPointSound;
-        Drone.FiredLaser += PlayLaserSound;
+        Projectile.ProjectileImpactSound += PlayProjectileImpactSound;
+        Meteor.MeteorExplodedSound += PlayExplosionSound;
+        Meteor.MeteorEvadedSound += PlayMeteorDestroyed;
+        Drone.FiredLaserSound += PlayLaserSound;
+        Drone.DroneExploded += PlayExplosionSound;
+        Tank.TankShotSound += PlayTankShotSound;
+        Tank.TankExploded += PlayExplosionSound;
+        Bomber.BombDropSound += PlayBombDrop;
+        Bomber.BomberExploded += PlayExplosionSound;
+        Rocket.RocketExplodedSound += PlayExplosionSound;
+        ExplosiveBarrels.BarrelHitSound += PlayExplosionSound;
+        ExplosiveBarrels.BarrelShotSound += PlayExplosionSound;
         Building.BuildingCollapseSound += PlayBuildingCollapse;
     }
 
     void OnDisable()
     {
-        Meteor.MeteorEvaded -= PlayMeteorDestroyed;
-        MessagesManager.GainPoints -= PlayScoredSound;
-        MessagesManager.DecreasePoints -= PlayDecreasedPointSound;
-        Drone.FiredLaser -= PlayLaserSound;
+        Projectile.ProjectileImpactSound -= PlayProjectileImpactSound;
+        Meteor.MeteorExplodedSound -= PlayExplosionSound;
+        Meteor.MeteorEvadedSound -= PlayMeteorDestroyed;
+        Drone.FiredLaserSound -= PlayLaserSound;
+        Drone.DroneExploded -= PlayExplosionSound;
+        Tank.TankShotSound -= PlayTankShotSound;
+        Tank.TankExploded -= PlayExplosionSound;
+        Bomber.BombDropSound -= PlayBombDrop;
+        Bomber.BomberExploded -= PlayExplosionSound;
+        Rocket.RocketExplodedSound -= PlayExplosionSound;
+        ExplosiveBarrels.BarrelHitSound -= PlayExplosionSound;
+        ExplosiveBarrels.BarrelShotSound -= PlayExplosionSound;
         Building.BuildingCollapseSound -= PlayBuildingCollapse;
     }
 
@@ -57,16 +81,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayLaserShotFromSource(AudioSource source)
+    public void PlayProjectileImpactSound()
     {
-        if (laserShoot != null && !source.isPlaying)
-            Utilities.PlayAtSourceWithVPRange(source, laserShoot, .2f, .4f, .8f, 1.2f);
-    }
-
-    public void PlayProjectileImpactSound(AudioSource source)
-    {
-        if (projectileImpact != null && !source.isPlaying)
-            Utilities.PlayAtSourceWithVPRange(source, projectileImpact, .6f, 1f, .8f, 1.2f);
+        if (projectileImpact != null)
+            Utilities.PlayAtSourceWithVPRange(weaponSource, projectileImpact, .6f, 1f, .6f, .8f);
     }
 
     public IEnumerator PlayBackgroundMusic()
@@ -140,17 +158,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayMeteorDestroyed(GameObject obj)
+    public void PlayMeteorDestroyed()
     {
-        if (fxSource != null && meteorDestroyed.Length > 0)
+        if (fxSource != null)
         {
-            int ranNum = Random.Range(0, meteorDestroyed.Length);
-            if (meteorDestroyed[ranNum] != null)
-                Utilities.PlayAtSourceWithVPRange(fxSource, meteorDestroyed[ranNum], .6f, 1f, .8f, 1.2f);
+            if (meteorDestroyed != null)
+                Utilities.PlayAtSourceWithVPRange(fxSource, meteorDestroyed, .6f, 1f, .8f, 1.2f);
         }
     }
 
-    public void PlayExplosionSound(Vector3 loc)
+    public void PlayExplosionSound()
     {
         int ranNum = Random.Range(0, explosions.Length);
         if (fxSource != null && explosions[ranNum] != null)

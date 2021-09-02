@@ -5,41 +5,42 @@ public enum TankState { moving, attacking }
 
 public class Tank : AIUtilities, IDamagable<float>
 {
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    [SerializeField] TankState state;
-    [SerializeField] FloatVariable checkDistance;
-    [SerializeField] IntVariable maxHealth;
-    [SerializeField] FloatVariable tankSpeed;
-    [SerializeField] FloatVariable rotateSpeed;
-    [SerializeField] Transform barrelTip;
-    [SerializeField] FloatVariable mortarDamage;
-    [SerializeField] FloatVariable mortarRadius;
-    [SerializeField] LayerMaskVariable targetLayers;
-    [SerializeField] FloatVariable fireRate;
-    [SerializeField] CityGenerator cityGenerator;
-    [SerializeField] ObjectPooler explosionPool;
-    [SerializeField] ObjectPooler rocketPool;
-    [SerializeField] FloatVariable explosionSize;
-    [SerializeField] FXInitializer shootFX;
+    public static UnityAction UpdateTankKillCount;
+    public static UnityAction<GameObject> RemoveFromWaveList;
+    public static UnityAction TankShotSound;
+    public static UnityAction TankExploded;
+    public KillSheet killSheet;
+    public TankState state;
+    public float checkDistance;
+    public int maxHealth;
+    public float tankSpeed;
+    public float rotateSpeed;
+    public Transform barrelTip;
+    public float mortarDamage;
+    public float mortarRadius;
+    public LayerMask targetLayers;
+    public float fireRate;
+    public CityGenerator cityGenerator;
+    public ObjectPooler explosionPool;
+    public ObjectPooler rocketPool;
+    public float explosionSize;
     float currentFireRate = 0f;
     Vector3 targetLocation;
     GameObject currentTarget = null;
     float currentHealth;
 
-    void Start() => InitialSetup();
+    public void Start() => InitialSetup();
 
-    void OnEnable() => InitialSetup();
+    public void OnEnable() => InitialSetup();
 
     void InitialSetup()
     {
         currentTarget = null;
-        if (fireRate != null)
-            currentFireRate = fireRate.Value;
+        currentFireRate = fireRate;
         if (cityGenerator != null)
             targetLocation = cityGenerator.GetAttackVector();
         transform.LookAt(targetLocation);
-        if (maxHealth != null)
-            currentHealth = maxHealth.Value;
+        currentHealth = maxHealth;
     }
 
     void FixedUpdate()
@@ -58,11 +59,8 @@ public class Tank : AIUtilities, IDamagable<float>
                 }
                 else
                 {
-                    if (tankSpeed != null && rotateSpeed != null)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed.Value * Time.fixedDeltaTime);
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
-                    }
+                    transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed * Time.fixedDeltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed * Time.fixedDeltaTime);
                 }
                 break;
 
@@ -79,18 +77,16 @@ public class Tank : AIUtilities, IDamagable<float>
     {
         if (currentTarget != null)
         {
-            if (currentTarget.activeSelf && rotateSpeed != null)
+            if (currentTarget.activeSelf)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed.Value * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
                 targetLocation = currentTarget.transform.position;
                 currentFireRate = currentFireRate < 0 ? 0 : currentFireRate -= Time.fixedDeltaTime;
                 if (currentFireRate.Equals(0))
                 {
                     LaunchMortar();
-                    if (shootFX != null && barrelTip != null)
-                        shootFX.PlayAllFX(barrelTip.position);
-                    if (fireRate != null)
-                        currentFireRate = fireRate.Value;
+                    TankShotSound?.Invoke();
+                    currentFireRate = fireRate;
                 }
             }
             if (!currentTarget.activeSelf)
@@ -105,15 +101,12 @@ public class Tank : AIUtilities, IDamagable<float>
 
     void FindRandomCloseTarget()
     {
-        if (checkDistance != null && targetLayers != null)
+        Collider[] closeObjects = Physics.OverlapSphere(transform.position, checkDistance, targetLayers);
+        if (closeObjects.Length > 0)
         {
-            Collider[] closeObjects = Physics.OverlapSphere(transform.position, checkDistance.Value, targetLayers.value);
-            if (closeObjects.Length > 0)
-            {
-                int randObj = Random.Range(0, closeObjects.Length);
-                currentTarget = closeObjects[randObj].gameObject;
-                return;
-            }
+            int randObj = Random.Range(0, closeObjects.Length);
+            currentTarget = closeObjects[randObj].gameObject;
+            return;
         }
         currentTarget = null;
     }
@@ -127,11 +120,9 @@ public class Tank : AIUtilities, IDamagable<float>
             r.transform.position = barrelTip.position;
             rocket.type = RocketType.Mortar;
             rocket.currentTarget = currentTarget.transform.position + Vector3.up * 45f;
-            rocket.rocketSpeed = 1200f;
-            if (mortarDamage != null)
-                rocket.rocketDamage = mortarDamage.Value;
-            if (mortarRadius != null)
-                rocket.explosionRadius = mortarRadius.Value;
+            rocket.rocketSpeed = 1400f;
+            rocket.rocketDamage = mortarDamage;
+            rocket.explosionRadius = mortarRadius;
             r.SetActive(true);
         }
     }
@@ -139,36 +130,34 @@ public class Tank : AIUtilities, IDamagable<float>
     public void ApplyDamage(float amount)
     {
         currentHealth -= amount;
-        if (currentHealth <= 0 && maxHealth != null)
+        if (currentHealth <= 0)
         {
-                GameObject e = explosionPool.GetObject();
-                if (e != null && explosionSize != null)
-                {
-                    float eSize = explosionSize.Value;
-                    e.transform.position = transform.position;
-                    e.transform.localScale = new Vector3(eSize, eSize, eSize);
-                    e.SetActive(true);
-                }
+            GameObject e = explosionPool.GetObject();
+            if (e != null)
+            {
+                float eSize = explosionSize;
+                e.transform.position = transform.position;
+                e.transform.localScale = new Vector3(eSize, eSize, eSize);
+                e.SetActive(true);
+            }
 
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth.Value * 2);
+            killSheet.tanksDestroyed++;
+            UpdateTankKillCount?.Invoke();
+            RemoveFromWaveList?.Invoke(this.gameObject);
+            TankExploded?.Invoke();
             gameObject.SetActive(false);
         }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (targetLayers != null)
-            if (Utilities.IsInLayerMask(other.gameObject, targetLayers.value))
-                if (currentTarget == null)
-                    FindRandomCloseTarget();
+        if (Utilities.IsInLayerMask(other.gameObject, targetLayers))
+            if (currentTarget == null)
+                FindRandomCloseTarget();
     }
 
     [ContextMenu("Kill Tank")]
-    public void KillTank()
-    {
-        if (maxHealth != null)
-            ApplyDamage(maxHealth.Value);
-    }
+    public void KillTank() => ApplyDamage(maxHealth);
 
     public float GetCurrentHealth() => currentHealth;
 }

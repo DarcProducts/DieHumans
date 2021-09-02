@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject targetToFollow = null;
+    [SerializeField] private Transform targetTransform = null;
     [SerializeField] private Vector3 cameraOffset = Vector3.zero;
     [SerializeField] private float followSpeed = 1f;
     [SerializeField] private float rotationSpeed = 2f;
@@ -11,19 +11,13 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float cameraHeightAdjustmentSpeed;
 
-    private void Awake()
-    {
-        targetToFollow = GameObject.FindGameObjectWithTag("Player");
-        if (targetToFollow == null)
-            Debug.LogWarning($"Could not find a GameObject with Player tag");
-    }
 
-    private void LateUpdate()
+    public void LateUpdate()
     {
         float distanceFromGround = CheckDistanceWithRay(this.gameObject, Vector3.down, Color.blue, groundLayer);
 
-        transform.position = Vector3.Lerp(transform.position, targetToFollow.transform.position - targetToFollow.transform.forward * -cameraOffset.z, followSpeed * Time.smoothDeltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetToFollow.transform.rotation, rotationSpeed * Time.smoothDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetTransform.position - targetTransform.forward * -cameraOffset.z, followSpeed * Time.smoothDeltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetTransform.rotation, rotationSpeed * Time.smoothDeltaTime);
 
         if (distanceFromGround > targetCameraDistance + cameraHeightBias)
             transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.down, cameraHeightAdjustmentSpeed * Time.smoothDeltaTime);

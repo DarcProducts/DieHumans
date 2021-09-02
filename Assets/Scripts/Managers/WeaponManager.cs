@@ -1,63 +1,81 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameEvent WeaponFired;
-    [SerializeField] Transform weaponLocation;
-    [SerializeField] BoolVariable fireWeapon;
-    [SerializeField] FloatVariable weaponDamage;
-    [SerializeField] GameObject aimTarget;
-    [SerializeField] FloatVariable aimTargetDistance;
-    [SerializeField] FloatVariable gunFireRate;
-    [SerializeField] FloatVariable projectileForce;
-    [SerializeField] float projectileSize;
-    [SerializeField] LayerMask ignoreDamageLayer;
-    [SerializeField] ObjectPooler projectilePool;
-    float currentRate;
+    public GlobalBoolVariable fireButton;
+    public UnityEvent WeaponFired;
+    public Transform weaponLocation;
+    public float weaponDamage;
+    public GameObject aimTarget;
+    public float aimTargetDistance;
+    public float gunFireRate;
+    public float projectileForce;
+    public float projectileSize;
+    public LayerMask ignoreDamageLayer;
+    public ObjectPooler projectilePool;
+    public ObjectPooler turretPool;
+    int _currentTurrets = 0;
+    float _currentRate;
 
     void Start()
     {
-        currentRate = gunFireRate.Value;
+        _currentRate = gunFireRate;
         InitializeAimTarget();
     }
 
     private void FixedUpdate()
     {
-        if (fireWeapon.Value)
+        if (fireButton.Value.Equals(true))
             FireProjectiles();
     }
 
     void InitializeAimTarget()
     {
-        aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance.Value);
+        aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
     }
+
+    bool IsTurretAvailable() => _currentTurrets > 0;
 
     void FireProjectiles()
     {
-        currentRate = currentRate <= 0 ? 0 : currentRate -= Time.fixedDeltaTime;
-        if (currentRate <= 0 && aimTarget != null && Vector3.Dot(weaponLocation.localPosition, aimTarget.transform.localPosition) > .3f)
+        _currentRate = _currentRate <= 0 ? 0 : _currentRate -= Time.fixedDeltaTime;
+        if (_currentRate <= 0 && aimTarget != null && Vector3.Dot(weaponLocation.forward, aimTarget.transform.forward) > .6f)
         {
-            GameObject p = projectilePool.GetObject();
-            if (p != null)
+            if (IsTurretAvailable())
+                DropTurret();
+            else
             {
-                p.transform.localScale = Vector3.one * projectileSize;
-                p.layer = 14;
-                p.transform.position = weaponLocation.position;
-                Projectile j = p.GetComponent<Projectile>();
-                Rigidbody r = p.GetComponent<Rigidbody>();
-                if (j != null)
-                    j.currentDamage = weaponDamage.Value;
-                p.SetActive(true);
-                if (r != null)
-                    r.AddForce(projectileForce.Value * (aimTarget.transform.position - weaponLocation.position + weaponLocation.forward).normalized, ForceMode.Impulse);
-                WeaponFired?.Raise();
+                GameObject p = projectilePool.GetObject();
+                if (p != null)
+                {
+                    p.transform.localScale = Vector3.one * projectileSize;
+                    p.layer = 14;
+                    p.transform.position = weaponLocation.position;
+                    Projectile j = p.GetComponent<Projectile>();
+                    Rigidbody r = p.GetComponent<Rigidbody>();
+                    if (j != null)
+                        j.currentDamage = weaponDamage;
+                    p.SetActive(true);
+                    if (r != null)
+                        r.AddForce(projectileForce * (aimTarget.transform.position - weaponLocation.position + weaponLocation.forward).normalized, ForceMode.Impulse);
+                    WeaponFired?.Invoke();
+                }
             }
-            currentRate = gunFireRate.Value;
+            _currentRate = gunFireRate;
         }
     }
 
-    public float GetCurrentWeaponDamage() => weaponDamage.Value;
+    public void DropTurret()
+    {
+        GameObject newTurret = turretPool.GetObject();
+        newTurret.transform.SetPositionAndRotation(weaponLocation.position, Quaternion.identity);
+        newTurret.SetActive(true);
+        _currentTurrets--;
+    }
+
+    public float GetCurrentWeaponDamage() => weaponDamage;
 
     public void TryDamagingTarget(GameObject target)
     {

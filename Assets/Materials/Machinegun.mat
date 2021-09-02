@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Machinegun
-  m_Shader: {fileID: 10, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 1e7cd88eeb787cf459622b5ac821e3eb, type: 3}
   m_ShaderKeywords: _MONOCHROMATIC_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
@@ -113,7 +113,7 @@ Material:
     - _speedY: 0
     - _value: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 0, a: 1}
+    - _Color: {r: 0, g: 0.39215687, b: 1, a: 1}
     - _EmissionColor: {r: 4, g: 4, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 0, a: 1}
     - _NoiseColor: {r: 0, g: 0, b: 0, a: 1}

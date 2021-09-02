@@ -5,18 +5,18 @@ public enum RocketType { Standard, Homing, Bomb, Mortar }
 
 public class Rocket : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public static UnityAction<GameObject> HitObject;
+    public static UnityAction RocketExplodedSound;
+    public static UnityAction<GameObject> ExplodeAtLocation;
     public RocketType type = RocketType.Standard;
     public Vector3 currentTarget;
     public float rocketDamage;
     public float rocketSpeed;
     public float explosionRadius;
     public LayerMask damagableLayers;
-    public LayerMask ignoreDropCollisionLayers;
-    [SerializeField] float maxHealth = 2;
-    [SerializeField] ObjectPooler explosionPool;
-    [SerializeField] float explosionSize;
+    public LayerMask ignoreLayers;
+    public float maxHealth = 2;
+    public ObjectPooler explosionPool;
+    public float explosionSize;
     float currentHealth = 1;
     bool forceApplied = false;
     TrailRenderer rocketTrail;
@@ -96,11 +96,9 @@ public class Rocket : MonoBehaviour, IDamagable<float>
             DisableRocket();
     }
    
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collider)
     {
-        if (Utilities.IsInLayerMask(other.gameObject, ignoreDropCollisionLayers))
-            return;
-        else if (!other.CompareTag("Projectile"))
+        if (!Utilities.IsInLayerMask(collider.gameObject, ignoreLayers))
         {
             Utilities.TryDamagingNearTargets(transform.position, explosionRadius, damagableLayers, rocketDamage);
             DisableRocket();
@@ -116,6 +114,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
             e.transform.localScale = new Vector3(explosionSize, explosionSize,explosionSize);
             e.SetActive(true);
         }
+        RocketExplodedSound?.Invoke();
         gameObject.SetActive(false);
     }
 
@@ -124,7 +123,6 @@ public class Rocket : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            TextInfo?.Invoke(transform.position, 2, 1, maxHealth * 2);
             DisableRocket();
         }
     }

@@ -1,22 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 public class EnterCollisionMod : MonoBehaviour
 {
     public LayerMask detectedLayers;
-    public Mod[] mods = new Mod[0];
-    public FXInitializer effects;
-    public GameEvent[] Events = new GameEvent[0];
-    void OnCollisionEnter(Collision collision) 
-    {
-        if (IsInLayerMask(collision.gameObject, detectedLayers))
-        {
-            for (int i = 0; i < mods.Length; i++) if (mods[i] != null) 
-                    mods[i].ChangeValue();
-            if (effects != null)
-                effects.PlayAllFX(transform.position);
+    public UnityEvent Events;
 
-            for (int i = 0; i < Events.Length; i++) if (Events[i] != null)
-                    Events[i].Raise();
-        }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (Utilities.IsInLayerMask(collision.gameObject, detectedLayers))
+            Events.Invoke();
     }
-    bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
 }

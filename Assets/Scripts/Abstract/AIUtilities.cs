@@ -3,14 +3,7 @@ using UnityEngine.Events;
 
 public abstract class AIUtilities : MonoBehaviour
 {
-    public GameObject Player;
-
-    void Awake()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        if (Player == null)
-            Debug.LogWarning("No GameObject with Player tag could be found in scene");
-    }
+    public static GameObject Player;
 
     public bool CheckPlayerWithinRange(GameObject target, float range)
     {
@@ -44,5 +37,39 @@ public abstract class AIUtilities : MonoBehaviour
         return false;
     }
 
-    public GameObject GetPlayer() => Player;
+    public GameObject FindRandomCloseTarget(LayerMask targetLayers, float checkDistance)
+    {
+        GameObject currentTarget;
+        Collider[] closeObjects = Physics.OverlapSphere(transform.position, checkDistance, targetLayers.value);
+        if (closeObjects.Length > 0)
+        {
+            int randObj = Random.Range(0, closeObjects.Length);
+            currentTarget = closeObjects[randObj].gameObject;
+            return currentTarget;
+        }
+        return null;
+    }
+
+    public bool TryDamagingTarget(GameObject target, float damage, LayerMask ignoreLayer)
+    {
+        if (Utilities.IsInLayerMask(target, ignoreLayer))
+            return false;
+        IDamagable<float> d = target.GetComponent<IDamagable<float>>();
+        if (d != null)
+        {
+            d.ApplyDamage(damage);
+            return true;
+        }
+        return false;
+    }
+
+    [ContextMenu("Get Player")]
+    public GameObject GetPlayer()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (Player != null)
+            return Player;
+        Debug.LogWarning($"No GameObject in scene with 'Player' tag on it!");
+        return null;
+    }
 }

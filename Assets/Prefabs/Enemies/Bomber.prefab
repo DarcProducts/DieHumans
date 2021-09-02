@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6000851719242663525}
   - component: {fileID: 5461782706034946051}
   - component: {fileID: 7793709121060291785}
-  - component: {fileID: 2398682527205207675}
   - component: {fileID: 7084227109185617617}
+  - component: {fileID: 7978990054730191487}
   m_Layer: 11
   m_Name: Bomber
   m_TagString: Bomber
@@ -47,17 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87febab0375407840b43a54f14246825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: {fileID: 11400000, guid: efef29c3b8af9804ea02264f71022446, type: 2}
-  minMaxBombHeight: {fileID: 11400000, guid: 942b222352e102e4d9fbac64002b5d3e, type: 2}
-  bombDamage: {fileID: 11400000, guid: e39af28efe65f2b4ba8e0b8fdfc26a6d, type: 2}
-  bombRadius: {fileID: 11400000, guid: fd5ef00af73cc3f4291f6f01d1bb2a6f, type: 2}
-  bombStartTime: {fileID: 11400000, guid: c30f213527874bb429972c744d76b37a, type: 2}
-  rotateSpeed: {fileID: 11400000, guid: 7b4f448344509e648897f387690ba72c, type: 2}
+  killSheet: {fileID: 2458581623355798859, guid: f9ed2cdb985098642b064ccb536ba66d, type: 3}
+  maxHealth: 500
+  minMaxBombHeight: {x: 60, y: 100}
+  bombDamage: 800
+  bombRadius: 20
+  bombStartTime: 20
+  rotateSpeed: 32
   cityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
-  explosionSize: 10
-  shipSpeed: {fileID: 11400000, guid: 127daaa6fbafb9949b7d26342fc1bfe6, type: 2}
-  bombDropRate: {fileID: 11400000, guid: e20c3f434dd662d43ab7dc3f163fde10, type: 2}
-  bombDropFX: {fileID: 0}
+  explosionSize: 2
+  shipSpeed: 12
+  bombDropRate: 4
   explosionPool: {fileID: 11400000, guid: c0a2f82aa505e954fbefad0407fb4bdd, type: 2}
   rocketPool: {fileID: 11400000, guid: 27a1b1061d3272149ab53c33177446e0, type: 2}
 --- !u!33 &5461782706034946051
@@ -79,9 +79,9 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
@@ -109,20 +109,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2398682527205207675
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8586162542025041180}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 8.28
-  m_Height: 46.2
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7084227109185617617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,3 +125,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &7978990054730191487
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586162542025041180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.190996, y: 5.735303, z: 33.304657}
+  m_Center: {x: 0.19941235, y: 0.23351908, z: 0.3122139}

@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class TurnOffAfterTime : MonoBehaviour
 {
-    [SerializeField] private float timeToTurnOff;
+    [SerializeField] float timeToTurnOff;
 
-    private void OnEnable() => Invoke(nameof(TurnOffObject), timeToTurnOff);
-    private void OnDisable() => CancelInvoke(nameof(TurnOffObject));
+    void OnEnable() => Invoke(nameof(TurnOffObject), timeToTurnOff);
+    void OnDisable()
+    {
+        this.enabled = true;
+        CancelInvoke(nameof(TurnOffObject));
+    }
 
-    private void TurnOffObject() => gameObject.SetActive(false);
+    void TurnOffObject() => gameObject.SetActive(false);
 
 }

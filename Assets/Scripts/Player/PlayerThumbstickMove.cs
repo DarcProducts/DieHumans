@@ -2,50 +2,63 @@ using UnityEngine;
 
 public class PlayerThumbstickMove : MonoBehaviour
 {
-    [SerializeField] Transform ship;
-    [SerializeField] Vector2Variable leftThumbstick;
-    [SerializeField] Vector2Variable rightThumbstick;
-    [SerializeField] FloatVariable moveSpeed;
-    [SerializeField] Transform aimTarget;
-    [SerializeField] FloatVariable rotateSpeed;
-    [Range(0f, 1f)] [SerializeField] float deadZone;
-    [SerializeField] BoolVariable rollYaw;
+    public GlobalBoolVariable gamePaused;
+    public GlobalVector2Variable leftThumbstick;
+    public GlobalVector2Variable rightThumbstick;
+    public GlobalBoolVariable leftHandTriggerActive;
+    public GlobalBoolVariable leftHandGripActive;
+    public GlobalBoolVariable rightHandGripActive;
+    public Transform ship;
+    public float moveSpeed;
+    public float rotateSpeed;
+    public Transform aimTarget;
+    public float aimRotateSpeed;
 
     void Update()
     {
-        if (leftThumbstick.Value.y > deadZone)
-            MoveInDirection(ship.forward, false);
-        if (leftThumbstick.Value.y < -deadZone)
-            MoveInDirection(-ship.forward, false);
-        if (leftThumbstick.Value.x < -deadZone)
-            MoveInDirection(-ship.right, false);
-        if (leftThumbstick.Value.x > deadZone)
-            MoveInDirection(ship.right, false);
+        if (!gamePaused.Value)
+        {
+            if (leftThumbstick.Value.y > .1f)
+                MoveInDirection(ship.forward, false);
+            if (leftThumbstick.Value.y < -.1f)
+                MoveInDirection(-ship.forward, false);
+            if (leftThumbstick.Value.x < -.1f)
+                MoveInDirection(-ship.right, true);
+            if (leftThumbstick.Value.x > .1f)
+                MoveInDirection(ship.right, true);
 
-        if (rightThumbstick.Value.y > deadZone)
-            MoveInDirection(Vector3.up, true);
-        if (rightThumbstick.Value.y < -deadZone)
-            MoveInDirection(Vector3.down, true);
+            if (leftHandTriggerActive.Value)
+                MoveInDirection(Vector3.up, true);
+            if (leftHandGripActive.Value)
+                MoveInDirection(Vector3.down, true);
+
+            if (rightThumbstick.Value.x < -.1f)
+                TurnShip(Vector3.down);
+            if (rightThumbstick.Value.x > .1f)
+                TurnShip(Vector3.up);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (rollYaw.Value)
-            RotateShip();
+        if (!gamePaused.Value)
+            if (rightHandGripActive.Value)
+                RotateShip();
     }
 
-    void RotateShip() => ship.rotation = Quaternion.Lerp(ship.rotation, aimTarget.rotation, rotateSpeed.Value * Time.fixedDeltaTime);
+    void RotateShip() => ship.rotation = Quaternion.Lerp(ship.rotation, aimTarget.rotation, aimRotateSpeed * Time.fixedDeltaTime);
 
-    void MoveInDirection(Vector3 direction, bool halfValue)
+    void TurnShip(Vector3 dir) => ship.Rotate(rotateSpeed * Time.fixedDeltaTime * dir.normalized, Space.Self);
+
+    void MoveInDirection(Vector3 dir, bool halfValue)
     {
-        if (moveSpeed == null || ship == null)
+        if (ship == null)
             return;
         float mS;
         if (halfValue)
-            mS = moveSpeed.Value * .5f;
+            mS = moveSpeed * .5f;
         else
-            mS = moveSpeed.Value;
-
-        ship.Translate(mS * Time.fixedDeltaTime * direction.normalized, Space.World);
+            mS = moveSpeed;
+        ship.Translate(mS * Time.fixedDeltaTime * dir.normalized, Space.World);
     }
 }

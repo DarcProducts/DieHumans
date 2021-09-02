@@ -8,11 +8,12 @@ public static class Utilities
     public static void TryDamagingNearTargets(Vector3 pos, float rad, LayerMask hitLayer, float damage)
     {
         Collider[] closeObjects = Physics.OverlapSphere(pos, rad, hitLayer);
-        foreach (Collider hit in closeObjects)
+        for (int i = 0; i < closeObjects.Length; i++)
         {
-            IDamagable<float> d = hit.gameObject.GetComponent<IDamagable<float>>();
+            float eachDamage = Mathf.RoundToInt(damage / closeObjects.Length);
+            IDamagable<float> d = closeObjects[i].gameObject.GetComponent<IDamagable<float>>();
             if (d != null)
-                d.ApplyDamage(Mathf.RoundToInt(damage / closeObjects.Length));
+                d.ApplyDamage(eachDamage);
         }
     }
 
@@ -25,7 +26,7 @@ public static class Utilities
                 t.ApplyDamage(Mathf.RoundToInt(damage));
         }
     }
-    
+
     public static void PlayAtSourceWithVPRange(AudioSource source, AudioClip clip, float minVol = 0, float maxVol = 1, float minPitch = -3, float maxPitch = 3)
     {
         if (source != null && clip != null)

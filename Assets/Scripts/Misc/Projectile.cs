@@ -3,12 +3,12 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    public static UnityAction<Vector3, byte, byte, float> TextInfo;
-    public GameEvent ProjectileImpacted;
+    public static UnityAction ProjectileImpactSound;
     public float currentDamage;
     [SerializeField] LayerMask hitLayers;
     [SerializeField] LayerMask ignoreLayers;
     [SerializeField] ObjectPooler explosionPool;
+    [SerializeField] float explosionSize;
     TrailRenderer projectileTrail;
     Rigidbody pRigidbody;
 
@@ -29,27 +29,32 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         if (Utilities.IsInLayerMask(other.gameObject, ignoreLayers))
             return;
         if (Utilities.IsInLayerMask(other.gameObject, hitLayers))
         {
+            ProjectileImpactSound?.Invoke();
             TryDamagingTarget(other.gameObject);
-            ProjectileImpacted?.Raise();
+            ProjectileImpact();
         }
         gameObject.SetActive(false);
+    }
+
+    void ProjectileImpact()
+    {
+        GameObject e = explosionPool.GetObject();
+        e.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        e.transform.localScale = Vector3.one * explosionSize;
+        e.SetActive(true);
     }
 
     public void TryDamagingTarget(GameObject target)
     {
         IDamagable<float> d = target.GetComponent<IDamagable<float>>();
         if (d != null)
-        {
-            TextInfo?.Invoke(transform.position, 5, 0, currentDamage);
             d.ApplyDamage(currentDamage);
-        }
     }
-
     public Rigidbody GetRigidbody() => pRigidbody;
 }
