@@ -9,11 +9,11 @@ public class GamePauser : MonoBehaviour
     public UnityEvent GamePausedExtra;
     public UnityEvent GameContinuedExtra;
 
-    void OnEnable() => buttonPressed.OnValueChanged += ChangeGameTimeState;
+    void OnEnable() => buttonPressed.OnValueChanged += PauseGame;
 
-    void OnDisable() => buttonPressed.OnValueChanged -= ChangeGameTimeState;
+    void OnDisable() => buttonPressed.OnValueChanged -= PauseGame;
 
-    public void ChangeGameTimeState(bool value)
+    public void PauseGame(bool value)
     {
         if (value.Equals(true))
         {

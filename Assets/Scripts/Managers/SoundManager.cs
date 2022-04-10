@@ -38,40 +38,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        Projectile.ProjectileImpactSound += PlayProjectileImpactSound;
-        Meteor.MeteorExplodedSound += PlayExplosionSound;
-        Meteor.MeteorEvadedSound += PlayMeteorDestroyed;
-        Drone.FiredLaserSound += PlayLaserSound;
-        Drone.DroneExploded += PlayExplosionSound;
-        Tank.TankShotSound += PlayTankShotSound;
-        Tank.TankExploded += PlayExplosionSound;
-        Bomber.BombDropSound += PlayBombDrop;
-        Bomber.BomberExploded += PlayExplosionSound;
-        Rocket.RocketExplodedSound += PlayExplosionSound;
-        ExplosiveBarrels.BarrelHitSound += PlayExplosionSound;
-        ExplosiveBarrels.BarrelShotSound += PlayExplosionSound;
-        Building.BuildingCollapseSound += PlayBuildingCollapse;
-    }
-
-    void OnDisable()
-    {
-        Projectile.ProjectileImpactSound -= PlayProjectileImpactSound;
-        Meteor.MeteorExplodedSound -= PlayExplosionSound;
-        Meteor.MeteorEvadedSound -= PlayMeteorDestroyed;
-        Drone.FiredLaserSound -= PlayLaserSound;
-        Drone.DroneExploded -= PlayExplosionSound;
-        Tank.TankShotSound -= PlayTankShotSound;
-        Tank.TankExploded -= PlayExplosionSound;
-        Bomber.BombDropSound -= PlayBombDrop;
-        Bomber.BomberExploded -= PlayExplosionSound;
-        Rocket.RocketExplodedSound -= PlayExplosionSound;
-        ExplosiveBarrels.BarrelHitSound -= PlayExplosionSound;
-        ExplosiveBarrels.BarrelShotSound -= PlayExplosionSound;
-        Building.BuildingCollapseSound -= PlayBuildingCollapse;
-    }
-
     public void StopWeaponSounds()
     {
         if (weaponSource != null)
@@ -92,12 +58,15 @@ public class SoundManager : MonoBehaviour
         if (musicSource != null)
         {
             int ranIndex = Random.Range(0, backgroundMusic.Length);
-            if (backgroundMusic[ranIndex] != null)
-            { 
-                musicSource.clip = backgroundMusic[ranIndex];
-                musicSource.Play();
-                yield return new WaitForSeconds(backgroundMusic[ranIndex].length);
-                StartCoroutine(PlayBackgroundMusic());
+            if (backgroundMusic.Length > 0)
+            {
+                if (backgroundMusic[ranIndex] != null)
+                {
+                    musicSource.clip = backgroundMusic[ranIndex];
+                    musicSource.Play();
+                    yield return new WaitForSeconds(backgroundMusic[ranIndex].length);
+                    StartCoroutine(PlayBackgroundMusic());
+                }
             }
         }
     }

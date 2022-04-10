@@ -13,7 +13,7 @@ Shader "Custom/VR/VR Cutout With Color"
 			}
 
 				Cull Off
-				Blend One One
+				//Blend One One
 				ZWrite Off
 
 				Pass

@@ -3,26 +3,23 @@ using UnityEngine.Events;
 
 public class Meteor : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction MeteorExplodedSound;
-    public static UnityAction MeteorEvadedSound;
+    [SerializeField] GameEvent meteorExploded;
+    [SerializeField] GameEvent meteorHitGround;
     public float explosionRadius;
     public LayerMask hitLayers;
     public Vector2 meteorMinMaxSize;
     public float healthMultiplier;
     public byte pointMultiplier;
-    public ObjectPooler explosionPool;
-    public ObjectPooler meteorbrokenPool;
-    float maxHealth;
     float newScale;
     float currentHealth;
     float currentSpeed;
+
 
     void OnEnable()
     {
         newScale = Random.Range(meteorMinMaxSize.x, meteorMinMaxSize.y);
         transform.localScale = new Vector3(newScale, newScale, newScale);
         currentHealth = newScale * healthMultiplier;
-        maxHealth = currentHealth;
     }
 
     void FixedUpdate() => transform.Translate(currentSpeed * Time.fixedDeltaTime * Vector3.down, Space.World);
@@ -32,10 +29,7 @@ public class Meteor : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            MeteorEvadedSound?.Invoke();
-            GameObject e = meteorbrokenPool.GetObject();
-            e.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-            e.SetActive(true);
+            meteorExploded.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }
@@ -46,16 +40,8 @@ public class Meteor : MonoBehaviour, IDamagable<float>
     {
         if (!collision.gameObject.CompareTag("Projectile"))
         {
-            if (explosionPool != null)
-            {
-                GameObject e = explosionPool.GetObject();
-                e.transform.position = transform.position;
-                float newSize = newScale;
-                e.transform.localScale = new Vector3(newSize, newSize, newSize);
-                e.SetActive(true);
-            }
             TryDamagingNearTargets();
-            MeteorExplodedSound?.Invoke();
+            meteorHitGround.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }

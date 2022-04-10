@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1222949742513473608}
   - component: {fileID: 636036740529618761}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: TriggerCheckCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +45,94 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 2
   m_Center: {x: 0, y: 0.5, z: 7}
+--- !u!1 &2313601650846884493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6279689061159165822}
+  - component: {fileID: 6705849133920269358}
+  m_Layer: 11
+  m_Name: ExplosionPoolFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6279689061159165822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313601650846884493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9021054795912959340}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6705849133920269358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313601650846884493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566f1366476c9c34d8d1c26a1e27f6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolTag: ExplosionPool
+--- !u!1 &3782815226744990400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124863355024656212}
+  - component: {fileID: 8272785080720122563}
+  m_Layer: 11
+  m_Name: RocketPoolFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &124863355024656212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782815226744990400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9021054795912959340}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8272785080720122563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782815226744990400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566f1366476c9c34d8d1c26a1e27f6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolTag: RocketPool
 --- !u!1 &4908804427105936266
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +198,8 @@ Transform:
   - {fileID: 5898256701034864519}
   - {fileID: 7939995848950376793}
   - {fileID: 1222949742513473608}
+  - {fileID: 6279689061159165822}
+  - {fileID: 124863355024656212}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,7 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85301199e3085a645bfabd23a3f3e35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killSheet: {fileID: 2458581623355798859, guid: f9ed2cdb985098642b064ccb536ba66d, type: 3}
+  tankShotMortar: {fileID: 11400000, guid: 0c5b282dbef9b7d4c863206cca589480, type: 2}
+  objectExploded: {fileID: 11400000, guid: a095ea3acbde8f64a9a974f9239ebcc0, type: 2}
   state: 0
   checkDistance: 60
   maxHealth: 400
@@ -139,8 +230,8 @@ MonoBehaviour:
     m_Bits: 256
   fireRate: 4
   cityGenerator: {fileID: 11400000, guid: 56887561b03f77542988795a41e56ed7, type: 2}
-  explosionPool: {fileID: 11400000, guid: c0a2f82aa505e954fbefad0407fb4bdd, type: 2}
-  rocketPool: {fileID: 11400000, guid: 27a1b1061d3272149ab53c33177446e0, type: 2}
+  explosionPoolFinder: {fileID: 6705849133920269358}
+  rocketPoolFinder: {fileID: 8272785080720122563}
   explosionSize: 2
 --- !u!33 &1421804697154567938
 MeshFilter:
@@ -161,6 +252,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -271,6 +363,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

@@ -3,11 +3,10 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    public static UnityAction ProjectileImpactSound;
+    [SerializeField] GameEvent projectileImpacted;
     public float currentDamage;
     [SerializeField] LayerMask hitLayers;
     [SerializeField] LayerMask ignoreLayers;
-    [SerializeField] ObjectPooler explosionPool;
     [SerializeField] float explosionSize;
     TrailRenderer projectileTrail;
     Rigidbody pRigidbody;
@@ -35,19 +34,10 @@ public class Projectile : MonoBehaviour
             return;
         if (Utilities.IsInLayerMask(other.gameObject, hitLayers))
         {
-            ProjectileImpactSound?.Invoke();
+            projectileImpacted.Invoke(gameObject);
             TryDamagingTarget(other.gameObject);
-            ProjectileImpact();
         }
         gameObject.SetActive(false);
-    }
-
-    void ProjectileImpact()
-    {
-        GameObject e = explosionPool.GetObject();
-        e.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-        e.transform.localScale = Vector3.one * explosionSize;
-        e.SetActive(true);
     }
 
     public void TryDamagingTarget(GameObject target)

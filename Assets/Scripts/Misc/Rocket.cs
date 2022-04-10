@@ -5,8 +5,7 @@ public enum RocketType { Standard, Homing, Bomb, Mortar }
 
 public class Rocket : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction RocketExplodedSound;
-    public static UnityAction<GameObject> ExplodeAtLocation;
+    [SerializeField] GameEvent rocketExploded;
     public RocketType type = RocketType.Standard;
     public Vector3 currentTarget;
     public float rocketDamage;
@@ -15,8 +14,6 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     public LayerMask damagableLayers;
     public LayerMask ignoreLayers;
     public float maxHealth = 2;
-    public ObjectPooler explosionPool;
-    public float explosionSize;
     float currentHealth = 1;
     bool forceApplied = false;
     TrailRenderer rocketTrail;
@@ -107,14 +104,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
 
     void DisableRocket()
     {
-        if (explosionPool != null)
-        {
-            GameObject e = explosionPool.GetObject();
-            e.transform.position = transform.position;
-            e.transform.localScale = new Vector3(explosionSize, explosionSize,explosionSize);
-            e.SetActive(true);
-        }
-        RocketExplodedSound?.Invoke();
+        rocketExploded.Invoke(gameObject);
         gameObject.SetActive(false);
     }
 
@@ -122,9 +112,7 @@ public class Rocket : MonoBehaviour, IDamagable<float>
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
-        {
             DisableRocket();
-        }
     }
 
     public void SetCurrentTarget(Vector3 value) => currentTarget = value;

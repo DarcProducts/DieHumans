@@ -2,7 +2,19 @@ using UnityEngine;
 
 public static class Utilities
 {
+    public const double TAU = 6.2831853071795862;
+
     public static bool IsInLayerMask(GameObject obj, LayerMask layerMask) => (layerMask.value & (1 << obj.layer)) > 0;
+
+    public static float Remap(float aValue, float aIn1, float aIn2, float aOut1, float aOut2)
+    {
+        var t = (aValue - aIn1) / (aIn2 - aIn1);
+        if (t > 1f)
+            return aOut2;
+        if (t < 0f)
+            return aOut1;
+        return aOut1 + (aOut2 - aOut1) * t;
+    }
 
     /// <param name="damage"> damage before rounded to int </param>
     public static void TryDamagingNearTargets(Vector3 pos, float rad, LayerMask hitLayer, float damage)

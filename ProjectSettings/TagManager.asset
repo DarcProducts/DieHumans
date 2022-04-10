@@ -20,6 +20,24 @@ TagManager:
   - CityArea
   - DropBox
   - Tank
+  - TextPool
+  - ProjectilePool
+  - RocketPool
+  - MeteorPool
+  - DropBoxPool
+  - BombPool
+  - DronePool
+  - TankPool
+  - BomberPool
+  - ExplosionPool
+  - Explosion1Pool
+  - Explosion2Pool
+  - MeteorBitsPool
+  - CollapsedBuildingPool
+  - CollapseEffectPool
+  - PickUpFXPool
+  - TurretPool
+  - RubblePool
   layers:
   - Default
   - TransparentFX
@@ -40,7 +58,7 @@ TagManager:
   - Turret
   - DropBox
   - ExplosiveBarrels
-  - 
+  - TankIgnore
   - 
   - 
   - 

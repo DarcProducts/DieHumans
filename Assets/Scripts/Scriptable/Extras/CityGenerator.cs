@@ -19,18 +19,11 @@ public class CityGenerator : ScriptableObject
     int _buildingsDestroyed = 0;
     public int yPlaneLevel = 0;
     readonly List<Vector3> attackTargets = new List<Vector3>();
+    Vector3 attackVector;
 
-    void OnEnable()
-    {
-        Building.RemoveBuildingVector += RemoveAttackTarget;
-        Building.UpdateBuildingCount += BuildingDestroyed;
-    }
+    void OnEnable() => Building.UpdateBuildingCount += BuildingDestroyed;
 
-    void OnDisable()
-    {
-        Building.RemoveBuildingVector -= RemoveAttackTarget;
-        Building.UpdateBuildingCount -= BuildingDestroyed;
-    }
+    void OnDisable() => Building.UpdateBuildingCount -= BuildingDestroyed;
 
     Vector3 GetWorldPosition(int x, int y, int z, float cellSize) => new Vector3(x, y, z) * cellSize;
 
@@ -77,11 +70,12 @@ public class CityGenerator : ScriptableObject
             scaleObject.transform.localScale = new Vector3(newSize.x, newSize.y, newSize.z);
     }
 
-    public int GetNumberBuildingsLeft() => attackTargets.Count;
+    public int GetNumberBuildings() => attackTargets.Count;
 
     public void RemoveAttackTarget(Vector3 target)
     {
         attackTargets.Remove(target);
+        _buildingsDestroyed++;
         if (attackTargets.Count.Equals(0))
             AllBuildingsDestroyed?.Invoke();
     }
@@ -93,7 +87,10 @@ public class CityGenerator : ScriptableObject
             int ranNum = Random.Range(0, attackTargets.Count);
             return attackTargets[ranNum];
         }
-        return new Vector3(Random.Range(10, 280), 3, Random.Range(10, 280));
+        attackVector.x = Random.Range(10, 280);
+        attackVector.y = yPlaneLevel;
+        attackVector.z = Random.Range(10, 280);
+        return attackVector;
     }
 
     public void BuildingDestroyed() => _buildingsDestroyed++;

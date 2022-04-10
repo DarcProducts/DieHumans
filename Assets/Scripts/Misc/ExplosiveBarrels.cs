@@ -3,9 +3,8 @@ using UnityEngine.Events;
 
 public class ExplosiveBarrels : MonoBehaviour
 {
-    public static UnityAction BarrelShotSound;
-    public static UnityAction BarrelHitSound;
-    public ObjectPooler explosionPool;
+    [SerializeField] GameEvent barrelExploded;
+    [SerializeField] GameEvent barrelWasShot;
     [SerializeField] float explosionEffectSize;
     [SerializeField] GameObject parachute;
     [SerializeField] float explRad;
@@ -69,7 +68,7 @@ public class ExplosiveBarrels : MonoBehaviour
             Explode(enemyHitLyr, true);
         else
         {
-            BarrelHitSound?.Invoke();
+            barrelExploded.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }
@@ -78,13 +77,8 @@ public class ExplosiveBarrels : MonoBehaviour
     {
         Utilities.TryDamagingNearTargets(transform.position, explRad, layer, explDmg);
         if (wasShot)
-            BarrelShotSound?.Invoke();
-        else
-            BarrelHitSound?.Invoke();
-        GameObject e = explosionPool.GetObject();
-        e.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-        e.transform.localScale = Vector3.one * explosionEffectSize;
-        e.SetActive(true);
+            barrelWasShot.Invoke(gameObject);
+        barrelExploded.Invoke(gameObject);
         gameObject.SetActive(false);
     }
 

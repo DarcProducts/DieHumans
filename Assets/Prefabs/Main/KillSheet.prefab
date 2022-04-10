@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28210d3c5b6798144bc07f26fb1549e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dronesDestroyed: 0
-  tanksDestroyed: 0
-  bombersDestroyed: 0
+  dronesDestroyed: {fileID: 11400000, guid: bbb164f3c1d65eb41b002aa140497e7f, type: 2}
+  tanksDestroyed: {fileID: 11400000, guid: 4b3382b90d658f5418ca4f65d302dbb8, type: 2}
+  bombersDestroyed: {fileID: 11400000, guid: af35620b3281f66489fd0e5034440a02, type: 2}

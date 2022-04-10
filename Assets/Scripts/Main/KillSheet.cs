@@ -1,7 +1,7 @@
 using UnityEngine;
 public class KillSheet : MonoBehaviour
 {
-    public int dronesDestroyed;
-    public int tanksDestroyed;
-    public int bombersDestroyed;
+    public GlobalIntVariable dronesDestroyed;
+    public GlobalIntVariable tanksDestroyed;
+    public GlobalIntVariable bombersDestroyed;
 }

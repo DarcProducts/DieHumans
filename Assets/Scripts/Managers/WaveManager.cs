@@ -26,6 +26,8 @@ public class WaveManager : MonoBehaviour
     public float spawnDelay = 1f;
     bool sentWaveBegun = false;
     bool updatedWaveNumber = false;
+    [Header("Events")]
+    public UnityEvent<GameObject> OnObjectSpawned;
 
     [Header("Spawning")]
     [SerializeField] List<Transform> spawnPoints;
@@ -42,21 +44,11 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        Drone.RemoveFromWaveList += RemoveWaveObject;
-        Tank.RemoveFromWaveList += RemoveWaveObject;
-        Bomber.RemoveFromWaveList += RemoveWaveObject;
-    }
-
     void OnDisable()
     {
         if (cityGenerator != null)
             cityGenerator.ResetDestroyedBuildingCount();
         StopAllCoroutines();
-        Drone.RemoveFromWaveList -= RemoveWaveObject;
-        Tank.RemoveFromWaveList -= RemoveWaveObject;
-        Bomber.RemoveFromWaveList -= RemoveWaveObject;
     }
 
     void LateUpdate()
@@ -86,7 +78,10 @@ public class WaveManager : MonoBehaviour
             currentWave++;
             currentWaveText.text = $"Wave {currentWave}";
             waveDisplayScreen.text = $"Wave {currentWave}";
-            waveDisplayScreen.transform.parent.gameObject.SetActive(true);
+            if (Time.timeScale.Equals(0))
+                waveDisplayScreen.transform.parent.gameObject.SetActive(false);
+            else
+                waveDisplayScreen.transform.parent.gameObject.SetActive(true);
             updatedWaveNumber = true;
         }
         isRunning = true;
@@ -112,6 +107,7 @@ public class WaveManager : MonoBehaviour
                 {
                     b.transform.position = newLoc + Vector3.up * 100;
                     waveObjects.Add(b);
+                    OnObjectSpawned?.Invoke(b);
                     b.SetActive(true);
                 }
             }
@@ -122,6 +118,7 @@ public class WaveManager : MonoBehaviour
                 {
                     t.transform.position = newLoc;
                     waveObjects.Add(t);
+                    OnObjectSpawned?.Invoke(t);
                     t.SetActive(true);
                 }
             }
@@ -132,6 +129,7 @@ public class WaveManager : MonoBehaviour
                 {
                     d.transform.position = newLoc + Vector3.up * 60;
                     waveObjects.Add(d);
+                    OnObjectSpawned?.Invoke(d);
                     d.SetActive(true);
                 }
             }

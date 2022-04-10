@@ -6,11 +6,8 @@ public enum DroneState { moving, attacking }
 public class Drone : AIUtilities, IDamagable<float>
 {
     public DroneState state = DroneState.moving;
-    public static UnityAction<GameObject> RemoveFromWaveList;
-    public static UnityAction FiredLaserSound;
-    public static UnityAction DroneExploded;
+    [SerializeField] GameEvent objectExploded;
     public static UnityAction UpdateDroneKillCount;
-    public KillSheet killSheet;
     public Vector2 minMaxHeight;
     public int maxHealth;
     float currentHealth;
@@ -26,12 +23,14 @@ public class Drone : AIUtilities, IDamagable<float>
     public LayerMask ignoreLayer;
     public LayerMask targetLayers;
     float fireTime;
+    [SerializeField] bool ignoreLineOfSight;
     [SerializeField] CityGenerator cityGenerator;
-    [SerializeField] ObjectPooler explosionPool;
     GameObject attackTarget = null;
+    [SerializeField] UnityEvent<GameObject> firedLaser;
 
     Vector3 targetLocation = Vector3.zero;
     bool isHittingTarget = false;
+
 
     void OnEnable()
     {
@@ -74,8 +73,8 @@ public class Drone : AIUtilities, IDamagable<float>
         {
             case DroneState.moving:
                 transform.position = Vector3.MoveTowards(transform.position, targetLocation, moveSpeed * Time.fixedDeltaTime);
-                transform.LookAt(targetLocation);
-                if (transform.position.Equals(targetLocation))
+                transform.forward = Vector3.Lerp(transform.forward, targetLocation - transform.position, .2f);
+                if (transform.position == targetLocation)
                     if (FindNearestTarget())
                         state = DroneState.attacking;
                 break;
@@ -126,14 +125,16 @@ public class Drone : AIUtilities, IDamagable<float>
     {
         if (attackTarget != null)
         {
-            if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance))
+            if (!ignoreLineOfSight)
             {
-                isHittingTarget = false;
-                FindNearestTarget();
-                return;
+                if (!CheckIfPathClear(gameObject, attackTarget, targetCheckDistance))
+                {
+                    isHittingTarget = false;
+                    FindNearestTarget();
+                    return;
+                }
             }
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(attackTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
-            bool isFacing = Vector3.Dot(transform.forward, attackTarget.transform.position) > .6f;
+            bool isFacing = Vector3.Dot(transform.forward, attackTarget.transform.position.normalized) > .6f;
             fireTime = fireTime < 0 ? 0 : fireTime -= Time.fixedDeltaTime;
             if (isHittingTarget)
             {
@@ -147,8 +148,9 @@ public class Drone : AIUtilities, IDamagable<float>
             }
             if (fireTime <= 0 && isFacing)
             {
+                transform.forward = Vector3.Lerp(transform.forward, attackTarget.transform.position - transform.position, .2f);
                 TryDamagingTarget(attackTarget, weaponDamage);
-                FiredLaserSound?.Invoke();
+                firedLaser.Invoke(gameObject);
                 fireTime = fireRate;
             }
             if (!attackTarget.activeSelf)
@@ -178,20 +180,12 @@ public class Drone : AIUtilities, IDamagable<float>
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
-        {
-            killSheet.dronesDestroyed++;
-            DisableObject();
-        }
+            ObjectDestroyed();
     }
 
-    void DisableObject()
+    void ObjectDestroyed()
     {
-        GameObject e = explosionPool.GetObject();
-        e.transform.position = transform.position;
-        e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
-        e.SetActive(true);
-        RemoveFromWaveList?.Invoke(this.gameObject);
-        DroneExploded?.Invoke();
+        objectExploded.Invoke(gameObject);
         gameObject.SetActive(false);
     }
 

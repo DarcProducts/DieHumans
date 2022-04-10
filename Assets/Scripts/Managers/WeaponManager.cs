@@ -1,10 +1,11 @@
-using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
     public GlobalBoolVariable fireButton;
+    public GlobalBoolVariable bombButton;
     public UnityEvent WeaponFired;
     public Transform weaponLocation;
     public float weaponDamage;
@@ -16,8 +17,10 @@ public class WeaponManager : MonoBehaviour
     public LayerMask ignoreDamageLayer;
     public ObjectPooler projectilePool;
     public ObjectPooler turretPool;
+    public ObjectPooler bombPool;
     int _currentTurrets = 0;
     float _currentRate;
+    bool _hasDroppedBomb;
 
     void Start()
     {
@@ -25,16 +28,26 @@ public class WeaponManager : MonoBehaviour
         InitializeAimTarget();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (fireButton.Value.Equals(true))
             FireProjectiles();
+        //if (bombButton.Value.Equals(true))
+        //{
+            //TryDroppingBomb();
+        //}
     }
 
-    void InitializeAimTarget()
+    void TryDroppingBomb()
     {
-        aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
+        if (!_hasDroppedBomb)
+        {
+            _hasDroppedBomb = true;
+            GameObject bomb = bombPool.GetObject();
+        }
     }
+
+    void InitializeAimTarget() => aimTarget.transform.localPosition = new Vector3(0, 0, aimTargetDistance);
 
     bool IsTurretAvailable() => _currentTurrets > 0;
 

@@ -6,10 +6,7 @@ public enum TankState { moving, attacking }
 public class Tank : AIUtilities, IDamagable<float>
 {
     public static UnityAction UpdateTankKillCount;
-    public static UnityAction<GameObject> RemoveFromWaveList;
-    public static UnityAction TankShotSound;
-    public static UnityAction TankExploded;
-    public KillSheet killSheet;
+    [SerializeField] GameEvent objectExploded;
     public TankState state;
     public float checkDistance;
     public int maxHealth;
@@ -21,15 +18,19 @@ public class Tank : AIUtilities, IDamagable<float>
     public LayerMask targetLayers;
     public float fireRate;
     public CityGenerator cityGenerator;
-    public ObjectPooler explosionPool;
-    public ObjectPooler rocketPool;
-    public float explosionSize;
+    [SerializeField] FindPoolByTag rocketPoolFinder;
+    ObjectPooler rocketPool;
     float currentFireRate = 0f;
     Vector3 targetLocation;
     GameObject currentTarget = null;
     float currentHealth;
+    [SerializeField] UnityEvent<GameObject> launchedMortar;
 
-    public void Start() => InitialSetup();
+    public void Start()
+    {
+        rocketPool = rocketPoolFinder.GetFoundPool();
+        InitialSetup();
+    }
 
     public void OnEnable() => InitialSetup();
 
@@ -59,8 +60,8 @@ public class Tank : AIUtilities, IDamagable<float>
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, targetLocation, tankSpeed * Time.fixedDeltaTime);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed * Time.fixedDeltaTime);
+                    transform.SetPositionAndRotation(Vector3.MoveTowards(transform.position, targetLocation, tankSpeed * Time.fixedDeltaTime), 
+                        Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetLocation - transform.position), rotateSpeed * Time.fixedDeltaTime));
                 }
                 break;
 
@@ -79,13 +80,14 @@ public class Tank : AIUtilities, IDamagable<float>
         {
             if (currentTarget.activeSelf)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                    Quaternion.LookRotation(currentTarget.transform.position - transform.position), rotateSpeed * Time.fixedDeltaTime);
                 targetLocation = currentTarget.transform.position;
                 currentFireRate = currentFireRate < 0 ? 0 : currentFireRate -= Time.fixedDeltaTime;
                 if (currentFireRate.Equals(0))
                 {
                     LaunchMortar();
-                    TankShotSound?.Invoke();
+                    launchedMortar.Invoke(barrelTip.gameObject);
                     currentFireRate = fireRate;
                 }
             }
@@ -132,19 +134,8 @@ public class Tank : AIUtilities, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            GameObject e = explosionPool.GetObject();
-            if (e != null)
-            {
-                float eSize = explosionSize;
-                e.transform.position = transform.position;
-                e.transform.localScale = new Vector3(eSize, eSize, eSize);
-                e.SetActive(true);
-            }
-
-            killSheet.tanksDestroyed++;
             UpdateTankKillCount?.Invoke();
-            RemoveFromWaveList?.Invoke(this.gameObject);
-            TankExploded?.Invoke();
+            objectExploded.Invoke(gameObject);
             gameObject.SetActive(false);
         }
     }

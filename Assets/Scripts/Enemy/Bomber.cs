@@ -3,11 +3,8 @@ using UnityEngine.Events;
 
 public class Bomber : MonoBehaviour, IDamagable<float>
 {
-    public static UnityAction BombDropSound;
-    public static UnityAction BomberExploded;
+    [SerializeField] GameEvent bomberExploded;
     public static UnityAction UpdateBomberKillCount;
-    public static UnityAction<GameObject> RemoveFromWaveList;
-    public KillSheet killSheet;
     public int maxHealth;
     public Vector2 minMaxBombHeight;
     public float bombDamage;
@@ -21,12 +18,17 @@ public class Bomber : MonoBehaviour, IDamagable<float>
     float currentHealth;
     public float shipSpeed;
     public float bombDropRate;
-    public ObjectPooler explosionPool;
-    public ObjectPooler rocketPool;
+    public FindPoolByTag rocketPoolFinder;
+    ObjectPooler rocketPool;
     float currentDrop;
     Vector3 targetLocation;
+    [SerializeField] UnityEvent<GameObject> bombDropped;
 
-    void Start() => currentStartTime = bombStartTime;
+    void Start()
+    {
+        currentStartTime = bombStartTime;
+        rocketPool = rocketPoolFinder.GetFoundPool();
+    }
 
     void OnEnable()
     {
@@ -78,7 +80,7 @@ public class Bomber : MonoBehaviour, IDamagable<float>
                 {
                     bomb.transform.position = transform.position + Vector3.down * 5;
                     bomb.SetActive(true);
-                    BombDropSound?.Invoke();
+                    bombDropped.Invoke(gameObject);
                 }
                 currentDrop = bombDropRate;
             }
@@ -92,14 +94,8 @@ public class Bomber : MonoBehaviour, IDamagable<float>
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            GameObject e = explosionPool.GetObject();
-            e.transform.position = transform.position;
-            e.transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
-            e.SetActive(true);
-            killSheet.bombersDestroyed++;
+            bomberExploded.Invoke(gameObject);
             UpdateBomberKillCount?.Invoke();
-            RemoveFromWaveList?.Invoke(this.gameObject);
-            BomberExploded?.Invoke();
             gameObject.SetActive(false);
         }
     }

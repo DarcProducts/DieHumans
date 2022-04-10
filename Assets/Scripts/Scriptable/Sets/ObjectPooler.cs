@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "New Object Pooler")]
-public class ObjectPooler : ScriptableObject
+
+public class ObjectPooler : MonoBehaviour
 {
     public GameObject objectToPool = null;
     readonly List<GameObject> objects = new List<GameObject>();
